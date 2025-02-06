@@ -14,16 +14,18 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Updated to v3
+        uses: actions/checkout@v3
 
-      - name: Set up LaTeX
-        run: sudo apt-get update && sudo apt-get install -y texlive-full  # Install texlive-full for LaTeX
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-full
 
       - name: Compile LaTeX document
-        run: pdflatex main.tex  # Adjust if your main file is different
+        run: pdflatex main.tex
 
       - name: Upload PDF as artifact
-        uses: actions/upload-artifact@v3  # Updated to v3
+        uses: actions/upload-artifact@v4
         with:
           name: compiled-pdf
-          path: main.pdf  # Adjust the path if necessary
+          path: main.pdf
