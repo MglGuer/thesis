@@ -4,22 +4,26 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Updated to v3
 
       - name: Set up LaTeX
-        uses: actions/setup-latex@v1
+        run: sudo apt-get update && sudo apt-get install -y texlive-full  # Install texlive-full for LaTeX
 
       - name: Compile LaTeX document
-        run: pdflatex main.tex
+        run: pdflatex main.tex  # Adjust if your main file is different
 
       - name: Upload PDF as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated to v3
         with:
-          name: pdf
-          path: main.pdf
+          name: compiled-pdf
+          path: main.pdf  # Adjust the path if necessary
