@@ -7,3 +7,9 @@
 *.pdf
 *.gz
 *.toc
+*.lof
+*.lot
+*.out
+.DS_Store
+/.latexmkrc
+/_minted-*
