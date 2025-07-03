@@ -15,13 +15,60 @@ Ethical issues surrounding the collection of data from human participants, and f
 
 \section{Software Design and Implementation}
 
-This section covers the design of data structures, knowledge bases, user interface, and algorithms. It includes implementation and related activities - tool selection, unit testing, integration testing, and function testing - that were covered in the course "Software Engineering".
+The chatbot system will be built on top of a large lagnuage model (GPT-4) and will follow a conversational AI pipeline:
+\begin{itemize}
+    \item \textbf{Load and format dataset} – Prepare dialogue data for use.
+    \item \textbf{Load tokenizer and tokenize text} – Convert raw text into token IDs.
+    \item \textbf{Load GPT-4 model} – Access the model for inference or fine-tuning.
+    \item \textbf{(Optional) Train with data collator} – Perform fine-tuning on task-specific data.
+    \item \textbf{Interact via conversation engine} – Engage in real-time dialogue with the user.
+\end{itemize}
+First, dialogue data, from the GRICE dataset, will be prepared and formatted to reflect various social communication scenarios. The data will then be 
+tokenized by using a tokenizer to convert text into machine-readable input. Subsequently, GPT-4 is loaded through an API to handle inference, while a data collator 
+will be used to manage input lengths. Finally, the model engages in real-time econversations with users, providing contextually apropriate responses to support 
+social communication training.
 
-Your Adviser may ask you to separate the Design and the Implementation sections as needed. 
+The conversation flow used in this chatbot-driven communication training system is structured into four sequential phases:
+\textbf{Scenario Selection}, \textbf{Conversation Simulation}, \textbf{Evaluation}, and \textbf{Reflection or Retry}.
+This flow was constructed with the goal of giving a clear, iterative loop for users to practice and improve their 
+social communication skills in context-sensitive environments.
 
-You may also indicate a specific software development lifecycle model that you plan to adopt in developing your software, such as the Agile methodology.
+\begin{enumerate}
+    \item \textbf{Scenario Selection} \\
+    In this phase, the user selects a specific social scenario to engage with. These scenarios are designed to
+    simulate real-world situations where effective communication is essential such as handling awkward moments,
+    initiating small talk, or responding to indirect questions. This step allows the user to target specific
+    conversational challenges aligned with their personal learning goals or areas of difficulty.
 
-For machine learning types of research, this section may be replaced with "Model Training".
+    \item \textbf{Conversation Simulation} \\
+    Once a scenario is selected, the user engages in a simulated dialogue with an AI-driven chatbot. The
+    conversation unfolds naturally, with the user providing input and the chatbot responding in real time.
+    This interactive phase emphasizes context, tone, and appropriate language use, mimicking real-life 
+    communication. The simulation encourages the user to apply pragmatic strategies, such as reading between the 
+    lines, interpreting implied meaning, and maintaining conversational relevance.
+
+    \item \textbf{Evaluation} \\
+    After the conversation ends, the system evaluates the user’s performance. This evaluation is grounded in 
+    principles from linguistic pragmatics, particularly \textbf{Grice’s maxims} (Quantity, Quality, Relation, 
+    and Manner). The chatbot assesses how well the user followed conversational norms, responded to social 
+    cues, and maintained clarity and relevance. Feedback may include scores, highlight strengths, and point 
+    out areas for improvement.
+
+    \item \textbf{Reflection or Retry} \\
+    The final stage prompts the user to either \textit{reflect} on the evaluation or \textit{retry} the 
+    simulation to improve their response. Reflection helps the learner process feedback, internalize 
+    conversational norms, and recognize specific pragmatic issues such as awkward phrasing or irrelevant 
+    responses. If the user chooses to retry, they can immediately re-engage with the same scenario or select 
+    a new one, reinforcing learning through repetition and iterative practice.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/conversation_flow.png}
+    \caption{Conversation Flow: From Scenario Selection to Reflection}
+    \label{fig:conversationflow}
+\end{figure}
+
 
 \section{Validation}
 
