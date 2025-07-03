@@ -4,13 +4,13 @@ This chapter enumerates and discusses the specific steps and activities that wil
 
 Ethical issues surrounding the research and the steps to be taken by the research team to adhere to ethical guidelines and principles should be included when discussing each of the activities.
 
-Research activities include inquiry, survey, research, brainstorming, canvassing, consultation, review, interview, observe, experiment, design, test, document, and other similar tasks. The following sections present an example set of activities and methods for conducting computing research. \textbf{\textcolor{red}{However, note that your group's actual research activities and methods will be different depending on your intended research contributions. You should consult closely with your thesis adviser for proper guidance. The following sections need not appear in your actual thesis proposal.}}
+Research activities include inquiry, survey, research, brainstorming, canvassing, consultation, review, interview, observe, experiment, design, test, document, and other similar tasks. The following sections present an example set of activities and methods for conducting computing research. 
 
 \section{Software Overview}
 
 This section provides an overview of Socius, a chatbot utilizing the APAM framework to enhance social communication skills, specifically pragmatics, to develop their ability to navigate social interactions effectively. The chatbot is designed to simulate real-world situations and conversations in which pragmatics becomes apparent and important. The social situations provided are pre-determined and modeled based on each of Grice's Maxims and Implicatures. It is also important to note that these situations were developed both by research and GPT 4.0, in which it was made critical to comply with Grice's theory. To do so, the chatbot would be modeled using the GRICE dataset (reference here). Moreover, this pragmatical assessment is based on Grice's Maxims, whicha re fundamental principles of pragmatics that guide effective communication. After the user has simualated conversation with the chatbot and the hypothetical social situation, the chatbot will then evaluate the users' pragmatical competence based on the user's responses and adherence to Grice's Maxims and implicatures. The chatbot will provide feedback and suggestions for improvement, allowing users to reflect on their conversation and thereby improve from the advice the chatbot provides. 
 
-\section {Software Objectives}
+\section{Software Objectives}
 
 The objectives of the Socius chatbot are as follows:
 \begin{itemize}
@@ -24,9 +24,20 @@ The objectives of the Socius chatbot are as follows:
 
 \section{Data Collection}
 
-This section, also called "Data Gathering", focus on activities that will enable the researchers to understand their users and their context better, or to analyze the operating environment where the proposed software may be deployed. The types of activities would include interviews, observations, surveys, focus group discussions, and review of secondary data (reports, videos, manuals) to enable the researchers to identify user requirements; learn the existing processes, strategies, rules and guidelines; and/or build the datasets and knowledge resources needed in the study.
+The training data used for the chatbot will be sourced from the GRICE dataset.
 
-Ethical issues surrounding the collection of data from human participants, and from internet or 3rd party sources should be indicated. The steps to be taken by the proponents to ensure that ethical guidelines are followed should also be explained.
+\section{Dataset Design}
+
+The GRICE dataset will be used to the train the chatbot. Below is the structure of the dataset:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{figures/dataset_structure.png}
+    \caption{GRICE Dataset Structure}
+    \label{fig:datasetstructure}
+\end{figure}
+
+The GRICE dataset is structure to then include various scenarios based on the implicatures that come from Grice's Maxims. As such, each row of data in the dataset represents a unique social scenario in regards to a certain implicature. 
 
 \section{Software Design and Implementation}
 
