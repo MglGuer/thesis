@@ -14,64 +14,36 @@ Conversational implicature, a core concept in pragmatics, refers to the unstated
 
 \section*{Types of Implicatures}
 
-Describe below is each implicature utilized in the GRICE dataset, each with a definition and example to illustrate how meaning is conveyed beyond the literal words:
+Described below is each implicature utilized in the GRICE dataset~\cite{zheng_grice_2021}, each with a definition and example to illustrate how meaning is conveyed beyond the literal words:
 
-\subsection*{Relevance}
-Implicating the answer to an expressed or implied question by stating something related to the answer by implication or explanation.
 \begin{itemize}
-    \item \textbf{Example:}
-    \begin{itemize}
-        \item Alice: Where did you see the apples?
-        \item Bob: There is a basket in the kitchen.
-        \item (The apples are in the kitchen.)
-    \end{itemize}
+    \item \textbf{Relevance:} Implicating the answer to an expressed or implied question by stating something related to the answer by implication or explanation.\\
+    \textit{Example:} Alice: Where did you see the apples?\\
+    Bob: There is a basket in the kitchen.\\
+    (The apples are in the kitchen.)
+
+    \item \textbf{Strengthening:} Implicating a stronger proposition $S^+$ when not understatement.\\
+    \textit{Example:} Alice: Are some of the apples in the kitchen?\\
+    Bob: All of them are there.\\
+    (Not just some, but all of the apples are in the kitchen.)
+
+    \item \textbf{Limiting:} Implicating the denial of $S^+$.\\
+    \textit{Example:} Alice: Are all the apples in the kitchen?\\
+    Bob: Some are.\\
+    (Not all apples are in the kitchen.)
+
+    \item \textbf{Ignorance:} Implicating that one does not know whether $S^+$ is true (or that $S^+$ may or may not be true).\\
+    \textit{Example:} Alice: Where did you see Jack?\\
+    Bob: He was in the kitchen or the bedroom.\\
+    (I am not sure where Jack was.)
+
+    \item \textbf{Close-But:} Implicating a negative answer to a question by affirming something close to a positive answer in contextually salient respects.\\
+    \textit{Example:} Alice: Did you put the apples in the kitchen?\\
+    Bob: I was in the living room.\\
+    (I did not put the apples in the kitchen since I was somewhere else.)
 \end{itemize}
 
-\subsection*{Strengthening}
-Implicating a stronger proposition $S^+$ when not understatement.
-\begin{itemize}
-    \item \textbf{Example:}
-    \begin{itemize}
-        \item Alice: Are some of the apples in the kitchen?
-        \item Bob: All of them are there.
-        \item (Not just some, but all of the apples are in the kitchen.)
-    \end{itemize}
-\end{itemize}
-
-\subsection*{Limiting}
-Implicating the denial of $S^+$.
-\begin{itemize}
-    \item \textbf{Example:}
-    \begin{itemize}
-        \item Alice: Are all the apples in the kitchen?
-        \item Bob: Some are.
-        \item (Not all apples are in the kitchen.)
-    \end{itemize}
-\end{itemize}
-
-\subsection*{Ignorance}
-Implicating that one does not know whether $S^+$ is true (or that $S^+$ may or may not be true).
-\begin{itemize}
-    \item \textbf{Example:}
-    \begin{itemize}
-        \item Alice: Where did you see Jack?
-        \item Bob: He was in the kitchen or the bedroom.
-        \item (I am not sure where Jack was.)
-    \end{itemize}
-\end{itemize}
-
-\subsection*{Close-But}
-Implicating a negative answer to a question by affirming something close to a positive answer in contextually salient respects.
-\begin{itemize}
-    \item \textbf{Example:}
-    \begin{itemize}
-        \item Alice: Did you put the apples in the kitchen?
-        \item Bob: I was in the living room.
-        \item (I did not put the apples in the kitchen since I was somewhere else.)
-    \end{itemize}
-\end{itemize}
-
-One of the foundational theories underpinning the study of pragmatics is H. Paul Grice’s theory of conversational implicature, introduced in his seminal work Logic and Conversation (1975). Grice proposed that effective communication relies not only on the literal meaning of utterances, but also on shared assumptions between speaker and listener about how communication should proceed. This principle is guided by 4 maxims that speakers are expected to follow in conversation: Quantity, Quality, Relation, and Manner. These maxims serve as a framework for analyzing conversational exchanges and understanding how meaning is constructed beyond the literal words spoken.
+One of the foundational theories underpinning the study of pragmatics is H. Paul Grice’s theory of conversational implicature, introduced in his seminal work Logic and Conversation (1975). Grice proposed that effective communication relies not only on the literal meaning of utterances, but also on shared assumptions between speaker and listener about how communication should proceed. This principle is guided by 4 maxims that speakers are expected to follow in conversation: Quantity, Quality, Relation, and Manner. These maxims serve as a framework for analyzing conversational exchanges and understanding how meaning is constructed beyond the literal words spoken~\cite{zheng_grice_2021}.
 
 \begin{enumerate}
     \item \textbf{Maxim of Quantity} \\
@@ -93,10 +65,11 @@ When individuals intentionally violate these maxims, it is often an implicature;
 Pragmatic competence refers to a speaker's ability to use and interpret language appropriately in social interactions. It comprises not only of the knowledge of linguistics but also the ability to infer meaning based on context, recognize implicatures, and handling of conversational norms. As such, understanding Grice's Maxims is essential for developing pragmatic competence, due to the fact that it enables individuals to infer implied meanings, respond appropriately in various conversational settings, and use language appropriately.
 
 
-In this context, Grice's Maxims serve as a theoretical foundation for designing chatbot interactions that simulate real-life conversational settings. By exposing the users to simulated conversations wherein maxims are observed or violated, they are given the opportunity to reflect on meaning beyond the literal, practice inferential reasoning, and make improvements to their ability to navigate social communication. In this fashion, the development of the users' pragmatic competence, especially amongst those who may struggle with social communication, is cultivated.
+In this context, Grice's Maxims serve as a theoretical foundation for designing chatbot interactions that simulate real-life conversational settings. By exposing the users to simulated conversations wherein maxims are observed or violated, they are given the opportunity to reflect on meaning beyond the literal, practice inferential reasoning, and make improvements to their ability to navigate social communication. In this fashion, the development of the users' pragmatic competence, especially amongst those who may struggle with social communication, is cultivated~\cite{yang_social_2024}.
+
 \section{The APAM Framework: Dual-Agent Structure}
 
-While Grice's Maxims provide an outline for the particular aspects of social interaction a chatbot might be able to address, the APAM Framework provides the structural approach for effective delivery of this support. This framework uses a dual-agent approach for the purposes of enhancing the ability of chatbots to simulate realistic scenarios while also delivering grounded, knowledgeable feedback. Finally, it offers users a safe, supportive environment in which they can learn social communication skills. Thus, the functionality of the chatbot will be divided according to the two:
+While Grice's Maxims provide an outline for the particular aspects of social interaction a chatbot might be able to address, the APAM Framework provides the structural approach for effective delivery of this support. This framework uses a dual-agent approach for the purposes of enhancing the ability of chatbots to simulate realistic scenarios while also delivering grounded, knowledgeable feedback~\cite{yang_social_2024}. Finally, it offers users a safe, supportive environment in which they can learn social communication skills. Thus, the functionality of the chatbot will be divided according to the two:
 
 \subsection{AI Partner: Realistic Practice}
 
