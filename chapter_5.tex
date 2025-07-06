@@ -1,0 +1,76 @@
+\chapter{Design and Implementation}\label{chap:chapter5}
+
+\section{Knowledge Base Design}
+
+The knowledge base will serve as the foundation of the chatbot system, enabling accurate scenario generation, user profiling, and feedback delivery. It will consist of several interconnected components:
+
+\begin{itemize}
+    \item \textbf{Scenario Database} – It will store predefined conversational scenarios aligned with Grice’s Maxims and pragmatic principles.
+    \item \textbf{User Database} – It will maintain user profiles, including past conversations, performance data, and current proficiency levels.
+    \item \textbf{Feedback System} – It will generate personalized feedback based on user responses, mapped to specific pragmatic competencies such as relevance, clarity, and informativeness.
+\end{itemize}
+
+\section{Algorithms}
+
+The system will rely on the following core algorithms to analyze input, assess pragmatic adherence, and generate appropriate responses:
+
+\subsection{Intent Recognition}
+
+The \textbf{Intent Recognition} algorithm is responsible for determining the user's intent based on their input. This ensures that the chatbot maintains contextual relevance and keeps the conversation focused on the right topic. By using an external API like Gemini, the system can classify user inputs into different intent categories, allowing for a more targeted and accurate response. The function works by sending the user's input to the Gemini API, which classifies the intent, and then returns the detected intent to guide the chatbot’s response.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{figures/intent_pseudo.png}
+    \caption{Intent Recognition Algorithm}
+    \label{fig:intentrecognition}
+\end{figure}
+
+\subsection{Pragmatic Analysis}
+
+The \textbf{Pragmatic Analysis} algorithm evaluates whether the user's response adheres to Grice’s Maxims, which are principles of communication that help maintain relevance, clarity, truthfulness, and informativeness. The algorithm checks for violations of these maxims by analyzing the user’s input. For example, it checks if the response is too short (Quantity Maxim violation), contains lies (Quality Maxim violation), is off-topic (Relation Maxim violation), or is unclear due to ambiguity (Manner Maxim violation). Based on the violations detected, the algorithm generates feedback to guide the user towards better communication practices.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{figures/evaluate_pragmatics_pseudo.png}
+    \caption{Pragmatic Analysis Algorithm}
+    \label{fig:pragmaticanalysis}
+\end{figure}
+
+\subsection{Feedback Generation}
+
+The \textbf{Feedback Generation} algorithm constructs personalized feedback messages based on the pragmatic analysis. It informs the user about any violations of Grice's Maxims, offering suggestions to improve their communication. If no violations are found, the algorithm generates positive feedback, congratulating the user for providing a clear and relevant response. This ensures that users not only receive constructive criticism but also feel encouraged to continue improving their conversational skills.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{figures/feedback_generation_psuedo.png}
+    \caption{Feedback Generation Algorithm}
+    \label{fig:feedbackgeneration}
+\end{figure}
+
+\subsection{LLM (Gemini API) Integration for Response Generation}
+
+The \textbf{LLM Integration} algorithm is responsible for generating responses that are contextually relevant and pragmatically sound.
+This is achieved by integrating the Gemini API to generate text that aligns with the selected scenario and the user’s input.
+The algorithm constructs a prompt that combines the scenario and the user’s input, and sends it to Gemini’s `generate\_text` method.
+The generated text is then returned as the chatbot’s response. This ensures that the chatbot can handle various conversational
+contexts and respond appropriately.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{figures/LLM_feedback_pseudo.png}
+    \caption{LLM (Gemini API) for Response Generation}
+    \label{fig:llmintegration}
+\end{figure}
+
+\section{GRICE Dataset Structure}
+
+The GRICE dataset will be used to train the chatbot. Below is the structure of the dataset:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{figures/dataset_structure.png}
+    \caption{GRICE Dataset Structure}
+    \label{fig:datasetstructure}
+\end{figure}
+
+The GRICE dataset is structured to include various scenarios based on the implicatures that come from Grice's Maxims. As such, each row of data in the dataset represents a unique social scenario in regards to a certain implicature.
