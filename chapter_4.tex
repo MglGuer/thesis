@@ -1,39 +1,46 @@
-\chapter{Socius Chatbot}\label{sec:methodology}
+\chapter{The Socius System}\label{sec:methodology}
 
 \section{Software Overview}
 
-This section provides an overview of Socius, a chatbot utilizing the APAM framework to enhance social communication skills, specifically pragmatics, to develop their ability to navigate social interactions effectively. The chatbot is designed to simulate real-world situations and conversations in which pragmatics becomes apparent and important. The social situations provided are pre-determined and modeled based on each of Grice's Maxims and Implicatures. It is also important to note that these situations were developed both by research and GPT 4.0, in which it was made critical to comply with Grice's theory. To do so, the chatbot would be modeled using the GRICE dataset (reference here). Moreover, this pragmatical assessment is based on Grice's Maxims, whicha re fundamental principles of pragmatics that guide effective communication. After the user has simualated conversation with the chatbot and the hypothetical social situation, the chatbot will then evaluate the users' pragmatical competence based on the user's responses and adherence to Grice's Maxims and implicatures. The chatbot will provide feedback and suggestions for improvement, allowing users to reflect on their conversation and thereby improve from the advice the chatbot provides. 
+The software system, namely Socius, will be a chatbot designed to assist users in improving their pragmatic competence through dialogue-based training and feedback mechanisms utilizing the APAM Framework. The chatbot is designed to utilize the Gemini API as its core conversational engine. All interactions and feedback are processed and evaluated against rule-based patterns drawn from pragmatics research as mentioned previusly in this document. 
 
 \section{Software Objectives}
 
 % 
+The objectives of the Socius chatbot system are as follows:
 
-The objectives of the Socius chatbot are as follows:
 \begin{itemize}
-    \item To apply accurate siutation emulation based on situations in which pragmatics is present, utilizing the APAM Framework
-    \item To integrate the GRICE dataset and map it to scenario-specific dialogue flows that correspond to each of Grice's Maxims.
-    \item To develop a dialogue engine capable of detecting and analyzing user input for implicatures and maxim adherence.
-    \item To store user interaction data securely for performance tracking and reflective feedback generation.
-    \item To design a rule-based and/or ML-based scoring system that evaluates user responses against pragmatic criteria.
-    \item To ensure extensibility for future addition of more pragmatic theories, languages, or user customization options.
+    \item To integrate a user profile and session-tracking database, enabling tracking of pragmatic competence metrics and individual progress across multiple sessions.
+    \item To provide users a selection of predefined social scenarios that they may select from, which then allows them to engage in the chatbot's dialogue-based training and feedback mechanisms. 
+    \item To utilize the Gemini API to generate responses that are contextually relevant and research-based in regards to pragmatics, ensuring that the chatbot adheres to Grice's maxims and implicatures.
+    \item To implement a user interface that facilitates the conversation, similar to text messaging applications, that will allow users to interact with the chatbot through text input thereby receiving responses from the chatbot.
 \end{itemize}
 
-\section{Data Collection}
+\section{Software Scope and Limitations}
 
-The training data used for the chatbot will be sourced from the GRICE dataset.
+\begin{itemize}
+    \item The system will establish a backend database that will be storing user profiles, conversation transcripts, and metrics related to pragmatic competence. This will only require select information from the user, such as their name, email, and password. As such, we will not be requiring external user data such as social media profiles or other applications. This will also host the conversation logs per user session, which will allow the model to analyze the user's current pragmatic competence.  
+    \item The system will provide a fixed set of predefined conversational scenarios. Users will be able to select from these scenarios to practice, in which the range of contexts offered will cover various academic, professional, and social situations relevant to young adults. The system thus will be limited to these predefined scenarios and will not allow dynamic scenario generation or user-generated scenarios. 
+    \item The system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. The chatbot will only be using the free version of the Gemini API, which may limit the complexity and depth of responses as compared to the other LLMs stated previously. Thus, we will be exploring the potential of the Gemini API to generate responses that align with sociolinguistic topics. 
+    \item The system will implement a user interface that mimics text messaging applications which would allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface. 
+\end{itemize}
 
-\section{Dataset Design}
 
-The GRICE dataset will be used to the train the chatbot. Below is the structure of the dataset:
+\section{Overview of Architectural Design}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{figures/dataset_structure.png}
-    \caption{GRICE Dataset Structure}
-    \label{fig:datasetstructure}
-\end{figure}
 
-The GRICE dataset is structure to then include various scenarios based on the implicatures that come from Grice's Maxims. As such, each row of data in the dataset represents a unique social scenario in regards to a certain implicature. 
+
+
+% The GRICE dataset will be used to the train the chatbot. Below is the structure of the dataset:
+
+% \begin{figure}[H]
+%     \centering
+%    \includegraphics[width=0.90\textwidth]{figures/dataset_structure.png}
+%    \caption{GRICE Dataset Structure}
+%    \label{fig:datasetstructure}
+% \end{figure}
+
+% The GRICE dataset is structure to then include various scenarios based on the implicatures that come from Grice's Maxims. As such, each row of data in the dataset represents a unique social scenario in regards to a certain implicature. 
 
 \section{Software Design and Implementation}
 
@@ -92,9 +99,6 @@ social communication skills in context-sensitive environments.
 \end{figure}
 
 
-\section{Validation}
-
-Currently, the validation of the chatbot will be done through qualitative testing with a small group of users.
 
 \subsection{Calendar of Activities}
 
