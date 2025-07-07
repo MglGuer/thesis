@@ -49,16 +49,17 @@ The objectives of the Socius chatbot system are as follows:
 
 \section{Software Design and Implementation}
 
-The chatbot system will be built on top of a large lagnuage model (GPT-4), implemented using Python, and will follow a conversational AI pipeline:
+The chatbot system will be built on top of a large language model (Gemini), implemented using Python, and will follow a conversational AI pipeline:
 \begin{itemize}
     \item \textbf{Load and format dataset} – Prepare dialogue data for use.
-    \item \textbf{Load tokenizer and tokenize text} – Convert raw text into token IDs.
     \item \textbf{Load GPT-4 model} – Access the model for inference or fine-tuning.
     \item \textbf{Train with data collator} – Perform fine-tuning on task-specific data.
     \item \textbf{Interact via conversation engine} – Engage in real-time dialogue with the user.
 \end{itemize}
-First, dialogue data, from the GRICE dataset, will be prepared and formatted to reflect various social communication scenarios. The data will then be 
-tokenized by using a tokenizer to convert text into machine-readable input. Subsequently, GPT-4 is loaded through an API to handle inference, while a data collator 
+First, dialogue data, from the GRICE dataset, will be prepared and formatted to reflect various social communication scenarios. The
+system uses predefined dialogue data drawn from the GRICE dataset. Real-time
+conversation is handled via the Gemini API, which responds to user input using contextual understanding based on Gricean maxims
+and the scenario’s goals. Subsequently, Gemini is loaded through an API to handle inference, while a data collator 
 will be used to manage input lengths. Finally, the model engages in real-time econversations with users, providing contextually apropriate responses to support 
 social communication training.
 
