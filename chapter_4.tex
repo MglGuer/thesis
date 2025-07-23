@@ -18,12 +18,11 @@ The objectives of the Socius chatbot system are as follows:
 
 \section{Software Scope and Limitations}
 
-\begin{itemize}
-    \item The system will establish a backend database that will be storing user profiles, conversation transcripts, and metrics related to pragmatic competence. This will only require select information from the user, such as their name, email, and password. As such, we will not be requiring external user data such as social media profiles or other applications. This will also host the conversation logs per user session, which will allow the model to analyze the user's current pragmatic competence.  
-    \item The system will provide a fixed set of predefined conversational scenarios. Users will be able to select from these scenarios to practice, in which the range of contexts offered will cover various academic, professional, and social situations relevant to young adults. The system thus will be limited to these predefined scenarios and will not allow dynamic scenario generation or user-generated scenarios. 
-    \item The system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. The chatbot will only be using the free version of the Gemini API, which may limit the complexity and depth of responses as compared to the other LLMs stated previously. Thus, we will be exploring the potential of the Gemini API to generate responses that align with sociolinguistic topics. 
-    \item The system will implement a user interface that mimics text messaging applications which would allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface. 
-\end{itemize}
+The system will establish a backend database that will be storing user profiles, conversation transcripts, and metrics related to pragmatic competence. This will only require select information from the user, such as their name, email, and password. As such, we will not be requiring external user data such as social media profiles or other applications. This will also host the conversation logs per user session, which will allow the model to analyze the user's current pragmatic competence.  
+Moreover, the system will also provide a fixed set of predefined conversational scenarios. Users will be able to select from these scenarios to practice, in which the range of contexts offered will cover various academic, professional, and social situations relevant to young adults. The system thus will be limited to these predefined scenarios and will not allow dynamic scenario generation or user-generated scenarios. 
+To generate contextually relevant and pragmatically appropriate dialogue, the system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. The chatbot will only be using the free version of the Gemini API, which may limit the complexity and depth of responses as compared to the other LLMs stated previously. Thus, we will be exploring the potential of the Gemini API to generate responses that align with sociolinguistic topics. 
+The user interface will be designed to resemble common text messaging applications, presenting both the conversational exchanges and feedback in a familiar layout. This will allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface. 
+
 
 
 \section{Overview of Architectural Design}
@@ -56,7 +55,7 @@ Input received via \textbf{User Interface} is sent to the \textbf{Conversation M
 The chatbot system will be built on top of a large language model (Gemini), implemented using Python, and will follow a conversational AI pipeline:
 \begin{itemize}
     \item \textbf{Load and format dataset} – Prepare dialogue data for use.
-    \item \textbf{Load GPT-4 model} – Access the model for inference or fine-tuning.
+    \item \textbf{Load Gemini model} – Access the model for inference or fine-tuning.
     \item \textbf{Train with data collator} – Perform fine-tuning on task-specific data.
     \item \textbf{Interact via conversation engine} – Engage in real-time dialogue with the user.
 \end{itemize}

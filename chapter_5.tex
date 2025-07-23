@@ -1,3 +1,15 @@
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,                 
+  breakatwhitespace=true,          
+  frame=single,
+  backgroundcolor=\color{gray!10},
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  showstringspaces=false
+}
+
 \chapter{Design and Implementation}\label{chap:chapter5}
 
 \section{Knowledge Base Design}
@@ -18,34 +30,52 @@ The system will rely on the following core algorithms to analyze input, assess p
 
 The \textbf{Intent Recognition} algorithm is responsible for determining the user's intent based on their input. This ensures that the chatbot maintains contextual relevance and keeps the conversation focused on the right topic. By using an external API like Gemini, the system can classify user inputs into different intent categories, allowing for a more targeted and accurate response. The function works by sending the user's input to the Gemini API, which classifies the intent, and then returns the detected intent to guide the chatbot’s response.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{figures/intent_pseudo.png}
-    \caption{Intent Recognition Algorithm}
-    \label{fig:intentrecognition}
-\end{figure}
+\begin{lstlisting}[caption={Intent Recognition Algorithm}, label={lst:detectintent}]
+FUNCTION detect_intent(user_input):
+    INITIALIZE GeminiAPI with API_KEY
+    CALL classify_intent on user_input using GeminiAPI
+    RETURN detected intent from response
+END FUNCTION
+\end{lstlisting}
+
 
 \subsection{Pragmatic Analysis}
 
 The \textbf{Pragmatic Analysis} algorithm evaluates whether the user's response adheres to Grice’s Maxims, which are principles of communication that help maintain relevance, clarity, truthfulness, and informativeness. The algorithm checks for violations of these maxims by analyzing the user’s input. For example, it checks if the response is too short (Quantity Maxim violation), contains lies (Quality Maxim violation), is off-topic (Relation Maxim violation), or is unclear due to ambiguity (Manner Maxim violation). Based on the violations detected, the algorithm generates feedback to guide the user towards better communication practices.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{figures/evaluate_pragmatics_pseudo.png}
-    \caption{Pragmatic Analysis Algorithm}
-    \label{fig:pragmaticanalysis}
-\end{figure}
+\begin{lstlisting}[caption={Pragmatic Analysis}, label={lst:evaluatepragmatics}]
+FUNCTION evaluate_pragmatic_adherence(user_input, expected_response):
+    INITIALIZE feedback as an empty list
+
+    CHECK if the input violates Quantity Maxim (e.g., too short)
+        IF violation: APPEND feedback "Provide more detailed information"
+
+    CHECK if the input violates Quality Maxim (e.g., lies)
+        IF violation: APPEND feedback "Provide truthful responses"
+
+    CHECK if the input violates Relation Maxim (e.g., off-topic)
+        IF violation: APPEND feedback "Stay relevant to the conversation"
+
+    CHECK if the input violates Manner Maxim (e.g., ambiguity)
+        IF violation: APPEND feedback "Keep responses clear and unambiguous"
+
+    RETURN feedback
+END FUNCTION
+\end{lstlisting}
+
 
 \subsection{Feedback Generation}
 
 The \textbf{Feedback Generation} algorithm constructs personalized feedback messages based on the pragmatic analysis. It informs the user about any violations of Grice's Maxims, offering suggestions to improve their communication. If no violations are found, the algorithm generates positive feedback, congratulating the user for providing a clear and relevant response. This ensures that users not only receive constructive criticism but also feel encouraged to continue improving their conversational skills.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{figures/feedback_generation_psuedo.png}
-    \caption{Feedback Generation Algorithm}
-    \label{fig:feedbackgeneration}
-\end{figure}
+\begin{lstlisting}[caption={LLM (Gemini API) Response Generation}, label={lst:generateresponse}]
+FUNCTION generate_response(user_input, scenario):
+    CREATE prompt with scenario and user_input
+    CALL generate_text on GeminiAPI with prompt
+    RETURN generated text from API response
+END FUNCTION
+\end{lstlisting}
+
 
 \subsection{LLM (Gemini API) Integration for Response Generation}
 
@@ -55,12 +85,14 @@ The algorithm constructs a prompt that combines the scenario and the user’s in
 The generated text is then returned as the chatbot’s response. This ensures that the chatbot can handle various conversational
 contexts and respond appropriately.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{figures/LLM_feedback_pseudo.png}
-    \caption{LLM (Gemini API) for Response Generation}
-    \label{fig:llmintegration}
-\end{figure}
+\begin{lstlisting}[caption={LLM (Gemini API) Response Generation}, label={lst:llmintegration}]
+FUNCTION generate_response(user_input, scenario)
+    CREATE prompt with scenario and user_input
+    CALL generate_text on GeminiAPI with prompt
+    RETURN generated text from API response
+END FUNCTION
+\end{lstlisting}
+
 
 \section{GRICE Dataset Structure}
 
