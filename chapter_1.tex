@@ -171,12 +171,9 @@ Linguistics. The dataset is used here strictly for academic and non-commercial r
 dataset are performed in this study.
 
 \subsection{Software Development}
-\indent The chatbot, named Socius, will be implemented using the Python programming language and will integrate the Gemini LLM via its API.
-This exploratory use of Gemini aims to examine how its conversational capabilities align with the APAM framework and Gricean
-principles, without making prior assumptions about its effectiveness. This chatbot will follow a conversational loop that consists
-of four stages: (1) Scenario Selection, (2) Conversation Simulation, (3) Evaluation, and (4) Reflection or Retry.
-Each stage is designed to assess the user’s pragmatic competence, specifically, their adherence to Grice’s Maxims based on
-different social scenarios that the chatbot will generate. The chatbot will assume two roles simultaneously, an AI Partner for practicing conversation skills, and an AI Mentor that provides feedback.
+\indent The chatbot, named Socius, will be implemented using the Python programming language and will integrate the Gemini LLM via its API. This exploratory use of Gemini aims to examine how its conversational capabilities align with the APAM framework and Gricean principles, without making prior assumptions about its effectiveness. The chatbot will follow a six-stage conversational loop: (1) Session Initialization, (2) Scenario Selection and Instantiation, (3) Conversation Simulation, (4) Pragmatic Logging, (5) Conversation Analysis, and (6) Metric Generation.
+
+Each stage is designed to assess the user’s pragmatic competence, specifically their adherence to Grice’s Maxims within various social scenarios generated and seeded through the system. During the conversation, the chatbot assumes the role of an AI Partner, adopting a context-specific persona to engage the user in dialogue. After the exchange, it shifts to its AI Mentor role, where it analyzes the transcript, logs maxim violations, and evaluates the user’s responses based on relevance, informativeness, clarity, and recognition of implied meaning. The system then generates feedback and performance metrics, enabling reflection and, optionally, scenario retry to support iterative learning.
 
 \subsection{Validation}
 \indent In order to validate the performance of the chatbot, data will be gathered from volunteer participants, consisting of young adults aged 15-24 years old.

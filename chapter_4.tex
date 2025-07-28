@@ -50,6 +50,42 @@ Input received via \textbf{User Interface} is sent to the \textbf{Conversation M
 
 % The GRICE dataset is structure to then include various scenarios based on the implicatures that come from Grice's Maxims. As such, each row of data in the dataset represents a unique social scenario in regards to a certain implicature. 
 
+\section{Conversation Flow}
+
+The Socius chatbot follows a structured conversation flow grounded in the APAM framework, with two primary functional phases: the AI Partner Phase (interaction) and the AI Mentor Phase (evaluation). Each phase contains specific steps that enable both real-time dialogue and post-conversation analysis, helping users develop and reflect on their pragmatic competence.
+
+The full conversation process consists of the following stages:
+
+\begin{enumerate}
+    \item \textbf{Initialize Session} \\
+    The chatbot begins by initializing the session, preparing the environment for interaction. This includes loading necessary components and user parameters.
+
+    \item \textbf{Scenario Selection and Instantiation} \\
+    The user is prompted to select a pre-generated scenario. Once selected, the scenario is seeded into the Gemini API. This step packages the chatbot’s role, the conversation setting, and expected dialogue behavior, all of which are retrieved from the knowledge base. The chatbot then adopts a specific persona (e.g., classmate, manager, stranger) based on the scenario’s context.
+
+    \item \textbf{Conversation Simulation (AI Partner Phase)} \\
+    In this stage, the chatbot assumes the role of an AI Partner and engages the user in conversation. The dialogue unfolds in real time, encouraging the user to respond in ways that demonstrate pragmatic awareness, such as relevance, clarity, and the ability to handle indirect or implied meaning.
+
+    \item \textbf{Pragmatic Logging} \\
+    Once the conversation ends, the system transitions into the AI Mentor phase. It logs each user response and annotates them for pragmatic features—such as maxim violations (e.g., underinformativeness, ambiguity), correct implicature identification, or missed indirect cues. These annotations help focus later feedback on specific dialogue points.
+
+    \item \textbf{Conversation Analysis (AI Mentor Phase)} \\
+    The annotated responses are analyzed according to Grice’s Maxims: Quantity, Quality, Relation, and Manner. The system examines whether the user’s responses were informative, relevant, clear, and truthful. It also checks for responsiveness to indirect hints and implied meanings, selecting key dialogue moments for further review.
+
+    \item \textbf{Metric Generation} \\
+    Using the Gemini API, the system generates multiple possible implied meanings for each prompt. The user’s response is then compared to these possibilities through semantic similarity scoring. The final metrics reflect how closely the user’s response aligned with the expected implicature, providing a quantitative measure of pragmatic inference ability.
+\end{enumerate}
+
+This flow allows the chatbot to function both as a conversation partner and as an evaluator. It supports pragmatic skill-building by enabling practice, identifying specific areas of strength or difficulty, and encouraging reflection through targeted feedback.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/conversation_flow.png}
+    \caption{Conversation Flow: From Scenario Selection to Reflection}
+    \label{fig:conversationflow}
+\end{figure}
+
 \section{Software Design and Implementation}
 
 The chatbot system will be built on top of a large language model (Gemini), implemented using Python, and will follow a conversational AI pipeline:
@@ -65,47 +101,6 @@ conversation is handled via the Gemini API, which responds to user input using c
 and the scenario’s goals. Subsequently, Gemini is loaded through an API to handle inference, while a data collator 
 will be used to manage input lengths. Finally, the model engages in real-time econversations with users, providing contextually apropriate responses to support 
 social communication training.
-
-The conversation flow used in this chatbot-driven communication training system is structured into four sequential phases:
-\textbf{Scenario Selection}, \textbf{Conversation Simulation}, \textbf{Evaluation}, and \textbf{Reflection or Retry}.
-This flow was constructed with the goal of giving a clear, iterative loop for users to practice and improve their 
-social communication skills in context-sensitive environments.
-
-\begin{enumerate}
-    \item \textbf{Scenario Selection} \\
-    In this phase, the user selects a specific social scenario to engage with. These scenarios are designed to
-    simulate real-world situations where effective communication is essential such as handling awkward moments,
-    initiating small talk, or responding to indirect questions. This step allows the user to target specific
-    conversational challenges aligned with their personal learning goals or areas of difficulty.
-
-    \item \textbf{Conversation Simulation} \\
-    Once a scenario is selected, the user engages in a simulated dialogue with an AI-driven chatbot. The
-    conversation transpires naturally, with the user providing input and the chatbot responding in real time.
-    This interactive phase emphasizes context, tone, and appropriate language use, mimicking real-life 
-    communication. The simulation encourages the user to apply pragmatic strategies, such as reading between the 
-    lines, interpreting implied meaning, and maintaining conversational relevance.
-
-    \item \textbf{Evaluation} \\
-    After the conversation ends, the system evaluates the user’s performance. This evaluation is grounded in 
-    principles from linguistic pragmatics, particularly \textbf{Grice’s maxims} (Quantity, Quality, Relation, 
-    and Manner). The chatbot assesses how well the user followed conversational norms, responded to social 
-    cues, and maintained clarity and relevance. Feedback may include scores, highlight strengths, and point 
-    out areas for improvement.
-
-    \item \textbf{Reflection or Retry} \\
-    The final stage prompts the user to either \textit{reflect} on the evaluation or \textit{retry} the 
-    simulation to improve their response. Reflection helps the learner process feedback, internalize 
-    conversational norms, and recognize specific pragmatic issues such as awkward phrasing or irrelevant 
-    responses. If the user chooses to retry, they can immediately re-engage with the same scenario or select 
-    a new one, reinforcing learning through repetition and iterative practice.
-\end{enumerate}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{figures/conversation_flow.png}
-    \caption{Conversation Flow: From Scenario Selection to Reflection}
-    \label{fig:conversationflow}
-\end{figure}
 
 
 
