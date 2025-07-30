@@ -56,7 +56,6 @@ As conversational agents continue to evolve, they are increasingly being used as
 \midrule
 de Bever et al. (2019) & Enhance communication in guards & Multimodal system with video, speech feedback & Security guards \\
 DeRosier and Thomas (2019) & Train social skills in teens & Digital role-playing game environment & Adolescents aged 11–14 \\
-Gagan et al. (2023) & Social prep for Level 1 ASD & Storytelling with chatbot “Amy” & Children with ASD and caregivers \\
 Lee et al. (2022, 2023) & ASD social interaction skills & Metaverse-based practice and tasks & Children with ASD \\
 Voultsiou et al. (2025) & Inclusive social robot framework & LLM-enhanced social robots in education & Children in special education \\
 \bottomrule
@@ -71,7 +70,36 @@ Recent developments in the virtual world also led to opportunities to make use o
 
 Another technology used for social skills training comes from Lee et al. (2023), who investigates the use of metaverse-based social skills training programs to support children with Autism Spectrum Disorder (ASD) in enhancing their social interaction abilities. Conducted as an open-label, single-center, randomized controlled pilot trial, the research explores how immersive virtual environments can serve as effective tools for social practice. The study highlights the need for personalization in chatbot-driven interactions and evaluates how participants respond to AI-generated feedback. By reviewing the opinions of participants, the study was able to underscore the importance of chatbot responsiveness and the quality of responses to facilitate effective social skills training. Moreover, the study suggests that future research should focus on refining chatbot content to improve user engagement.
 
-\textbf{2.3} \textbf{Ethical Considerations in AI-Based Social Communication}
+
+\textbf{2.3 Focused Comparison of Chatbots}
+
+A key challenge in designing a social-communication oriented chatbot is the design decisions in terms of target population, technological foundation, and the strategy for the delivery of support. To better understand some of the systems most relevant to this study's chatbot design, this section compares three other chatbots with distinct approaches to social-communicaton training. Amy (Gagan et al., 2022) is a therapeutic support chatbot for children with Level 1 Autism Spectrum Disorder (ASD). It aims to provide this support by explaining social situations through tailored social stories and what behavior may be respectively appropriate. Amy uses questions to evaluate comprehension and emotional state, employing breathing exercise as a mindfulness-based intervention when emotional distress is detected.
+
+KulTuro (Aspecto et al., 2025), on the other hand, is aimed toward senior high school students, and is concerned with moral and cultural instruction, improving conversational fluency in Tagalog through roleplay-based storytelling while also incorporating Filipino values such as pakikisama, hiya, utang na loob, kapwa, and paggalang. Where Amy is framed as more interventive as a therapeutic tool, this chatbot has a more gamified approach to supporting the user, using elements such as a scoring system based on their use of grammar and vocabulary, as well as a medal system to reward progress and encourage consistency. KulTuro uses ChatGPT as its LLM for story and choice generation, as well as input processing. 
+
+Socius (Chen et al., 2022) is the predecessor for this paper’s chatbot, which similarly was designed to deliver training of conversational skill. One key difference of this old version of Socius, however, especially when compared to KulTuro or Amy, is its use of a rule-based system with a pattern-matching approach, allowing for only multiple-choice responses. While unique to the previous two in the framing and goal of its support, Socius is severely limited in terms of its input, where no free-text interaction is offered.
+
+This highlights a disconnect between the three which the new Socius chatbot aims to bridge (see Table 2.3). While the older Socius (Chen et al., 2022) demonstrated success in positively impacting social skills, its rule-based system put it at a clear disadvantage, with users noting that its interactions felt "automated and robotic," "two-dimensional," and "like reading a textbook," lacking the conversational naturalism chatbots like KulTuro and Amy would otherwise provide.
+
+\begin{table}[H]
+\centering
+\caption{Summary of Chatbots for Social Communication Training}
+\small
+\begin{tabular}{p{3.3cm} p{3.7cm} p{3.7cm} p{3.7cm}}
+\toprule
+\textbf{Chatbot / Study} & \textbf{Purpose} & \textbf{Key Features} & \textbf{Target Users} \\
+\midrule
+\textbf{SociusBot Old} \newline (Chen et al., 2022) & Social skills training for neurotypical teens with social awkwardness & Rule-based, multiple-choice, feedback-based scenarios on social domains & Teenagers (16–18), socially awkward but neurotypical \\
+\textbf{KulTuro} \newline (Aspecto et al., 2025) & Language and cultural learning via interactive storytelling & LLM-based, roleplay, grammar feedback, Filipino values, gamification & Senior high school students learning Tagalog \\
+\textbf{Amy} \newline (Gagan et al., 2022) & Socio-emotional learning and emotion regulation for ASD & Social stories, emotion detection, mindfulness exercises, guided Q\&A & Children with Level 1 Autism, caregivers \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Similarly, while Woebot (2025) and Amy (Gagan et al., 2022) are able to show that chatbots are useable even for more sensitive, higher-stakes applications such as mental health, chatbots that deliver support for neurotypical individual, in terms of a skill as universal as communication, are sparse. The chatbot this paper aims to develop targets this exact gap, while also offering free-text input, building upon the previous goal of the older Socius (Chen et al., 2022).
+
+
+\textbf{2.4} \textbf{Ethical Considerations in AI-Based Social Communication}
 
 Understanding meaning in communication often requires more than just interpreting words literally—it demands sensitivity to context, intention, and inference. This section explores how such pragmatic reasoning plays a role in both human and AI communication. Foundational theories such as Relevance Theory and Grice’s Maxims are reviewed alongside recent work that evaluates how well AI models like GPT-4 grasp these pragmatic principles. The table provides a snapshot of relevant studies and their contributions.
 
@@ -104,7 +132,7 @@ As we have assessed in a previous section, the use of AI to support individuals 
 
 In totality, the ethical challenges asociated with AI in social communication are related to the importance of transparency, fairness, and human collaboration to ensure that AI does not reinforce bias, compromise privacy, and diminish human empathy. This would then allow for their ethical and responsible deployment in different fields..
 
-\textbf{2.4 Foundational Studies on Social Communication and Mental Health}
+\textbf{2.5 Foundational Studies on Social Communication and Mental Health}
 
 Deploying AI chatbots in sensitive domains—such as mental health support, education, or customer service—raises a number of ethical questions. From privacy and informed consent to bias and misuse, researchers have called attention to various concerns that need careful consideration. This subsection introduces key literature addressing these ethical dimensions, along with frameworks for responsible chatbot design. The accompanying table summarizes representative studies and their focus.
 
