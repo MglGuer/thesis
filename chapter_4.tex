@@ -24,7 +24,6 @@ To generate contextually relevant and pragmatically appropriate dialogue, the sy
 The user interface will be designed to resemble common text messaging applications, presenting both the conversational exchanges and feedback in a familiar layout. This will allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface. 
 
 
-
 \section{Overview of Architectural Design}
 The architectural design of Socius is structured to facilitate effective and pragmatic interactions between the user and the chatbot. 
 As illustrated in Figure \ref{fig:architectural_design}, the design is composed of several key components that interact with one another in order to process user input, manage 
@@ -38,6 +37,33 @@ Input received via \textbf{User Interface} is sent to the \textbf{Conversation M
     \caption{Socius System Architecture}
     \label{fig:architectural_design}
 \end{figure}
+
+\subsection{User Interface}
+
+The user interface (UI) is the front-end component of the Socius system, in which it is designed to facilitate text-based interactions between the user and the chatbot. This would include a chat window similar to text messagign applications where users can input their messages and they may see the responses/messages of the chatbot. This will also include a scenarion selection component wherein the users will be able to pick the predetermined social context they would converse with the chatbot in. Moreover, this would also facilitate the viewing of their own profile and their current current pragmatic competence based on implicature accuracies. The design would also focus on usability and accessibility, through which simple graphical elements are used to accomplish this.  
+
+\subsection{Conversation Flow Manager}
+
+The conversation flow manager is responsible for managing the conversation's structure and progression. It can be akin to the brain of the chatbot, overseeing the interaction between user and chatbot. This would include 2 components: \textbf{Input Processing} and \textbf{Scenario Generation}. 
+
+The Input Processing component is responsible for receiving user input and understanding the user's intent with their message. Its primary function is to transform raw user text into a structured data format that can be understood by the chatbot. This includes parsing the input, identifying and key entities within the user response that could indicate clear intent in the message, and then necessary pre-processing steps to correct typographical and grammatical errors. This would allow the surface level intent of the user response to be clearly communicated to the chatbot. Moreover, this component also determines if the user's input is out-of-scope in regards to the current social context, and the persona the chatbot is roleplaying as. The output of this componeent would be a structured object containing cleaned text, intent, and entities, which would then be reviewed within the conversation flow component prior to pramgatic analysis.
+
+The Conversation Flow component will focus on understanding implied intent behind the message, not solely surface level. It will use the output from the input processor to track dialogue state and gain further meaning from past conversation history within the context of the emulated social scenario. This allows the chatbot to have an understanding of current dialogue state in regards to the conversation history, allowing it to decide it's next action to advance the scenario. This would then output the complete user intent and conversation context to the pragmatic analyzer, which will assist the chatbot in creating the apporpriate response to the user.   
+
+\subsection{Pragmatic Analyzer}
+
+The pragmatic analyzer is the component responsible for dynamic interpretation of user input through the lens of Grice's Maxims and implicatures as defined by the GRICE Dataset. It evaluates the user's messages to assess their response's adherence to implicature and will utilize dynamic implicature recovery tasks, which takes inspiration from Zhen et al., (2021)'s work on assessing implied meaning through implicatures. 
+
+This component will leverage the Gemini API's generative capabilities to dynamically create multiple hypotheses about the user's implied meaning. This process involves generating a set of similar interpretation, which each have their own implicature accuracy score for each implicature, that is then semantically compared to the user's message. This will also involve the generation of deliberately incorrect or misleading responses based on the potential maxim violations, which is to create a contrastive-learing approach for scoring user responses, thereby their pragmatic competence. Once these set of interpretations are generated, the user's input is assessed for the closest match interpretation, target or distractor, it most likely is aligned with. A high accuracy score is awarded if the user's message leads clearly and unambiguously to the target interpretation, while a lower score indicates ambiguity or a pragmatic error.
+
+\subsection{Feedback Generation}
+
+The Feedback Generation component serves as the main component for the AI Mentor, responsible for synthesizing a comprehensive analysis of the user's performance into educational advice personalized for their strengths and weaknesses. To accomplish this, it integrates data from multiple sources, namely the final conversational state from the current conversation (Conversation Flow Manager), the evaluation from the Pragmatic Analyzer, and the previous history of the user . The component’s primary function is to translate the analytical output—which details the user's adherence to Grice's Maxims—into personalized feedback points. It prioritizes feedback on the use of implicatures, as this is a core challenge in pragmatic communication, explaining where a user's implied meaning was clear or ambiguous. A core aspect of the feedback is its pedagogical approach; it does not simply correct the user but explains the relevant pragmatic theories in simple terms, referencing the user's specific messages from the conversation history to illustrate its points. By grounding its advice in the user's recent performance, this component ensures the feedback is personalized, contextually relevant, and helps the user understand not just what to improve, but why it matters.
+\subsection{Database Manager}
+
+
+
+
 
 % The GRICE dataset will be used to the train the chatbot. Below is the structure of the dataset:
 
