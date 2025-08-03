@@ -62,15 +62,13 @@ The Feedback Generation component serves as the main component for the AI Mentor
 
 \subsection{Database Manager}
 
-The databse contains 3 main components: the user profile table, the conversation log table, and the scenario table:
+The database contains 3 main components: the user profile table, the conversation log table, and the scenario table:
 
 The \textbf{User Profile Table} stores user information such as name, email, password, and current implicature accuracy metrics. This table is essential for storing user information, tracking pragmatic competence progress, and connecting conversation logs to specific users. It allows the system to track user profiles, manage user sessions, and provide personalized feedback based on individual performance during AI Mentor feedback generation. 
 
 The \textbf{Conversation Log Table} stores the conversation history for each user, including timestamps, user messages, and chatbot responses. This table is crucial for maintaning a record of user interactions, which is then used for feedback generation in regards to personzlized feedback based on the current user. 
 
 The \textbf{Scenario Table} contains predefined social scenarios that users can select from. Each scenario includes context, roles, and expected dialogue behavior. This table is essential for providing users with a structured set of scenarios to practice their the recognition of implicatures, as well as being able to in which their implied meanings could be understood by the chatbot, ensuring that the chatbot can simulate realistic social interactions based on Grice's Maxims and implicatures.
-
-
 
 
 
@@ -136,6 +134,22 @@ conversation is handled via the Gemini API, which responds to user input using c
 and the scenario’s goals. Subsequently, Gemini is loaded through an API to handle inference, while a data collator 
 will be used to manage input lengths. Finally, the model engages in real-time econversations with users, providing contextually apropriate responses to support 
 social communication training.
+
+
+\section{Resources}
+
+The development of the Socius chatbot is contingent upon a set of technological and data resources, namely the Gemini API, the GRICE dataset, and a Python development environment. These components provide the core capabilities for dialogue generation, pragmatic analysis, and user feedback, directly enabling the system to fulfill its primary research objectives.
+
+The Socius system will be built using the Python programming language and will integrate Google's \textbf{Gemini API} as its core large language model (LLM), serving as the core conversational AI engine for the chatbot. (REASONING HERE) 
+
+The foundation for the theoretical, training, and evaluation framework is the \textbf{GRICE Dataset}, which is a comprehensive collection of dialogue data readily available online developed by Zheng et al. (2021). It is designed to specifically bring the concept of implicature or implied meaning to pragmatic reasoning for conversational systems. Furthermore, this was developed in homage to H.P. Grice and focuses on his influential theory of conversational implicatures, thereby being suited for the Socius system. 
+
+The GRICE Dataset by Zheng et al. (2021) is systematically generated using a hierarchical grammar model, resulting in dialogues that contextually-consistent implicatures. It provides structured examples of conversations where maxims are either followed or violated, which is ideal for two core purposes within Socius. The dialogues serve as the foundation for the predefined scenarios in the Scenario Database. This ensures that the practice conversations are grounded in established pragmatic theory. The dataset also provides the ground truth for pragmatic analysis, specifically assisting the Pragmatic Analyzer component. The system is designed to recognize patterns of implicature and maxim violation similar to those presented in the dataset, allowing it to score user performance and generate relevant feedback.
+
+While the GRICE dataset provides a robust framework, select examples will be localized to better reflect Filipino cultural norms and social dynamics, ensuring the scenarios are relatable and accessible to the target user population. Moreover, tweaks will done to the dataset for the purposes of this research, thus creating unique scenarios that are relevant to the Filipino context all-the-while maintaining the relevance of pragmatics and implicatures in the scenarios.
+
+
+
 
 
 
