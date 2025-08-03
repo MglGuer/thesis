@@ -137,6 +137,59 @@ social communication training.
 
 
 \section{Resources}
+\subsection{Gemini API}
+
+The \textbf{Gemini API}, developed by Google DeepMind, is a large language model (LLM) platform that offers
+advanced capabilities in natural language understanding and generation. In the Socius system, the free tier 
+of Gemini API, specifically the Gemini 2.5 Pro model,
+serves as the core conversational engine responsible for producing contextually relevant, pragmatically 
+appropriate responses during real-time interactions. Its ability to interpret user inputs, maintain 
+conversational coherence, and generate semantically nuanced replies makes it a good fit for applications
+that require sensitivity to social and pragmatic context.
+
+Socius leverages the Gemini API in two key areas:
+
+\begin{itemize}
+    \item \textbf{Dialogue Simulation (AI Partner Phase)}: During the interactive portion of the session, 
+    Gemini is used to generate chatbot responses. These responses are conditioned not only on the user's 
+    immediate input but also on the scenario context, conversation history, and the assigned social role 
+    of the chatbot. The API is expected to observe Gricean conversational principles such as Relevance, 
+    Clarity, and Informativeness to emulate natural social interaction.
+
+    \item \textbf{Feedback Generation (AI Mentor Phase)}: After a conversation concludes, the Gemini API 
+    contributes to the system's evaluation phase. It helps generate multiple plausible implicatures for 
+    each user message and assists in diagnosing whether the user’s responses demonstrate adherence or 
+    violations to Grice's Maxims. These insights are synthesized into personalized feedback using a 
+    pedagogical tone, aiming to help users improve their pragmatic skills.
+\end{itemize}
+
+In this implementation, the system utilizes the free-tier version of the Gemini API, which may limit certain
+advanced capabilities such as deeper multi-turn memory or extended context window lengths. Nonetheless,
+Gemini provides a sufficiently powerful baseline for natural language generation and pragmatic inference.
+
+It is worth noting that the use of the Gemini API for social communication training remains exploratory.
+As of this writing, there are no published studies - and if any, only very few - that evaluate Gemini's effectiveness
+in modeling or enhancing social-pragmatic competence. Thus, this system aims not only to apply Gemini
+in an educational context but also to inform future studies on its applicability to human social 
+communication and pragmatic development.
+
+Future iterations of Socius may consider upgrading to premium Gemini models or fine-tuned variants for
+more specialized linguistic control and response quality.
+
+While the use of the Gemini API enables advanced language understanding and generation, relying on an
+online-based LLM also introduces limitations. The system depends on a stable internet connection,
+and latency may vary depending on network quality or API load, potentially affecting user experience during
+real-time interactions. Although the API currently provides a generous token quota, scalability may still
+be constrained by other architectural factors such as context window size and rate limits. Privacy concerns
+also arise, as all user inputs are transmitted to and processed by third-party servers, raising issues
+around data security and ownership. Furthermore, model updates are outside the system developer's control,
+possibly leading to changes in response behavior over time that affect consistency and replicability.
+Lastly, while the Gemini API demonstrates strong general-purpose conversational capabilities, its use
+in pragmatic training and social communication remains underexplored. Thus, its effectiveness in
+modeling conversational norms such as Grice’s Maxims must be interpreted with caution, pending 
+further research and evaluation.
+
+\subsection{GRICE Dataset}
 
 The development of the Socius chatbot is contingent upon a set of technological and data resources, namely the Gemini API, the GRICE dataset, and a Python development environment. These components provide the core capabilities for dialogue generation, pragmatic analysis, and user feedback, directly enabling the system to fulfill its primary research objectives.
 
