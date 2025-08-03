@@ -20,8 +20,8 @@ The objectives of the Socius chatbot system are as follows:
 
 The system will establish a backend database that will be storing user profiles, conversation transcripts, and metrics related to pragmatic competence. This will only require select information from the user, such as their name, email, and password. As such, we will not be requiring external user data such as social media profiles or other applications. This will also host the conversation logs per user session, which will allow the model to analyze the user's current pragmatic competence.  
 Moreover, the system will also provide a fixed set of predefined conversational scenarios. Users will be able to select from these scenarios to practice, in which the range of contexts offered will cover various academic, professional, and social situations relevant to young adults. The system thus will be limited to these predefined scenarios and will not allow dynamic scenario generation or user-generated scenarios. 
-To generate contextually relevant and pragmatically appropriate dialogue, the system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. The chatbot will only be using the free version of the Gemini API, which may limit the complexity and depth of responses as compared to the other LLMs stated previously. Thus, we will be exploring the potential of the Gemini API to generate responses that align with sociolinguistic topics. 
-The user interface will be designed to resemble common text messaging applications, presenting both the conversational exchanges and feedback in a familiar layout. This will allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface. 
+To generate contextually relevant and pragmatically appropriate dialogue, the system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. The chatbot will only be using the free version of the Gemini API, which may limit the complexity and depth of responses as compared to the other LLMs stated previously. Thus, we will be exploring the potential of the Gemini API to generate responses that align with sociolinguistic topics. Considering this, the chatbot will also have a fixed understanding of Grice's Maxims of Conversations, showcasing these rules as text-based, unchanging, and static statements that users can refer to when receiving feedback.
+The user interface will be designed to resemble common text messaging applications, presenting both the conversational exchanges and feedback in a familiar layout. This will allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface.  In addition to this, there will be a fixed set of statements that will be used to explain the concepts of Grice's Maxims and implicatures located in the user interface, which will be used to assist the user in understanding the concepts of pragmatics, thereby also helping them understand the feedback they receive from the chatbot.
 
 
 \section{Overview of Architectural Design}
@@ -153,52 +153,52 @@ While the GRICE dataset provides a robust framework, select examples will be loc
 
 
 
-\subsection{Calendar of Activities}
+% \subsection{Calendar of Activities}
 
-Tables \ref{tab:timetable2025} and \ref{tab:timetable2026} show a Gantt chart of the activities.  Each bullet represents approximately one week worth of activity.
+% Tables \ref{tab:timetable2025} and \ref{tab:timetable2026} show a Gantt chart of the activities.  Each bullet represents approximately one week worth of activity.
 
-\begin{table}[ht]
-    \centering
-    \small
-    \begin{tabular}{
-        l
-        *{9}{>{\centering\arraybackslash}p{1cm}} % Apr–Dec 2025
-    }
-        \toprule
-        \multicolumn{10}{c}{\textbf{Gantt Chart of Activities (2025)}} \\
-        \textbf{Activity} 
-        & \textbf{Apr} & \textbf{May} & \textbf{Jun} & \textbf{Jul} & \textbf{Aug} & \textbf{Sep}
-        & \textbf{Oct} & \textbf{Nov} & \textbf{Dec} \\
-        \midrule
-        Data Collection   & **** & **** &       &       &       &       &       &       &       \\
-        Software Design   &       &       &       &       &       & **** & **** & **** & **** \\
-        Validation        &       &       &       &       &       &       &       &       &       \\
-        \bottomrule
-    \end{tabular}
-    \caption{Gantt Chart of Activities (2025)}
-    \label{tab:timetable2025}
-\end{table}
+% \begin{table}[ht]
+%     \centering
+%     \small
+%     \begin{tabular}{
+%         l
+%         *{9}{>{\centering\arraybackslash}p{1cm}} % Apr–Dec 2025
+%     }
+%         \toprule
+%         \multicolumn{10}{c}{\textbf{Gantt Chart of Activities (2025)}} \\
+%         \textbf{Activity} 
+%         & \textbf{Apr} & \textbf{May} & \textbf{Jun} & \textbf{Jul} & \textbf{Aug} & \textbf{Sep}
+%         & \textbf{Oct} & \textbf{Nov} & \textbf{Dec} \\
+%         \midrule
+%         Data Collection   & **** & **** &       &       &       &       &       &       &       \\
+%         Software Design   &       &       &       &       &       & **** & **** & **** & **** \\
+%         Validation        &       &       &       &       &       &       &       &       &       \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Gantt Chart of Activities (2025)}
+%     \label{tab:timetable2025}
+% \end{table}
 
 
-\begin{table}[ht]
-    \centering
-    \small
-    \begin{tabular}{
-        l
-        *{9}{>{\centering\arraybackslash}p{1cm}} % Jan–Sep 2026
-    }
-        \toprule
-        \multicolumn{10}{c}{\textbf{Gantt Chart of Activities (2026)}} \\
-        \textbf{Activity} 
-        & \textbf{Jan} & \textbf{Feb} & \textbf{Mar} 
-        & \textbf{Apr} & \textbf{May} & \textbf{Jun}
-        & \textbf{Jul} & \textbf{Aug} & \textbf{Sep} \\
-        \midrule
-        Data Collection   &       &       &       &       &       &       &       &       &       \\
-        Software Design   & **** & **** & **** & **** & **** & **** &       &       &       \\
-        Validation        &       &       &       &       &       & **** & **** & **** &       \\
-        \bottomrule
-    \end{tabular}
-    \caption{Gantt Chart of Activities (2026)}
-    \label{tab:timetable2026}
-\end{table}
+% \begin{table}[ht]
+%     \centering
+%     \small
+%     \begin{tabular}{
+%         l
+%         *{9}{>{\centering\arraybackslash}p{1cm}} % Jan–Sep 2026
+%     }
+%         \toprule
+%         \multicolumn{10}{c}{\textbf{Gantt Chart of Activities (2026)}} \\
+%         \textbf{Activity} 
+%         & \textbf{Jan} & \textbf{Feb} & \textbf{Mar} 
+%         & \textbf{Apr} & \textbf{May} & \textbf{Jun}
+%         & \textbf{Jul} & \textbf{Aug} & \textbf{Sep} \\
+%         \midrule
+%         Data Collection   &       &       &       &       &       &       &       &       &       \\
+%         Software Design   & **** & **** & **** & **** & **** & **** &       &       &       \\
+%         Validation        &       &       &       &       &       & **** & **** & **** &       \\
+%         \bottomrule
+%     \end{tabular}
+%     \caption{Gantt Chart of Activities (2026)}
+%     \label{tab:timetable2026}
+% \end{table}
