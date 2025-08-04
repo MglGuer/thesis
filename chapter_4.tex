@@ -20,8 +20,8 @@ The objectives of the Socius chatbot system are as follows:
 
 The system will establish a backend database that will be storing user profiles, conversation transcripts, and metrics related to pragmatic competence. This will only require select information from the user, such as their name, email, and password. As such, we will not be requiring external user data such as social media profiles or other applications. This will also host the conversation logs per user session, which will allow the model to analyze the user's current pragmatic competence.  
 Moreover, the system will also provide a fixed set of predefined conversational scenarios. Users will be able to select from these scenarios to practice, in which the range of contexts offered will cover various academic, professional, and social situations relevant to young adults. The system thus will be limited to these predefined scenarios and will not allow dynamic scenario generation or user-generated scenarios. 
-To generate contextually relevant and pragmatically appropriate dialogue, the system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. The chatbot will only be using the free version of the Gemini API, which may limit the complexity and depth of responses as compared to the other LLMs stated previously. Thus, we will be exploring the potential of the Gemini API to generate responses that align with sociolinguistic topics. Considering this, the chatbot will also have a fixed understanding of Grice's Maxims of Conversations, showcasing these rules as text-based, unchanging, and static statements that users can refer to when receiving feedback.
-The user interface will be designed to resemble common text messaging applications, presenting both the conversational exchanges and feedback in a familiar layout. This will allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface.  In addition to this, there will be a fixed set of statements that will be used to explain the concepts of Grice's Maxims and implicatures located in the user interface, which will be used to assist the user in understanding the concepts of pragmatics, thereby also helping them understand the feedback they receive from the chatbot.
+To generate contextually relevant and pragmatically appropriate dialogue, the system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. The chatbot will only be using the free version of the Gemini API, which may limit the complexity and depth of responses as compared to the other LLMs stated previously. Thus, we will be exploring the potential of the Gemini API to generate responses that align with sociolinguistic topics. \hl{Considering this, the chatbot will also have a fixed understanding of Grice's Maxims of Conversations, showcasing these rules as text-based, unchanging, and static statements that users can refer to when receiving feedback.
+The user interface will be designed to resemble common text messaging applications, presenting both the conversational exchanges and feedback in a familiar layout. This will allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface.  In addition to this, there will be a fixed set of statements that will be used to explain the concepts of Grice's Maxims and implicatures located in the user interface, which will be used to assist the user in understanding the concepts of pragmatics, thereby also helping them understand the feedback they receive from the chatbot.}
 
 
 \section{Overview of Architectural Design}
@@ -40,35 +40,35 @@ Input received via \textbf{User Interface} is sent to the \textbf{Conversation M
 
 \subsection{User Interface}
 
-The user interface (UI) is the front-end component of the Socius system, in which it is designed to facilitate text-based interactions between the user and the chatbot. This would include a chat window similar to text messagign applications where users can input their messages and they may see the responses/messages of the chatbot. This will also include a scenarion selection component wherein the users will be able to pick the predetermined social context they would converse with the chatbot in. Moreover, this would also facilitate the viewing of their own profile and their current current pragmatic competence based on implicature accuracies. The design would also focus on usability and accessibility, through which simple graphical elements are used to accomplish this.  
+\hl{The user interface (UI) is the front-end component of the Socius system, in which it is designed to facilitate text-based interactions between the user and the chatbot. This would include a chat window similar to text messagign applications where users can input their messages and they may see the responses/messages of the chatbot. This will also include a scenarion selection component wherein the users will be able to pick the predetermined social context they would converse with the chatbot in. Moreover, this would also facilitate the viewing of their own profile and their current current pragmatic competence based on implicature accuracies. The design would also focus on usability and accessibility, through which simple graphical elements are used to accomplish this.}
 
 \subsection{Conversation Flow Manager}
 
-The conversation flow manager is responsible for managing the conversation's structure and progression. It can be akin to the brain of the chatbot, overseeing the interaction between user and chatbot. This would include 2 components: \textbf{Input Processing} and \textbf{Scenario Generation}. 
+\hl{The conversation flow manager is responsible for managing the conversation's structure and progression. It can be akin to the brain of the chatbot, overseeing the interaction between user and chatbot. This would include 2 components: \textbf{Input Processing} and \textbf{Scenario Generation}. 
 
 The Input Processing component is responsible for receiving user input and understanding the user's intent with their message. Its primary function is to transform raw user text into a structured data format that can be understood by the chatbot. This includes parsing the input, identifying and key entities within the user response that could indicate clear intent in the message, and then necessary pre-processing steps to correct typographical and grammatical errors. This would allow the surface level intent of the user response to be clearly communicated to the chatbot. Moreover, this component also determines if the user's input is out-of-scope in regards to the current social context, and the persona the chatbot is roleplaying as. The output of this componeent would be a structured object containing cleaned text, intent, and entities, which would then be reviewed within the conversation flow component prior to pramgatic analysis.
 
-The Conversation Flow component will focus on understanding implied intent behind the message, not solely surface level. It will use the output from the input processor to track dialogue state and gain further meaning from past conversation history within the context of the emulated social scenario. This allows the chatbot to have an understanding of current dialogue state in regards to the conversation history, allowing it to decide it's next action to advance the scenario. This would then output the complete user intent and conversation context to the pragmatic analyzer, which will assist the chatbot in creating the apporpriate response to the user.   
+The Conversation Flow component will focus on understanding implied intent behind the message, not solely surface level. It will use the output from the input processor to track dialogue state and gain further meaning from past conversation history within the context of the emulated social scenario. This allows the chatbot to have an understanding of current dialogue state in regards to the conversation history, allowing it to decide it's next action to advance the scenario. This would then output the complete user intent and conversation context to the pragmatic analyzer, which will assist the chatbot in creating the apporpriate response to the user.}
 
 \subsection{Pragmatic Analyzer}
 
-The pragmatic analyzer is the component responsible for dynamic interpretation of user input through the lens of Grice's Maxims and implicatures as defined by the GRICE Dataset. It evaluates the user's messages to assess their response's adherence to implicature and will utilize dynamic implicature recovery tasks, which takes inspiration from Zhen et al., (2021)'s work on assessing implied meaning through implicatures. 
+\hl{The pragmatic analyzer is the component responsible for dynamic interpretation of user input through the lens of Grice's Maxims and implicatures as defined by the GRICE Dataset. It evaluates the user's messages to assess their response's adherence to implicature and will utilize dynamic implicature recovery tasks, which takes inspiration from Zhen et al., (2021)'s work on assessing implied meaning through implicatures. 
 
-This component will leverage the Gemini API's generative capabilities to dynamically create multiple hypotheses about the user's implied meaning. This process involves generating a set of similar interpretation, which each have their own implicature accuracy score for each implicature, that is then semantically compared to the user's message. This will also involve the generation of deliberately incorrect or misleading responses based on the potential maxim violations, which is to create a contrastive-learing approach for scoring user responses, thereby their pragmatic competence. Once these set of interpretations are generated, the user's input is assessed for the closest match interpretation, target or distractor, it most likely is aligned with. A high accuracy score is awarded if the user's message leads clearly and unambiguously to the target interpretation, while a lower score indicates ambiguity or a pragmatic error.
+This component will leverage the Gemini API's generative capabilities to dynamically create multiple hypotheses about the user's implied meaning. This process involves generating a set of similar interpretation, which each have their own implicature accuracy score for each implicature, that is then semantically compared to the user's message. This will also involve the generation of deliberately incorrect or misleading responses based on the potential maxim violations, which is to create a contrastive-learing approach for scoring user responses, thereby their pragmatic competence. Once these set of interpretations are generated, the user's input is assessed for the closest match interpretation, target or distractor, it most likely is aligned with. A high accuracy score is awarded if the user's message leads clearly and unambiguously to the target interpretation, while a lower score indicates ambiguity or a pragmatic error.}
 
 \subsection{Feedback Generation}
 
-The Feedback Generation component serves as the main component for the AI Mentor, responsible for synthesizing a comprehensive analysis of the user's performance into educational advice personalized for their strengths and weaknesses. To accomplish this, it integrates data from multiple sources, namely the final conversational state from the current conversation (Conversation Flow Manager), the evaluation from the Pragmatic Analyzer, and the previous history of chatlogs of the user alongside the user's current implicature accuracy average over the course of all conversations/scenarios with the chatbot. The component’s primary function is to translate the analytical output which details the user's adherence to Grice's Maxims—into personalized feedback points. It prioritizes feedback on the use of implicatures, explaining where a user's implied meaning was clear or ambiguous. A core aspect of the feedback is its pedagogical approach; it does not simply correct the user but explains the relevant pragmatic theories in simple terms, referencing the user's specific messages from the conversation history to illustrate its points. By grounding its advice in the user's recent performance, this component ensures the feedback is personalized and helps the user understand what to improve upon in the perspective of communication adhering to Grice's Maxims and pragmatic norms.
+\hl{The Feedback Generation component serves as the main component for the AI Mentor, responsible for synthesizing a comprehensive analysis of the user's performance into educational advice personalized for their strengths and weaknesses. To accomplish this, it integrates data from multiple sources, namely the final conversational state from the current conversation (Conversation Flow Manager), the evaluation from the Pragmatic Analyzer, and the previous history of chatlogs of the user alongside the user's current implicature accuracy average over the course of all conversations/scenarios with the chatbot. The component’s primary function is to translate the analytical output which details the user's adherence to Grice's Maxims—into personalized feedback points. It prioritizes feedback on the use of implicatures, explaining where a user's implied meaning was clear or ambiguous. A core aspect of the feedback is its pedagogical approach; it does not simply correct the user but explains the relevant pragmatic theories in simple terms, referencing the user's specific messages from the conversation history to illustrate its points. By grounding its advice in the user's recent performance, this component ensures the feedback is personalized and helps the user understand what to improve upon in the perspective of communication adhering to Grice's Maxims and pragmatic norms.}
 
 \subsection{Database Manager}
 
-The database contains 3 main components: the user profile table, the conversation log table, and the scenario table:
+\hl{The database contains 3 main components: the user profile table, the conversation log table, and the scenario table:
 
 The \textbf{User Profile Table} stores user information such as name, email, password, and current implicature accuracy metrics. This table is essential for storing user information, tracking pragmatic competence progress, and connecting conversation logs to specific users. It allows the system to track user profiles, manage user sessions, and provide personalized feedback based on individual performance during AI Mentor feedback generation. 
 
 The \textbf{Conversation Log Table} stores the conversation history for each user, including timestamps, user messages, and chatbot responses. This table is crucial for maintaning a record of user interactions, which is then used for feedback generation in regards to personzlized feedback based on the current user. 
 
-The \textbf{Scenario Table} contains predefined social scenarios that users can select from. Each scenario includes context, roles, and expected dialogue behavior. This table is essential for providing users with a structured set of scenarios to practice their the recognition of implicatures, as well as being able to in which their implied meanings could be understood by the chatbot, ensuring that the chatbot can simulate realistic social interactions based on Grice's Maxims and implicatures.
+The \textbf{Scenario Table} contains predefined social scenarios that users can select from. Each scenario includes context, roles, and expected dialogue behavior. This table is essential for providing users with a structured set of scenarios to practice their the recognition of implicatures, as well as being able to in which their implied meanings could be understood by the chatbot, ensuring that the chatbot can simulate realistic social interactions based on Grice's Maxims and implicatures.}
 
 
 
@@ -85,12 +85,12 @@ The \textbf{Scenario Table} contains predefined social scenarios that users can 
 
 \section{Conversation Flow}
 
-The Socius chatbot follows a structured conversation flow grounded in the APAM framework, with two primary functional phases: the AI Partner Phase (interaction) and the AI Mentor Phase (evaluation). Each phase contains specific steps that enable both real-time dialogue and post-conversation analysis, helping users develop and reflect on their pragmatic competence.
+\hl{The Socius chatbot follows a structured conversation flow grounded in the APAM framework, with two primary functional phases: the AI Partner Phase (interaction) and the AI Mentor Phase (evaluation). Each phase contains specific steps that enable both real-time dialogue and post-conversation analysis, helping users develop and reflect on their pragmatic competence.
 
-The full conversation process consists of the following stages:
+The full conversation process consists of the following stages:}
 
 \begin{enumerate}
-    \item \textbf{Initialize Session} \\
+    \item \hl{\textbf{Initialize Session} \\
     The chatbot begins by initializing the session, preparing the environment for interaction. This includes loading necessary components and user parameters.
 
     \item \textbf{Scenario Selection and Instantiation} \\
@@ -106,10 +106,10 @@ The full conversation process consists of the following stages:
     The annotated responses are analyzed according to Grice’s Maxims: Quantity, Quality, Relation, and Manner. The system examines whether the user’s responses were informative, relevant, clear, and truthful. It also checks for responsiveness to indirect hints and implied meanings, selecting key dialogue moments for further review.
 
     \item \textbf{Metric Generation} \\
-    Using the Gemini API, the system generates multiple possible implied meanings for each prompt. The user’s response is then compared to these possibilities through semantic similarity scoring. The final metrics reflect how closely the user’s response aligned with the expected implicature, providing a quantitative measure of pragmatic inference ability.
+    Using the Gemini API, the system generates multiple possible implied meanings for each prompt. The user’s response is then compared to these possibilities through semantic similarity scoring. The final metrics reflect how closely the user’s response aligned with the expected implicature, providing a quantitative measure of pragmatic inference ability.}
 \end{enumerate}
 
-This flow allows the chatbot to function both as a conversation partner and as an evaluator. It supports pragmatic skill-building by enabling practice, identifying specific areas of strength or difficulty, and encouraging reflection through targeted feedback.
+\hl{This flow allows the chatbot to function both as a conversation partner and as an evaluator. It supports pragmatic skill-building by enabling practice, identifying specific areas of strength or difficulty, and encouraging reflection through targeted feedback.}
 
 
 \begin{figure}[H]
@@ -124,7 +124,7 @@ This flow allows the chatbot to function both as a conversation partner and as a
 The chatbot system will be built on top of a large language model (Gemini), implemented using Python, and will follow a conversational AI pipeline:
 \begin{itemize}
     \item \textbf{Load and format dataset} – Prepare dialogue data for use.
-    \item \textbf{Load Gemini model} – Access the model for inference or fine-tuning.
+    \item \textbf{Load \hl{Gemini} model} – Access the model for inference or fine-tuning.
     \item \textbf{Train with data collator} – Perform fine-tuning on task-specific data.
     \item \textbf{Interact via conversation engine} – Engage in real-time dialogue with the user.
 \end{itemize}
@@ -139,7 +139,7 @@ social communication training.
 \section{Resources}
 \subsection{Gemini API}
 
-The \textbf{Gemini API}, developed by Google DeepMind, is a large language model (LLM) platform that offers
+\hl{The \textbf{Gemini API}, developed by Google DeepMind, is a large language model (LLM) platform that offers
 advanced capabilities in natural language understanding and generation. In the Socius system, the free tier 
 of Gemini API, specifically the Gemini 2.5 Pro model,
 serves as the core conversational engine responsible for producing contextually relevant, pragmatically 
@@ -147,10 +147,10 @@ appropriate responses during real-time interactions. Its ability to interpret us
 conversational coherence, and generate semantically nuanced replies makes it a good fit for applications
 that require sensitivity to social and pragmatic context.
 
-Socius leverages the Gemini API in two key areas:
+Socius leverages the Gemini API in two key areas:}
 
 \begin{itemize}
-    \item \textbf{Dialogue Simulation (AI Partner Phase)}: During the interactive portion of the session, 
+    \item \hl{\textbf{Dialogue Simulation (AI Partner Phase)}: During the interactive portion of the session, 
     Gemini is used to generate chatbot responses. These responses are conditioned not only on the user's 
     immediate input but also on the scenario context, conversation history, and the assigned social role 
     of the chatbot. The API is expected to observe Gricean conversational principles such as Relevance, 
@@ -160,9 +160,9 @@ Socius leverages the Gemini API in two key areas:
     contributes to the system's evaluation phase. It helps generate multiple plausible implicatures for 
     each user message and assists in diagnosing whether the user’s responses demonstrate adherence or 
     violations to Grice's Maxims. These insights are synthesized into personalized feedback using a 
-    pedagogical tone, aiming to help users improve their pragmatic skills.
+    pedagogical tone, aiming to help users improve their pragmatic skills.}
 \end{itemize}
-
+\hl{
 In this implementation, the system utilizes the free-tier version of the Gemini API, which may limit certain
 advanced capabilities such as deeper multi-turn memory or extended context window lengths. Nonetheless,
 Gemini provides a sufficiently powerful baseline for natural language generation and pragmatic inference.
@@ -187,15 +187,15 @@ possibly leading to changes in response behavior over time that affect consisten
 Lastly, while the Gemini API demonstrates strong general-purpose conversational capabilities, its use
 in pragmatic training and social communication remains underexplored. Thus, its effectiveness in
 modeling conversational norms such as Grice’s Maxims must be interpreted with caution, pending 
-further research and evaluation.
+further research and evaluation.}
 
 \subsection{GRICE Dataset}
 
-The foundation for the theoretical, training, and evaluation framework is the \textbf{GRICE Dataset}, which is a comprehensive collection of dialogue data readily available online developed by Zheng et al. (2021). It is designed to specifically bring the concept of implicature or implied meaning to pragmatic reasoning for conversational systems. Furthermore, this was developed in homage to H.P. Grice and focuses on his influential theory of conversational implicatures, thereby being suited for the Socius system. 
+\hl{The foundation for the theoretical, training, and evaluation framework is the \textbf{GRICE Dataset}, which is a comprehensive collection of dialogue data readily available online developed by Zheng et al. (2021). It is designed to specifically bring the concept of implicature or implied meaning to pragmatic reasoning for conversational systems. Furthermore, this was developed in homage to H.P. Grice and focuses on his influential theory of conversational implicatures, thereby being suited for the Socius system. 
 
 The GRICE Dataset by Zheng et al. (2021) is systematically generated using a hierarchical grammar model, resulting in dialogues that contextually-consistent implicatures. It provides structured examples of conversations where maxims are either followed or violated, which is ideal for two core purposes within Socius. The dialogues serve as the foundation for the predefined scenarios in the Scenario Database. This ensures that the practice conversations are grounded in established pragmatic theory. The dataset also provides the ground truth for pragmatic analysis, specifically assisting the Pragmatic Analyzer component. The system is designed to recognize patterns of implicature and maxim violation similar to those presented in the dataset, allowing it to score user performance and generate relevant feedback.
 
-While the GRICE dataset provides a robust framework, select examples will be localized to better reflect Filipino cultural norms and social dynamics, ensuring the scenarios are relatable and accessible to the target user population. Moreover, tweaks will done to the dataset for the purposes of this research, thus creating unique scenarios that are relevant to the Filipino context all-the-while maintaining the relevance of pragmatics and implicatures in the scenarios.
+While the GRICE dataset provides a robust framework, select examples will be localized to better reflect Filipino cultural norms and social dynamics, ensuring the scenarios are relatable and accessible to the target user population. Moreover, tweaks will done to the dataset for the purposes of this research, thus creating unique scenarios that are relevant to the Filipino context all-the-while maintaining the relevance of pragmatics and implicatures in the scenarios.}
 
 % \subsection{Calendar of Activities}
 
