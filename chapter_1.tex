@@ -108,8 +108,8 @@ By equipping young individuals with the ability to communicate more effectively,
 \clearpage % or \newpage
 \section{Calendar of Activities}
 
-\hl{Tables} \ref{tab:timetable2025} \hl{and} \ref{tab:timetable2026} \hl{show a Gantt chart of the activities. With the first table showing the activites 
-for the year 2025 while the second table shows activities for the year 2026. Each bullet represents approximately one week worth of activity.}
+\hl{Tables} \ref{tab:timetable2025} \hl{and} \ref{tab:timetable2026} \hl{show a Gantt chart of the activities. The first table lists the activites 
+for the year 2025 while the second table lists activities for the year 2026. Each bullet represents approximately one week worth of activity.}
 
 \begin{table}[ht]
     \centering
@@ -126,10 +126,11 @@ for the year 2025 while the second table shows activities for the year 2026. Eac
         & \textbf{Oct} & \textbf{Nov} & \textbf{Dec} \\
         \midrule
         Data Collection   & **** & **** & ****  & ****  &       &       &       &       &       \\
+        Knowledge Base Construction   &       &       &       &       &       & **** & **** & **** & **** \\
         Backend Development   &       &       &       &       &       & **** & **** & **** & **** \\
-        Expert Validation of Scenarios   &       &       &       &       &       & ****  &  **** &       &       \\
         Frontend Development   &       &       &       &       &       &       &       & ****  & ****  \\
-        Documentation     &       &       &       &       &       &       & **** & **** & **** \\
+        Expert Validation of Scenarios   &       &       &       &       &       & ****  &  **** &       &       \\
+        Documentation and Report Writing     &       &       &       &       &       &       & **** & **** & **** \\
         \bottomrule
     \end{tabular}
     }
@@ -148,9 +149,9 @@ for the year 2025 while the second table shows activities for the year 2026. Eac
         \textbf{Activity} 
         & \textbf{Jan} & \textbf{Feb} & \textbf{Mar} & \textbf{Apr} \\
         \midrule
-        User Testing        & ****  & ****  &       &        \\
+        User Testing and Validation       & ****  & ****  &       &        \\
         Data Analysis       &       & ****  & ****  & ****   \\
-        Documentation       & ****  & ****  & ****  & ****   \\
+        Documentation and Report Writing       & ****  & ****  & ****  & ****   \\
         \bottomrule
     \end{tabular}
     \caption{Gantt Chart of Activities (2026)}
@@ -160,7 +161,9 @@ for the year 2025 while the second table shows activities for the year 2026. Eac
 
 
 \section{Methodology}
-\indent To achieve the objectives of this study, the methodology involves the design, development, and evaluation of a pragmatically-aware chatbot system grounded in the APAM (AI Partner–AI Mentor) framework. The methodology is structured into four major phases: (1) Building the Knowledge Base, (2) Software Development, (3) User Data Collection, and (4) Validation.
+\indent To achieve the objectives of this study, the methodology involves the design, development, and evaluation of a pragmatically-aware chatbot system grounded in the APAM 
+(AI Partner–AI Mentor) framework. The methodology is structured into four major phases: 
+(1) Knowledge Base Construction, (2) Software Development, (3) Expert Validation of Scenarios, (5) User Testing and Validation, (6) Data Analysis, and (7) Documentation and Report Writing.
 
 \subsection{Knowledge Base Construction}
 \indent The chatbot's pragmatics training capability lies in a properly curated and theory-driven knowledge base. The GRICE dataset, which consists of dialogue examples structured around 
@@ -180,15 +183,33 @@ This exploratory use of Gemini aims to examine how its conversational capabiliti
 its effectiveness. The chatbot will follow a six-stage conversational loop: (1) Session Initialization, (2) Scenario Selection and Instantiation, (3) Conversation Simulation, \
 (4) Pragmatic Logging, (5) Conversation Analysis, and (6) Metric Generation.}
 
-\hl{Each stage is designed to assess the user’s pragmatic competence, specifically their adherence to Grice’s Maxims within various social scenarios generated and seeded through the system. During the conversation, the chatbot assumes the role of an AI Partner, adopting a context-specific persona to engage the user in dialogue. After the exchange, it shifts to its AI Mentor role, where it analyzes the transcript, logs maxim violations, and evaluates the user’s responses based on relevance, informativeness, clarity, and recognition of implied meaning. The system then generates feedback and performance metrics, enabling reflection and, optionally, scenario retry to support iterative learning.}
+\hl{Each stage is designed to assess the user’s pragmatic competence, specifically their adherence to Grice’s Maxims within various social scenarios generated and seeded through 
+the system. During the conversation, the chatbot assumes the role of an AI Partner, adopting a context-specific persona to engage the user in dialogue. After the exchange, it shifts 
+to its AI Mentor role, where it analyzes the transcript, logs maxim violations, and evaluates the user’s responses based on relevance, informativeness, clarity, and recognition of 
+implied meaning. The system then generates feedback and performance metrics, enabling reflection and, optionally, scenario retry to support iterative learning.
+
+The stages of software development are as follows:}
+
+\subsubsection{Backend Development}
+\indent \h1{lorem ipsum}
+
+\subsubsection{Frontend Development}
+\indent \h1{lorem ipsum}
+
+\subsection{Expert Validation of Scenarios}
+\indent \hl{The scenarios generated by the chatbot will be validated by an expert, either a behavioral scientist or a conversation expert, to ensure that they are appropriate and 
+relevant for the target demographic before being added into the scenario database that the chatbot will use to converse with the user.}
 
 \subsection{Validation}
-\indent \hl{In order to validate the performance of the chatbot, data will be gathered from volunteer participants, consisting of young adults aged 15-24 years old.
+\subsubsection{Chatbot Performance Evaluation}
+\indent \h1{In order to validate the performance of the chatbot, data will be gathered from volunteer participants, consisting of young adults aged 15-24 years old.
 The users will interact with the chatbot, and these interactions will be stored as chat logs which will be used for analysis of user progress, pragmatic 
-competence, and conversational behavior. These chat logs will then be analyzed by an expert, either a behavioral scientist, or conversation expert, in order to assess whether the 
-chatbot's responses are also pragmatically aligned. Before engaging with the study, participants must fill out an informed consent form. Minors must fill out a parents consent 
-form and participant assent form. This form will detail the purpose of the study, procedures involved, potential risks and benefits, and the reassurance that the participant has 
-the right to withdraw at any time. User data will be anonymized and used solely for research purposes. The data will be immediately destroyed once the study completes.}
+competence, and conversational behavior. These chat logs will then be analyzed by an expert in order to assess whether the chatbot's responses are also pragmatically aligned.}
+
+\subsubsection{User Testing}
+\indent \hl{Before engaging with the study, participants must fill out an informed consent form. Minors must fill out a parents consent form and participant assent form. 
+This form will detail the purpose of the study, procedures involved, potential risks and benefits, and the reassurance that the participant has the right to withdraw at any time. 
+User data will be anonymized and used solely for research purposes. The data will be immediately destroyed once the study completes.}
 
 \subsection{Data Analysis}
 \indent Quantitative testing will be done to assess the usability and effectivity of Socius. This may include questions such as user experience, satisfaction, and chatbot authenticity, usefulness, and effectivity.
