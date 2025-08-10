@@ -122,21 +122,21 @@ The full conversation process consists of the following stages:}
     \label{fig:conversationflow}
 \end{figure}
 
-\section{Software Design and Implementation}
+\section{Software Functions}
+\subsection{User Interface}
 
-The chatbot system will be built on top of a large language model (Gemini), implemented using Python, and will follow a conversational AI pipeline:
-\begin{itemize}
-    \item \textbf{Load and format dataset} – Prepare dialogue data for use.
-    \item \textbf{Load \hl{Gemini} model} – Access the model for inference or fine-tuning.
-    \item \textbf{Train with data collator} – Perform fine-tuning on task-specific data.
-    \item \textbf{Interact via conversation engine} – Engage in real-time dialogue with the user.
-\end{itemize}
-First, dialogue data, from the GRICE dataset, will be prepared and formatted to reflect various social communication scenarios. The
-system uses predefined dialogue data drawn from the GRICE dataset. Real-time
-conversation is handled via the Gemini API, which responds to user input using contextual understanding based on Gricean maxims
-and the scenario’s goals. Subsequently, Gemini is loaded through an API to handle inference, while a data collator 
-will be used to manage input lengths. Finally, the model engages in real-time econversations with users, providing contextually apropriate responses to support 
-social communication training.
+The user interface (UI) is the front-end component of the Socius system, designed to facilitate text-based interactions between the user and the chatbot. It features a chat window similar to text messaging applications, where users can input their messages and view the chatbot’s responses in real time. A scenario selection component will allow users to choose from predetermined social contexts before initiating a conversation, enabling targeted practice of pragmatic competence. The UI will also include profile and progress tracking features, enabling users to view their performance metrics and monitor improvements based on implicature accuracies over multiple sessions. The design prioritizes usability and accessibility, employing simple graphical elements to create an intuitive and distraction-free environment.
+%The user interface (UI) is the front-end component of the Socius system, designed to facilitate text-based interactions between the user and the chatbot. At present, it includes a chat window similar to text messaging applications, where users can input their messages and view the chatbot’s responses in real time. The layout employs alternating message colors and timestamps for clarity, with a minimalistic design that prioritizes usability and accessibility through simple graphical elements.
+%Planned enhancements to the UI include the addition of a scenario selection component, allowing users to choose from predetermined social contexts before initiating a conversation. Further features will include profile and progress tracking, enabling users to monitor their pragmatic competence based on implicature accuracies over multiple sessions, and the integration of feedback display functionality to provide post-conversation performance insights. These developments will maintain the system’s focus on intuitive, distraction-free interaction while expanding its training capabilities.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{figures/chat_ui.png}
+    \caption{Socius UI showing the chat window with alternating message colors, timestamps, and input field. Scenario selection and profile tracking are planned features.}
+    \label{fig:socius_ui}
+\end{figure}
+
+
 
 
 \section{Resources}
