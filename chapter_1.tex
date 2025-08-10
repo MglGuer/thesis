@@ -10,42 +10,192 @@
 
 
 \section{Background of the Study}
-Social communication plays a crucial role in human interaction, facilitating relationships, emotional expression, and the exchange of ideas. However, for individuals who struggle with effective communication, whether due to social anxiety, neurodivergence, or general uneasiness in social settings, interacting with others can be challenging. Many individuals experience difficulties reading social cues, managing conversations, or expressing themselves confidently, which may lead to isolation or hinder personal and professional relationships. \hl{Thus, the definition of social communication is not limited by the mechanical production of speech or symbols, but rather the capacity to understand when, what, and how in communication to achieve effective and meaningful interactions between individuals}\ \cite{Hymes:1972, Light:1989}.
 
+\indent Pragmatics, a subfield of linguistics, discusses how context contributes to meaning in communication.
+Pragmatics, unlike grammar or semantics, which focus on structural correctness and literal interpretation,
+is more involved with intention, implication, and appropriateness within social interactions. It involves
+understanding what is meant beyond what is said; implied meaning over literal meaning. In essence, it is how speakers navigate relevance,
+politeness, and indirectness depending on social context \cite{marasabessy_pragmatic_2023}. For individuals with social communication
+challenges, difficulties in pragmatic interpretation may result in social isolation or miscommunication.
 
-The emergence of artificial intelligence (AI)-driven conversational technologies presents an opportunity to support individuals in enhancing their social communication skills. Chatbots are defined as computer programs designed to simulate human conversation, allowing users to interact with their digital devices as if they were conversing with a real person (Oracle, 2020). Notably, therapeutic chatbots such as Woebot have demonstrated effectiveness in providing emotional support and cognitive behavioral therapy (CBT), helping users navigate mental health challenges through structured conversations (Woebot Health, 2025).
+As such, many individuals struggle with real-world social interactions yet lack accessible, judgment-free spaces to practice and refine 
+these essential skills. Despite recent advances in artificial intelligence (AI) and large language models (LLMs), their potential for 
+supporting social communication training remains underexplored. Most existing chatbots are not designed to promote adaptive, context-sensitive 
+conversation practice, leaving a critical gap in available tools. A chatbot focused on enhancing pragmatic competence—especially for the general
+population—could serve as a low-risk environment to build confidence and conversational fluency.
 
-A crucial element of effective social communication is empathy, which is defined by Merriam-Webster (n.d.) as the act or capacity to recognize, understand, and respond to the emotions of others. Emotional intelligence plays a fundamental role in fostering positive interactions by allowing individuals to navigate social complexities with sensitivity. Traditional chatbots often lack the ability to interpret emotions accurately, making it challenging to create meaningful conversations. Integrating sentiment analysis and tone recognition into chatbot design can improve their ability to respond with empathy, and as a result, improve user engagement and satisfaction.
+Crucially, the need for pragmatics training is not limited to neurodivergent individuals. Pragmatics plays a vital role in grounding meaning through 
+context \cite{fried_pragmatics_2023}, which is crucial for effective communication and conversation. This highlights the broader applicability of pragmatic 
+training as a way to improve real-world communicative competence across diverse settings. Furthermore,\cite{gibbs_pragmatics_2020} argue that 
+pragmatic performance is influenced by cultural expectations, personal histories, and situational variability—factors that affect all individuals,
+regardless of diagnostic status. Their work suggests that understanding and practicing pragmatic nuance can foster more meaningful and effective 
+social engagement across the board, thereby maximizing its potential benefit and broad applicability.
 
-In general, human interactions rely heavily on social cues such as body language, tone, and contextual understanding. Since chatbots primarily operate in a text-based environment, the absence of non-verbal cues must be compensated for by detecting markers in the user’s dialogue or linguistics that may convey emotion or intent. Advancements in natural language processing (NLP) and deep learning, particularly transformer-based models like GPT, have improved chatbots’ ability to interpret conversational context and generate contextually relevant responses (Pothuri, 2024). These models enable sentiment analysis, intent recognition, and emotion detection, allowing chatbots to adapt their responses to align with the user’s mood, intent, and expectations.
+Recent work in social skill training has introduced the AI Partner and AI Mentor (APAM) framework as a promising model
+for combining simulated practice and pedagogical feedback using large language models (LLMs) \cite{yang_social_2024}.
+In this framework, the AI Partner engages the user in realistic, domain-specific conversational scenarios, serving as 
+a practice partner that reflects varied social contexts. The AI Mentor, on the other hand, observes the interaction and 
+provides theory-grounded feedback, contextual suggestions, and reflective insights to promote social learning. This
+dual-agent structure is particularly effective for training pragmatic competence, as it allows users to explore 
+conversational nuance while receiving guidance grounded in expert frameworks like Grice’s Maxims. The APAM framework 
+supports scalable, low-risk social communication training and has been applied to domains such as counseling, education,
+and conflict resolution. In this study, APAM is adapted to focus specifically on one-on-one, pragmatic communication, 
+with the AI Partner simulating conversations that test the user’s ability to navigate implicature and context, and the
+AI Mentor offering reflective feedback based on violations or observance of conversational maxims.
 
-A chatbot’s ability to understand and maintain context throughout a conversation is essential for meaningful social interactions. Context awareness enables chatbots to recall past interactions, personalize responses, and provide continuity in conversations. Without proper contextual tracking, chatbot interactions may feel disjointed.
+Grice's Cooperative Priniciple is a key theoretical framework for pragmatic analysis. It includes four maxims: Quantity,
+Quality, Relation, and Manner. These maxims guide how speakers are expected to contribute to conversations, which is by 
+being informative, truthful, relevant, and clear \cite{hossain_application_2021}. When these maxims are followed, communication
+tends to proceed smmothly. However, vioaltions, intentional or not, may lead to confusion, implicature, or breakdowns.
+Large Language Models (LLMs) like GPT-4 have been evaluated on Gricean tasks and, in some cases, outperform
+humans in identifying implicature or recovering unstated meaning \cite{bojic_gpt-4_2023}. Datasets such as GRICE have even
+been created to assess AI's ability to handle nuanced conversational reasoning \cite{zheng_grice_2021}.
 
-Despite the advancements in chatbot technology, existing conversational agents often lack the ability to facilitate meaningful, adaptive, and socially beneficial interactions. Most chatbots are designed for functional, task-oriented conversations rather than dynamic social changes that involve empathy, emotional intelligence, and nuanced responses. Furthermore, ethical concerns such as bias in chatbot responses, data privacy, and contextual misunderstanding are challenges to their widespread adoption for social communication purposes. Bias in AI models can lead to inappropriate or offensive interactions, affecting trust towards chatbot technology. For instance, if a chatbot is trained on biased data, it may inadvertently perpetuate stereotypes or discriminatory behavior (Zhou et al., 2024). Consequently, development in this field requires strategies such as bias detection and transparency in chatbot design to ensure fair and inclusive interactions. Additionally, ensuring user data privacy and security remains a priority, particularly for chatbots that engage in sensitive social interactions. Establishing clear data handling policies and employing security measures are essential to maintain user trust (Gujar, 2024).
+In practical chatbot interactions, these maxims are regularly tested. For example, an LLM might provide overly verbose
+answers (violating Quantity), respond off-topic (Relation), or misinterpret ambiguous intent (Manner). These outcomes
+are not necessarily “bad” but rather reflective of the model’s training data, lack of world knowledge, or inability
+to interpret non-verbal cues. A study comparing various LLM generations noted a steady improvement in pragmatic handling,
+suggesting that training scale and model design significantly affect performance \cite{bojic_gpt-4_2023}. Yet, challenges still remain,
+such as repeated pragmatic failures lead users to simplify their speech over time, which may erode nuanced communication habits
+\cite{eragamreddy_impact_2025}.
+
+Despite advances in natural language processing and the increasing presence of conversational agents in daily life,
+most AI systems still struggle with pragmatic competence, or the ability to interpret and generate language that
+is appropriate to social context. While these systems can produce grammatically correct and coherent responses, they
+often fail to grasp implied meanings, respond appropriately to indirect speech acts, or adapt to the relational dynamics
+of a conversation. This limitation becomes more noticeable in one-on-one interactions where subtle social cues and contextual
+relevance are critical. This raises important questions: Can a chatbot be designed to recognize and respond to pragmatic
+violations? How can feedback be delivered in a way that helps users reflect on and improve their communication strategies?
+These questions highlight an opportunity to bridge the gap between linguistic fluency and social competence
+by developing a chatbot that supports pragmatic learning through context-sensitive interactions and theory-informed
+feedback.
+
+While current chatbot applications focus more on therapeutic services, such as Woebot \cite{Woebot:2025}, there is a lack of tools designed for non-therapeutic 
+needs, such as for enhancing social communication skills. Moreover, Many young adults (15–24) struggle with real-world social interactions but lack accessible, 
+judgment-free spaces to practice. Existing chatbots are not designed for adaptive social communication training, often failing to accommodate diverse 
+communication styles or provide meaningful, real-time feedback.
 
 \section{Research Objectives}
 
-This study aims to develop a one-on-one chatbot that helps young adults ages 15 to 24 years old improve their social communication skills. Unlike task-based chatbots, it will simulate natural conversations, provide real-time feedback, and offer a safe space for practicing social interactions. The objectives of the study are as follows:
+\indent This study aims to develop a one-on-one chatbot that helps young adults ages 15 to 24 years old improve their social communication skills. Unlike task-based chatbots, it will simulate natural conversations, provide real-time feedback, and offer a safe space for practicing social interactions. The objectives of the study are as follows:
 
 \begin{enumerate}
-    \item To design and develop a chatbot grounded in the APAM framework that simulates natural  one-on-one conversations as an AI Partner, enabling users to interact in contexts requiring pragmatic awareness.
-    \item To integrate reflective feedback mechanisms that help users identify and improve their use of pragmatic strategies, including adherence to Grice’s Maxims and recognition of implicatures.
-    \item To develop realistic contexts and situations that young adults are likely to encounter in academic, professional, and social environments, providing them with opportunities to practice and refine their pragmatic skills.
-    \item To evaluate the chatbot’s effectiveness in enhancing users' pragmatic competence and social communication skills through user feedback and performance metrics.
+    \item To develop a chatbot grounded in the APAM framework that simulates natural one-on-one conversations as an AI Partner, enabling users to interact in contexts requiring pragmatic awareness.
+    \item To design realistic contexts and situations that young adults are likely to encounter in academic, professional, and social environments, providing them with opportunities to practice and refine their pragmatic skills.
+    \item To evaluate the chatbot’s effectiveness in enhancing users' pragmatic competence and social communication skills through user feedback.
 \end{enumerate}
 
 \section{Scope and Limitations}
+\indent The chatbot will be developed using the APAM framework, emphasizing situation emulation and the provision of feedback. The primary scope of this feedback is its direct alignment with Grice’s Maxims (Quantity, Quality, Relation, and Manner) and the recognition of implicatures, serving as the explicit framework for assessing and guiding user improvement. Moreover, these maxims and implicatures are not reliant on paralinguistic cues, making them suitable for implementation in a text-based AI system \cite{dale_role_1996}. In line with goal-oriented language generation, the chatbot’s responses are designed to reflect Gricean principles without the need to explicitly enforce them as rigid rules. Its capacity to deliver pragmatic guidance will rely on training with the GRICE dataset and machine learning models, providing feedback based on pre-defined pragmatic rules rather than on human-like comprehension or nuanced, context-specific human judgment. Accordingly, the effectiveness of the system is dependent on the alignment between the training data and the Gricean maxims, and the feedback’s effectiveness is contingent on the chatbot's accurate identification of pragmatic violations or successes, a task made challenging by the inherent ambiguity of human communication and the limitations of current natural language processing (NLP). A potential gap is that while the feedback targets Grice's Maxims and implicatures, it may not comprehensively cover all facets of pragmatic competence, such as politeness strategies or speech act theory, which are outside the immediate scope of measurement for this particular intervention.
 
-The study will limit its target demographic to those who are between 15 to 24 years old, aligning with the World Health Organization's ([WHO], n.d.) definition of youth. This age range was chosen as young adults often face crucial transitions in academic, social, and professional settings where effective communication plays a key role. \hl{The chatbot will also be limited to text-based input and will not incorporate voice or video-based input.} It will also be exclusively making use of the English language due to the availability of numerous data sets that may be used to train the chatbot. The study also aims to identify the different strategies used by experts in teaching communication skills to young adults, especially those who are deemed socially awkward. \hl{Furthermore, the chatbot itself will be the one to provide situations and contexts that the user will undergo, instead of the context being provided by the user. In accomplishing this, assistance strategies that pertain to helping young adults with social awkwardness and pragmatics training, which may be used on a chatbot, are defined. Moreover, the research will be focusing on the response of the user themselves, rather than the way they respond. As such, this is to say we'll be prioritizing an individual's word choice rather than the manner they audibly speak their response}\hl{The study will also be focusing on the subtopic of social communication, namely pragamtics, which is measured and assessed through the use of Grice's Maxims and implicatures.}
+The study will define conversational scenarios that reflect academic, professional, and casual social contexts relevant to young adults. This is best practiced since these are general situations that young adults would encounter everyday, most especially that they would build connections or relationships within these environments. These scenarios will serve as structured environments for practicing pragmatic competence. These situations will be constructed based the situations present in the GRICE dataset, wherein Grice's maxims and implicatures are implemented. However, in order to ensure relevance to the local context as Grice's theory of conversation is primarily a western theory, select examples from the GRICE dataset will be localized by modifying culturally specific references and language usage to better reflect local Filipino cultural norms and social dynamics. Careful review and adaptation will be carried out to preserve the original pragmatic intent while making the content accessible and relatable to Filipino users. The focus of the chatbot is on verbal communication, thereby the conversations presented in a text-based format would reflect real-world conversations. The target participants will also strictly involve young adults aged 15 - 24, moreover that these participants need not be considered neurodivergent. This decision is based on the principle that pragmatic competence is a universal and developmental skill set, not exclusively a challenge for individuals with diagnosed conditions. The study’s goal is to create a broadly applicable educational tool for enhancing social communication, rather than a clinical intervention for a specific population.
+
+The evaluation of the chatbot will be conducted through user interaction data and self-reported feedback. The assessment will focus on the user's perception on the chatbot's ability to simulate contextually appropriate conversation whilst providing pragmatically-aligned feedback after the conversation. Thus, this is based on the user's self-reported experience on the conversation authenticity. It is important to note that limitations may arise due to cultural differences between the original dataset and the target population. Filipino participants may not fully relate to or understand certain examples derived from the GRICE dataset, even after localization, especially if implicit meanings are grounded in unfamiliar cultural references. These potential mismatches may affect user engagement or interpretation and will be considered in the analysis of user feedback to inform future improvements.  
+
+
+% The study will limit its target demographic to those who are between 15 to 24 years old, aligning with the World Health Organization's (WHO, n.d.) definition of youth. This age range was chosen as young adults often face crucial transitions in academic, social, and professional settings where effective communication plays a key role. The chatbot will also be limited to text-based input and will not incorporate voice or video-based input. It will exclusively use the English language due to the availability of numerous datasets suitable for training. The study also aims to identify the different strategies used by experts in teaching communication skills to young adults, especially those who are deemed socially awkward. Furthermore, the chatbot itself will provide the situations and contexts that the user will experience, rather than having the context supplied by the user. In doing so, the study defines assistance strategies related to helping young adults with social awkwardness and pragmatics training that can be implemented in a chatbot. Moreover, the research will focus on the user's actual responses, particularly their word choices, rather than how they audibly deliver those responses. The study will also concentrate on the subtopic of social communication—specifically, pragmatics—which will be measured and assessed using Grice's Maxims and the concept of implicature.
+
 
 \section{Significance of the Study}
-While current chatbot applications focus more on therapeutic services, such as Woebot (Woebot Health, 2025), there is a lack of tools designed for non-therapeutic needs, such as for enhancing social communication skills. Moreover, Many young adults (15–24) struggle with real-world social interactions but lack accessible, judgment-free spaces to practice. Existing chatbots are not designed for adaptive social communication training, often failing to accommodate diverse communication styles or provide meaningful, real-time feedback. Thus, this study aims to provide a personalized, accessible platform for young adults who wish to improve their conversation skills.
+% Placeholder text
+\indent This study offers a theory-informed chatbot that incorporates pragmatic and conversational linguistics, particularly Grice's Maxims and the APAM framework, into an interactive training tool for students to develop their social communication skills. The key output is a dual-role system: an AI Partner that engages in one-on-one conversations grounded in real-world scenarios, and an AI Mentor that evaluates the user's pragmatic performance and offers reflective feedback based on observed violations or adherence to conversational norms. As such, this study's contribution is also the understanding and exploration of an AI-driven approach to teaching, in general, a sociolinguistic skill for young adults. 
+Furthermore, In contrast to prior chatbot implementations using LLMs other than Gemini, this study explores the use of Gemini as an alternative large language model. The goal is not to evaluate its superiority, but to understand its potential to model pragmatic competence in an educational chatbot context.   
 
-Another significance of this research is its potential to benefit individuals within a specific age range. Being able to engage in conversation is a vital skill as it affects one’s personal relationships, casual and professional interactions, and self-confidence. By making use of a chatbot that simulates one-on-one conversations, users will be able to practice their communication skills in a low-pressure environment. This is particularly beneficial for those who struggle with face-to-face interactions, such as those with social anxiety or the socially awkward. 
+Another significance of this research is its potential to benefit individuals within a specific age range. Being able to engage in conversation is a vital skill as it affects one’s personal relationships, casual and professional interactions, and self-confidence. Moreover, the results from this study will be pertinent to educators, counselors, and researchers in the field of linguistics as it provides insights into how AI can be used in an educational manner as a way of providing another avenue of learning for young adults. The chatbot would be able to provide a safe environment for young adults to practice their conversational ability without the need of a human partner, thereby being interactive and low-risk. This may also be beneficial for those who struggle with face-to-face interactions, such as those with social anxiety or the socially awkward. By integrating social theories—such as Grice’s Maxims and the APAM framework—into the chatbot’s design, this research contributes a structured, theory-based approach to teaching pragmatic competence. Specifically, the conversation flows developed in this study may serve as practical templates for future AI-driven tools aimed at improving real-world communication skills in educational and therapeutic contexts.
 
-Additionally, this study contributes to the reduction of bias in large language models (LLMs). Further review on the bias that affects the way LLMs interpret and respond to different communication styles, particularly those of neurodivergent individuals, can help improve their inclusivity and accuracy. By analyzing how LLMs process and adapt to diverse social behaviors, this study aims to refine chatbot interactions to be more accommodating to both neurotypical and neurodivergent users. This contributes to broader AI fairness efforts by ensuring that conversational AI tools do not reinforce stereotypes or exclude users with different communication preferences. 
+By equipping young individuals with the ability to communicate more effectively, this research holds broader implications for society at large. As pragmatic competence is crucial not only for personal growth but also for constructive social participation, enhancing this skill among youth can lead to more socially-aware communities. In the Philippine context, where communication is often shaped by high-context norms, indirectness, and respect for social hierarchies, rooted in cultural values such as pakikisama, hiya, and utang na loob, the ability to navigate pragmatic cues is especially vital (Garcia, 2013; Nadar, 1999; Miranda, 1998). By modeling these dynamics through the chatbot, this study helps Filipino youth engage more effectively in culturally appropriate interactions across educational and social domains.
 
- 
+\clearpage % or \newpage
+\section{Calendar of Activities}
+
+Tables \ref{tab:timetable2025} and \ref{tab:timetable2026} show a Gantt chart of the activities.  Each bullet represents approximately one week worth of activity.
+
+\begin{table}[ht]
+    \centering
+    \small
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{
+        l
+        *{9}{>{\centering\arraybackslash}p{1cm}} % Apr–Dec 2025
+    }
+        \toprule
+        \multicolumn{10}{c}{\textbf{Gantt Chart of Activities (2025)}} \\
+        \textbf{Activity} 
+        & \textbf{Apr} & \textbf{May} & \textbf{Jun} & \textbf{Jul} & \textbf{Aug} & \textbf{Sep}
+        & \textbf{Oct} & \textbf{Nov} & \textbf{Dec} \\
+        \midrule
+        Data Collection   & **** & **** & ****  & ****  &       &       &       &       &       \\
+        Backend Development   &       &       &       &       &       & **** & **** & **** & **** \\
+        Database Setup   &       &       &       &       &       & **** & ****  &       &       \\
+        Expert Validation of Scenarios   &       &       &       &       &       & ****  &  **** &       &       \\
+        Frontend Development   &       &       &       &       &       &       &       & ****  & ****  \\
+        Documentation     &       &       &       &       &       &       & **** & **** & **** \\
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Gantt Chart of Activities (2025)}
+    \label{tab:timetable2025}
+\end{table}
+\begin{table}[ht]
+    \centering
+    \small
+    \begin{tabular}{
+        l
+        *{4}{>{\centering\arraybackslash}p{1cm}} % Jan–Apr 2026
+    }
+        \toprule
+        \multicolumn{5}{c}{\textbf{Gantt Chart of Activities (2026)}} \\
+        \textbf{Activity} 
+        & \textbf{Jan} & \textbf{Feb} & \textbf{Mar} & \textbf{Apr} \\
+        \midrule
+        User Testing        & ****  & ****  &       &        \\
+        Data Analysis       &       & ****  & ****  & ****   \\
+        Documentation       & ****  & ****  & ****  & ****   \\
+        \bottomrule
+    \end{tabular}
+    \caption{Gantt Chart of Activities (2026)}
+    \label{tab:timetable2026}
+\end{table}
+
+
+
+\section{Methodology}
+\indent To achieve the objectives of this study, the methodology involves the design, development, and evaluation of a pragmatically-aware chatbot system grounded in the APAM (AI Partner–AI Mentor) framework. The methodology is structured into four major phases: (1) Knowledge Base Construction, (2) Software Development, (3) User Data Collection, and (4) Validation.
+
+\subsection{Knowledge Base Construction}
+\indent The chatbot's pragmatics training capability lies in a properly curated and theory-driven knowledge base. The GRICE dataset, which consists of dialogue examples structured around 
+Grice’s Maxims, will be the foundation with which the chatbot will be trained on. Each dialogue is designed to highlight either adherence to or violation of these maxims, providing 
+concrete examples of pragmatic competence. The scenarios constructed by the LLM will be validated by an expert before being stored in the scenario database for use by the chatbot.
+
+To supplement the dataset, additional conversational prompts were generated using Gemini with explicit prompts to align with the same pragmatic structures. The dataset is found in a public 
+GitHub repository, making it open source while additional dialogues or scenarios will be synthetically generated by AI. This ensures that there are no copyright or licensing concerns.
+
+The GRICE dataset (Zheng et al., 2021), used in this research, is publicly available and was released as part of the Findings of ACL-IJCNLP 2021. It is © 2021 Association for Computational 
+Linguistics. The dataset is used here strictly for academic and non-commercial research purposes, in accordance with ACL’s standard terms of use. No modifications or redistribution of the 
+dataset are performed in this study.
+
+\subsection{Software Development}
+\indent The chatbot, named Socius, will be implemented using the Python programming language and will integrate the Gemini LLM via its API. This exploratory use of Gemini aims to examine how its conversational capabilities align with the APAM framework and Gricean principles, without making prior assumptions about its effectiveness. The chatbot will follow a six-stage conversational loop: (1) Session Initialization, (2) Scenario Selection and Instantiation, (3) Conversation Simulation, (4) Pragmatic Logging, (5) Conversation Analysis, and (6) Metric Generation.
+
+Each stage is designed to assess the user’s pragmatic competence, specifically their adherence to Grice’s Maxims within various social scenarios generated and seeded through the system. During the conversation, the chatbot assumes the role of an AI Partner, adopting a context-specific persona to engage the user in dialogue. After the exchange, it shifts to its AI Mentor role, where it analyzes the transcript, logs maxim violations, and evaluates the user’s responses based on relevance, informativeness, clarity, and recognition of implied meaning. The system then generates feedback and performance metrics, enabling reflection and, optionally, scenario retry to support iterative learning.
+
+\subsection{Validation}
+\indent In order to validate the performance of the chatbot, data will be gathered from volunteer participants, consisting of young adults aged 15-24 years old.
+The users will interact with the chatbot, and these interactions will be stored as chat logs which will be used for analysis of user progress, pragmatic 
+competence, and conversational behavior. These chat logs will then be analyzed by an expert, either a behavioral scientist, or conversation expert, in order to assess whether the chatbot's responses are also pragmatically aligned. 
+Before engaging with the study, participants must fill out an informed consent form. Minors must fill out a parents consent form and participant assent form. 
+This form will detail the purpose of the study, procedures involved, potential risks and benefits, and the reassurance that the participant has the right to withdraw at any time. User data will be anonymized and used solely for research purposes. The data will be immediately destroyed once the study completes.
+
+\subsection{Data Analysis}
+\indent Quantitative testing will be done to assess the usability and effectivity of Socius. This may include questions such as user experience, satisfaction, and chatbot authenticity, usefulness, and effectivity.
+Additionally, the user will give their perceived improvement in their pragmatic competence as another factor of the chatbot's effectivity.
+
+\subsection{Documentation and Report Writing}
+\indent The final phase of the methodology involves documenting the development process, user interactions, data analysis, and validation results.
+This will include a comprehensive report detailing the design choices, implementation challenges, and insights gained from user
+interactions. The report will also include recommendations for future improvements and potential applications of the chatbot in
+educational contexts.
 \begin{comment}
 If applicable, describe possible commercialization and/or innovation in your research.
 \end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

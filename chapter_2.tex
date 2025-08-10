@@ -8,7 +8,26 @@
 
 \chapter{Related Works}\label{sec:relatedworks}
 
-\textbf{2.1} \textbf{Chatbots Developed to Provide Support}
+\textbf{2.1 Chatbots Developed to Provide Support}
+
+Various chatbot systems have been designed with the intention of offering psychological or emotional support to users in need. These systems typically aim to deliver conversational care, emotional monitoring, or cognitive behavioral interventions. This subsection highlights several such systems, describing their core purposes, distinctive features, and the contexts in which they have been applied or studied. The table below summarizes key examples.
+
+\begin{table}[H]
+\centering
+\caption{Summary of Chatbots Designed for Mental Health and Emotional Support}
+\small
+\begin{tabular}{p{3.3cm} p{3.7cm} p{3.7cm} p{3.7cm}}
+\toprule
+\textbf{Study} & \textbf{Purpose} & \textbf{Features / Capabilities} & \textbf{Context / Target Users} \\
+\midrule
+Fitzpatrick et al. (2017) & Deliver CBT through chatbot & Fully automated; guided CBT exercises & Young adults with depression and anxiety \\
+Eren et al. (2020) & Emotional expression via storytelling & Encourages emotional storytelling in children & Children aged 6–10 \\
+Angeline et al. (2024) & AI-based mental health companion & Sentiment analysis, motivational feedback, study plan & Students facing academic stress \\
+Garcia Jr. et al. (2024) & Address public speaking anxiety & AI-based speech feedback and confidence building & Learners with stage fright \\
+Woebot Health (2025) & Enterprise-scale mental health chatbot & Scalable platform with CBT and mood tracking & General users, institutional deployment \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Conversational agents, or chatbots, have gained popularity across multiple platforms and fields, including mental health, education, and customer service. These AI-driven systems use natural language processing (NLP) to facilitate human-like interactions, providing real-time assistance to their users. Research has shown that chatbots can help lower communication barriers, particularly for individuals who experience social isolation, awkwardness, or difficulty accessing human support systems. Given their increasing role across various domains, it becomes critical to examine their applications in mental health and social communication, as these areas highlight the potential of chatbots in addressing emotional and interpersonal challenges. In this section, the ways in which chatbots are used to support mental health and enhance social communication skills are discussed.
 
@@ -25,6 +44,24 @@ A real-world application of the AI Partner model can be seen in Duolingo’s rol
 
 \textbf{2.2 Other Technologies for Social Skills Training}
 
+As conversational agents continue to evolve, they are increasingly being used as tools for helping individuals build social competence. Whether assisting children with autism spectrum disorder or supporting teenagers in developing interpersonal awareness, these chatbots function as interactive learning companions. This part of the chapter outlines prominent chatbot applications used in social skills training, along with their methods and user contexts, as shown in the table.
+
+\begin{table}[H]
+\centering
+\caption{Summary of Chatbots for Social Skills Training}
+\small
+\begin{tabular}{p{3.3cm} p{3.7cm} p{3.7cm} p{3.7cm}}
+\toprule
+\textbf{Study} & \textbf{Training Focus} & \textbf{Method / Interaction Mode} & \textbf{Target Group} \\
+\midrule
+de Bever et al. (2019) & Enhance communication in guards & Multimodal system with video, speech feedback & Security guards \\
+DeRosier and Thomas (2019) & Train social skills in teens & Digital role-playing game environment & Adolescents aged 11–14 \\
+Lee et al. (2022, 2023) & ASD social interaction skills & Metaverse-based practice and tasks & Children with ASD \\
+Voultsiou et al. (2025) & Inclusive social robot framework & LLM-enhanced social robots in education & Children in special education \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 Other technologies were also leveraged to help improve social communication skills. Hoque et al. (2014) developed “My Automated Conversation Coach” or MACH, a fully automated nonverbal sensing system designed to improve social interaction skills. MACH interprets and provides real-time feedback to an individual’s nonverbal behavior. It tackles challenges in regards to the technology’s ability to recognize nonverbal cues, applications for social skills training, and potential future developments for automated feedback systems. A simulated job interview was done to assess and gauge the participants’ social skills, comparing the skills of those who used MACH, those who only reviewed MACH recordings, and those who didn’t use MACH. The use of MACH with its automated feedback resulted in a statistically significant improvement in social skills.
 
 DeRosier et al. (2019) makes use of a game developed by 3C Institute called “Hall of Heroes,” which provides social skills training through a virtual story set in a superhero-themed world. Participants were split into two groups, one that played the game, and one that did not. Results showed a significant change in the experimental group’s interpersonal skills, with improvement in the ability to relate to others, accept affection, and express emotion. Additionally, there was also a significant decline in feelings of anxiety, depression, and hopelessness in the experimental group compared to the control group. Evaluations done by both the children and the parents suggest positive reception towards using the game for social skills training, indicating that video games can serve as an alternative and favorable approach towards SST. Similarly, game-mediated environments like multiuser virtual environments (MUVEs) have been shown to foster pragmatic competence by placing users in goal-driven, interactive digital contexts that require real-time communication and context-sensitive decision-making (Ko \& Eslami, 2021). These environments, including synthetic immersive environments (SIEs) and MMORPGs, allow learners to rehearse a wide range of speech acts in safe, low-anxiety spaces.
@@ -33,7 +70,55 @@ Recent developments in the virtual world also led to opportunities to make use o
 
 Another technology used for social skills training comes from Lee et al. (2023), who investigates the use of metaverse-based social skills training programs to support children with Autism Spectrum Disorder (ASD) in enhancing their social interaction abilities. Conducted as an open-label, single-center, randomized controlled pilot trial, the research explores how immersive virtual environments can serve as effective tools for social practice. The study highlights the need for personalization in chatbot-driven interactions and evaluates how participants respond to AI-generated feedback. By reviewing the opinions of participants, the study was able to underscore the importance of chatbot responsiveness and the quality of responses to facilitate effective social skills training. Moreover, the study suggests that future research should focus on refining chatbot content to improve user engagement.
 
-\textbf{2.3} \textbf{Ethical Considerations in AI-Based Social Communication}
+
+\textbf{2.3 Focused Comparison of Chatbots}
+
+A key challenge in designing a social-communication oriented chatbot is the design decisions in terms of target population, technological foundation, and the strategy for the delivery of support. To better understand some of the systems most relevant to this study's chatbot design, this section compares three other chatbots with distinct approaches to social-communicaton training. Amy (Gagan et al., 2022) is a therapeutic support chatbot for children with Level 1 Autism Spectrum Disorder (ASD). It aims to provide this support by explaining social situations through tailored social stories and what behavior may be respectively appropriate. Amy uses questions to evaluate comprehension and emotional state, employing breathing exercise as a mindfulness-based intervention when emotional distress is detected.
+
+KulTuro (Aspecto et al., 2025), on the other hand, is aimed toward senior high school students, and is concerned with moral and cultural instruction, improving conversational fluency in Tagalog through roleplay-based storytelling while also incorporating Filipino values such as pakikisama, hiya, utang na loob, kapwa, and paggalang. Where Amy is framed as more interventive as a therapeutic tool, this chatbot has a more gamified approach to supporting the user, using elements such as a scoring system based on their use of grammar and vocabulary, as well as a medal system to reward progress and encourage consistency. KulTuro uses ChatGPT as its LLM for story and choice generation, as well as input processing. 
+
+Socius (Chen et al., 2022) is the predecessor for this paper’s chatbot, which similarly was designed to deliver training of conversational skill. One key difference of this old version of Socius, however, especially when compared to KulTuro or Amy, is its use of a rule-based system with a pattern-matching approach, allowing for only multiple-choice responses. While unique to the previous two in the framing and goal of its support, Socius is severely limited in terms of its input, where no free-text interaction is offered.
+
+This highlights a disconnect between the three which the new Socius chatbot aims to bridge (see Table 2.3). While the older Socius (Chen et al., 2022) demonstrated success in positively impacting social skills, its rule-based system put it at a clear disadvantage, with users noting that its interactions felt "automated and robotic," "two-dimensional," and "like reading a textbook," lacking the conversational naturalism chatbots like KulTuro and Amy would otherwise provide.
+
+\begin{table}[H]
+\centering
+\caption{Summary of Chatbots for Social Communication Training}
+\small
+\begin{tabular}{p{3.3cm} p{3.7cm} p{3.7cm} p{3.7cm}}
+\toprule
+\textbf{Chatbot / Study} & \textbf{Purpose} & \textbf{Key Features} & \textbf{Target Users} \\
+\midrule
+\textbf{SociusBot Old} \newline (Chen et al., 2022) & Social skills training for neurotypical teens with social awkwardness & Rule-based, multiple-choice, feedback-based scenarios on social domains & Teenagers (16–18), socially awkward but neurotypical \\
+\textbf{KulTuro} \newline (Aspecto et al., 2025) & Language and cultural learning via interactive storytelling & LLM-based, roleplay, grammar feedback, Filipino values, gamification & Senior high school students learning Tagalog \\
+\textbf{Amy} \newline (Gagan et al., 2022) & Socio-emotional learning and emotion regulation for ASD & Social stories, emotion detection, mindfulness exercises, guided Q\&A & Children with Level 1 Autism, caregivers \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Similarly, while Woebot (2025) and Amy (Gagan et al., 2022) are able to show that chatbots are useable even for more sensitive, higher-stakes applications such as mental health, chatbots that deliver support for neurotypical individual, in terms of a skill as universal as communication, are sparse. The chatbot this paper aims to develop targets this exact gap, while also offering free-text input, building upon the previous goal of the older Socius (Chen et al., 2022).
+
+
+\textbf{2.4} \textbf{Ethical Considerations in AI-Based Social Communication}
+
+Understanding meaning in communication often requires more than just interpreting words literally—it demands sensitivity to context, intention, and inference. This section explores how such pragmatic reasoning plays a role in both human and AI communication. Foundational theories such as Relevance Theory and Grice’s Maxims are reviewed alongside recent work that evaluates how well AI models like GPT-4 grasp these pragmatic principles. The table provides a snapshot of relevant studies and their contributions.
+
+\begin{table}[H]
+\centering
+\caption{Summary of Works on Pragmatics in AI and Human Communication}
+\small
+\begin{tabular}{p{3.3cm} p{3.7cm} p{3.7cm} p{3.7cm}}
+\toprule
+\textbf{Study} & \textbf{Theoretical Focus} & \textbf{Key Contribution} & \textbf{Application / Findings} \\
+\midrule
+Sperber and Wilson (2004) & Relevance Theory & Introduced principle of relevance in pragmatics & Context interpretation in inference \\
+Hossain (2021) & Grice's Maxims & Applied cooperative principle to real conversation & Highlights violations in natural dialogue \\
+Bojic et al. (2023) & GPT-4 pragmatics test & Compared LLMs vs. humans on implicature tasks & GPT-4 outperforms humans in some tasks \\
+Eragamreddy (2025) & Pragmatic competence of AI & Grice + Relevance in AI conversation logs & AI struggles with indirectness, ambiguity \\
+Lee and Cook (2024) & ChatGPT’s discourse act output & Tested responses to apologies, refusals & ChatGPT inconsistent in politeness levels \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The use of artificial intelligence (AI) in social communication has given rise to a number of ethical concerns, particularly in the areas of bias, disinformation, mental health, education, and accessibility. As AI-powered chatbots continually get built and are integrated into society, it is vital to examine the ramifications of their use across different fields and avenues while stressing the necessity of fairness, openness, and human supervision to ensure moral implementation.
 
@@ -47,21 +132,105 @@ As we have assessed in a previous section, the use of AI to support individuals 
 
 In totality, the ethical challenges asociated with AI in social communication are related to the importance of transparency, fairness, and human collaboration to ensure that AI does not reinforce bias, compromise privacy, and diminish human empathy. This would then allow for their ethical and responsible deployment in different fields..
 
-{\textbf{2.4} \textbf{Foundational Studies on Social Communication and Mental Health}
-}
+\textbf{2.5 Foundational Studies on Social Communication and Mental Health}
 
-\textbf{2.4.1 An Experimental Study towards Young Adults: Communication Skills Education}
+Deploying AI chatbots in sensitive domains—such as mental health support, education, or customer service—raises a number of ethical questions. From privacy and informed consent to bias and misuse, researchers have called attention to various concerns that need careful consideration. This subsection introduces key literature addressing these ethical dimensions, along with frameworks for responsible chatbot design. The accompanying table summarizes representative studies and their focus.
 
-Guclu (2016) investigates the effectiveness of learning communication skills among young adults, i.e., university students (aged 18 - 24 with an average age of 19.47), and its effects on their empathetic nature and emotional expression. The study illustrates the importance of communication skills in various settings like healthcare, professional settings, and social settings. The results reveal that andragogy-based communication skills training can result in a high level of change in students' empathetic nature and emotional expression. The outcomes reveal that young adults are a suitable target group for social communication training since they are at a developmental phase where the skills are crucial and training can yield measurable gains. The study concludes that communication skills education enhances the functional communication abilities of young adults, which is essential to survive the challenges and demands of life.
+\begin{table}[H]
+\centering
+\caption{Summary of Ethical Considerations in Chatbot Use}
+\small
+\begin{tabular}{p{3.3cm} p{3.7cm} p{3.7cm} p{3.7cm}}
+\toprule
+\textbf{Study} & \textbf{Ethical Issue(s)} & \textbf{Key Argument / Framework} & \textbf{Implication} \\
+\midrule
+Coghlan et al. (2023) & Mental health chatbots & Risks: trust, privacy, clinical validation & Transparent policies needed \\
+Zhou et al. (2024) & Ethics in ChatGPT design & Proposes commandments (transparency, fairness) & Design guidelines for LLM safety \\
+Gujar (2024) & Trust and AI bias & Business perspective on ethics in AI & Call for explainable AI \\
+Voultsiou et al. (2025) & LLMs in education and disability & Ethics of inclusion and design in social robots & Proposes ethical integration framework \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\textbf{2.4.2 The Importance of Feeling Awkward: A Dialogical
-Narrative Phenomenology of Socially Awkward
-Situations}
+Foundational studies on social communication and mental health provide critical insights into how individuals perceive,
+experience, and develop communicative competence across various contexts. For one, Guclu (2016) conducted an experimental study
+focusing on the effects of communication skills education on university students aged 18–24, with an average age of 19.47.
+The study emphasized the importance of communication in healthcare, professional, and social settings and revealed that
+andragogy-based training significantly enhanced the students' empathetic abilities and emotional expression.
+These results show that young adults represent a key developmental group for communication training, as improvements
+in this stage can lead to measurable gains in functional communication, which is essential for addressing life’s
+interpersonal demands and challenges.
 
-Clegg (2012) applies dialogical narrative phenomenology to analyze 16 socially awkward experiences. Through analysis, it identifies social awkwardness as characterized by a subjective experience of social or moral transgression, which leads to enhanced social consciousness and a centered focus for social activities. The study participants wished to transcend awkward encounters by staying away from them or addressing them head on. The study concludes that social awkwardness felt and articulated may be an important aspect of social relationships since it can increase sensitivity to social interaction and enable social transformation. This study offers useful information for a chatbot for social communication training. It describes the characteristics of socially awkward situations, defining them as situations that are perceived to be a social or moral transgression and increase social awareness, which can be utilized to make a chatbot recognize and react to the nuances of awkwardness. It also provides insight into awkwardness causes such as off-target speech or social norm violation and action cues such as evasive or anxious behavior,  resolution strategies like avoidance or confrontation. The study also emphasizes the possibility of awkward moments to create social awareness, which can be used by a chatbot to assist users in handling awkwardness and building healthier social interactions. 
+Clegg (2012), on the other hand, applied dialogical narrative phenomenology to analyze 16 socially awkward
+experiences. The study identified social awkwardness as a subjective experience rooted in perceived social or moral
+transgressions, often triggering heightened social consciousness. Participants described awkwardness as both uncomfortable
+and transformative—either avoiding such encounters or confronting them directly. These insights underscore how awkward
+moments may cultivate social awareness and change. For chatbot design, such findings are valuable, as they provide a
+framework for recognizing socially awkward cues (e.g., off-target speech or norm violations), interpreting user behavior
+(e.g., evasiveness or anxiety), and deploying appropriate resolution strategies (e.g., avoidance or confrontation).
+Ultimately, the study suggests that awkwardness, when properly understood, can be leveraged to promote healthier social 
+relationships.
 
-\textbf{2.4.3 Awkward but so what: Differences in social trait preferences between autistic and non-autistic adults} 
+Furthermore, now looking into the experiences of neurodivergent individuals, Dunn et al. (2023) investigated differences
+in social trait preferences between autistic and non-autistic adults. Involving 24 participants from each group, the study
+showed that autistic adults viewed themselves as more socially awkward and less competent but reported a preference for
+interacting with others who shared similar social traits. These findings challenge the notion that traditional or
+“neurotypical” communication styles should be universally adopted. Instead, they highlight the need for broader tolerance
+and acceptance of diverse communicative modes. For chatbot design and social communication tools, this implies a
+shift toward more inclusive interaction models that account for varied social expectations and comfort levels across 
+user groups.
 
-Dunn et al. (2023) differentiates the perception of autistic and non-autistic adults on their social characteristics, particularly awkwardness. The research involving 24 autistic and 24 non-autistic adults investigated how individuals' social characteristics influence whom they are comfortable with. The findings indicate that autistic adults perceive themselves as more awkward and less competent socially than non-autistic adults but also prefer to be with someone as awkward as them. This disproves the hypothesis that ordinary social behaviors suit everyone. In its conclusion, it states that autistic individuals engage better with the people who also use their type of social approach, highlighting how different social modes must be tolerated and accepted more widely. 
+\textbf{2.5} \textbf{Comparison of Large Language Models as Conversational AI}
+
+Large language models (LLMs) such as ChatGPT are now being integrated into a wide range of communication-based applications, including education, coaching, and social simulation. Their ability to understand context and respond fluently makes them appealing tools for facilitating interaction. This section explores how LLMs have been evaluated or applied in socially oriented tasks and environments. The summary table outlines key research findings in this area.
+
+\begin{table}[H]
+\centering
+\caption{Summary of LLM Applications in Social Communication}
+\small
+\begin{tabular}{p{3.3cm} p{3.7cm} p{3.7cm} p{3.7cm}}
+\toprule
+\textbf{Study} & \textbf{Use Case} & \textbf{Observed Strengths} & \textbf{Limitations} \\
+\midrule
+Anuranjana et al. (2024) & Benchmarks for implicature detection (CIRCA, GRICE, etc.) & GPT-4 achieved 81.8\% accuracy; FlanT5-XXL also strong & LLMs still trail human-level pragmatic inference \\
+Lee et al. (2024a) & LLMs in task-based language learning & Natural-sounding, context-aware outputs & Lack of deep personalization \\
+Lee and Cook (2024) & ChatGPT in pragmatics instruction & Effective for refusals/requests & Weak on apology variety \\
+Yang et al. (2024) & LLMs for social skill training & Combines realism with tailored feedback & Still experimental; needs scaling \\
+Pothuri (2024) & NLP and conversational AI overview & Explains NLP’s role in LLMs & Broad; less empirical focus \\
+IBM (2024); Oracle (2020) & LLM concepts in industry & Defines chatbot/LLM capabilities & Informational, not research-based \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Recent advancements in artificial intelligence, more specifically large language models, have enabled the making of conversational agents that can support both emotional and educational needs.  This technology is continuously being explored due to its potential as an effective solution because of advantages such as being accessible.  With the amount of LLMs available, it is important to choose the correct and appropriate model to suit the needs and purpose of the chatbot.
+A Gemini AI-powered virtual companion named ELEVATE was introduced by Angeline et al. (2024) that was designed to be a mental health support provider for students who are focusing on preparing for high-stakes examinations. This virtual companion utilizes Natural Language Processing (NLP), real-time sentiment analysis, motivational support, and customized study plans for personalized guidance tailored to the different needs that students may have. ELEVATE’s performance in terms of accuracy, empathy score, average response time, and user satisfaction, were measure across 5 iterations and it showed continuous improvement on all metrics over each iteration. During the first iteration, it was found that the companion needed improvement on contextual understanding and empathetic engagement. Iterations 2 and 3 focused on improvements in NLP and response time, and enhanced sentiment analysis and intent recognition respectively, which led to increased accuracy and empathy scores. The fourth and fifth iterations focused on response and contextual depth refinement while further increasing the accuracy score, empathy score, and decreasing average response time which led to the study’s peak user satisfaction at 4.7 out of 5 by the fifth iteration. As such, these results show the accessibility and effectiveness of Gemini-based virtual companions, and that Gemini is a viable candidate as the foundational LLM for our social communications chatbot.
+
+OpenAI’s GPT models, such as GPT-2, GPT-3, GPT-3.5, and GPT-4 have led to significant developments in natural language understanding, especially in the areas of social communication and pragmatic competence. These models are trained on massive datasets and can generate coherent and contextually appropriate language. However, their capabilities differ significantly depending on the version, particularly in their ability to understand implied meanings, adapt to conversation norms, and simulate human communication.
+
+Two task-oriented dialogue chatbots were developed by Lee et al. (2024) in order to investigate their capabilities in teaching English to 22 undergraduate students in a private university in Seoul, South Korea who are either majoring in English or general education. These chatbots were made using PoeAI with ChatGPT as its underlying model, and prompts were added to fine-tune the bot into its role was and how it was expected to respond to user prompts. The first chatbot, AirlineTicketingBot, made use of a professional tone to simulate purchasing an airline ticket. The second bot, InsomniaBot, adopted a more casual, friendly, and empathetic approach and was designed to help users who are looking for advice about insomnia by giving them suggestions on how to sleep better. This study showed that participants had a positive perception towards the GPT-based chatbots, with feedback such as the bots feeling authentic and like talking to a native speaker, due to its ability to understand users’ intentions and respond appropriately even if the users had some typographical or grammatical errors. The capabilities mentioned build a good case for GPT to also be considered due to its to serve as a natural and flexible conversational agent that can be used in training for social situations. Its ability to adapt to different roles, also makes GPT a suitable candidate for use as both an AI Mentor with a professional role and an AI Partner with a casual role.
+
+Bojic et al. (2023) conducted an empirical study comparing the pragmatic abilities of different LLMs using 20 dialogue tasks grounded in Grice’s maxims of conversation. For instance, short dialogues between two people were constructed to include subtle communication, i.e. sarcasm, irony, or an indirect response, which disregarded or violated at least of the Grice's maxims. In this case, the participant was asked how they would interpret the given dialogue - what one person really means, why one person responded a certain way, or what the implied meaning in the conversation was. As such, the tasks tested each model’s understanding of implicatures, indirect language, and relevance.  The results showed a clear hierarchy of performance: GPT-4 scored the highest with an average rating of 4.8 out of 5, outperforming not only earlier models (like GPT-2 and GPT-3) but also human participants. GPT-2 ranked the lowest, indicating that earlier models still struggled with interpreting subtle pragmatic cues. In addition to this, GPT-4 also completed the tasks the fastest, suggesting it was not only more accurate but more efficient as well.
+
+Though Bojic et al.’s (2023) evaluation shows the ability of LLMs to improve with regard to pragmatic reasoning, there remain other challenges in the creation of specialized datasets. One example of such a dataset is GRICE (A Grammar-based Dataset for Recovering Implicature and Conversational Reasoning), designed to include implicature in pragmatic reasoning. GRICE aims to improve how systems are able to understand things that are implied but not explicitly mentioned. These gaps are something that humans understand naturally in conversation but are often overlooked by machines.
+
+This is done by using a hierarchical grammar model to enable systems to converse with complex implicatures. It ensures natural conversation flow by incorporating elements such as coreference, the tracking of what or who is being referred to in a given context, and commonsense reasoning, or the application of everyday knowledge. Five types of implicature are proposed and included in the dataset: relevance, strengthening, limiting, ignorance, and close-but.
+
+GRICE performs model evaluation in two main ways:
+
+\begin{itemize}
+    \item \textbf{Implicature Recovery} – Identifying conversational elements with implied meaning, converting them into explicit forms, then clearly restating these and resolving coreferences.
+    \item \textbf{Conversational Reasoning} – Understanding and responding to open-ended conversation with single words.
+\end{itemize}
+
+The paper explored experiments with models, including LSTM, EntNet, RelNet, MemNN, and even newer models like BERT, and determined that there is a clear gap between how well humans and machines are able to handle conversational reasoning, including the models that performed well on implicature recovery. Thus, even when machines are able to identify implicatures, they still struggle with the deeper meaning that follows.
+
+Still, other challenges remain. Eragamreddy (2025) observed that while AI systems are increasingly able to respond to explicit communication, they often fall short when faced with indirectness, ambiguity, or cultural nuance. This caused some concerns to be raised in which users may unconsciously adjust their communication style to match the limitations of AI, potentially weakening their own pragmatic skills in the process. Users often simplify their language, avoid complex metaphors or sarcasm, and adapt to "machine-friendly" communication patterns. Furthermore, while GPT-4 can simulate some aspects of human conversation, such as responding appropriately to sarcasm or irony, it still lacks the ability to interpret non-verbal cues, emotional undertones, or culture, which are essential for real-life communication - more particularly in sensitive or emotionally charged conversations.
+
+A component of effective social communication can be observed in one's ability to understand and produce \textit{implicature}, which is essentially the implied meanings conveyed through indirect or contextually nuanced language. This capability, in pragmatics, is essential for developing conversational agents that are sensitive to social norms, subtle cues, and the dynamics of real-world conversations. Although Large Language Models (LLMs) have demonstrated notable progress in areas such as syntax, semantics, and general dialogue, their ability in catching implicatures continues to face limitations.
+
+Anuranjana et al.\ \citeyear{anuranjana2024implicature} conducted a survey of recent computational approaches to implicature, underlining key datasets developed for its evaluation, including CIRCA, GRICE, IMPRESS, and CircaPlus. Given this, these benchmarks assess an LLM's capacity to infer implied meanings from context, indirect responses, and conversational maxims. Although models like GPT-4 have shown improved performance, achieving 81.8\% accuracy on conversational implicature datasets, they still fall short of human-level understanding, which typically exceeds 93\% on comparable tasks. On the other hand, instruction-tuned models, such as FlanT5-XXL, performed well on reasoning tasks (e.g., 82.9\% on GRICE), implying that fine-tuning for specific pragmatic objectives can improve their capabilities.
+
+However, the study also discusses the persistent challenges that emerged. Many LLMs struggle with context-dependent inference, particularly when interpreting indirect language or culturally sensitive cues. Additionally, the existing implicature datasets are considerably smaller (e.g., typically 2.5k samples per task) compared to other benchmarks, limiting the models' exposure to varied conversational contexts.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
