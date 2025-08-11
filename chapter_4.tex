@@ -27,7 +27,7 @@ To generate contextually relevant and pragmatically appropriate dialogue, the sy
 The user interface will be designed to resemble common text messaging applications, presenting both the conversational exchanges and feedback in a familiar layout. This will allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface.  In addition to this, there will be a fixed set of statements that will be used to explain the concepts of Grice's Maxims and implicatures located in the user interface, which will be used to assist the user in understanding the concepts of pragmatics, thereby also helping them understand the feedback they receive from the chatbot.}
 
 
-\section{Architectural Design}
+{\section{Architectural Design}}
 The architectural design of Socius is structured to facilitate effective and pragmatic interactions between the user and the chatbot. 
 As illustrated in Figure \ref{fig:architectural_design}, the design is composed of several key components that interact with one another in order to process user input, manage 
 conversation flow, analyze pragmatics, and generate appropriate responses and feedback.
@@ -121,21 +121,25 @@ The full conversation process consists of the following stages:}
     \caption{Conversation Flow: From Scenario Selection to Reflection}
     \label{fig:conversationflow}
 \end{figure}
-
+\pagebreak
 \section{Software Functions}
-\subsection{User Interface}
-
-The user interface (UI) is the front-end component of the Socius system, designed to facilitate text-based interactions between the user and the chatbot. It features a chat window similar to text messaging applications, where users can input their messages and view the chatbot’s responses in real time. A scenario selection component will allow users to choose from predetermined social contexts before initiating a conversation, enabling targeted practice of pragmatic competence. The UI will also include profile and progress tracking features, enabling users to view their performance metrics and monitor improvements based on implicature accuracies over multiple sessions. The design prioritizes usability and accessibility, employing simple graphical elements to create an intuitive and distraction-free environment.
+\hl{This section outlines the functions of the Socius APAM system relevant to the user experience. The user’s interaction is structured into three-stages of learning: (1) scenario selection and onboarding, (2) interactive dialogue with an AI Partner, and (3) personalized feedback from an AI Mentor. The following subsections will detail these stages, complemented by relevant UI design mockups to provide a walkthrough of the user experience.}
+\subsection{Scenario Selection}
+\hl{Upon the application’s launch, the user is introduced to the scenario selection screen as shown in Figure 4.X. Here, the user may choose a specific conversational context according to their personal development goals, including options for academic, professional, and casual social situations. Then, the chatbot is primed with the necessary classmate, allowing the AI Partner to adopt the relevant persona.}
+(placeholder image)
+%The user interface (UI) is the front-end component of the Socius system, designed to facilitate text-based interactions between the user and the chatbot. It features a chat window similar to text messaging applications, where users can input their messages and view the chatbot’s responses in real time. A scenario selection component will allow users to choose from predetermined social contexts before initiating a conversation, enabling targeted practice of pragmatic competence. The UI will also include profile and progress tracking features, enabling users to view their performance metrics and monitor improvements based on implicature accuracies over multiple sessions. The design prioritizes usability and accessibility, employing simple graphical elements to create an intuitive and distraction-free environment.
 %The user interface (UI) is the front-end component of the Socius system, designed to facilitate text-based interactions between the user and the chatbot. At present, it includes a chat window similar to text messaging applications, where users can input their messages and view the chatbot’s responses in real time. The layout employs alternating message colors and timestamps for clarity, with a minimalistic design that prioritizes usability and accessibility through simple graphical elements.
 %Planned enhancements to the UI include the addition of a scenario selection component, allowing users to choose from predetermined social contexts before initiating a conversation. Further features will include profile and progress tracking, enabling users to monitor their pragmatic competence based on implicature accuracies over multiple sessions, and the integration of feedback display functionality to provide post-conversation performance insights. These developments will maintain the system’s focus on intuitive, distraction-free interaction while expanding its training capabilities.
-
+\subsection{Interactive Dialogue (AI Partner Phase)}
+\hl{After choosing a scenario the chat interface is loaded, as shown in Figure 4.X+1. The interface takes after common text messaging applications to provide a familiar and intuitive environment. The goal for this phase is to simulate a safe space for the practice of conversational skills with the application of pragmatic principles, for which the AI Partner will be responsible.}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.35\textwidth]{figures/chat_ui.png}
     \caption{Socius UI showing the chat window with alternating message colors, timestamps, and input field. Scenario selection and profile tracking are planned features.}
     \label{fig:socius_ui}
 \end{figure}
-
+\subsection{Personalized Feedback (AI Mentor Phase)}
+\hl{The post-conversation feedback phase, or the AI Mentor phase is the final stage. Here, the user is provided with a personalized textual report based on their performance in the previous phase. The AI Mentor serves not only to provide feedback that can be related to Grice’s Maxims, but also present these concepts in a more grounded way, ideally enabling the users to understand concepts without having to sift through much academic jargon. The report will also provide the user with highlights from the previous conversation’s transcript, revealing areas of strength and room for improvement. Finally, the AI-Mentor itself is available for a free-text dialogue, where the user can ask questions regarding the theories, the previous conversation, the user’s understanding, or other points of clarification.}
 
 
 
