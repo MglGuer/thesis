@@ -17,27 +17,50 @@
 The knowledge base will serve as the foundation of the chatbot system, enabling accurate scenario generation, user profiling, and feedback delivery. It will consist of several interconnected components:
 
 \begin{itemize}
-    \item \textbf{Scenario Database} – It will store predefined conversational scenarios aligned with Grice’s Maxims and pragmatic principles.
-    \item \textbf{User Database} – It will maintain user profiles, including past conversations, performance data, and current proficiency levels.
-    \item \textbf{Feedback System} – It will generate personalized feedback based on user responses, mapped to specific pragmatic competencies such as relevance, clarity, and informativeness.
+    \item \hl{\textbf{Scenarios Table}} – It will store predefined conversational scenarios aligned with Grice’s Maxims and pragmatic principles.
+    \item \hl{\textbf{User Table}} – It will maintain user profiles, including past conversations, performance data, and current proficiency levels.
+    \item \hl{\textbf{Conversation Log Table} – It will store conversation logs for each user, enabling tracking of progress and performance over time.}
 \end{itemize}
 
 
 \section{Software Design and Implementation}
 
-The chatbot system will be built on top of a large language model (Gemini), implemented using Python, and will follow a conversational AI pipeline:
+
+\hl{The chatbot system will be built on top of a large language model, namely Gemini-3 Flash (google-genai) SDK, implemented using Python (Flask Server Backend), and will follow a dual-agent system architecture, namely the AI Partner and the AI Mentor.
+
+In this architecture, the system orchestrates multiple instances of \texttt{gemini-3-flash-preview}, each configured with specific "Thinking Budgets" and system instructions to balance real-time latency with deep pragmatic analysis.
+}
+
+\subsection{Agent Instances and Configuration}
+\hl{To achieve nuanced pedagogical feedback, the system utilizes explicitly 4 configurations of Gemini-3 Flash:}
+
+\begin{itemize}
+    \item \hl{\textbf{AI Partner (Roleplay)} This instance is configured with a lower thinking budget (512 tokens) and prioritizes fast response times for fluid conversation.}
+\end{itemize}
+
 \begin{itemize}
     \item \textbf{Load and format dataset} – Prepare dialogue data for use.
     \item \textbf{Load \hl{Gemini} model} – Access the model for inference or fine-tuning.
-    \item \textbf{Train with data collator} – Perform fine-tuning on task-specific data.
     \item \textbf{Interact via conversation engine} – Engage in real-time dialogue with the user.
 \end{itemize}
-First, dialogue data, from the GRICE dataset, will be prepared and formatted to reflect various social communication scenarios. The
+
+\hl{
+Firstly, the DOM will load with the Flask server, then user data will be received for authentication and profile initialization. This will allow the system to personalize the experience based on the user's history, metrics, and overall profile and pragmatic competence. 
+Then, the implementation of the Holistic mentor will continue to analyze further the user's pragmatical scores and profile to then recommend a scenario that is suitable for the user's current needs. Once the user selects the button to create a new chat, the scenarios list
+will load on the UI itself, allowing the user to select a scenario. Once the scenario is selected, the system will load the corresponding dialogue data and format the website to reflect the scenario's context and goals. This will then load the system prompts utilizing the 
+AI Partner (focused on roleplaying the scenario). The user will then go through a back-and-forth conversation with the AI Partner employing system prompts focused on responding in a human-like manner while considering the social environment and the persona they're roleplaying.
+Once the user has decided to end the conversation, the system will then proceed to save the conversation to the database and align the conversation data to the user's profile. Once done, this will continue to be analyzed by the AI Mentor considering the quantitative scoring framework
+(Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness) to then give the user feedback on their performance and how they can improve in future conversations. The user can then proceed to click a button to question to gain further insight into their performance
+by continuing to speak to the AI Mentor which now takes into consideration the conversation data.
+}
+
+\st{First, dialogue data, from the GRICE dataset, will be prepared and formatted to reflect various social communication scenarios. The
 system uses predefined dialogue data drawn from the GRICE dataset. Real-time
 conversation is handled via the Gemini API, which responds to user input using contextual understanding based on Gricean maxims
 and the scenario’s goals. Subsequently, Gemini is loaded through an API to handle inference, while a data collator 
 will be used to manage input lengths. Finally, the model engages in real-time econversations with users, providing contextually apropriate responses to support 
 social communication training.
+}
 
 \section{Algorithms}
 
@@ -61,6 +84,7 @@ END FUNCTION
 The \textbf{Pragmatic Analysis} algorithm evaluates whether the user's response adheres to Grice’s Maxims, which are principles of communication that help maintain relevance, clarity, truthfulness, and informativeness. The algorithm checks for violations of these maxims by analyzing the user’s input. For example, it checks if the response is too short (Quantity Maxim violation), contains lies (Quality Maxim violation), is off-topic (Relation Maxim violation), or is unclear due to ambiguity (Manner Maxim violation). Based on the violations detected, the algorithm generates feedback to guide the user towards better communication practices.
 
 \begin{lstlisting}[caption={Pragmatic Analysis}, label={lst:evaluatepragmatics}]
+\st{
 FUNCTION evaluate_pragmatic_adherence(user_input, expected_response):
     INITIALIZE feedback as an empty list
 
@@ -78,6 +102,7 @@ FUNCTION evaluate_pragmatic_adherence(user_input, expected_response):
 
     RETURN feedback
 END FUNCTION
+}
 \end{lstlisting}
 
 
