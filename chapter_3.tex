@@ -10,39 +10,10 @@
 
 \section{Grice's Maxims in Pragmatic Analysis}
 
-Conversational implicature, a core concept in pragmatics, refers to the unstated meaning conveyed in an utterance that goes beyond its literal interpretation. It is a meaning that is implied by a speaker and inferred by a listener, based on shared understanding of conversational principles, particularly Grice's Cooperative Principle and its associated maxims. Implicatures arise when speakers intentionally or unintentionally deviate from these maxims, prompting the listener to infer an unstated meaning to maintain the assumption of cooperativeness.
-
-\section*{Types of Implicatures}
-
-Described below is each implicature utilized in the GRICE dataset~\cite{zheng_grice_2021}, each with a definition and example to illustrate how meaning is conveyed beyond the literal words. Following the
-conventional notation, S denotes the positive answer of the question, and S+ denotes its stronger proposition:
-
-\begin{itemize}
-    \item \textbf{Relevance:} Implicating the answer to an expressed or implied question by stating something related to the answer by implication or explanation.\\
-    \textit{Example:} Alice: Where did you see the apples?\\
-    Bob: There is a basket in the kitchen.\\
-    (The apples are in the kitchen.)
-
-    \item \textbf{Strengthening:} Implicating a stronger proposition $S^+$ when not understatement.\\
-    \textit{Example:} Alice: Are some of the apples in the kitchen?\\
-    Bob: All of them are there.\\
-    (Not just some, but all of the apples are in the kitchen.)
-
-    \item \textbf{Limiting:} Implicating the denial of $S^+$.\\
-    \textit{Example:} Alice: Are all the apples in the kitchen?\\
-    Bob: Some are.\\
-    (Not all apples are in the kitchen.)
-
-    \item \textbf{Ignorance:} Implicating that one does not know whether $S^+$ is true (or that $S^+$ may or may not be true).\\
-    \textit{Example:} Alice: Where did you see Jack?\\
-    Bob: He was in the kitchen or the bedroom.\\
-    (I am not sure where Jack was.)
-
-    \item \textbf{Close-But:} Implicating a negative answer to a question by affirming something close to a positive answer in contextually salient respects.\\
-    \textit{Example:} Alice: Did you put the apples in the kitchen?\\
-    Bob: I was in the living room.\\
-    (I did not put the apples in the kitchen since I was somewhere else.)
-\end{itemize}
+Conversational implicature, a core concept in pragmatics, refers to the unstated meaning conveyed in an utterance that goes beyond its literal interpretation (Eragamreddy, 2025). It is a meaning that is implied by a speaker and inferred by a listener, based on shared understanding of conversational principles, particularly Grice's Cooperative Principle and its associated maxims 
+(Yeboah, 2021 \& Levinson 1983, 2013 as cited in Eragamreddy, 2025). Implicatures arise when speakers intentionally or unintentionally deviate from these maxims, prompting the listener to infer an unstated meaning to maintain the assumption of cooperativeness. In the context of this research, pragmatic competence is defined as the user’s ability to navigate the tension between the literal words spoken and the intended social message.
+Moreover, this is utilized by both chatbot and user. This in turn allows the understanding of a chatbot's ability to simulate realistic conversation and competence in understanding implied meaning all-the-while utilizing this in response generation for the user to practice pragmatics. Central to this process is the concept of implicature flouting, where a speaker blatantly violates a maxim to trigger an inference.
+When an interlocutor appears to disregard a conversational maxim (Quantity, Quality, Relation, or Manner), it prompts the listener to infer an alternative meaning that aligns with the assumption of cooperative communication . In the context of our chatbot, the AI Partner and AI Mentor take into consideration 
 
 One of the foundational theories underpinning the study of pragmatics is H. Paul Grice’s theory of conversational implicature, introduced in his seminal work Logic and Conversation (1975). Grice proposed that effective communication relies not only on the literal meaning of utterances, but also on shared assumptions between speaker and listener about how communication should proceed. This principle is guided by 4 maxims that speakers are expected to follow in conversation: Quantity, Quality, Relation, and Manner. These maxims serve as a framework for analyzing conversational exchanges and understanding how meaning is constructed beyond the literal words spoken~\cite{zheng_grice_2021}.
 
@@ -113,3 +84,101 @@ to mid-twenties, around 18 to 29 years old, as a distinct developmental stage ch
 identity, values, and future goals. This stage is marked by a sense of instability and self-focus, as young adults navigate the transition from adolescence to adulthood. 
 The chatbot's scenarios should reflect this exploration phase by presenting situations that encourage users to reflect on their values and aspirations, while also providing 
 support in navigating the complexities of emerging adulthood.
+
+\subsection{Filipino Cultural Values}
+Conversational context and pragmatics are deeply influenced by cultural norms and values. Linguistic choices and the maxims' meaning and influence in one culture can be perceived as
+abrasive or inappropriate in another. To ground this, the Philippine context is utilized in the chatbot. Communication considering Filipino culture and values such as \textit{Pakikisama} (social harmony), \textit{Paggalang} (respect for elders), and \textit{Hiya} (sense of shame) will be integrated into the scenarios.
+ This ensures that the chatbot's interactions are culturally relevant and resonate with the target demographic, allowing users to practice pragmatic competence in a context that reflects their real-life social interactions. This also limits the demographic to primarily Filipino users.
+
+\begin{itemize}
+\item \textbf{Pakikisama (Social Harmony):} Prioritizing interpersonal cohesion and cooperation by avoiding direct confrontation or conflict.
+\item \textbf{Hiya (Propriety):} A sense of social propriety that regulates behavior to prevent bringing shame or dishonor to oneself or one's family.
+\item \textbf{Utang na Loob (Reciprocal Debt):} A deep sense of gratitude and the moral obligation to honor social and familial commitments.
+\item \textbf{Kapwa (Shared Identity):} The recognition of a shared inner self, treating others as equals and fellow members of a community.
+\item \textbf{Paggalang (Deference):} The practice of showing explicit respect, particularly toward elders and those in positions of authority.
+\end{itemize}
+
+\subsection{Synthesized Theories of Arnett and Havighurst: Four Defined Themes}
+This research then synthesizes the theories of Havighurst and Arnett to guide the AI's analysis and the scenario design to spearhead the chatbot's functionality. While Grice’s 
+Maxims provide the linguistic rules, Havighurst and Arnett provide the developmental "stakes" of the conversation. These are further filtered through Filipino Cultural Values 
+(such as \textit{Pakikisama} and \textit{Hiya}) to ensure the scenarios resonate with the target demographic. This synthesis ensures that the chatbot has theoretical grounding
+in both the linguistic and developmental aspects of social interactions in a culturally-focused manner. The four themes are as follows:
+
+\begin{enumerate}
+    \item \textbf{Theme 1: Identity vs. Expectation (Authenticity vs. Obligation)} \\
+    This theme is built on the collision between a young adult’s emerging sense of self \cite{arnett_2000} and the life path prescribed for them by family or society \cite{havighurst_1972}. In the Filipino context, this often manifests as a tension between personal desire and \textit{Utang na Loob} (debt of gratitude) or \textit{Paggalang} (respect for elders).
+    \begin{itemize}
+        \item \textbf{Conflict:} The user’s personal goals, beliefs, or identity clash with the external expectations of an authority figure.
+        \item \textbf{Formula:} The user develops a personal goal or identity $\rightarrow$ An authority figure expresses a conflicting expectation or "helpful" advice $\rightarrow$ The user is forced to defend, explain, or conceal their choice.
+        \item \textbf{Goal:} To practice validating the authority’s perspective and expressing gratitude while respectfully asserting one's own autonomy.
+    \end{itemize}
+
+    \item \textbf{Theme 2: Autonomy vs. Dependence (Independence vs. Hierarchy)} \\
+    This theme explores the frustration of the "in-between" stage \cite{arnett_2000}, where the user seeks adult responsibilities \cite{havighurst_1972} but is still treated as a dependent. It addresses the transition from a vertical hierarchy to an adult-to-adult relationship.
+    \begin{itemize}
+        \item \textbf{Conflict:} The user’s attempt to exercise adult autonomy is challenged by a figure who views them as incapable or dependent.
+        \item \textbf{Formula:} The user makes an adult decision (e.g., financial, travel, or relationship) $\rightarrow$ A guardian or older sibling questions or overrules the decision $\rightarrow$ The user must justify their competence without appearing childishly defiant.
+        \item \textbf{Goal:} To shift the conversation from "obedience" to "responsibility," demonstrating reasoning and competence to re-evaluate the relationship as adult-to-adult.
+    \end{itemize}
+
+    \item \textbf{Theme 3: Ambiguity vs. Definition (Clarity vs. Fear of Loss)} \\
+    This theme addresses the instability of relationships during emerging adulthood \cite{arnett_2000} while attempting to achieve the developmental task of forming stable, intimate partnerships \cite{havighurst_1972}. It highlights the tension between the need for Gricean clarity and the fear of losing \textit{Pakikisama} (social harmony).
+    \begin{itemize}
+        \item \textbf{Conflict:} A relationship exists in an undefined "gray area," and a specific event forces the need for clarity.
+        \item \textbf{Formula:} The user is in an ambiguous relationship (e.g., a "situationship") $\rightarrow$ A catalyst occurs (e.g., a holiday or a third party) $\rightarrow$ The user must initiate or respond to a "Define the Relationship" (DTR) conversation.
+        \item \textbf{Goal:} To practice expressing feelings and uncertainties with Gricean Quality and Manner, creating a safe space for honesty even when the outcome is uncertain.
+    \end{itemize}
+
+    \item \textbf{Theme 4: Group vs. Self (Harmony vs. Integrity)} \\
+    This theme focuses on the formation of a personal value system \cite{havighurst_1972} when it conflicts with the established norms of a peer group, a central part of identity exploration \cite{arnett_2000}. It navigates the pressure of \textit{Pakikisama} against the value of personal integrity.
+    \begin{itemize}
+        \item \textbf{Conflict:} The user’s personal values are violated by the actions or words of their peers.
+        \item \textbf{Formula:} A peer group engages in unethical or cruel behavior (e.g., gossiping or bullying) $\rightarrow$ The user’s silence implies agreement $\rightarrow$ The user must choose between staying silent or intervening.
+        \item \textbf{Goal:} To practice intervening in a way that minimizes defensiveness, using redirection or questioning to uphold personal integrity while de-escalating conflict.
+    \end{itemize}
+\end{enumerate}
+
+These were operationalized to specific formulas in order to guide both system and user. The system guidance is through the proper scenario generation and roleplay aspect, and the user guidance is through specific goal achievement and reflection on the conversation. 
+Through this, the chatbot has structured presentation of the theoretical frameworks and a clear path for the user to follow in order to practice and develop their pragmatical ability.
+
+\subsection{Pragmatic Competence Scoring Framework}
+To evaluate the user's mastery over the rules and theories as mentioned above, the research adopts a framework introduced by Sileo et al. (2022) to categorize and measure pragmatic performance. This was a framework developed to the address the limitations of Natural Language Understanding (NLU) benchmarks (such as GLUE)
+which focuses on semantic content. The framework had introduced a rudimentary taxonomy of three groups (Groups A, B, and C) which is then utilized and adjusted to be operationalized for Socius. These groups and adjustments are the following:
+
+\begin{itemize}
+    \item \textbf{Group A: Intention and Structural Coherence} 
+    Sileo identifies this as the layer prioritizing communicative intent, which relates the communicative action that the user is trying to achieve (such as requesting, refusing, or apologizing) and how that action and intent relates to the conversation logically. 
+    Experimentally, this was proved by proving that AI models often struggled to identify these underlying goals, which leads to a breakdown in the logical flow of a dialogue. In the context of Scoius, this formed the basis for the category \textbf{Intention Coherence}, which allows 
+    the AI mentor to evaluate the user's "speech act" and if it is consistent and aligned to the current situation/conversation.
+    \item \textbf{Group B: Social, Affective, and Contextual Nuance}
+    This group covers the interpersonal variables such as politeness, emotional tone, and level of detail that defines the current social seting of a conversation. This group was identified through a "Human-Model Gap" exposed by AI frequently failing to match human judgment when it comes to subtle social cues and formality.
+    This was then the basis for the category \textbf{Social \& Affective Nuance}, which assesses the user's ability to understand social cues through cultural markers and proper formality level. 
+    \item \textbf{Group C: Functional Success}
+    This group focuses on an outcome based evaluation, wherein it measures if the user's speech act had achieved their intended goal (in communication). Sileo found that the models understood the literal meaning of a sentence but they could not understand whether it was a realistic, persuasive, and successful response in a real-world social interaction.
+    This became the basis for the category \textbf{Communicative Effectiveness}, measuring whether the user's strategy had succesfully resolved the scenario's conflict without damaging the relationship.    
+\end{itemize}
+
+Thus, synthesizing the high-level taxonomy of Sileo et al. (2022) and the specific goals of the chatbot, the research required a granular scoring rubric to define a quantitative assessment of the user's performance. This rubric below utilizes seven-criterion across the three categories mentioned above, which is scored on a 5-point likert scale:
+
+\begin{table}[htbp]
+\centering
+\caption{Socius Pragmatic Competence Scoring Rubric}
+\label{tab:scoring_rubric}
+\resizebox{1.1\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Category} & \textbf{Metric} & \textbf{Description} & \textbf{Scoring Criteria (1 - 5)} \\ \hline
+\multirow{2}{*}{Conversational Coherence} & Speech Act Appropriateness & Evaluates the right type of utterance (e.g., request, refusal) & 1 = Highly inappropriate; 5 = Highly appropriate \\ \cline{2-4} 
+ & Discourse Relation Clarity & Assesses logical connection to the previous turn & 1 = Highly unclear; 5 = Exceptionally clear \\ \hline
+\multirow{4}{*}{Social Nuance} & Formality Level & Matches appropriate register for the scenario context & 1 = Highly inappropriate; 5 = Highly appropriate \\ \cline{2-4} 
+ & Informativeness & Evaluates the amount of info (Grice’s Maxim of Quantity) & 1 = Highly imbalanced; 5 = Exceptionally balanced \\ \cline{2-4} 
+ & Cultural Filipino Values & Navigation of \textit{Pakikisama}, \textit{Paggalang}, and \textit{Hiya} & 1 = Highly insensitive; 5 = Exceptionally sensitive \\ \cline{2-4} 
+ & Emotional Awareness & Matches tone to the conversational context & 1 = Highly unaware; 5 = Exceptionally aware \\ \hline
+\multirow{2}{*}{Communicative Effectiveness} & Implicature Clarity & Effectiveness of conveying implied meaning & 1 = Highly ambiguous; 5 = Exceptionally clear \\ \cline{2-4} 
+ & Goal Achievement & Success in resolving the scenario's specific conflict & 1 = Highly ineffective; 5 = Highly effective \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+The rubric above was designed by the researchers to be used by the AI mentor in evaluating the user's performance in the simulated conversations. The AI mentor would base it's feedback on the defined submetrics and give a score for each, collectively showing the score of the different categories to the user after the conversation. The submetrics are given scores
+and the mean between the submetrics of each category is calculated to give the category score. This was evaluated by the expert panel to ensure that the rubric is valid and reliable for the purposes of this research. The rubric allows the chatbot to give specific, actionable feedback to the user, guiding them on how to improve their pragmatic competence in future interactions.
