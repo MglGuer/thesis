@@ -239,8 +239,6 @@ providing access to higher rate limits and extended context window capabilities 
 for multi-turn conversational interactions. Gemini 3 Flash provides a powerful and 
 efficient foundation for real-time natural language generation and pragmatic inference.
 
-To support reliability under sustained usage, Socius also implements dynamic API key rotation through a dedicated key manager. When a key reaches quota, encounters transient failures, or is temporarily rate-limited, the system automatically switches to the next available key without interrupting the user session. This rotation strategy improves service continuity for both the AI Partner and AI Mentor phases while preserving consistent response delivery.
-
 It is worth noting that the use of the Gemini API for social communication training remains exploratory.
 As of this writing, there are no published studies - and if any, only very few - that evaluate Gemini's effectiveness
 in modeling or enhancing social-pragmatic competence. Thus, this system aims not only to apply Gemini
