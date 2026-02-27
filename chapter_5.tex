@@ -36,12 +36,23 @@ In this architecture, the system orchestrates multiple instances of \texttt{gemi
 
 \begin{itemize}
     \item \hl{\textbf{AI Partner (Roleplay)} This instance is configured with a lower thinking budget (512 tokens) and prioritizes fast response times for fluid conversation.}
+    \item \hl{\textbf{AI Mentor (Pragmatic Analysis)} This instance is configured with a higher thinking budget (8000 tokens) to allow for computationally heavy analysis of user responses. It utilizes a JSON schema containing the 3 categories and its 8 subcategories for the mapping of quantitative scoring.}
+    \item \hl{\textbf{AI Mentor (Post-session Feedback)} This instance handles a medium thinking budget (1500) tokens for generating in-session feedback based on the analysis from the previous instance of the AI Mentor.}
+    \item \hl{\textbf{Holistic Mentor} This instance is configured with a higher thinking budget (8000 tokens) similar to the pragmatic analysis instance. This agent focuses on aggregating user data and conversation logs to provide holistic and personalized feedback}
 \end{itemize}
 
+\subsection{System Workflow}
 \begin{itemize}
-    \item \textbf{Load and format dataset} – Prepare dialogue data for use.
-    \item \textbf{Load \hl{Gemini} model} – Access the model for inference or fine-tuning.
-    \item \textbf{Interact via conversation engine} – Engage in real-time dialogue with the user.
+    \item \hl{\textbf{DOM Load} - The Document Object Model (DOM) will load the user interface built on HTML, CSS, and Flask (Python).}
+    \item \hl{\textbf{Profile Initialization} – Authenticate user and initialize their profile on the system (quantitative metrics and historical data).}
+    \item \hl{\textbf{Holistic Analysis} - Utilizing the Holistic Mentor to analyze longitudinal metrics and user data to recommend a scenario that is suitable for the user's current needs.}
+    \item \hl{\textbf{Scenario Selection} - After user elects to create a new chat, the system will load the scenarios list on the UI allowing the user to select from a list of scenarios to converse in.}
+    \item \hl{\textbf{Load Dialogue Data} - Once the scenario is selected, the system will load the corresponding dialogue data and format the website to reflect the scenario's context and goals.}
+    \item \hl{\textbf{System Prompts} - Load the system prompts utilizing the AI Partner (focused on roleplaying the scenario).}
+    \item \hl{\textbf{Interact via conversation engine} – Engage in real-time dialogue with the user.}
+    \item \hl{\textbf{Conversation End} - Once the user has decided to end the conversation, the system will then proceed to save the conversation to the database and align the conversation data to the user's profile.}
+    \item \hl{\textbf{Pragmatic Analysis} - The AI Mentor will analyze the conversation data considering the quantitative scoring framework (Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness) to then give the user feedback on their performance and how they can improve in future conversations.}
+    \item \hl{\textbf{In-depth Feedback} - The user can then proceed to click a button to question to gain further insight into their performance by continuing to speak to the AI Mentor which now takes into consideration the conversation data.}
 \end{itemize}
 
 \hl{
