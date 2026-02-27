@@ -157,11 +157,20 @@ The full conversation process consists of the following stages:}
 \section{Software Functions}
 \hl{This section outlines the functions of the Socius APAM system relevant to the user experience. The user’s interaction is structured into three-stages of learning: (1) scenario selection and onboarding, (2) interactive dialogue with an AI Partner, and (3) personalized feedback from an AI Mentor. The following subsections will detail these stages, complemented by relevant UI design mockups to provide a walkthrough of the user experience.}
 \subsection{Scenario Selection}
-\hl{Upon the application’s launch, the user is introduced to the scenario selection screen as shown in Figure 4.3. Here, the user may choose a specific conversational context according to their personal development goals, including options for academic, professional, and casual social situations. Then, the chatbot is primed with the necessary classmate, allowing the AI Partner to adopt the relevant persona.}
+\hl{Upon the application's launch, the user is introduced to the scenario selection 
+screen as shown in Figure 4.3. At the top of the screen, a Holistic Mentor card 
+greets the user by name, summarizes their progress across previous sessions, and 
+recommends a scenario based on their current performance metrics across three 
+categories: Logic, Social, and Effectiveness. Below this, the user may browse and 
+select from a list of predefined conversational scenarios, each labeled with a title, 
+thematic conflict (e.g., Autonomy vs. Dependence, Group vs. Self), and the role the 
+AI Partner will assume. Once a scenario is selected, the chatbot is primed with the 
+necessary context, allowing the AI Partner to adopt the relevant persona.}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{figures/newchat_arrow_ui.png}
-    \caption{Socius UI showing the "Chats" tab with previous chats and navigational buttons at the bottom.}%Scenario selection and profile tracking are planned features.}
+    \includegraphics[width=0.85\textwidth]{figures/actual_newchat_arrow_ui.png}
+    \caption{Socius UI showing the scenario selection screen with the Holistic Mentor 
+    card and list of predefined conversational scenarios.}
     \label{fig:socius_newchat_arrow}
 \end{figure}
 
@@ -170,15 +179,28 @@ The full conversation process consists of the following stages:}
 %The user interface (UI) is the front-end component of the Socius system, designed to facilitate text-based interactions between the user and the chatbot. At present, it includes a chat window similar to text messaging applications, where users can input their messages and view the chatbot’s responses in real time. The layout employs alternating message colors and timestamps for clarity, with a minimalistic design that prioritizes usability and accessibility through simple graphical elements.
 %Planned enhancements to the UI include the addition of a scenario selection component, allowing users to choose from predetermined social contexts before initiating a conversation. Further features will include profile and progress tracking, enabling users to monitor their pragmatic competence based on implicature accuracies over multiple sessions, and the integration of feedback display functionality to provide post-conversation performance insights. These developments will maintain the system’s focus on intuitive, distraction-free interaction while expanding its training capabilities.
 \subsection{Interactive Dialogue (AI Partner Phase)}
-\hl{After choosing a scenario the chat interface is loaded, as shown in Figure 4.4. The interface takes after common text messaging applications to provide a familiar and intuitive environment. The goal for this phase is to simulate a safe space for the practice of conversational skills with the application of pragmatic principles, for which the AI Partner will be responsible.}
+\hl{After choosing a scenario, the chat interface is loaded as shown in Figure 4.4. 
+The layout is divided into three panels. The left sidebar displays the user's 
+previous conversations for easy navigation. The central chat window presents the 
+dialogue in a messaging-style format, with the AI Partner's messages appearing on 
+the left and the user's responses on the right, accompanied by timestamps for 
+reference. A text input field at the bottom allows the user to send 
+messages. On the right, a collapsible Scenario Details panel provides the scenario's 
+title, situational theme, partner role, practice goals, and conversational tips, 
+allowing the user to remain oriented throughout the interaction. The goal of this 
+phase is to simulate a safe space for the practice of conversational skills with 
+the application of pragmatic principles, for which the AI Partner will be 
+responsible.}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.35\textwidth]{figures/chat_ui.png}
-    \caption{Socius UI showing the chat window with alternating message colors, timestamps, and input field.}%Scenario selection and profile tracking are planned features.}
+    \includegraphics[width=0.85\textwidth]{figures/actual_chat_ui.png}
+    \caption{Socius UI showing the chat interface with conversation sidebar, central 
+    chat window, and collapsible Scenario Details panel.}
     \label{fig:socius_ui}
 \end{figure}
+
 \subsection{Personalized Feedback (AI Mentor Phase)}
-\hl{The post-conversation feedback phase, or the AI Mentor phase is the final stage. Here, the user is provided with a personalized textual report based on their performance in the previous phase. The AI Mentor serves not only to provide feedback that can be related to Grice’s Maxims, but also present these concepts in a more grounded way, ideally enabling the users to understand concepts without having to sift through much academic jargon. The report will also provide the user with highlights from the previous conversation’s transcript, revealing areas of strength and room for improvement. Finally, the AI-Mentor itself is available for a free-text dialogue, where the user can ask questions regarding the theories, the previous conversation, the user’s understanding, or other points of clarification.}
+\hl{The post-conversation feedback phase, or the AI Mentor phase is the final stage. Here, the user is provided with a personalized textual report based on their performance in the previous phase. The AI Mentor serves not only to provide feedback that can be related to Grice’s Maxims, but also present these concepts in a more grounded way, ideally helping the users to understand concepts without having to sift through much academic jargon. The report will also provide the user with highlights from the previous conversation’s transcript, revealing areas of strength and room for improvement. Finally, the AI-Mentor itself is available for a free-text dialogue, where the user can ask questions regarding the theories, the previous conversation, the user’s understanding, or other points of clarification.}
 
 
 
