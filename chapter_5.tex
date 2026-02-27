@@ -92,9 +92,9 @@ END FUNCTION
 
 \subsection{Pragmatic Analysis}
 
-The \textbf{Pragmatic Analysis} algorithm evaluates whether the user's response adheres to Grice’s Maxims, which are principles of communication that help maintain relevance, clarity, truthfulness, and informativeness. The algorithm checks for violations of these maxims by analyzing the user’s input. For example, it checks if the response is too short (Quantity Maxim violation), contains lies (Quality Maxim violation), is off-topic (Relation Maxim violation), or is unclear due to ambiguity (Manner Maxim violation). Based on the violations detected, the algorithm generates feedback to guide the user towards better communication practices.
+The \textbf{Pragmatic Analysis} algorithm evaluates whether the user's response adheres to the target pragmatic competencies (Intention Coherence, Social Nuance, and Communicative Effectiveness). Rather than relying on unstructured text generation, the system enforces a strict JSON Schema (\texttt{SCORING\_RESPONSE\_SCHEMA}). This guarantees that the LLM outputs machine-parsable, float-based scores and string-based justifications that the backend can reliably store in the database.
 
-\begin{lstlisting}[caption={AI Mentor Evaluation Algorithm}, label={lst:mentorlogic}]
+\begin{lstlisting}[caption={AI Mentor JSON Schema Evaluation Algorithm}, label={lst:mentorlogic}]
 FUNCTION evaluate_performance(transcript, scenario_context):
     LOAD response_schema FROM SCORING_RESPONSE_SCHEMA
     INITIALIZE GeminiInstance with thinking_budget=8000
@@ -102,11 +102,12 @@ FUNCTION evaluate_performance(transcript, scenario_context):
     CONSTRUCT Analysis_Prompt:
         "Read this transcript and evaluate the user based on 
          Intention Coherence, Social Nuance, and Effectiveness.
+         Output MUST strictly follow the provided JSON schema.
          Context: " + scenario_context
          
     CALL GeminiAPI.generate_content(Analysis_Prompt, transcript)
-    VALIDATE response matches response_schema
-    SAVE scores and feedback to Supabase
+    PARSE response AS JSON
+    SAVE scores and feedback to Supabase Conversation Logs
     RETURN structured_report
 END FUNCTION
 \end{lstlisting}
@@ -146,25 +147,39 @@ END FUNCTION
 \hl{Linguistic contextualization is achieved by forbidding the chatbot to have english translations in parentheses and enforce code switching in the prompts for relatability. Safety configurations for harassment and dangerous content are set to BLOCK\_ONLY\_HIGH to allow the AI Partner to engage in realistic social conflict without the model refusing the prompt while still considering emotional safety of the user.
 }
 
-\section{GRICE Dataset Structure}
+\section{LLM Selection and Architectural Pivot: The Fine-Tuning Experiment}
 
-\hl{The GRICE dataset played an important role in framing the chatbot's intent and the research's direction. As we have pivoted from training Mistral-7B to instead prompt engineering with Gemini, 
-the dataset's structure was important in the training of Mistral.} Refer to Figure~\ref{fig:datasetstructure} for the structure of the dataset:
+\hl{The initial architectural design for the AI Mentor involved fine-tuning a local, open-source Large Language Model (Mistral-7B) using Quantized Low-Rank Adaptation (QLoRA). The objective was to create a specialized, cost-effective expert model trained exclusively on the GRICE dataset \mbox{\cite{zheng_grice_2021}} to identify conversational implicatures and Gricean maxim violations.}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth]{figures/dataset_structure.png}
-    \caption{GRICE Dataset Structure}
-    \label{fig:datasetstructure}
-\end{figure}
+\hl{However, functional testing of the fine-tuned model revealed critical failures in pedagogical application. To assess its viability, a comparative test was conducted between the Mistral-7B fine-tuned model and a zero-shot base model, given a scenario involving sarcasm and passive-aggression.}
 
-The GRICE dataset is structured to include various scenarios based on the implicatures that come from Grice's Maxims. As such, each row of data in the dataset represents a unique social scenario in regard to a certain implicature. Described below are the columns in the dataset:
+\begin{table}[H]
+\centering
+\caption{Comparison of Fine-Tuned vs. Base Model Reasoning}
+\label{tab:llm_training_attempt}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{7.5cm} | p{7.5cm}}
+\toprule
+\textbf{Fine-Tuned Model Output (Mistral-7B on GRICE)} & \textbf{Base Model Output (No Training)} \\
+\midrule
+\textbf{Prompt:} You are an expert in linguistic pragmatics. Analyze the conversation for its implied meaning based on Gricean maxims... \newline \textbf{Context:} Speaker A and Speaker B are roommates. Speaker B was supposed to do the dishes but left a huge, dirty pile in the sink. \newline \textbf{Utterance:} Speaker A says: 'I love that you're so committed to keeping the kitchen clean.' & \textbf{Prompt:} You are an expert in linguistic pragmatics. Analyze the conversation for its implied meaning based on Gricean maxims... \newline \textbf{Context:} Speaker A and Speaker B are roommates. Speaker B was supposed to do the dishes but left a huge, dirty pile in the sink. \newline \textbf{Utterance:} Speaker A says: 'I love that you're so committed to keeping the kitchen clean.' \\
+\midrule
+\textbf{Generated Analysis:} \newline I'm committed to keeping the living\_room tidy. & \textbf{Generated Analysis:} \newline Implied meaning: The speaker is sarcastic and is not actually expressing love or admiration for the roommate's commitment to cleanliness. Instead, they are implying that the opposite is true... The use of the word "love" is an ironic exaggeration. \\
+\midrule
+\textbf{Assessment: Failure.} Given a perfect prompt, the fine-tuned model produced an irrelevant, nonsensical output. It completely failed the analytical task. & \textbf{Assessment: Success.} The base model, with no specialized training, correctly identified the sarcasm, explained the implicature, and demonstrated high-level reasoning. \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Analysis of the Training Attempt}
+\hl{The failure of the fine-tuned model provided valuable insights into the limitations of narrow dataset training for complex social coaching. The results of the attempt yielded three primary failure modes:}
 
 \begin{itemize}
-    \item \textbf{question:} \hl{This column contains the initial utterance or query from a speaker. It sets the immediate context and prompts the response that contains the pragmatic information to be analyzed.}
-    \item \textbf{answer:} \hl{This column provides the direct response to the question. Crucially, this response often contains a conversational implicature, meaning it is pragmatically appropriate but may not be literally direct.}
-    \item \textbf{explicit answer:} \hl{This column serves as the ``ground truth'' for the implicature. It provides the fully resolved, explicit meaning of what the speaker intended to convey in the ``answer'' column, making the implied meaning clear and unambiguous.}
-    \item \textbf{options:} \hl{This column frames the task as a multiple-choice question. It contains a list of possible interpretations for the ``answer'', which includes the correct ``explicit answer'' along with several incorrect or misleading distractors.}
-    \item \textbf{answer index:} \hl{This column provides the zero-based index of the correct answer within the ``options'' list. It is used to programmatically identify the correct choice, which is essential for both training the model and evaluating its performance on pragmatic reasoning tasks.}
-    \item \textbf{dialog id:} \hl{This column is a dialogue identifier that groups related question--answer pairs into a single, coherent conversation. This allows the system to maintain contextual continuity across multiple conversational turns, ensuring that the interpretation of any single utterance can be informed by the preceding dialogue.}
+    \item \hl{\textbf{Overfitting to Narrow Patterns:} The GRICE dataset consists of highly structured, short-form questions and answers. The model overfit to these patterns, learning superficial token transformations (e.g., simple subject-verb-object substitutions) rather than actual pragmatic reasoning.}
+    \item \hl{\textbf{Catastrophic Forgetting:} The nonsensical output (\textit{"I'm committed to keeping the living\_room tidy"}) demonstrated that the fine-tuning process caused the model to lose its general language modeling capabilities. It attempted to mimic the syntax of the dataset without preserving semantic understanding.}
+    \item \hl{\textbf{Loss of Long-Form Coherence:} The examples in the GRICE dataset are typically 10 to 30 words maximum. However, the AI Mentor requires the ability to generate over 1,000 words of coherent, structured prose. The fine-tuning process destroyed the model's ability to maintain extended reasoning chains.}
 \end{itemize}
+
+\hl{Based on these findings, the architecture was successfully pivoted away from local fine-tuning. Instead, the final system relies on sophisticated prompt-engineering, structured JSON schemas, and the advanced dynamic reasoning capabilities (Thinking Budgets) of the Gemini 3 Flash model. This pivot proved that for complex, theory-driven pedagogical tasks, the reasoning capacity of a generalist foundation model significantly outweighs the domain-specific knowledge gained by fine-tuning a smaller model on limited datasets.}
