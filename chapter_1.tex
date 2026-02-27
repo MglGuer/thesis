@@ -15,7 +15,7 @@
 Unlike grammar or semantics, which focus on structural correctness and literal interpretation,
 pragmatics deals with the intention, implication, and appropriateness of a statement during social interactions. It involves
 going beyond the surface level, looking for the implied meaning rather than the literal meaning. It is essentially how speakers navigate relevance,
-politeness, and indirectness depending on social context \cite{marasabessy_pragmatic_2023}. Individuals experiencing difficulties with pragmatics 
+politeness, and indirectness depending on social context }\cite{marasabessy_pragmatic_2023}\hl{. Individuals experiencing difficulties with pragmatics 
 are more susceptible to instances of miscommunication or social isolation.}
 
 \hl{Many individuals struggle with real-world social interactions, yet there is a lack of} accessible, judgment-free spaces to practice and refine 
@@ -46,14 +46,13 @@ AI Mentor offering reflective feedback based on violations or observance of conv
 Grice's Cooperative Principle is a key theoretical framework for pragmatic analysis. It includes four maxims: Quantity, Quality, Relation, and Manner. 
 These maxims guide how speakers are expected to contribute to conversations, which is by being informative, truthful, relevant, and clear \cite{hossain_application_2021}. 
 When these maxims are followed, communication tends to proceed smoothly. \hl{Should violations occur}, intentional or not, these may lead to confusion, implicature, or breakdowns. 
-\st{Large Language Models (LLMs) like GPT-4 have been evaluated on Gricean tasks and, in some cases, outperform humans in identifying implicature or recovering unstated meaning} \mbox{\cite{bojic_gpt-4_2023}}\st{. Datasets such as GRICE have even been created to assess AI's ability to handle nuanced conversational reasoning} \mbox{\cite{zheng_grice_2021}}\st{.}
 
 \hl{Large Language Models (LLMs) like GPT-4 and Gemini 3 have been evaluated on Gricean tasks and, in some cases, they outperform humans in identifying implicature or 
 recovering unstated meaning} \mbox{\cite{bojic_gpt-4_2023}}\hl{. However, achieving true pragmatic competence in an educational tool requires more than recognizing 
 logical maxims. It also demands an understanding of developmental psychology and cultural context. For young adults navigating the transition to adulthood, 
-conversational challenges are deeply tied to identity exploration and changing social expectations (Arnett, 2000; Havighurst, 1972). 
+conversational challenges are deeply tied to identity exploration and changing social expectations \cite{arnett_emerging_2000,havighurst_developmental_1948}. 
 Furthermore, in the Philippine context, communication is heavily shaped by cultural values such as 
-\textit{Pakikisama} (smooth interpersonal relations), \textit{Hiya} (sense of shame or face), \textit{Utang na Loob} (debt of gratitude), and \textit{Paggalang} (respect) (Jocano, 1997).}
+\textit{Pakikisama} (smooth interpersonal relations), \textit{Hiya} (sense of shame or face), \textit{Utang na Loob} (debt of gratitude), and \textit{Paggalang} (respect) \cite{jocano_filipino_1997}.}
 
 In practical chatbot interactions, these maxims are regularly tested. For example, an LLM might provide overly verbose
 answers (violating Quantity), respond off-topic (Relation), or misinterpret ambiguous intent (Manner). These outcomes
@@ -86,22 +85,14 @@ Unlike task-based chatbots, it will simulate natural conversations, provide real
 The objectives of the study are as follows:
 
 \begin{enumerate}
-    \item \st{To develop a chatbot grounded in the APAM framework that simulates natural one-on-one conversations as an AI Partner, enabling users to interact in contexts requiring pragmatic awareness.} \hl{To design and implement a dual-agent architecture (AI Partner and AI Mentor) utilizing the Google Gemini API to facilitate a natural roleplay experience and deep pragmatic analysis.}
-    \item \st{To design realistic contexts and situations that young adults are likely to encounter in academic, professional, and social environments, providing them with opportunities to practice and refine their pragmatic skills.} \hl{To formulate a theoretical framework for scenario generation that synthesizes Grice's Cooperative Principle, Developmental Psychology (Havighurst and Arnett), and Filipino Cultural Values.}
+    \item \hl{To design and implement a dual-agent architecture (AI Partner and AI Mentor) utilizing the Google Gemini API to facilitate a natural roleplay experience and deep pragmatic analysis.}
+    \item \hl{To formulate a theoretical framework for scenario generation that synthesizes Grice's Cooperative Principle, Developmental Psychology (Havighurst and Arnett), and Filipino Cultural Values.}
     \item \hl{To develop a multi-level, quantitative scoring rubric for pragmatic competence—enforced via JSON Schema Controlled Generation—that provides detailed, actionable metrics across Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness.}
     \item To evaluate the chatbot's effectiveness in enhancing users' pragmatic competence and social communication skills through user feedback \hl{and human user testing}.
 \end{enumerate}
 
 \section{Scope and Limitations}
-\indent \st{The chatbot will be developed using the APAM framework, emphasizing situation emulation and the provision of feedback. The primary scope of this feedback is its direct alignment with Grice's Maxims (Quantity, Quality, Relation, and Manner) and the recognition of implicatures, serving as the explicit framework for assessing and guiding user improvement.} \hl{The chatbot was developed using the AI Partner - AI Mentor (APAM) framework, emphasizing situation emulation and the provision of personalized feedback. The primary scope of this feedback encompasses a multi-level scoring framework assessing three core domains: Intention Coherence (logical flow and speech acts), Social \& Affective Nuance (formality, empathy, and informativeness), and Communicative Effectiveness (goal achievement and implicature handling). While grounded in Grice's Maxims (Quantity, Quality, Relation, and Manner), the system expands upon them to include developmental psychology and cultural pragmatics.} Moreover, these maxims and implicatures are not reliant on paralinguistic cues, making them suitable for implementation in a text-based AI system \cite{dale_role_1996}. 
-
-\st{In line with goal-oriented language generation, the chatbot's responses are 
-designed to reflect Gricean principles without the need to explicitly enforce them as rigid rules. Its capacity to deliver pragmatic guidance will rely on machine learning 
-models, providing feedback based on pre-defined pragmatic rules rather than on human-like comprehension or nuanced, context-specific human judgment. 
-Accordingly, the effectiveness of the system is dependent on the alignment between Gemini's pragmatic ability and the Gricean maxims, and the feedback's effectiveness is 
-contingent on the chatbot's accurate identification of pragmatic violations or successes, a task made challenging by the inherent ambiguity of human communication and the 
-limitations of current natural language processing (NLP). A potential gap is that while the feedback targets Grice's Maxims and implicatures, it may not comprehensively cover 
-all facets of pragmatic competence, such as politeness strategies or speech act theory, which are outside the immediate scope of measurement for this particular intervention.}
+\indent \hl{The chatbot was developed using the AI Partner - AI Mentor (APAM) framework, emphasizing situation emulation and the provision of personalized feedback. The primary scope of this feedback encompasses a multi-level scoring framework assessing three core domains: Intention Coherence (logical flow and speech acts), Social \& Affective Nuance (formality, empathy, and informativeness), and Communicative Effectiveness (goal achievement and implicature handling). While grounded in Grice's Maxims (Quantity, Quality, Relation, and Manner), the system expands upon them to include developmental psychology and cultural pragmatics.} Moreover, these maxims and implicatures are not reliant on paralinguistic cues, making them suitable for implementation in a text-based AI system \cite{dale_role_1996}. 
 
 \hl{In line with goal-oriented language generation, the chatbot relies on the reasoning ability of the Gemini 3 model family rather than a rigidly fine-tuned local model. 
 Feedback is strictly enforced through a JSON Output Schema via the Gemini API, ensuring machine-parsable, quantitative metrics for longitudinal tracking without sacrificing 
@@ -109,14 +100,12 @@ natural language understanding. A potential limitation is that the system relies
 context-specific human judgment. Furthermore, while the system effectively captures Gricean maxims and basic Filipino cultural values 
 (e.g., \textit{Pakikisama}, \textit{Hiya}, \textit{Paggalang}), it may not comprehensively cover all facets of non-verbal or highly localized sociolinguistic phenomena.}
 
-\st{The study will define conversational scenarios that reflect academic, professional, and casual social contexts relevant to young adults. This is best practiced since these are general situations that young adults would encounter everyday, most especially that they would build connections or relationships within these environments. These scenarios will serve as structured environments for practicing pragmatic competence. These situations will be constructed based the situations present in the GRICE dataset, wherein Grice's maxims and implicatures are implemented. However, in order to ensure relevance to the local context as Grice's theory of conversation is primarily a western theory, rules will be given to Gemini in order to include culturally specific references and language usage to better reflect local Filipino cultural norms and social dynamics.} 
-
 \hl{The study defined four core conversational themes reflecting academic, professional, and casual social contexts relevant to young adults: Identity vs. Expectation, 
 Autonomy vs. Dependence, Ambiguity vs. Definition, and Group vs. Self. To ensure relevance to the local context, explicit ``negative constraints" and conversational 
 marker rules were injected into the LLM's system instructions. This forced the AI to utilize appropriate Taglish (a mix of Tagalog and English) and culturally 
 specific emotional code-switching without breaking character or providing unnatural English translations.} 
 
-Careful review and adaptation \st{will be} \hl{were} carried out to preserve the original pragmatic intent while making the content accessible and 
+Careful review and adaptation \hl{were} carried out to preserve the original pragmatic intent while making the content accessible and 
 relatable to Filipino users. The focus of the chatbot is on verbal communication, thereby the conversations presented in a text-based format would reflect real-world 
 conversations. The target participants will also strictly involve young adults aged 15 - 24. These participants need not be considered neurodivergent. 
 This decision is based on the principle that pragmatic competence is a universal and developmental skill set, not exclusively a challenge for individuals with diagnosed 
@@ -125,8 +114,8 @@ conditions. The study’s goal is to create a broadly applicable educational too
 The evaluation of the chatbot will be conducted through user interaction data and self-reported feedback. The assessment will focus on the user's perception of the chatbot's 
 ability to simulate contextually appropriate conversation whilst providing pragmatically-aligned feedback after the conversation. 
 Thus, this is based on the user's self-reported experience on the conversation authenticity. It is important to note that limitations may arise due to 
-cultural differences between the \st{Gemini's training data} \hl{base LLM's training data} and the target population. Some participants may not be able to fully relate to 
-or understand certain \st{scenarios provided} \hl{thematic conflicts}, especially if the scenario is not appropriate for their age group. These potential mismatches 
+cultural differences between the \hl{base LLM's training data} and the target population. Some participants may not be able to fully relate to 
+or understand certain \hl{thematic conflicts}, especially if the scenario is not appropriate for their age group. These potential mismatches 
 may affect user engagement or interpretation and will be considered in the analysis of user feedback to inform future improvements.
 
 % The study will limit its target demographic to those who are between 15 to 24 years old, aligning with the World Health Organization's (WHO, n.d.) definition of youth. This age range was chosen as young adults often face crucial transitions in academic, social, and professional settings where effective communication plays a key role. The chatbot will also be limited to text-based input and will not incorporate voice or video-based input. It will exclusively use the English language due to the availability of numerous datasets suitable for training. The study also aims to identify the different strategies used by experts in teaching communication skills to young adults, especially those who are deemed socially awkward. Furthermore, the chatbot itself will provide the situations and contexts that the user will experience, rather than having the context supplied by the user. In doing so, the study defines assistance strategies related to helping young adults with social awkwardness and pragmatics training that can be implemented in a chatbot. Moreover, the research will focus on the user's actual responses, particularly their word choices, rather than how they audibly deliver those responses. The study will also concentrate on the subtopic of social communication—specifically, pragmatics—which will be measured and assessed using Grice's Maxims and the concept of implicature.
@@ -138,8 +127,6 @@ into an interactive training tool for students to develop their social communica
 The key output is a dual-role system: an AI Partner that engages in one-on-one conversations grounded in real-world scenarios, and an AI Mentor that evaluates the user's 
 pragmatic performance and offers reflective feedback based on observed violations or adherence to conversational norms. As such, this study \hl{also contributes} to the 
 understanding and exploration of an AI-driven approach to teaching, in general, a sociolinguistic skill for young adults. 
-
-\st{Furthermore, In contrast to prior chatbot implementations using LLMs other than Gemini, this study explores the use of Gemini as an alternative large language model. The goal is not to evaluate its superiority, but to understand its potential to model pragmatic competence in an educational chatbot context.} 
 
 \hl{Furthermore, a significant contribution of this research lies in its architectural findings regarding LLM deployment for pedagogical tasks. 
 The study demonstrates that for complex, theory-driven communication coaching, the advanced reasoning and in-context learning capabilities of a prompt-engineered 
@@ -159,7 +146,7 @@ improving real-world communication skills in educational and therapeutic context
 By equipping young individuals with the ability to communicate more effectively, this research holds broader implications for society at large. As pragmatic competence is 
 crucial not only for personal growth but also for constructive social participation, enhancing this skill among \hl{the} youth can lead to more socially-aware communities. 
 In the Philippine context, where communication is often shaped by high-context norms, indirectness, and respect for social hierarchies, \hl{being rooted in} cultural values such as 
-Pakikisama, Hiya, and Utang na Loob, the ability to navigate pragmatic cues is especially vital (Jocano, 1997; Nadar, 1999; Miranda, 1998). By modeling these dynamics through 
+Pakikisama, Hiya, and Utang na Loob, the ability to navigate pragmatic cues is especially vital \cite{jocano_filipino_1997}. By modeling these dynamics through 
 the chatbot, this study helps Filipino youth engage more effectively in culturally appropriate interactions across educational and social domains.
 
 \clearpage % or \newpage
@@ -221,18 +208,12 @@ for the year 2025 while the second table lists activities for the year 2026. Eac
 (5) User Validation and Testing Period, (6) Data Analysis, and (7) Documentation and Report Writing.
 The details of these activities are as follows:
 
-\subsection{\st{Knowledge Base Construction} \hl{Theoretical Framework Formulation and Scenario Generation}}
-\indent \st{The chatbot's pragmatics training capability lies in a properly curated and theory-driven knowledge base. The GRICE dataset, which consists of dialogue examples structured around Grice's Maxims, will be the foundation with which the chatbot will be trained on. Each dialogue is designed to highlight either adherence to or violation of these maxims, providing concrete examples of pragmatic competence. The scenarios constructed by the LLM will be validated by an expert before being stored in the scenario database for use by the chatbot.
-
-To supplement the dataset, additional conversational prompts were generated using Gemini with explicit prompts to align with the same pragmatic structures. The dataset is found in a public GitHub repository, making it open source while additional dialogues or scenarios will be synthetically generated by AI. This ensures that there are no copyright or licensing concerns.
-
-The GRICE dataset (Zheng et al., 2021), used in this research, is publicly available and was released as part of the Findings of ACL-IJCNLP 2021. It is © 2021 Association for Computational Linguistics. The dataset is used here strictly for academic and non-commercial research purposes, in accordance with ACL's standard terms of use. No modifications or redistribution of the dataset are performed in this study.}
-
-\hl{Rather than relying exclusively on an existing static dataset, the chatbot's pragmatics training capability was built upon a multi-pillar theoretical framework. 
+\subsection {\hl{Theoretical Framework Formulation and Scenario Generation}}
+\indent \hl{Rather than relying exclusively on an existing static dataset, the chatbot's pragmatics training capability was built upon a multi-pillar theoretical framework. 
 Scenarios were dynamically structured around four recurring developmental themes synthesized from Arnett's Theory of Emerging Adulthood and Havighurst's Developmental Tasks: 
 (1) Identity vs. Expectation, (2) Autonomy vs. Dependence, (3) Ambiguity vs. Definition, and (4) Group vs. Self. Each scenario was explicitly coded with a defined conflict, 
 a conversational formula, and a specific user goal. To ensure cultural resonance, the scenarios and AI instructions were injected with constraints mapping to 
-Filipino cultural values (\textit{Pakikisama}, \textit{Hiya}, \textit{Utang na Loob}) (Jocano, 1997).}
+Filipino cultural values (\textit{Pakikisama}, \textit{Hiya}, \textit{Utang na Loob}) \cite{jocano_filipino_1997}.}
 
 \subsection{Software Development}
 \indent \hl{The chatbot, named Socius, is implemented using the Python programming language and integrates the Gemini LLM via its API. 
@@ -248,30 +229,28 @@ implied meaning. The system then generates feedback and performance metrics, ena
 The stages of software development are as follows:}
 
 \subsubsection{Backend Development}
-\indent \st{Backend development will focus on the core conversational engine built using Python, integrating the Gemini API to handle response generation. This will involve developing the system's main components as outlined in the architectural design. Particularly, the backend will handle session management, scenario selection, and database creation (including user and conversation logging). Moreover, the development will include the implementation of the pragmatic analyzer, the feedback generation, the conversation flow manager, and the calculation of implicature accuracy metrics.}
-
-\hl{Backend development focused on the core conversational engine built using Python and Flask, integrating the \texttt{google-genai} SDK to handle response generation. 
+\indent \hl{Backend development focused on the core conversational engine built using Python and Flask, integrating the \texttt{google-genai} SDK to handle response generation. 
 The backend managed session isolation, scenario selection, and database operations using Supabase. Crucially, the development included the implementation of the 
 Pragmatic Analyzer via JSON Schema Controlled Generation, ensuring feedback was structured into actionable numerical scores and text summaries rather than relying on 
 generic text generation.}
 
 \subsubsection{Frontend Development}
-\indent \st{Frontend development will focus on} \hl{Frontend development focused on} creating the user interface (UI). The UI \st{will be} \hl{was} designed as a 
-text-messaging application to provide a familiar and intuitive user experience for text-based interaction and feedback delivery. Key features \st{will} include a 
-chat window for real-time conversation with the chatbot and a component for selecting from predefined social scenarios. The interface \st{will present} \hl{presents} 
-alternating message colors and timestamps to clearly distinguish between user and chatbot messages. The development \st{will also include creating} \hl{also includes} 
-a user profile section where users can track their progress \st{based on implicature accuracy metrics} \hl{through the Holistic Mentor dashboard} across multiple sessions. 
-The design \st{will prioritize} \hl{prioritizes} usability and accessibility through simple graphical elements.
+\indent \hl{Frontend development focused on} creating the user interface (UI). The UI \hl{was} designed as a 
+text-messaging application to provide a familiar and intuitive user experience for text-based interaction and feedback delivery. Key features include a 
+chat window for real-time conversation with the chatbot and a component for selecting from predefined social scenarios. The interface \hl{presents} 
+alternating message colors and timestamps to clearly distinguish between user and chatbot messages. The development \hl{also includes} 
+a user profile section where users can track their progress \hl{through the Holistic Mentor dashboard} across multiple sessions. 
+The design \hl{prioritizes} usability and accessibility through simple graphical elements.
 
 \subsection{Expert Validation and Architectural Pivot}
-\indent The conversational scenarios generated for the chatbot \st{will undergo} \hl{underwent} expert validation. 
-These scenarios \st{are created through the Gemini LLM} \hl{were generated using Gemini 3.0 Pro} and were designed by the researchers to reflect the theoretical 
+\indent The conversational scenarios generated for the chatbot \hl{underwent} expert validation. 
+These scenarios \hl{were generated using Gemini 3.0 Pro} and were designed by the researchers to reflect the theoretical 
 framework of Grice's Maxims and Implicatures. Thus, it is important to ensure that these scenarios are relevant, culturally appropriate, and aligned with the intended learning 
-outcomes. To accomplish this, an expert in \hl{the philosophy of language}\st{, behavioral science, or any related field} was consulted to review the scenarios that have been constructed based on the 
+outcomes. To accomplish this, an expert in \hl{the philosophy of language}was consulted to review the scenarios that have been constructed based on the 
 GRICE dataset \cite{zheng_grice_2021}. This validation process will ensure that the scenarios are not only grounded in pragmatic theory but are also appropriate and relevant 
-for the target demographic of young adults aged 15-24. The expert \st{will assess} \hl{assessed} whether the scenarios effectively \st{emulate} \hl{emulated} 
+for the target demographic of young adults aged 15-24. The expert \hl{assessed} whether the scenarios effectively \hl{emulated} 
 real-world academic, professional, and social contexts and whether the localized examples for the Filipino context maintain their intended pragmatic meaning. 
-Only scenarios approved by the expert \st{will be} \hl{were} added to the scenario database for use in the chatbot interactions.
+Only scenarios approved by the expert \hl{were} added to the scenario database for use in the chatbot interactions.
 
 \hl{Initial architectural experiments involved an attempt to fine-tune a smaller open-source model (Mistral-7B) on the GRICE dataset \mbox{\cite{zheng_grice_2021}} 
 to serve as the AI Mentor. However, functional testing revealed that this approach yielded brittle, overly literal feedback that failed to capture cultural nuances or 
