@@ -146,10 +146,14 @@ FUNCTION generate_response(user_input, scenario)
 END FUNCTION
 \end{lstlisting}
 
+\subsection{Linguistic and Safety Configurations}
+\hl{Linguistic contextualization is achieved by forbidding the chatbot to have english translations in parentheses and enforce code switching in the prompts for relatability. Safety configurations for harassment and dangerous content are set to BLOCK\_ONLY\_HIGH to allow the AI Partner to engage in realistic social conflict without the model refusing the prompt while still considering emotional safety of the user.
+}
 
 \section{GRICE Dataset Structure}
 
-The GRICE dataset will be used to train the chatbot. Refer to Figure~\ref{fig:datasetstructure} for the structure of the dataset:
+\hl{The GRICE dataset played an important role in framing the chatbot's intent and the research's direction. As we have pivoted from training Mistral-7B to instead prompt engineering with Gemini, 
+the dataset's structure was important in the training of Mistral.} Refer to Figure~\ref{fig:datasetstructure} for the structure of the dataset:
 
 \begin{figure}[H]
     \centering
