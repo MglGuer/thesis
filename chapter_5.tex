@@ -94,28 +94,22 @@ END FUNCTION
 
 The \textbf{Pragmatic Analysis} algorithm evaluates whether the user's response adheres to Grice’s Maxims, which are principles of communication that help maintain relevance, clarity, truthfulness, and informativeness. The algorithm checks for violations of these maxims by analyzing the user’s input. For example, it checks if the response is too short (Quantity Maxim violation), contains lies (Quality Maxim violation), is off-topic (Relation Maxim violation), or is unclear due to ambiguity (Manner Maxim violation). Based on the violations detected, the algorithm generates feedback to guide the user towards better communication practices.
 
-\begin{lstlisting}[caption={Pragmatic Analysis}, label={lst:evaluatepragmatics}]
-\st{
-FUNCTION evaluate_pragmatic_adherence(user_input, expected_response):
-    INITIALIZE feedback as an empty list
-
-    CHECK if the input violates Quantity Maxim (e.g., too short)
-        IF violation: APPEND feedback "Provide more detailed information"
-
-    CHECK if the input violates Quality Maxim (e.g., lies)
-        IF violation: APPEND feedback "Provide truthful responses"
-
-    CHECK if the input violates Relation Maxim (e.g., off-topic)
-        IF violation: APPEND feedback "Stay relevant to the conversation"
-
-    CHECK if the input violates Manner Maxim (e.g., ambiguity)
-        IF violation: APPEND feedback "Keep responses clear and unambiguous"
-
-    RETURN feedback
+\begin{lstlisting}[caption={AI Mentor Evaluation Algorithm}, label={lst:mentorlogic}]
+FUNCTION evaluate_performance(transcript, scenario_context):
+    LOAD response_schema FROM SCORING_RESPONSE_SCHEMA
+    INITIALIZE GeminiInstance with thinking_budget=8000
+    
+    CONSTRUCT Analysis_Prompt:
+        "Read this transcript and evaluate the user based on 
+         Intention Coherence, Social Nuance, and Effectiveness.
+         Context: " + scenario_context
+         
+    CALL GeminiAPI.generate_content(Analysis_Prompt, transcript)
+    VALIDATE response matches response_schema
+    SAVE scores and feedback to Supabase
+    RETURN structured_report
 END FUNCTION
-}
 \end{lstlisting}
-
 
 \subsection{Feedback Generation}
 
@@ -138,11 +132,13 @@ The algorithm constructs a prompt that combines the scenario and the user’s in
 The generated text is then returned as the chatbot’s response. This ensures that the chatbot can handle various conversational
 contexts and respond appropriately.
 
-\begin{lstlisting}[caption={LLM (Gemini API) Response Generation}, label={lst:llmintegration}]
-FUNCTION generate_response(user_input, scenario)
-    CREATE prompt with scenario and user_input
-    CALL generate_text on GeminiAPI with prompt
-    RETURN generated text from API response
+\begin{lstlisting}[caption={AI Partner Response Generation}, label={lst:partnergen}]
+FUNCTION generate_partner_response(user_input, current_history):
+    LOAD system_instruction (enforce natural Filipino conversational patterns)
+    INITIALIZE GeminiInstance with thinking_budget=512
+    
+    CALL GeminiAPI.generate_content(system_instruction, user_input)
+    RETURN character_response
 END FUNCTION
 \end{lstlisting}
 
