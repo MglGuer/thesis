@@ -11,12 +11,12 @@
 
 \section{Background of the Study}
 
-\indent \hl{Pragmatics is a subfield of linguistics that talks about the contribution of context to the meaning of a message.
+\indent \hl{Pragmatics is a subfield of linguistics that examines the contribution of context to the meaning of a message.
 Unlike grammar or semantics, which focus on structural correctness and literal interpretation,
 pragmatics deals with the intention, implication, and appropriateness of a statement during social interactions. It involves
 going beyond the surface level, looking for the implied meaning rather than the literal meaning. It is essentially how speakers navigate relevance,
-politeness, and indirectness depending on social context \cite{marasabessy_pragmatic_2023}. Individuals that experience difficulties with pragmatics 
-may lead to cases of miscommunication or social isolation.}
+politeness, and indirectness depending on social context \cite{marasabessy_pragmatic_2023}. Individuals experiencing difficulties with pragmatics 
+are more susceptible to instances of miscommunication or social isolation.}
 
 \hl{Many individuals struggle with real-world social interactions, yet there is a lack of} accessible, judgment-free spaces to practice and refine 
 \hl{their communication skills}. Despite recent advances in Artificial Intelligence (AI) and Large Language Models (LLMs), their potential for 
@@ -43,7 +43,7 @@ and conflict resolution. In this study, APAM is adapted to focus specifically on
 with the AI Partner simulating conversations that test the user’s ability to navigate implicature and context, and the
 AI Mentor offering reflective feedback based on violations or observance of conversational maxims.
 
-Grice's Cooperative Priniciple is a key theoretical framework for pragmatic analysis. It includes four maxims: Quantity, Quality, Relation, and Manner. 
+Grice's Cooperative Principle is a key theoretical framework for pragmatic analysis. It includes four maxims: Quantity, Quality, Relation, and Manner. 
 These maxims guide how speakers are expected to contribute to conversations, which is by being informative, truthful, relevant, and clear \cite{hossain_application_2021}. 
 When these maxims are followed, communication tends to proceed smoothly. \hl{Should violations occur}, intentional or not, these may lead to confusion, implicature, or breakdowns. 
 \st{Large Language Models (LLMs) like GPT-4 have been evaluated on Gricean tasks and, in some cases, outperform humans in identifying implicature or recovering unstated meaning} \mbox{\cite{bojic_gpt-4_2023}}\st{. Datasets such as GRICE have even been created to assess AI's ability to handle nuanced conversational reasoning} \mbox{\cite{zheng_grice_2021}}\st{.}
@@ -75,7 +75,7 @@ by developing a chatbot that supports pragmatic learning through context-sensiti
 feedback.
 
 While current chatbot applications focus more on therapeutic services, such as Woebot \cite{Woebot:2025}, there is a lack of tools designed for non-therapeutic 
-needs, such as for enhancing social communication skills. Moreover, Many young adults (\hl{ages} 15–24) struggle with real-world social interactions but lack accessible, 
+needs, such as for enhancing social communication skills. Moreover, many young adults (\hl{ages} 15–24) struggle with real-world social interactions but lack accessible, 
 judgment-free spaces to practice. Existing chatbots are not designed for adaptive social communication training, often failing to accommodate diverse 
 communication styles or provide meaningful, real-time feedback.
 
@@ -86,7 +86,7 @@ Unlike task-based chatbots, it will simulate natural conversations, provide real
 The objectives of the study are as follows:
 
 \begin{enumerate}
-    \item \st{To develop a chatbot grounded in the APAM framework that simulates natural one-on-one conversations as an AI Partner, enabling users to interact in contexts requiring pragmatic awareness.} \hl{To design and implement a dual-agent architecture (AI Partner and AI Mentor) utilizing the Google Gemini API to facilitate \hl{a natural roleplay experience} and deep pragmatic analysis.}
+    \item \st{To develop a chatbot grounded in the APAM framework that simulates natural one-on-one conversations as an AI Partner, enabling users to interact in contexts requiring pragmatic awareness.} \hl{To design and implement a dual-agent architecture (AI Partner and AI Mentor) utilizing the Google Gemini API to facilitate a natural roleplay experience and deep pragmatic analysis.}
     \item \st{To design realistic contexts and situations that young adults are likely to encounter in academic, professional, and social environments, providing them with opportunities to practice and refine their pragmatic skills.} \hl{To formulate a theoretical framework for scenario generation that synthesizes Grice's Cooperative Principle, Developmental Psychology (Havighurst and Arnett), and Filipino Cultural Values.}
     \item \hl{To develop a multi-level, quantitative scoring rubric for pragmatic competence—enforced via JSON Schema Controlled Generation—that provides detailed, actionable metrics across Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness.}
     \item To evaluate the chatbot's effectiveness in enhancing users' pragmatic competence and social communication skills through user feedback \hl{and human user testing}.
@@ -122,10 +122,10 @@ conversations. The target participants will also strictly involve young adults a
 This decision is based on the principle that pragmatic competence is a universal and developmental skill set, not exclusively a challenge for individuals with diagnosed 
 conditions. The study’s goal is to create a broadly applicable educational tool for enhancing social communication, rather than a clinical intervention for a specific population.
 
-The evaluation of the chatbot will be conducted through user interaction data and self-reported feedback. The assessment will focus on the user's perception on the chatbot's 
+The evaluation of the chatbot will be conducted through user interaction data and self-reported feedback. The assessment will focus on the user's perception of the chatbot's 
 ability to simulate contextually appropriate conversation whilst providing pragmatically-aligned feedback after the conversation. 
 Thus, this is based on the user's self-reported experience on the conversation authenticity. It is important to note that limitations may arise due to 
-cultural differences between the \st{Gemini's training data} \hl{base LLM's training data} and the target population. Some participants may not be able fully relate to 
+cultural differences between the \st{Gemini's training data} \hl{base LLM's training data} and the target population. Some participants may not be able to fully relate to 
 or understand certain \st{scenarios provided} \hl{thematic conflicts}, especially if the scenario is not appropriate for their age group. These potential mismatches 
 may affect user engagement or interpretation and will be considered in the analysis of user feedback to inform future improvements.
 
@@ -166,7 +166,7 @@ the chatbot, this study helps Filipino youth engage more effectively in cultural
 \section{Methodology}
 
 \subsection{Calendar of Activities}
-\hl{Tables} \ref{tab:timetable2025} \hl{and} \ref{tab:timetable2026} \hl{show a Gantt chart of the activities. The first table lists the activites 
+\hl{Tables} \ref{tab:timetable2025} \hl{and} \ref{tab:timetable2026} \hl{show a Gantt chart of the activities. The first table lists the activities 
 for the year 2025 while the second table lists activities for the year 2026. Each bullet represents approximately one week worth of activity.}
 
 \begin{table}[ht]
@@ -235,13 +235,13 @@ a conversational formula, and a specific user goal. To ensure cultural resonance
 Filipino cultural values (\textit{Pakikisama}, \textit{Hiya}, \textit{Utang na Loob}) (Jocano, 1997).}
 
 \subsection{Software Development}
-\indent \hl{The chatbot, named Socius, is implemented using the Python programming language and \hl{integrates} the Gemini LLM via its API. 
+\indent \hl{The chatbot, named Socius, is implemented using the Python programming language and integrates the Gemini LLM via its API. 
 This exploratory use of Gemini aims to examine how its conversational capabilities align with the APAM framework and Gricean principles, without making prior assumptions about 
-its effectiveness. The chatbot will follow a six-stage conversational loop: (1) Session Initialization, (2) Scenario Selection and Instantiation, (3) Conversation Simulation, \
+its effectiveness. The chatbot follows a six-stage conversational loop: (1) Session Initialization, (2) Scenario Selection and Instantiation, (3) Conversation Simulation, \
 (4) Pragmatic Logging, (5) Conversation Analysis, and (6) Metric Generation.}
 
 \hl{Each stage is designed to assess the user’s pragmatic competence, specifically their adherence to Grice’s Maxims within various social scenarios generated and seeded through 
-the system. During the conversation, the chatbot assumes the role of an AI Partner, adopting a context-specific persona to engage the user in \hl{conversation}. After the exchange, it shifts 
+the system. During the conversation, the chatbot assumes the role of an AI Partner, adopting a context-specific persona to engage the user in conversation. After the exchange, it shifts 
 to its AI Mentor role, where it analyzes the transcript, logs maxim violations, and evaluates the user’s responses based on relevance, informativeness, clarity, and recognition of 
 implied meaning. The system then generates feedback and performance metrics, enabling reflection and, optionally, scenario retry to support iterative learning.
 
@@ -282,8 +282,7 @@ professional, and social contexts relevant to Filipino young adults aged 15-24, 
 \subsection{Validation and Testing Period}
 \subsubsection{User Validation}
 \indent User testing will be conducted with volunteer participants, consequently needing valid participants. Before engaging with the study, 
-participants will enter a two-part process. The initial stage is a need-finding study to confirm that there is a need for a tool for practicing pragmatic skills, 
-that there is audience for this chatbot, and is desired by young adults aged 15-24. This involves distributing a survey (Google Form), namely the Pre-Assessment Form.
+participants will enter a two-part process. The initial stage is a need-finding study to confirm the need for a pragmatic skills training tool, and to verify the target audience's interest and willingness to use the chatbot. This involves distributing a survey (Google Form), namely the Pre-Assessment Form.
 
 \subsubsection{Participant Selection}
 \indent The participant selection process will begin with recruiting volunteers from the target demographic of young adults aged 15 to 24. 
@@ -296,14 +295,14 @@ using a chatbot solution, as identified from their Pre-Assessment Form answers. 
 is instead representative of the broad audience for which Socius is designed.
 
 \subsubsection{Pre-Assessment Form}
-\indent \hl{The Pre-Assessment Form will gather demographic information such as age, name, and contact details, as well as the particpant's experience with social 
+\indent \hl{The Pre-Assessment Form will gather demographic information such as age, name, and contact details, as well as the participant's experience with social 
 communication and chatbots. It will then involve the following sections: (1) Introduction and Consent, (2) Participant's General Communication Confidence, 
 (3) Participant's Pragmatic Skill Self-Assessment, (4) Attitudes towards a Chatbot-based Solution. 
 
-This will focus on gathering the participant's self-reported data their communication habits, challenges, and their openness to a technological solution. 
+This will focus on gathering the participant's self-reported data on their communication habits, challenges, and their openness to a technological solution. 
 The Introduction and Consent section will first clarify the study's objective to understand communication experiences and ensure the participant agrees to proceed 
 by detailing all the necessary details, stated in the informed consent form, about the study the participant must understand prior to consenting to the study. 
-Furthermore, minors must fill out a Parent's Consent form to proceed with the Pre-Assessment form. This will also reassure the participant that they may back-out 
+Furthermore, minors must fill out a Parent's Consent form to proceed with the Pre-Assessment form. This will also reassure the participant that they may withdraw 
 at any time within the study, and that their data will be anonymized and used solely for research purposes. The data will be immediately destroyed once the study is completed.
 
 The second section, Participant's General Communication Confidence, will employ a Likert scale to establish a baseline of how comfortable participants feel in various common social contexts, such as speaking in groups or meeting new people. The Participant's Pragmatic Skill Self-Assessment section will then explore 
@@ -340,8 +339,8 @@ and the perceived helpfulness of social situation emulation and pragmatic feedba
 % User data will be anonymized and used solely for research purposes. The data will be immediately destroyed once the study completes. The forms itself would include }
 
 \subsection{Data Analysis}
-\indent Quantitative testing will be done to assess the usability and effectivity of Socius. This may include questions such as user experience, satisfaction, and chatbot authenticity, usefulness, and effectivity.
-Additionally, the user will give their perceived improvement in their pragmatic competence as another factor of the chatbot's effectivity.
+\indent Quantitative testing will be done to assess the usability and effectiveness of Socius. This may include questions such as user experience, satisfaction, and chatbot authenticity, usefulness, and effectiveness.
+Additionally, the user will give their perceived improvement in their pragmatic competence as another factor of the chatbot's effectiveness.
 
 
 \subsubsection{Chatbot Performance Evaluation}
