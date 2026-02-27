@@ -1,0 +1,57 @@
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,                 
+  breakatwhitespace=true,          
+  frame=single,
+  backgroundcolor=\color{gray!10},
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  showstringspaces=false
+}
+
+\chapter{Results and Analysis}\label{chap:chapter6}
+
+\section{Functional Testing}
+  Functional testing is conducted to verify that each component of the Socius system behaves in accordance with its specified requirements and design.
+This ensures that each feature produces the expected output. This testing phase will primarily concern itself with the User Interface (UI), Gemini API, Flask Backend,
+and Supabase Database. The testing will be performed in a component-by-component manner to confirm that the end-to-end conversational pipeline/flow is working as intended.
+
+  The testing strategy employed here will be primarily black-box testing (input and output examination from end-user side) at the component interfaces, supplemented by white-box 
+inspection (reviewing the internal code and logic) of prompt engineering logic and JSON schema 
+enforcement. Test cases are defined in terms of inputs, expected outputs, and pass/fail criteria for the testing to be objective. 
+
+\subsection{Testing Scope and Approach}
+The scope of functional testing for Socius encompasses the following seven testing areas, each corresponding to a major architectural component:
+
+\begin{itemize}
+  \item \textbf{User Interface (UI) Testing:} verification of user-facing features including chat window rendering, scenario selection, and profile display.
+  \item \textbf{Session and Authentication Testing:} verification of user profile initialization, session isolation, and login/registration flows.
+  \item \textbf{Input Processing Testing:} verification of the intent recognition algorithm, entity extraction, out-of-scope detection, and typographic correction.
+  \item \textbf{Conversation Flow Manager Testing: } verification of dialogue state tracking, scenario instantiation, persona adoption, and turn-taking logic.
+  \item \textbf{Pragmatic Analyzer Testing:} verification of maxim violation detection, implicature scoring, JSON Schema Controlled Generation, and quantitative metric output.
+  \item \textbf{Feedback Generation Testing:} verification of post-session feedback quality, AI Mentor persona consistency, and Holistic Mentor longitudinal aggregation.
+  \item \textbf{Database Manager Testing:} verification of correct data storage and retrieval for User Profiles, Conversation Logs, and Scenarios.
+\end{itemize}
+
+These test cases are stored on a google sheet in the following format: Test Case ID, Test Category, Test Description, Test Input, Expected Output, Pass/Fail Result. The testing
+is conducted by the research proponents on the deployed development instance of the system. For test cases containing LLM output and subjective evaluation, a minimum of 2 proponents are 
+required for inter-rater reliability. Moreover, the prompt-engineering utilized to develop the system will only guide Gemini-3 Flash for responses and the system's outputs are inherently non-deterministic.
+Therefore, the functional tests for LLM-dependent components evaluate structure and format rather than exact content unless the test may probe safety configuration.
+
+\subsection{User Interface Functional Testing}
+
+The User Interface (UI) of Socius is implemented as a web-based front-end built with HTML, CSS, and Flask-rendered templates. Its primary functions are to display the chat window, allow scenario selection, present the user profile and progress metrics, and provide the conversational input field. 
+Thus, the UI must correctly handle state transitions between the different webpages (i.e., Chats List view to New Chat Scenario to Active Conversation to Feedback Screen)
+
+\subsection{Session and Authentication Functional Testing}
+
+\subsection{Input Processing Functional Testing}
+
+\subsection{Conversation Flow Manager Functional Testing}
+
+\subsection{Pragmatic Analyzer Functional Testing}
+
+\subsection{Feedback Generation Functional Testing}
+
+\subsection{Database Manager Functional Testing}
