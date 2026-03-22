@@ -11,17 +11,17 @@
 
 \section{Background of the Study}
 
-\indent \hl{Pragmatics is a subfield of linguistics that examines the contribution of context to the meaning of a message.
+\indent Pragmatics is a subfield of linguistics that examines the contribution of context to the meaning of a message.
 Unlike grammar or semantics, which focus on structural correctness and literal interpretation,
 pragmatics deals with the intention, implication, and appropriateness of a statement during social interactions. It involves
 going beyond the surface level, looking for the implied meaning rather than the literal meaning. It is essentially how speakers navigate relevance,
-politeness, and indirectness depending on social context }\cite{marasabessy_pragmatic_2023}\hl{. Individuals experiencing difficulties with pragmatics 
-are more susceptible to instances of miscommunication or social isolation.}
+politeness, and indirectness depending on social context \cite{marasabessy_pragmatic_2023}. Individuals experiencing difficulties with pragmatics 
+are more susceptible to instances of miscommunication or social isolation.
 
-\hl{Many individuals struggle with real-world social interactions, yet there is a lack of} accessible, judgment-free spaces to practice and refine 
-\hl{their communication skills}. Despite recent advances in Artificial Intelligence (AI) and Large Language Models (LLMs), their potential for 
+Many individuals struggle with real-world social interactions, yet there is a lack of accessible, judgment-free spaces to practice and refine 
+their communication skills. Despite recent advances in Artificial Intelligence (AI) and Large Language Models (LLMs), their potential for 
 supporting social communication training remains underexplored. Most existing chatbots are not designed to promote adaptive and context-sensitive 
-conversation practice, \hl{which leaves} a critical gap in available tools. A chatbot focused on enhancing pragmatic competence designed for the general
+conversation practice, which leaves a critical gap in available tools. A chatbot focused on enhancing pragmatic competence designed for the general
 population could provide a low-risk environment to build confidence and conversational fluency in individuals.
 
 The need for pragmatics training is not limited to neurodivergent individuals. Pragmatics plays a vital role in grounding meaning through 
@@ -45,18 +45,18 @@ AI Mentor offering reflective feedback based on violations or observance of conv
 
 Grice's Cooperative Principle is a key theoretical framework for pragmatic analysis. It includes four maxims: Quantity, Quality, Relation, and Manner. 
 These maxims guide how speakers are expected to contribute to conversations, which is by being informative, truthful, relevant, and clear \cite{hossain_application_2021}. 
-When these maxims are followed, communication tends to proceed smoothly. \hl{Should violations occur}, intentional or not, these may lead to confusion, implicature, or breakdowns. 
+When these maxims are followed, communication tends to proceed smoothly. Should violations occur, intentional or not, these may lead to confusion, implicature, or breakdowns. 
 
-\hl{Large Language Models (LLMs) like GPT-4 and Gemini 3 have been evaluated on Gricean tasks and, in some cases, they outperform humans in identifying implicature or 
-recovering unstated meaning} \mbox{\cite{bojic_gpt-4_2023}}\hl{. However, achieving true pragmatic competence in an educational tool requires more than recognizing 
+Large Language Models (LLMs) like GPT-4 and Gemini 3 have been evaluated on Gricean tasks and, in some cases, they outperform humans in identifying implicature or 
+recovering unstated meaning \mbox{\cite{bojic_gpt-4_2023}}. However, achieving true pragmatic competence in an educational tool requires more than recognizing 
 logical maxims. It also demands an understanding of developmental psychology and cultural context. For young adults navigating the transition to adulthood, 
 conversational challenges are deeply tied to identity exploration and changing social expectations \cite{arnett_emerging_2000,havighurst_developmental_1948}. 
 Furthermore, in the Philippine context, communication is heavily shaped by cultural values such as 
-\textit{Pakikisama} (smooth interpersonal relations), \textit{Hiya} (sense of shame or face), \textit{Utang na Loob} (debt of gratitude), and \textit{Paggalang} (respect) \cite{jocano_filipino_1997}.}
+\textit{Pakikisama} (smooth interpersonal relations), \textit{Hiya} (sense of shame or face), \textit{Utang na Loob} (debt of gratitude), and \textit{Paggalang} (respect) \cite{jocano_filipino_1997}.
 
 In practical chatbot interactions, these maxims are regularly tested. For example, an LLM might provide overly verbose
 answers (violating Quantity), respond off-topic (Relation), or misinterpret ambiguous intent (Manner). These outcomes
-are not necessarily “bad” but \hl{are} rather reflective of the model’s training data, lack of world knowledge, or inability
+are not necessarily “bad” but are rather reflective of the model’s training data, lack of world knowledge, or inability
 to interpret non-verbal cues. A study comparing various LLM generations noted a steady improvement in pragmatic handling,
 suggesting that training scale and model design significantly affect performance \cite{bojic_gpt-4_2023}. Yet, challenges still remain,
 such as repeated pragmatic failures leading users to simplify their speech over time, which may erode nuanced communication habits
@@ -74,7 +74,7 @@ by developing a chatbot that supports pragmatic learning through context-sensiti
 feedback.
 
 While current chatbot applications focus more on therapeutic services, such as Woebot \cite{Woebot:2025}, there is a lack of tools designed for non-therapeutic 
-needs, such as for enhancing social communication skills. Moreover, many young adults (\hl{ages} 15–24) struggle with real-world social interactions but lack accessible, 
+needs, such as for enhancing social communication skills. Moreover, many young adults (ages 15–24) struggle with real-world social interactions but lack accessible, 
 judgment-free spaces to practice. Existing chatbots are not designed for adaptive social communication training, often failing to accommodate diverse 
 communication styles or provide meaningful, real-time feedback.
 
@@ -85,27 +85,27 @@ Unlike task-based chatbots, it will simulate natural conversations, provide real
 The objectives of the study are as follows:
 
 \begin{enumerate}
-    \item \hl{To design and implement a dual-agent architecture (AI Partner and AI Mentor) utilizing the Google Gemini API to facilitate a natural roleplay experience and deep pragmatic analysis.}
-    \item \hl{To formulate a theoretical framework for scenario generation that synthesizes Grice's Cooperative Principle, Developmental Psychology (Havighurst and Arnett), and Filipino Cultural Values.}
-    \item \hl{To develop a multi-level, quantitative scoring rubric for pragmatic competence—enforced via JSON Schema Controlled Generation—that provides detailed, actionable metrics across Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness.}
-    \item To evaluate the chatbot's effectiveness in enhancing users' pragmatic competence and social communication skills through user feedback \hl{and human user testing}.
+    \item To design and implement a dual-agent architecture (AI Partner and AI Mentor) utilizing the Google Gemini API to facilitate a natural roleplay experience and deep pragmatic analysis.
+    \item To formulate a theoretical framework for scenario generation that synthesizes Grice's Cooperative Principle, Developmental Psychology (Havighurst and Arnett), and Filipino Cultural Values.
+    \item To develop a multi-level, quantitative scoring rubric for pragmatic competence—enforced via JSON Schema Controlled Generation—that provides detailed, actionable metrics across Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness.
+    \item To evaluate the chatbot's effectiveness in enhancing users' pragmatic competence and social communication skills through user feedback and human user testing.
 \end{enumerate}
 
 \section{Scope and Limitations}
-\indent \hl{The chatbot was developed using the AI Partner - AI Mentor (APAM) framework, emphasizing situation emulation and the provision of personalized feedback. The primary scope of this feedback encompasses a multi-level scoring framework assessing three core domains: Intention Coherence (logical flow and speech acts), Social \& Affective Nuance (formality, empathy, and informativeness), and Communicative Effectiveness (goal achievement and implicature handling). While grounded in Grice's Maxims (Quantity, Quality, Relation, and Manner), the system expands upon them to include developmental psychology and cultural pragmatics.} Moreover, these maxims and implicatures are not reliant on paralinguistic cues, making them suitable for implementation in a text-based AI system \cite{dale_role_1996}. 
+\indent The chatbot was developed using the AI Partner - AI Mentor (APAM) framework, emphasizing situation emulation and the provision of personalized feedback. The primary scope of this feedback encompasses a multi-level scoring framework assessing three core domains: Intention Coherence (logical flow and speech acts), Social \& Affective Nuance (formality, empathy, and informativeness), and Communicative Effectiveness (goal achievement and implicature handling). While grounded in Grice's Maxims (Quantity, Quality, Relation, and Manner), the system expands upon them to include developmental psychology and cultural pragmatics. Moreover, these maxims and implicatures are not reliant on paralinguistic cues, making them suitable for implementation in a text-based AI system \cite{dale_role_1996}. 
 
-\hl{In line with goal-oriented language generation, the chatbot relies on the reasoning ability of the Gemini 3 model family rather than a rigidly fine-tuned local model. 
+In line with goal-oriented language generation, the chatbot relies on the reasoning ability of the Gemini 3 model family rather than a rigidly fine-tuned local model. 
 Feedback is strictly enforced through a JSON Output Schema via the Gemini API, ensuring machine-parsable, quantitative metrics for longitudinal tracking without sacrificing 
 natural language understanding. A potential limitation is that the system relies on the LLM's probabilistic evaluation of pragmatic violations rather than nuanced, 
 context-specific human judgment. Furthermore, while the system effectively captures Gricean maxims and basic Filipino cultural values 
-(e.g., \textit{Pakikisama}, \textit{Hiya}, \textit{Paggalang}), it may not comprehensively cover all facets of non-verbal or highly localized sociolinguistic phenomena.}
+(e.g., \textit{Pakikisama}, \textit{Hiya}, \textit{Paggalang}), it may not comprehensively cover all facets of non-verbal or highly localized sociolinguistic phenomena.
 
-\hl{The study defined four core conversational themes reflecting academic, professional, and casual social contexts relevant to young adults: Identity vs. Expectation, 
+The study defined four core conversational themes reflecting academic, professional, and casual social contexts relevant to young adults: Identity vs. Expectation, 
 Autonomy vs. Dependence, Ambiguity vs. Definition, and Group vs. Self. To ensure relevance to the local context, explicit ``negative constraints" and conversational 
 marker rules were injected into the LLM's system instructions. This forced the AI to utilize appropriate Taglish (a mix of Tagalog and English) and culturally 
-specific emotional code-switching without breaking character or providing unnatural English translations.} 
+specific emotional code-switching without breaking character or providing unnatural English translations.
 
-Careful review and adaptation \hl{were} carried out to preserve the original pragmatic intent while making the content accessible and 
+Careful review and adaptation were carried out to preserve the original pragmatic intent while making the content accessible and 
 relatable to Filipino users. The focus of the chatbot is on verbal communication, thereby the conversations presented in a text-based format would reflect real-world 
 conversations. The target participants will also strictly involve young adults aged 15 - 24. These participants need not be considered neurodivergent. 
 This decision is based on the principle that pragmatic competence is a universal and developmental skill set, not exclusively a challenge for individuals with diagnosed 
@@ -114,8 +114,8 @@ conditions. The study’s goal is to create a broadly applicable educational too
 The evaluation of the chatbot will be conducted through user interaction data and self-reported feedback. The assessment will focus on the user's perception of the chatbot's 
 ability to simulate contextually appropriate conversation whilst providing pragmatically-aligned feedback after the conversation. 
 Thus, this is based on the user's self-reported experience on the conversation authenticity. It is important to note that limitations may arise due to 
-cultural differences between the \hl{base LLM's training data} and the target population. Some participants may not be able to fully relate to 
-or understand certain \hl{thematic conflicts}, especially if the scenario is not appropriate for their age group. These potential mismatches 
+cultural differences between the base LLM's training data and the target population. Some participants may not be able to fully relate to 
+or understand certain thematic conflicts, especially if the scenario is not appropriate for their age group. These potential mismatches 
 may affect user engagement or interpretation and will be considered in the analysis of user feedback to inform future improvements.
 
 % The study will limit its target demographic to those who are between 15 to 24 years old, aligning with the World Health Organization's (WHO, n.d.) definition of youth. This age range was chosen as young adults often face crucial transitions in academic, social, and professional settings where effective communication plays a key role. The chatbot will also be limited to text-based input and will not incorporate voice or video-based input. It will exclusively use the English language due to the availability of numerous datasets suitable for training. The study also aims to identify the different strategies used by experts in teaching communication skills to young adults, especially those who are deemed socially awkward. Furthermore, the chatbot itself will provide the situations and contexts that the user will experience, rather than having the context supplied by the user. In doing so, the study defines assistance strategies related to helping young adults with social awkwardness and pragmatics training that can be implemented in a chatbot. Moreover, the research will focus on the user's actual responses, particularly their word choices, rather than how they audibly deliver those responses. The study will also concentrate on the subtopic of social communication—specifically, pragmatics—which will be measured and assessed using Grice's Maxims and the concept of implicature.
@@ -125,17 +125,17 @@ may affect user engagement or interpretation and will be considered in the analy
 \indent This study offers a theory-informed chatbot that incorporates pragmatic and conversational linguistics, particularly Grice's Maxims and the APAM framework, 
 into an interactive training tool for students to develop their social communication skills. 
 The key output is a dual-role system: an AI Partner that engages in one-on-one conversations grounded in real-world scenarios, and an AI Mentor that evaluates the user's 
-pragmatic performance and offers reflective feedback based on observed violations or adherence to conversational norms. As such, this study \hl{also contributes} to the 
+pragmatic performance and offers reflective feedback based on observed violations or adherence to conversational norms. As such, this study also contributes to the 
 understanding and exploration of an AI-driven approach to teaching, in general, a sociolinguistic skill for young adults. 
 
-\hl{Furthermore, a significant contribution of this research lies in its architectural findings regarding LLM deployment for pedagogical tasks. 
+Furthermore, a significant contribution of this research lies in its architectural findings regarding LLM deployment for pedagogical tasks. 
 The study demonstrates that for complex, theory-driven communication coaching, the advanced reasoning and in-context learning capabilities of a prompt-engineered 
 generalist model (Gemini 3 Flash) significantly outperforms smaller models fine-tuned on narrow, specialized datasets. Additionally, the introduction of a 
 ``Holistic Mentor" feature, which aggregates longitudinal data across multiple sessions via a Supabase backend, provides a novel approach to tracking and coaching 
-user progression over time, rather than limiting support to isolated per-session feedback.}   
+user progression over time, rather than limiting support to isolated per-session feedback.
 
 Another significance of this research is its potential to benefit individuals within the specified age range. Being able to engage in conversation is a vital skill as it 
-affects \hl{an individual's} personal relationships, casual and professional interactions, and self-confidence. Moreover, the results from this study will be pertinent to educators, 
+affects an individual's personal relationships, casual and professional interactions, and self-confidence. Moreover, the results from this study will be pertinent to educators, 
 counselors, and researchers in the field of linguistics as it provides insights into how AI can be used in an educational manner as a way of providing another avenue of 
 learning for young adults. The chatbot would be able to provide a safe environment for young adults to practice their conversational ability without the need of a human 
 partner, thereby being interactive, judgement-free, and low-risk. This may also be beneficial for those who struggle with face-to-face interactions, such as those with social anxiety or the 
@@ -144,8 +144,8 @@ approach to teaching pragmatic competence. Specifically, the conversation flows 
 improving real-world communication skills in educational and therapeutic contexts.
 
 By equipping young individuals with the ability to communicate more effectively, this research holds broader implications for society at large. As pragmatic competence is 
-crucial not only for personal growth but also for constructive social participation, enhancing this skill among \hl{the} youth can lead to more socially-aware communities. 
-In the Philippine context, where communication is often shaped by high-context norms, indirectness, and respect for social hierarchies, \hl{being rooted in} cultural values such as 
+crucial not only for personal growth but also for constructive social participation, enhancing this skill among the youth can lead to more socially-aware communities. 
+In the Philippine context, where communication is often shaped by high-context norms, indirectness, and respect for social hierarchies, being rooted in cultural values such as 
 Pakikisama, Hiya, and Utang na Loob, the ability to navigate pragmatic cues is especially vital \cite{jocano_filipino_1997}. By modeling these dynamics through 
 the chatbot, this study helps Filipino youth engage more effectively in culturally appropriate interactions across educational and social domains.
 
@@ -153,8 +153,8 @@ the chatbot, this study helps Filipino youth engage more effectively in cultural
 \section{Methodology}
 
 \subsection{Calendar of Activities}
-\hl{Tables} \ref{tab:timetable2025} \hl{and} \ref{tab:timetable2026} \hl{show a Gantt chart of the activities. The first table lists the activities 
-for the year 2025 while the second table lists activities for the year 2026. Each bullet represents approximately one week worth of activity.}
+Tables \ref{tab:timetable2025} and \ref{tab:timetable2026} show a Gantt chart of the activities. The first table lists the activities 
+for the year 2025 while the second table lists activities for the year 2026. Each bullet represents approximately one week worth of activity.
 
 \begin{table}[ht]
     \centering
@@ -208,128 +208,151 @@ for the year 2025 while the second table lists activities for the year 2026. Eac
 (5) User Validation and Testing Period, (6) Data Analysis, and (7) Documentation and Report Writing.
 The details of these activities are as follows:
 
-\subsection {\hl{Theoretical Framework Formulation and Scenario Generation}}
-\indent \hl{Rather than relying exclusively on an existing static dataset, the chatbot's pragmatics training capability was built upon a multi-pillar theoretical framework. 
+\subsection {Theoretical Framework Formulation and Scenario Generation}
+\indent Rather than relying exclusively on an existing static dataset, the chatbot's pragmatics training capability was built upon a multi-pillar theoretical framework. 
 Scenarios were dynamically structured around four recurring developmental themes synthesized from Arnett's Theory of Emerging Adulthood and Havighurst's Developmental Tasks: 
 (1) Identity vs. Expectation, (2) Autonomy vs. Dependence, (3) Ambiguity vs. Definition, and (4) Group vs. Self. Each scenario was explicitly coded with a defined conflict, 
 a conversational formula, and a specific user goal. To ensure cultural resonance, the scenarios and AI instructions were injected with constraints mapping to 
-Filipino cultural values (\textit{Pakikisama}, \textit{Hiya}, \textit{Utang na Loob}) \cite{jocano_filipino_1997}.}
+Filipino cultural values (\textit{Pakikisama}, \textit{Hiya}, \textit{Utang na Loob}) \cite{jocano_filipino_1997}.
 
 \subsection{Software Development}
-\indent \hl{The chatbot, named Socius, is implemented using the Python programming language and integrates the Gemini LLM via its API. 
+\indent The chatbot, named Socius, is implemented using the Python programming language and integrates the Gemini LLM via its API. 
 This exploratory use of Gemini aims to examine how its conversational capabilities align with the APAM framework and Gricean principles, without making prior assumptions about 
 its effectiveness. The chatbot follows a six-stage conversational loop: (1) Session Initialization, (2) Scenario Selection and Instantiation, (3) Conversation Simulation, \
-(4) Pragmatic Logging, (5) Conversation Analysis, and (6) Metric Generation.}
+(4) Pragmatic Logging, (5) Conversation Analysis, and (6) Metric Generation.
 
-\hl{Each stage is designed to assess the user’s pragmatic competence, specifically their adherence to Grice’s Maxims within various social scenarios generated and seeded through 
+Each stage is designed to assess the user’s pragmatic competence, specifically their adherence to Grice’s Maxims within various social scenarios generated and seeded through 
 the system. During the conversation, the chatbot assumes the role of an AI Partner, adopting a context-specific persona to engage the user in conversation. After the exchange, it shifts 
 to its AI Mentor role, where it analyzes the transcript, logs maxim violations, and evaluates the user’s responses based on relevance, informativeness, clarity, and recognition of 
 implied meaning. The system then generates feedback and performance metrics, enabling reflection and, optionally, scenario retry to support iterative learning.
 
-The stages of software development are as follows:}
+The stages of software development are as follows:
 
 \subsubsection{Backend Development}
-\indent \hl{Backend development focused on the core conversational engine built using Python and Flask, integrating the \texttt{google-genai} SDK to handle response generation. 
+\indent Backend development focused on the core conversational engine built using Python and Flask, integrating the \texttt{google-genai} SDK to handle response generation. 
 The backend managed session isolation, scenario selection, and database operations using Supabase. Crucially, the development included the implementation of the 
 Pragmatic Analyzer via JSON Schema Controlled Generation, ensuring feedback was structured into actionable numerical scores and text summaries rather than relying on 
-generic text generation.}
+generic text generation.
 
 \subsubsection{Frontend Development}
-\indent \hl{Frontend development focused on} creating the user interface (UI). The UI \hl{was} designed as a 
+\indent Frontend development focused on creating the user interface (UI). The UI was designed as a 
 text-messaging application to provide a familiar and intuitive user experience for text-based interaction and feedback delivery. Key features include a 
-chat window for real-time conversation with the chatbot and a component for selecting from predefined social scenarios. The interface \hl{presents} 
-alternating message colors and timestamps to clearly distinguish between user and chatbot messages. The development \hl{also includes} 
-a user profile section where users can track their progress \hl{through the Holistic Mentor dashboard} across multiple sessions. 
-The design \hl{prioritizes} usability and accessibility through simple graphical elements.
+chat window for real-time conversation with the chatbot and a component for selecting from predefined social scenarios. The interface presents 
+alternating message colors and timestamps to clearly distinguish between user and chatbot messages. The development also includes 
+a user profile section where users can track their progress through the Holistic Mentor dashboard across multiple sessions. 
+The design prioritizes usability and accessibility through simple graphical elements.
 
 \subsection{Expert Validation and Architectural Pivot}
-\indent The conversational scenarios generated for the chatbot \hl{underwent} expert validation. 
-These scenarios \hl{were generated using Gemini 3.0 Pro} and were designed by the researchers to reflect the theoretical 
+\indent The conversational scenarios generated for the chatbot underwent expert validation. 
+These scenarios were generated using Gemini 3.0 Pro and were designed by the researchers to reflect the theoretical 
 framework of Grice's Maxims and Implicatures. Thus, it is important to ensure that these scenarios are relevant, culturally appropriate, and aligned with the intended learning 
-outcomes. To accomplish this, an expert in \hl{the philosophy of language}was consulted to review the scenarios that have been constructed based on the 
+outcomes. To accomplish this, an expert in the philosophy of language was consulted to review the scenarios that have been constructed based on the 
 GRICE dataset \cite{zheng_grice_2021}. This validation process will ensure that the scenarios are not only grounded in pragmatic theory but are also appropriate and relevant 
-for the target demographic of young adults aged 15-24. The expert \hl{assessed} whether the scenarios effectively \hl{emulated} 
+for the target demographic of young adults aged 15-24. The expert assessed whether the scenarios effectively emulated 
 real-world academic, professional, and social contexts and whether the localized examples for the Filipino context maintain their intended pragmatic meaning. 
-Only scenarios approved by the expert \hl{were} added to the scenario database for use in the chatbot interactions.
+Only scenarios approved by the expert were added to the scenario database for use in the chatbot interactions.
 
-\hl{Initial architectural experiments involved an attempt to fine-tune a smaller open-source model (Mistral-7B) on the GRICE dataset \mbox{\cite{zheng_grice_2021}} 
+Initial architectural experiments involved an attempt to fine-tune a smaller open-source model (Mistral-7B) on the GRICE dataset \mbox{\cite{zheng_grice_2021}} 
 to serve as the AI Mentor. However, functional testing revealed that this approach yielded brittle, overly literal feedback that failed to capture cultural nuances or 
 provide supportive pedagogical advice. Consequently, the system was successfully pivoted to a prompt-engineered architecture utilizing the superior reasoning capabilities 
 of Gemini 3. The newly generated conversational scenarios and the multi-level scoring rubric underwent expert review to ensure they accurately reflected real-world academic, 
-professional, and social contexts relevant to Filipino young adults aged 15-24, maintaining their intended pragmatic relevance without relying on the original rigid dataset.}
+professional, and social contexts relevant to Filipino young adults aged 15-24, maintaining their intended pragmatic relevance without relying on the original rigid dataset.
 
 \subsection{Validation and Testing Period}
 \subsubsection{User Validation}
-\indent User testing will be conducted with volunteer participants, consequently needing valid participants. Before engaging with the study, 
-participants will enter a two-part process. The initial stage is a need-finding study to confirm the need for a pragmatic skills training tool, and to verify the target audience's interest and willingness to use the chatbot. This involves distributing a survey (Google Form), namely the Pre-Assessment Form.
+\indent User testing was conducted with 25 valid volunteer participants. Before engaging with the study, participants entered a two-part process. 
+The initial stage was a need-finding study to confirm the need for a pragmatic skills training tool, and verify the target audience's interest and willingness to use the 
+chatbot. This involved the distribution of a Pre-Assessment Form created using Google Forms.
 
 \subsubsection{Participant Selection}
-\indent The participant selection process will begin with recruiting volunteers from the target demographic of young adults aged 15 to 24. 
-A convenience sampling method will be employed, utilizing online announcements and social media channels to distribute the Pre-Assessment Form to a broad audience.
-The primary inclusion criteria for the study will be participants falling within the specified age range and providing informed consent via the form. 
+\indent The participant selection process began with recruiting volunteers from the target demographic of young adults aged 18 to 24. 
+A convenience sampling method was employed, utilizing online announcements and social media channels to distribute the Pre-Assessment Form to a broad audience.
+The primary inclusion criteria for the study were participants falling within the specified age range and who submitted their informed consent forms. 
 
-From the pool of eligible respondents, a purposive sampling strategy will then be used to select a target sample of approximately 20 participants for the chatbot interaction 
-phase. This purposive approach will aim to create a diverse cohort, representing a spectrum of self-reported communication confidence levels and varying degrees of interest in 
-using a chatbot solution, as identified from their Pre-Assessment Form answers. This method ensures that the final participant group is not skewed toward a single profile but 
-is instead representative of the broad audience for which Socius is designed.
+From the pool of eligible respondents, a purposive sampling strategy was then used to select a target sample of 25 participants for the chatbot interaction 
+phase. This purposive approach aimed to create a diverse cohort, representing a spectrum of self-reported communication confidence levels and varying degrees of interest in 
+using a chatbot solution, as identified from their Pre-Assessment Form answers. This method ensured that the final participant group was not skewed toward a single profile but 
+instead represented the broad audience for which Socius is designed.
 
 \subsubsection{Pre-Assessment Form}
-\indent \hl{The Pre-Assessment Form will gather demographic information such as age, name, and contact details, as well as the participant's experience with social 
-communication and chatbots. It will then involve the following sections: (1) Introduction and Consent, (2) Participant's General Communication Confidence, 
-(3) Participant's Pragmatic Skill Self-Assessment, (4) Attitudes towards a Chatbot-based Solution. 
+\indent The Pre-Assessment Form gathered demographic information such as age, name, and contact details, as well as the participant's experience with social 
+communication and chatbots. It includes the following sections: (1) Introduction and Consent, (2) Participant's General Communication Confidence, 
+(3) Participant's Pragmatic Skill Self-Assessment, (4) Attitudes towards a Chatbot-based Solution. This focused on gathering the participant's self-reported data on their communication habits, challenges, 
+and their openness to a technological solution. 
 
-This will focus on gathering the participant's self-reported data on their communication habits, challenges, and their openness to a technological solution. 
-The Introduction and Consent section will first clarify the study's objective to understand communication experiences and ensure the participant agrees to proceed 
-by detailing all the necessary details, stated in the informed consent form, about the study the participant must understand prior to consenting to the study. 
-Furthermore, minors must fill out a Parent's Consent form to proceed with the Pre-Assessment form. This will also reassure the participant that they may withdraw 
-at any time within the study, and that their data will be anonymized and used solely for research purposes. The data will be immediately destroyed once the study is completed.
+\hl{The first section, Introduction and Consent, first clarified the study's objective to understand communication experiences and ensure the participant agreed to proceed 
+by detailing all the necessary information about the study stated in the informed consent form that the participant must understand prior to consenting to the study. 
+The form also reassured the participant that they were allowed to withdraw at any time within the study, and that their data would be anonymized and used solely for 
+research purposes. The data would be immediately destroyed once the study is completed.
 
-The second section, Participant's General Communication Confidence, will employ a Likert scale to establish a baseline of how comfortable participants feel in various common social contexts, such as speaking in groups or meeting new people. The Participant's Pragmatic Skill Self-Assessment section will then explore 
-specific conversational behaviors related to pragmatic competence. This includes self-perceived ability in areas such as providing an appropriate amount of information, staying on topic, and interpreting non-literal meanings like sarcasm or indirect hints.
+The second section, Participant's General Communication Confidence, employed a 5-point Likert scale to establish a baseline of how comfortable participants feel in various common social contexts, 
+such as speaking in groups or meeting new people. 
 
-Finally, the section on Attitudes towards a Chatbot-based Solution will directly assess the need for and interest in the Socius chatbot. This part will gauge how likely the participant would be to use such a tool, what their primary concerns might be (e.g., privacy, effectiveness), and what features they would find most valuable.
-}
+The third section, Participant's Pragmatic Skill Self-Assessment, explored specific conversational behaviors related to pragmatic competence. This included self-perceived ability in areas such as providing an 
+appropriate amount of information, staying on topic, and interpreting non-literal meanings like sarcasm or indirect hints.
 
-\paragraph{Orientation Session}
-\indent \hl{Once the final cohort of approximately 20 participants is selected, each individual will undergo a brief orientation. This orientation may be delivered via a standardized instruction sheet and email. 
-The purpose is to ensure all participants begin the study with a clear and consistent understanding of their tasks. The orientation materials will:}
+The last section, Attitudes towards a Chatbot-based Solution, directly assessed the need and interest in the Socius chatbot. This part gauged how likely the participant would use such a tool, what their primary 
+concerns might be (e.g., privacy, effectiveness), and what features they would find most valuable.}
+
+\subsubsection{Orientation Session}
+\indent \hl{Once the final cohort of 25 participants was selected, each individual was invited to a Discord server, where a welcoming message was sent. This message included a thank you note for their participation,
+a reiteration of the study's duration, as well as a short FAQ section to address possible questions regarding the chatbot interaction process. Once the participants notified the Socius team of their availability, 
+they would undergo the orientation session, which was conducted through a voice channel in Discord. The purpose was to ensure all participants began their interaction with a clear and consistent understanding of 
+what they were expected to do. The content of the orientation included:}
 \begin{itemize}
-\item \hl{Briefly reiterate the purpose of the study.}
-\item \hl{Provide clear instructions on how to access and log in to the Socius chatbot.}
-\item \hl{Outline the expected level of participation (e.g., "Please engage with at least three conversational scenarios over the course of one week").}
-\item \hl{Inform them that their (anonymized) conversation data will be logged for analysis and that they will be asked to complete a final survey after the interaction period.}
-\item \hl{Provide contact information for the researchers in case they encounter technical difficulties or have questions.}
+\item Brief reiteration of the purpose of the study.
+\item Provided clear instructions on how to access and log in to the Socius chatbot.
+\item Outlined the expected level of participation (e.g., \hl{"Please engage with one conversational scenario over five days."}).
+\item Informed them that their (anonymized) conversation data would be logged for analysis and that they would be asked to complete a final survey after the interaction period.
+\item \hl{Stated that they must contact at least one researcher before the interaction period to accompany them in the voice channel in case they encounter technical difficulties or have questions.}
 \end{itemize}
 
 \paragraph{Chatbot Interaction Period}
-\indent\hl{Following the orientation, the main experimental phase will begin, lasting for a predefined period of three weeks. During this time, participants are free to 
-interact with the Socius chatbot at their own convenience. Their primary task is to engage in conversations within the scenarios provided by the chatbot,
+\indent Following the orientation, the main experimental phase will begin, lasting for a predefined period of five (5) days. During this time, participants were free to 
+interact with the Socius chatbot at their own convenience. Their primary task was to engage in conversations within the scenarios provided by the chatbot,
 practicing their pragmatic communication skills in a simulated environment. All interactions, including the participant's inputs and the chatbot's responses, 
-will be automatically and anonymously logged in the backend database for subsequent analysis.}
+were automatically and anonymously logged in the backend database for subsequent analysis.
 
 \subsubsection{Post-Interaction Survey}
-\indent \hl{To gather data on participants' experiences and perceptions of the chatbot, a post interaction survey will be administered at the end of each week. 
-This recurring survey serves as the primary instrument for collecting timely feedback on usability, learning, and engagement. The form is designed to be concise 
-and will capture quantitative data through Likert-scale questions assessing the chatbot's performance and roleplay, scenarion realism and relatability, 
-and the perceived helpfulness of social situation emulation and pragmatic feedback}
+\indent To gather data on participants' experiences and perceptions of the chatbot, they were told to answer a post interaction survey at the end of each day. 
+This recurring survey served as the primary instrument for collecting timely feedback on usability, learning, and engagement. The form was designed to be concise 
+and to capture quantitative data through 5-point Likert scale questions assessing the chatbot's \hl{Performance (scenario immersion, roleplay, advice/feedback quality), 
+Humanity (ability to communicate in a human-like manner), and Affect (enjoyment, perceived helpfulness of social situation emulation and pragmatic feedback, and interest in using the chatbot again).}
 
 % fill out an informed consent form. Minors must fill out a parents consent form and participant assent form. 
 % This form will detail the purpose of the study, procedures involved, potential risks and benefits, and the reassurance that the participant has the right to withdraw at any time. 
 % User data will be anonymized and used solely for research purposes. The data will be immediately destroyed once the study completes. The forms itself would include }
 
-\subsection{Data Analysis}
-\indent Quantitative testing will be done to assess the usability and effectiveness of Socius. This may include questions such as user experience, satisfaction, and chatbot authenticity, usefulness, and effectiveness.
-Additionally, the user will give their perceived improvement in their pragmatic competence as another factor of the chatbot's effectiveness.
+\subsubsection{\hl{Consolidated Feedback Form}}
+\indent \hl{After the five-day interaction period, participants were asked to complete a final survey that consolidated their overall experience with the chatbot. 
+This included questions asking about the following:}
+\begin{itemize}
+\item \hl{Overall Experience}
+\item \hl{Perceived Learning and Change}
+\item \hl{Emotional Safety}
+\item \hl{Response Quality}
+\item \hl{Usability and Technical Reliability}
+\item \hl{Likelihood to Recommend the Chatbot to Others}
+\item Additional Comments or Suggestions for Improvement
+\end{itemize}
 
+\hl{This final survey provided a comprehensive overview of the participant's experience and allowed for the collection of additional qualitative data for analysis of the chatbot's effectiveness 
+and areas for future enhancement.}
 
-\subsubsection{Chatbot Performance Evaluation}
-\indent \hl{The chatbot's performance will be evaluated through expert analysis of its conversational abilities. The same expert who validated the scenarios will 
-analyze chat logs from interactions to assess whether the chatbot's responses are pragmatically aligned with Grice's Maxims. This evaluation will focus on the 
-chatbot's ability to maintain a consistent persona, generate contextually appropriate replies, and accurately handle implicatures, thus also utilizing the 
-implicature accuracies to metricize itself, as both an AI Partner and an AI Mentor. The feedback from this evaluation will be used to refine the chatbot's 
-conversational logic and ensure its effectiveness as a training tool before it is deployed for user testing.
-In addition to these metrics, the weekly survey will include several open-ended questions to gather qualitative insights. Participants will be asked to describe 
-the most and least helpful aspects of their experience, and to reflect on whether they have attempted to apply any learned strategies in their real-life conversations.}
+\subsection{\hl{Data Analysis}}
+\indent \hl{Both quantitative and qualitative testing were done to assess the usability and effectiveness of Socius. This involved the analysis of both the participants' chat logs as well as their responses to the
+post-interaction surveys and consolidated feedback form.
+
+The quantitative analysis was done through the use of a Wilcoxon-signed rank test which was performed on each of the three metrics that users were measured on by the chatbot in order to determine if there was a 
+significant change in the users' pragmatic competence after using the chatbot. The three metrics were as follows:} 
+\begin{itemize}
+\item \hl{Intention Coherence - ability to communicate intent clearly and consistently}
+\item \hl{Social \& Affective Nuance - ability to understand and appropriately respond to social cues, emotional undertones, and cultural norms in conversation, and}
+\item \hl{Communicative Effectiveness - ability to achieve conversational goals, such as providing relevant information, maintaining engagement, and successfully navigating implicatures.}
+\end{itemize}
+
+On the other hand, the qualitative analysis focused on the participants' subjective experiences and perceptions of the chatbot. This involved analyzing their responses to the post-interaction surveys and 
+consolidated feedback form, where common themes, insights, and areas for improvement were identified.
 
 \subsection{Documentation and Report Writing}
 \indent The final phase of the methodology involves documenting the development process, user interactions, data analysis, and validation results.
