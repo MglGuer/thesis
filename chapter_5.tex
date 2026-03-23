@@ -46,37 +46,37 @@
     \label{fig:scenarios_json_schema}
 \end{figure}
 
-\hl{As these tables are created, they are populated with no initial data except for the scenarios table, which is a pre-populated and pre-defined set of conversational scenarios that was curated by the researchers. The user profiles and conversation logs are populated as users interact with the system, with the user profiles being created after registration and the conversation logs being created after each conversation session. Moreover, the user profiles metrics are updated after each conversation session based on the pragmatic analysis by the AI Mentor, with the metrics being averaged over the course of multiple conversation sessions to track the user's progress over time. These updates are being accomplished by the Flask backend, which receives the accumulating information and conversation data after each session, and is then written to the database accordingly.}
+\hl{The tables are populated with no initial data except for the scenarios table, which contains a pre-populated and pre-defined set of conversational scenarios curated by the researchers. The user profiles and conversation logs are populated as users interact with the system. The user profiles are created upon registration and the conversation logs are created after each conversation session. Moreover, the user profile metrics are updated after each conversation session based on the pragmatic analysis by the AI Mentor, with the metrics averaged over the course of multiple conversation sessions to track the user's progress over time. These updates are accomplished by the Flask backend, which receives the accumulating information and conversation data after each session and writes it to the database accordingly.}
 
 
 \section{Software Design and Implementation}
 
-\hl{The chatbot system will be built on top of a large language model, namely Gemini-3 Flash (google-genai) SDK, implemented using Python (Flask Server Backend), and will follow a dual-agent system architecture, namely the AI Partner and the AI Mentor.}
+\hl{The chatbot system is built on top of a large language model, namely Gemini 3 Flash via the google-genai SDK, implemented using Python with a Flask server backend, and follows a dual-agent system architecture consisting of the AI Partner and the AI Mentor.}
 
-\hl{In this architecture, the system orchestrates multiple instances of \texttt{gemini-3-flash-preview}, each configured with specific "Thinking Budgets" and system instructions to balance real-time latency with deep pragmatic analysis.}
+\hl{In this architecture, the system orchestrates multiple instances of \texttt{gemini-3-flash-preview}, each configured with specific Thinking Budgets and system instructions to balance real-time latency with deep pragmatic analysis.}
 
 \subsection{Agent Instances and Configuration}
-\hl{To achieve nuanced pedagogical feedback, the system utilizes explicitly 4 configurations of Gemini-3 Flash:}
+\hl{To achieve nuanced pedagogical feedback, the system utilizes four distinct configurations of Gemini 3 Flash:}
 
 \begin{itemize}
     \item \hl{\textbf{AI Partner (Roleplay)} This instance is configured with a lower thinking budget (512 tokens) and prioritizes fast response times for fluid conversation.}
     \item \hl{\textbf{AI Mentor (Pragmatic Analysis)} This instance is configured with a higher thinking budget (8000 tokens) to allow for computationally heavy analysis of user responses. It utilizes a JSON schema containing the 3 categories and its 8 subcategories for the mapping of quantitative scoring.}
-    \item \hl{\textbf{AI Mentor (Post-session Feedback)} This instance handles a medium thinking budget (1500) tokens for generating in-session feedback based on the analysis from the previous instance of the AI Mentor.}
+    \item \hl{\textbf{AI Mentor (Post-session Feedback)} This instance operates with a medium thinking budget (1,500 tokens) for generating in-session feedback based on the analysis from the Pragmatic Analysis instance.}
     \item \hl{\textbf{Holistic Mentor} This instance is configured with a higher thinking budget (8000 tokens) similar to the pragmatic analysis instance. This agent focuses on aggregating user data and conversation logs to provide holistic and personalized feedback}
 \end{itemize}
 
 \subsection{System Workflow}
 \begin{itemize}
-    \item \hl{\textbf{DOM Load} - The Document Object Model (DOM) will load the user interface built on HTML, CSS, and Flask (Python).}
-    \item \hl{\textbf{Profile Initialization} – Authenticate user and initialize their profile on the system (quantitative metrics and historical data).}
-    \item \hl{\textbf{Holistic Analysis} - Utilizing the Holistic Mentor to analyze longitudinal metrics and user data to recommend a scenario that is suitable for the user's current needs.}
-    \item \hl{\textbf{Scenario Selection} - After user elects to create a new chat, the system will load the scenarios list on the UI allowing the user to select from a list of scenarios to converse in.}
-    \item \hl{\textbf{Load Dialogue Data} - Once the scenario is selected, the system will load the corresponding dialogue data and format the website to reflect the scenario's context and goals.}
-    \item \hl{\textbf{System Prompts} - Load the system prompts utilizing the AI Partner (focused on roleplaying the scenario).}
-    \item \hl{\textbf{Interact via conversation engine} – Engage in real-time dialogue with the user.}
-    \item \hl{\textbf{Conversation End} - Once the user has decided to end the conversation, the system will then proceed to save the conversation to the database and align the conversation data to the user's profile.}
-    \item \hl{\textbf{Pragmatic Analysis} - The AI Mentor will analyze the conversation data considering the quantitative scoring framework (Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness) to then give the user feedback on their performance and how they can improve in future conversations.}
-    \item \hl{\textbf{In-depth Feedback} - The user can then proceed to click a button to question to gain further insight into their performance by continuing to speak to the AI Mentor which now takes into consideration the conversation data.}
+    \item \hl{\textbf{DOM Load} - The Document Object Model (DOM) loads the user interface built on HTML, CSS, and Flask (Python).}
+    \item \hl{\textbf{Profile Initialization} – The system authenticates the user and initializes their profile, loading quantitative metrics and historical data.}
+    \item \hl{\textbf{Holistic Analysis} - The Holistic Mentor analyzes longitudinal metrics and user data to recommend a scenario suited to the user's current needs.}
+    \item \hl{\textbf{Scenario Selection} - After the user elects to create a new chat, the system loads the scenarios list on the UI, allowing the user to select a scenario to converse in.}
+    \item \hl{\textbf{Load Dialogue Data} - Once the scenario is selected, the system loads the corresponding dialogue data and formats the interface to reflect the scenario's context and goals.}
+    \item \hl{\textbf{System Prompts} - The system loads the system prompts for the AI Partner, focused on roleplaying the selected scenario.}
+    \item \hl{\textbf{Interact via Conversation Engine} – The user engages in real-time dialogue with the AI Partner.}
+    \item \hl{\textbf{Conversation End} - Once the user ends the conversation, the system saves the conversation to the database and aligns the conversation data to the user's profile.}
+    \item \hl{\textbf{Pragmatic Analysis} - The AI Mentor analyzes the conversation data using the quantitative scoring framework (Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness) and provides the user with feedback on their performance and areas for improvement.}
+    \item \hl{\textbf{In-depth Feedback} - The user may then ask follow-up questions to gain further insight into their performance by continuing to speak to the AI Mentor, which takes into consideration the full conversation data.}
 \end{itemize}
 
 \begin{figure}[H]
@@ -86,8 +86,7 @@
     \label{fig:authentication_screen}
 \end{figure}
 
-\hl{The authentication screen and profile initialization allows users to sign in and have their profile data loaded. This accomplishes personalization of the system as the user's historical data and metrics are now available for the system to utilize. This is particularyly for the Holistic Mentor's ability to recommend scenarios
-based on the user's current needs and the ability for the user to ask for in-depth feedback regarding their complete conversational history. Moreover, the profile allows the user to see their progress over time through multiple conversations through the metric dashboard.}
+\hl{The authentication screen and profile initialization allow users to sign in and have their profile data loaded. This accomplishes personalization of the system, as the user's historical data and metrics are now available for the system to utilize - particularly for the Holistic Mentor's ability to recommend scenarios based on the user's current needs, and for the user's ability to request in-depth feedback regarding their complete conversational history. The profile also allows the user to view their progress over time across multiple conversations through the metric dashboard.}
 
 \begin{figure}[H]
     \centering
@@ -106,11 +105,11 @@ based on the user's current needs and the ability for the user to ask for in-dep
 
 \hl{Firstly, the DOM will load with the Flask server, then user data will be received for authentication and profile initialization. This will allow the system to personalize the experience based on the user's history, metrics, and overall profile and pragmatic competence.}
 
-\hl{Then, the implementation of the Holistic mentor will continue to analyze further the user's pragmatical scores and profile to then recommend a scenario that is suitable for the user's current needs. Once the user selects the button to create a new chat, the scenarios list will load on the UI itself, allowing the user to select a scenario. Once the scenario is selected, the system will load the corresponding dialogue data and format the website to reflect the scenario's context and goals. This will then load the system prompts utilizing the AI Partner (focused on roleplaying the scenario).}
+\hl{The Holistic Mentor then analyzes the user's pragmatic scores and profile to recommend a scenario suited to their current needs. Once the user selects the button to create a new chat, the scenarios list loads on the UI, allowing the user to select a scenario. Once the scenario is selected, the system loads the corresponding dialogue data and formats the interface to reflect the scenario's context and goals, then loads the system prompts for the AI Partner focused on roleplaying the scenario.}
 
-\hl{The user will then go through a back-and-forth conversation with the AI Partner employing system prompts focused on responding in a human-like manner while considering the social environment and the persona they're roleplaying. Once the user has decided to end the conversation, the system will then proceed to save the conversation to the database and align the conversation data to the user's profile.}
+\hl{The user then engages in a back-and-forth conversation with the AI Partner, which employs system prompts focused on responding in a human-like manner while considering the social environment and the persona it is roleplaying. Once the user ends the conversation, the system saves the conversation to the database and aligns the conversation data to the user's profile.}
 
-\hl{Once done, this will continue to be analyzed by the AI Mentor considering the quantitative scoring framework (Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness) to then give the user feedback on their performance and how they can improve in future conversations. The user can then proceed to click a button to question to gain further insight into their performance by continuing to speak to the AI Mentor which now takes into consideration the conversation data.}
+\hl{The conversation is then analyzed by the AI Mentor using the quantitative scoring framework (Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness), which provides the user with feedback on their performance and guidance for improvement in future conversations. The user may then click a button to gain further insight into their performance by continuing to speak to the AI Mentor, which takes into consideration the full conversation data.}
 
 \subsection{Scenario Selection and Dialogue Loading}
  
@@ -315,8 +314,7 @@ END FUNCTION
 \end{lstlisting}
 
 \subsection{Linguistic and Safety Configurations}
-\hl{Linguistic contextualization is achieved by forbidding the chatbot to have english translations in parentheses and enforce code switching in the prompts for relatability. Safety configurations for harassment and dangerous content are set to BLOCK\_ONLY\_HIGH to allow the AI Partner to engage in realistic social conflict without the model refusing the prompt while still considering emotional safety of the user.
-}
+\hl{Linguistic contextualization is achieved by forbidding the chatbot from providing English translations in parentheses and enforcing code-switching in the prompts for relatability. Safety configurations for harassment and dangerous content are set to BLOCK\_ONLY\_HIGH to allow the AI Partner to engage in realistic social conflict without the model refusing the prompt, while still considering the emotional safety of the user.}
 
 \section{LLM Selection and Architectural Pivot: The Fine-Tuning Experiment}
 
@@ -345,7 +343,7 @@ END FUNCTION
 \end{table}
 
 \subsection{Analysis of the Training Attempt}
-\hl{The failure of the fine-tuned model provided valuable insights into the limitations of narrow dataset training for complex social coaching. The results of the attempt yielded three primary failure modes:}
+\hl{The failure of the fine-tuned model provides valuable insights into the limitations of narrow dataset training for complex social coaching. The results yield three primary failure modes:}
 
 \begin{itemize}
     \item \hl{\textbf{Overfitting to Narrow Patterns:} The GRICE dataset consists of highly structured, short-form questions and answers. The model overfit to these patterns, learning superficial token transformations (e.g., simple subject-verb-object substitutions) rather than actual pragmatic reasoning.}
@@ -353,4 +351,4 @@ END FUNCTION
     \item \hl{\textbf{Loss of Long-Form Coherence:} The examples in the GRICE dataset are typically 10 to 30 words maximum. However, the AI Mentor requires the ability to generate over 1,000 words of coherent, structured prose. The fine-tuning process destroyed the model's ability to maintain extended reasoning chains.}
 \end{itemize}
 
-\hl{Based on these findings, the architecture was successfully pivoted away from local fine-tuning. Instead, the final system relies on sophisticated prompt-engineering, structured JSON schemas, and the advanced dynamic reasoning capabilities (Thinking Budgets) of the Gemini 3 Flash model. This pivot proved that for complex, theory-driven pedagogical tasks, the reasoning capacity of a generalist foundation model significantly outweighs the domain-specific knowledge gained by fine-tuning a smaller model on limited datasets.}
+\hl{Based on these findings, the architecture is pivoted away from local fine-tuning. Instead, the final system relies on sophisticated prompt engineering, structured JSON schemas, and the advanced dynamic reasoning capabilities (Thinking Budgets) of the Gemini 3 Flash model. This pivot demonstrates that for complex, theory-driven pedagogical tasks, the reasoning capacity of a generalist foundation model significantly outweighs the domain-specific knowledge gained by fine-tuning a smaller model on limited datasets.}
