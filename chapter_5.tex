@@ -22,7 +22,7 @@
     \item \hl{\textbf{Scenarios} - Contains a collection of predefined conversational scenarios, each with its own context, goals, and dialogue data that the AI Partner uses for role-playing during conversations.}
 \end{itemize}
 
-\hl{These tables are designed to be relational for querying and is primarily hosted in Supabase. Considering this, the user profiles and conversation logs are linked via a foreign key relationship while the scenarios are an independent JSON file that is loaded into the system.}
+\hl{These tables are designed to be relational for querying and are primarily hosted in Supabase. The user profiles and conversation logs are linked via a foreign key relationship, as illustrated in Figures \ref{fig:user_profiles_schema} and \ref{fig:conversation_logs_schema}, while the scenarios are an independent JSON file loaded into the system, the structure of which is shown in Figure \ref{fig:scenarios_json_schema}.}
 
 \hl{WE NEED TO ADD FIGURE HERE FOR EACH TABLE, THEN EXPLAIN EACH}
 \begin{figure}[H]
@@ -86,7 +86,7 @@
     \label{fig:authentication_screen}
 \end{figure}
 
-\hl{The authentication screen and profile initialization allow users to sign in and have their profile data loaded. This accomplishes personalization of the system, as the user's historical data and metrics are now available for the system to utilize - particularly for the Holistic Mentor's ability to recommend scenarios based on the user's current needs, and for the user's ability to request in-depth feedback regarding their complete conversational history. The profile also allows the user to view their progress over time across multiple conversations through the metric dashboard.}
+\hl{As shown in Figure \ref{fig:authentication_screen}, the authentication screen and profile initialization allow users to sign in and have their profile data loaded. This accomplishes personalization of the system, as the user's historical data and metrics are now available for the system to utilize --- particularly for the Holistic Mentor's ability to recommend scenarios based on the user's current needs, and for the user's ability to request in-depth feedback regarding their complete conversational history. The profile also allows the user to view their progress over time across multiple conversations through the metric dashboard, shown in Figure \ref{fig:holistic_analysis_dashboard}, while the user's overall pragmatic competence summary is accessible via the Profile Screen shown in Figure \ref{fig:profile_screen}.}
 
 \begin{figure}[H]
     \centering
@@ -103,7 +103,7 @@
 \end{figure}
 
 
-\hl{Firstly, the DOM will load with the Flask server, then user data will be received for authentication and profile initialization. This will allow the system to personalize the experience based on the user's history, metrics, and overall profile and pragmatic competence.}
+\hl{Firstly, the DOM loads with the Flask server, then user data is received for authentication and profile initialization. This allows the system to personalize the experience based on the user's history, metrics, and overall profile and pragmatic competence.}
 
 \hl{The Holistic Mentor then analyzes the user's pragmatic scores and profile to recommend a scenario suited to their current needs. Once the user selects the button to create a new chat, the scenarios list loads on the UI, allowing the user to select a scenario. Once the scenario is selected, the system loads the corresponding dialogue data and formats the interface to reflect the scenario's context and goals, then loads the system prompts for the AI Partner focused on roleplaying the scenario.}
 
@@ -117,7 +117,7 @@
  
 \hl{In the first phase, when a user opens the new-chat modal, the browser issues a \textit{GET} request to the \textit{/api/scenarios} Flask endpoint, which calls \textit{load\_scenarios()} from \textit{src/utils.py}. This function reads the \textit{data/scenarios.json} file into memory and returns the full catalogue of eleven pre-authored scenarios to the client. The catalogue is organized around four thematic conflicts drawn directly from the theoretical framework: \textit{Identity vs. Expectation}, \textit{Autonomy vs. Dependence}, \textit{Ambiguity vs. Definition}, and \textit{Group vs. Self}. Each scenario object in the JSON file carries the following fields: a unique integer \textit{id}, a \textit{title}, a \textit{thematic\_conflict} tag, a \textit{chatbot\_role} description for the AI Partner, a short \textit{opening\_line} that the AI Partner delivers verbatim at the start of the conversation, and a \textit{full\_description} string containing the complete scene-setting context injected into the AI Partner's system instruction. The client renders these records as selectable cards in the scenario selection modal, grouped by thematic conflict so that the user can identify which developmental challenge each scenario addresses.}
  
-\hl{In the second phase, once the user selects a scenario, the client sends a \textit{POST} request to the \textit{/api/start-session} endpoint, passing the chosen \textit{scenario\_id} and the authenticated \textit{user\_id}. The backend then: (1) fetches the matching scenario object from the in-memory catalogue; (2) instantiates a fresh \textit{SociusChatbot} object; (3) calls \textit{chatbot.set\_scenario(chosen\_scenario['full\_description'])}, which appends the scenario's full context to the base \textit{AI\_PARTNER\_SYSTEM\_INSTRUCTION} and re-creates the partner's chat session with this updated system instruction; and (4) calls \textit{chatbot.inject\_opening\_line(opening\_line)}, which inserts the partner's first utterance directly into the SDK's internal chat history so that it appears as an authentic model-turn rather than a synthetic user prompt. The session is then stored in the server-side \textit{chatbot\_sessions} dictionary under a randomly generated \textit{session\_id}, alongside the chosen scenario object, the \textit{user\_id}, and a creation timestamp used for TTL-based cleanup. The response payload returns the \textit{session\_id}, the full scenario object, and the \textit{opening\_message} string, which the client immediately displays as the first message bubble in the conversation window.}
+\hl{In the second phase, once the user selects a scenario as shown in Figure \ref{fig:scenario_selection_modal}, the client sends a \textit{POST} request to the \textit{/api/start-session} endpoint, passing the chosen \textit{scenario\_id} and the authenticated \textit{user\_id}. The backend then: (1) fetches the matching scenario object from the in-memory catalogue; (2) instantiates a fresh \textit{SociusChatbot} object; (3) calls \textit{chatbot.set\_scenario(chosen\_scenario['full\_description'])}, which appends the scenario's full context to the base \textit{AI\_PARTNER\_SYSTEM\_INSTRUCTION} and re-creates the partner's chat session with this updated system instruction; and (4) calls \textit{chatbot.inject\_opening\_line(opening\_line)}, which inserts the partner's first utterance directly into the SDK's internal chat history so that it appears as an authentic model-turn rather than a synthetic user prompt. The session is then stored in the server-side \textit{chatbot\_sessions} dictionary under a randomly generated \textit{session\_id}, alongside the chosen scenario object, the \textit{user\_id}, and a creation timestamp used for TTL-based cleanup. The response payload returns the \textit{session\_id}, the full scenario object, and the \textit{opening\_message} string, which the client immediately displays as the first message bubble in the conversation window.}
  
 \begin{figure}[H]
     \centering
@@ -132,7 +132,7 @@
  
 \hl{The AI Partner instance is configured with three deliberate choices that reflect the system's pedagogical design. First, a thinking budget of 512 tokens (\textit{thinking\_level = "low"}) is assigned via the \textit{ThinkingConfig} object. This allows the model to perform lightweight chain-of-thought reasoning which is sufficient for cue-reading and character consistency, while keeping latency low enough for real-time conversation. Second, the model's temperature is set to 1.0 to encourage naturalistic variation in dialogue, preventing responses from feeling robotic or repetitive. Third, the \textit{AI\_PARTNER\_SYSTEM\_INSTRUCTION} encodes specific rules for generating authentic Taglish speech, including prohibitions against parenthetical English translations, mandates for Filipino conversational markers (\textit{diba}, \textit{kasi}, \textit{naman}, \textit{nga}), and context-sensitive formality rules - formal characters such as bosses or professors are explicitly instructed to suppress casual Taglish fillers, while familial or peer characters are encouraged to use them freely.}
  
-\hl{Message delivery is implemented using Server-Sent Events (SSE) via the \textit{/api/stream-message} endpoint. When the user submits a message, the client issues a \textit{POST} request and the Flask backend opens an event-stream response that calls \textit{chatbot.stream\_partner\_response(user\_input)}. This generator function invokes \textit{chat\_session.send\_message\_stream()}, iterates over the response chunks as they arrive from the Gemini API, and yields each chunk as a JSON-encoded SSE frame of the form \textit{data: \{"chunk": "text"\}}. The client receives and progressively appends these chunks to the partner's message bubble, creating a real-time typewriter effect. A terminal \textit{\{"done": True, "role": "chatbot\_role"\}} frame signals completion. A quota-aware retry wrapper, \textit{\_try\_stream\_with\_rotation()}, monitors for rate-limit exceptions and transparently backs off before retrying, making sure the session remains stable under API pressure.}
+\hl{Message delivery is implemented using Server-Sent Events (SSE) via the \textit{/api/stream-message} endpoint, producing the conversation interface shown in Figure \ref{fig:conversation_screen}. When the user submits a message, the client issues a \textit{POST} request and the Flask backend opens an event-stream response that calls \textit{chatbot.stream\_partner\_response(user\_input)}. This generator function invokes \textit{chat\_session.send\_message\_stream()}, iterates over the response chunks as they arrive from the Gemini API, and yields each chunk as a JSON-encoded SSE frame of the form \textit{data: \{"chunk": "text"\}}. The client receives and progressively appends these chunks to the partner's message bubble, creating a real-time typewriter effect. A terminal \textit{\{"done": True, "role": "chatbot\_role"\}} frame signals completion. A quota-aware retry wrapper, \textit{\_try\_stream\_with\_rotation()}, monitors for rate-limit exceptions and transparently backs off before retrying, making sure the session remains stable under API pressure.}
  
 \begin{figure}[H]
     \centering
@@ -157,7 +157,7 @@
 \bar{x}_{n} = \frac{\bar{x}_{n-1} \times (n-1) + x_n}{n}
 \]
  
-\hl{where $\bar{x}_{n-1}$ is the previous running average, $n-1$ is the count of previously completed sessions, and $x_n$ is the new session's normalized score. This formula is applied independently to all three competency dimensions and the result is rounded to four decimal places before being written back to Supabase. The updated profile metrics then become available to the Holistic Mentor for subsequent sessions.}
+\hl{where $\bar{x}_{n-1}$ is the previous running average, $n-1$ is the count of previously completed sessions, and $x_n$ is the new session's normalized score. This formula is applied independently to all three competency dimensions and the result is rounded to four decimal places before being written back to Supabase. The updated profile metrics then become available to the Holistic Mentor for subsequent sessions. The resulting feedback report presented to the user is shown in Figure \ref{fig:post_session_feedback}.}
  
 \begin{figure}[H]
     \centering
@@ -182,12 +182,12 @@ for the AI Mentor reinforce Grice's Maxims (Quantity, Quality, Relation, and Man
     \label{fig:ai_partner_instruction_prompt}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{figures/expert_evaluate.png}
-    \caption{AI User Simulator Instruction Prompt}
-    \label{fig:ai_user_simulator_prompt}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.85\textwidth]{figures/expert_evaluate.png}
+%     \caption{AI User Simulator Instruction Prompt}
+%     \label{fig:ai_user_simulator_prompt}
+% \end{figure}
 
 
 \hl{AI Mentor Prompts}
@@ -245,11 +245,11 @@ for the AI Mentor reinforce Grice's Maxims (Quantity, Quality, Relation, and Man
 
 \section{Algorithms}
 
-The system will rely on the following core algorithms to analyze input, assess pragmatic adherence, and generate appropriate responses:
+The system relies on the following core algorithms to analyze input, assess pragmatic adherence, and generate appropriate responses:
 
 \subsection{Intent Recognition}
 
-The \textbf{Intent Recognition} algorithm is responsible for determining the user's intent based on their input. This ensures that the chatbot maintains contextual relevance and keeps the conversation focused on the right topic. By using an external API like Gemini, the system can classify user inputs into different intent categories, allowing for a more targeted and accurate response. The function works by sending the user's input to the Gemini API, which classifies the intent, and then returns the detected intent to guide the chatbot’s response.
+The \textbf{Intent Recognition} algorithm is responsible for determining the user's intent based on their input. This ensures that the chatbot maintains contextual relevance and keeps the conversation focused on the right topic. By using the Gemini API, the system classifies user inputs into different intent categories, allowing for a more targeted and accurate response. As shown in Listing \ref{lst:detectintent}, the function sends the user's input to the Gemini API, which classifies the intent and returns the detected intent to guide the chatbot's response.
 
 \begin{lstlisting}[caption={Intent Recognition Algorithm}, label={lst:detectintent}]
 FUNCTION detect_intent(user_input):
@@ -262,7 +262,7 @@ END FUNCTION
 
 \subsection{Pragmatic Analysis}
 
-The \textbf{Pragmatic Analysis} algorithm evaluates whether the user's response adheres to the target pragmatic competencies (Intention Coherence, Social Nuance, and Communicative Effectiveness). Rather than relying on unstructured text generation, the system enforces a strict JSON Schema (\texttt{SCORING\_RESPONSE\_SCHEMA}). This guarantees that the LLM outputs machine-parsable, float-based scores and string-based justifications that the backend can reliably store in the database.
+The \textbf{Pragmatic Analysis} algorithm evaluates whether the user's response adheres to the target pragmatic competencies (Intention Coherence, Social Nuance, and Communicative Effectiveness). Rather than relying on unstructured text generation, the system enforces a strict JSON Schema (\texttt{SCORING\_RESPONSE\_SCHEMA}). As shown in Listing \ref{lst:mentorlogic}, this guarantees that the LLM outputs machine-parsable, float-based scores and string-based justifications that the backend can reliably store in the database.
 
 \begin{lstlisting}[caption={AI Mentor JSON Schema Evaluation Algorithm}, label={lst:mentorlogic}]
 FUNCTION evaluate_performance(transcript, scenario_context):
@@ -284,7 +284,7 @@ END FUNCTION
 
 \subsection{Feedback Generation}
 
-The \textbf{Feedback Generation} algorithm constructs personalized feedback messages based on the pragmatic analysis. It informs the user about any violations of Grice's Maxims, offering suggestions to improve their communication. If no violations are found, the algorithm generates positive feedback, congratulating the user for providing a clear and relevant response. This ensures that users not only receive constructive criticism but also feel encouraged to continue improving their conversational skills.
+The \textbf{Feedback Generation} algorithm constructs personalized feedback messages based on the pragmatic analysis. It informs the user about any violations of Grice's Maxims, offering suggestions to improve their communication. If no violations are found, the algorithm generates positive feedback, congratulating the user for providing a clear and relevant response. As shown in Listing \ref{lst:generateresponse}, this ensures that users not only receive constructive criticism but also feel encouraged to continue improving their conversational skills.
 
 \begin{lstlisting}[caption={LLM (Gemini API) Response Generation}, label={lst:generateresponse}]
 FUNCTION generate_response(user_input, scenario):
@@ -297,11 +297,7 @@ END FUNCTION
 
 \subsection{LLM (Gemini API) Integration for Response Generation}
 
-The \textbf{LLM Integration} algorithm is responsible for generating responses that are contextually relevant and pragmatically sound.
-This is achieved by integrating the Gemini API to generate text that aligns with the selected scenario and the user’s input.
-The algorithm constructs a prompt that combines the scenario and the user’s input, and sends it to Gemini’s \texttt{generate\_text} method.
-The generated text is then returned as the chatbot’s response. This ensures that the chatbot can handle various conversational
-contexts and respond appropriately.
+The \textbf{LLM Integration} algorithm is responsible for generating responses that are contextually relevant and pragmatically sound. This is achieved by integrating the Gemini API to generate text that aligns with the selected scenario and the user's input. As shown in Listing \ref{lst:partnergen}, the algorithm constructs a prompt combining the scenario and the user's input and passes it to the Gemini API, which returns the generated text as the chatbot's response. This ensures that the chatbot can handle various conversational contexts and respond appropriately.
 
 \begin{lstlisting}[caption={AI Partner Response Generation}, label={lst:partnergen}]
 FUNCTION generate_partner_response(user_input, current_history):
@@ -320,7 +316,7 @@ END FUNCTION
 
 \hl{The initial architectural design for the AI Mentor involved fine-tuning a local, open-source Large Language Model (Mistral-7B) using Quantized Low-Rank Adaptation (QLoRA). The objective was to create a specialized, cost-effective expert model trained exclusively on the GRICE dataset \mbox{\cite{zheng_grice_2021}} to identify conversational implicatures and Gricean maxim violations.}
 
-\hl{However, functional testing of the fine-tuned model revealed critical failures in pedagogical application. To assess its viability, a comparative test was conducted between the Mistral-7B fine-tuned model and a zero-shot base model, given a scenario involving sarcasm and passive-aggression.}
+\hl{However, functional testing of the fine-tuned model revealed critical failures in pedagogical application. To assess its viability, a comparative test was conducted between the Mistral-7B fine-tuned model and a zero-shot base model on a scenario involving sarcasm and passive-aggression, the results of which are presented in Table \ref{tab:llm_training_attempt}.}
 
 \begin{table}[H]
 \centering
