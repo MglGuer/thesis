@@ -14,10 +14,7 @@
 
 \section{Knowledge Base Design}
 
-\hl{
-Implemented in the architectural design is a structured knowledge base that stores scenarios, user profiles, and their corresponding conversation logs. The knowledge
-base is designed to support personalization of advice and feedback by maintaining a comprehensive record of user metrics and interactions. The database schema includes the following:
-}
+\hl{Implemented in the architectural design is a structured knowledge base that stores scenarios, user profiles, and their corresponding conversation logs. The knowledge base is designed to support personalization of advice and feedback by maintaining a comprehensive record of user metrics and interactions. The database schema includes the following:}
 
 \begin{itemize}
     \item \hl{\textbf{User Profiles} - Contains user information, primarily withholding personally identifiable information and pragmatic competence metrics (Intention Coherence, Social Nuance, and Communicative Effectiveness) that are updated after each conversation session.}
@@ -49,19 +46,14 @@ base is designed to support personalization of advice and feedback by maintainin
     \label{fig:scenarios_json_schema}
 \end{figure}
 
-\hl{As these tables are created, they are populated with no initial data except for the scenarios table, which is a pre-populated and pre-defined set of conversational scenarios that was curated by the researchers. The user profiles and conversation logs are populated as users interact with the system,
-with the user profiles being created after registration and the conversation logs being created after each conversation session. Moreover, the user profiles metrics are updated after each conversation session based on the pragmatic analysis by the AI Mentor, with the metrics being averaged over the 
-course of multiple conversation sessions to track the user's progress over time. These updates are being accomplished by the Flask backend, which receives the accumulating information and conversation data after each session, and is then written to the database accordingly.
-}
+\hl{As these tables are created, they are populated with no initial data except for the scenarios table, which is a pre-populated and pre-defined set of conversational scenarios that was curated by the researchers. The user profiles and conversation logs are populated as users interact with the system, with the user profiles being created after registration and the conversation logs being created after each conversation session. Moreover, the user profiles metrics are updated after each conversation session based on the pragmatic analysis by the AI Mentor, with the metrics being averaged over the course of multiple conversation sessions to track the user's progress over time. These updates are being accomplished by the Flask backend, which receives the accumulating information and conversation data after each session, and is then written to the database accordingly.}
 
 
 \section{Software Design and Implementation}
 
+\hl{The chatbot system will be built on top of a large language model, namely Gemini-3 Flash (google-genai) SDK, implemented using Python (Flask Server Backend), and will follow a dual-agent system architecture, namely the AI Partner and the AI Mentor.}
 
-\hl{The chatbot system will be built on top of a large language model, namely Gemini-3 Flash (google-genai) SDK, implemented using Python (Flask Server Backend), and will follow a dual-agent system architecture, namely the AI Partner and the AI Mentor.
-
-In this architecture, the system orchestrates multiple instances of \texttt{gemini-3-flash-preview}, each configured with specific "Thinking Budgets" and system instructions to balance real-time latency with deep pragmatic analysis.
-}
+\hl{In this architecture, the system orchestrates multiple instances of \texttt{gemini-3-flash-preview}, each configured with specific "Thinking Budgets" and system instructions to balance real-time latency with deep pragmatic analysis.}
 
 \subsection{Agent Instances and Configuration}
 \hl{To achieve nuanced pedagogical feedback, the system utilizes explicitly 4 configurations of Gemini-3 Flash:}
@@ -112,15 +104,13 @@ based on the user's current needs and the ability for the user to ask for in-dep
 \end{figure}
 
 
-\hl{
-Firstly, the DOM will load with the Flask server, then user data will be received for authentication and profile initialization. This will allow the system to personalize the experience based on the user's history, metrics, and overall profile and pragmatic competence. 
-Then, the implementation of the Holistic mentor will continue to analyze further the user's pragmatical scores and profile to then recommend a scenario that is suitable for the user's current needs. Once the user selects the button to create a new chat, the scenarios list
-will load on the UI itself, allowing the user to select a scenario. Once the scenario is selected, the system will load the corresponding dialogue data and format the website to reflect the scenario's context and goals. This will then load the system prompts utilizing the 
-AI Partner (focused on roleplaying the scenario). The user will then go through a back-and-forth conversation with the AI Partner employing system prompts focused on responding in a human-like manner while considering the social environment and the persona they're roleplaying.
-Once the user has decided to end the conversation, the system will then proceed to save the conversation to the database and align the conversation data to the user's profile. Once done, this will continue to be analyzed by the AI Mentor considering the quantitative scoring framework
-(Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness) to then give the user feedback on their performance and how they can improve in future conversations. The user can then proceed to click a button to question to gain further insight into their performance
-by continuing to speak to the AI Mentor which now takes into consideration the conversation data.
-}
+\hl{Firstly, the DOM will load with the Flask server, then user data will be received for authentication and profile initialization. This will allow the system to personalize the experience based on the user's history, metrics, and overall profile and pragmatic competence.}
+
+\hl{Then, the implementation of the Holistic mentor will continue to analyze further the user's pragmatical scores and profile to then recommend a scenario that is suitable for the user's current needs. Once the user selects the button to create a new chat, the scenarios list will load on the UI itself, allowing the user to select a scenario. Once the scenario is selected, the system will load the corresponding dialogue data and format the website to reflect the scenario's context and goals. This will then load the system prompts utilizing the AI Partner (focused on roleplaying the scenario).}
+
+\hl{The user will then go through a back-and-forth conversation with the AI Partner employing system prompts focused on responding in a human-like manner while considering the social environment and the persona they're roleplaying. Once the user has decided to end the conversation, the system will then proceed to save the conversation to the database and align the conversation data to the user's profile.}
+
+\hl{Once done, this will continue to be analyzed by the AI Mentor considering the quantitative scoring framework (Intention Coherence, Social \& Affective Nuance, and Communicative Effectiveness) to then give the user feedback on their performance and how they can improve in future conversations. The user can then proceed to click a button to question to gain further insight into their performance by continuing to speak to the AI Mentor which now takes into consideration the conversation data.}
 
 \subsection{System Prompts and Theoretical Alignment}
 

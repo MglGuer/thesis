@@ -16,3 +16,4 @@
 
 !forms/
 !forms/*.pdf
+*.synctex(busy)
