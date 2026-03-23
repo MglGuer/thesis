@@ -245,7 +245,16 @@ for the AI Mentor reinforce Grice's Maxims (Quantity, Quality, Relation, and Man
 
 \section{Algorithms}
 
-The system relies on the following core algorithms to analyze input, assess pragmatic adherence, and generate appropriate responses:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{figures/system_flowchart.png}
+    \caption{Socius end-to-end system flow}
+    \label{fig:system_flowchart}
+\end{figure}
+
+% The system relies on the following core algorithms to analyze input, assess pragmatic adherence, and generate appropriate responses:
+
+As illustrated in Figure~\ref{fig:system_flowchart}, the system coordinates multiple agents and database operations across four phases: Session Initialization, Active Conversation, Closing and Analysis, and Follow-up Interaction. The following subsections detail the core algorithms that drive each phase, covering input analysis, pragmatic scoring, and response generation.
 
 \subsection{Intent Recognition}
 
