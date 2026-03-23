@@ -18,18 +18,22 @@ The objectives of the Socius chatbot system are as follows:
 
 \section{Software Scope and Limitations}
 
-The system will establish a backend database that will be storing user profiles, conversation transcripts, and metrics related to pragmatic competence. This will only require select information from the user, such as their name, email, and password. As such, we will not be requiring external user data such as social media profiles or other applications. This will also host the conversation logs per user session, which will allow the model to analyze the user's current pragmatic competence.  
+\hl{The system establishes a backend database that stores user profiles, conversation transcripts, and metrics related to pragmatic competence. Authentication requires minimal user information—specifically an email, password, and age—ensuring that external user data, such as social media profiles, are not collected. This database hosts the conversation logs per user session, allowing the model to longitudinally analyze the user's pragmatic competence and track their progress through an interactive Progress Dashboard.
 
-Moreover, the system will also provide a fixed set of predefined conversational scenarios. Users will be able to select from these scenarios to practice, in which the range of contexts offered will cover various academic, professional, and social situations relevant to young adults. The system thus will be limited to these predefined scenarios and will not allow dynamic scenario generation or user-generated scenarios. 
+The system provides a fixed set of predefined conversational scenarios. Users select from these scenarios to practice, with contexts covering various academic, professional, and social situations relevant to young adults. To maintain targeted pedagogical goals and ensure alignment with the established theoretical frameworks, the system is strictly limited to these predefined scenarios and does not allow for dynamic scenario generation or user-generated contexts.
 
-To generate contextually relevant and pragmatically appropriate dialogue, the system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. The chatbot will be utilizing the Gemini API under a Tier 1 paid plan, specifically the Gemini 3 Flash model, which provides higher rate limits and more capable model access suitable for real-time conversational applications. Thus, we will be exploring the potential of the Gemini 3 Flash model to generate responses that align with sociolinguistic topics. Considering this, the chatbot will also have a fixed understanding of Grice's Maxims of Conversations, showcasing these rules as text-based, unchanging, and static statements that users can refer to when receiving feedback.
+To generate contextually relevant and pragmatically appropriate dialogue, the system leverages the Gemini API. Specifically, it utilizes the gemini-3-flash-preview model under a Tier 1 paid plan to balance high rate limits with advanced reasoning capabilities. The architecture employs configured Thinking Budgets to adapt to different agent roles: a lower latency setting for the AI Partner's naturalistic roleplay, and a higher reasoning budget for the AI Mentor's deep pragmatic analysis. Furthermore, feedback is strictly enforced via JSON Schema Controlled Generation, dynamically evaluating the user's adherence to Grice's Maxims and sociolinguistic norms based on the transcript, rather than relying on static text references.
 
-The user interface will be designed to resemble common text messaging applications, presenting both the conversational exchanges and feedback in a familiar layout. This will allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface.  In addition to this, there will be a fixed set of statements that will be used to explain the concepts of Grice's Maxims and implicatures located in the user interface, which will be used to assist the user in understanding the concepts of pragmatics, thereby also helping them understand the feedback they receive from the chatbot.
+The user interface is designed to resemble common text messaging applications, presenting conversational exchanges and feedback in a familiar layout. The scope encompasses essential UI elements for text-based interaction, interactive data visualization (via Chart.js) for the user's progress dashboard, and basic personalizations such as dark mode and background customization. However, it does not include voice input/output capabilities or advanced 3D graphical elements.}
+
+\subsection*{Limitations}
+
+\hl{Relying on a text-only LLM modality inherently limits the system's capacity to train paralinguistic or non-verbal communication skills. Additionally, end-user testing revealed that the AI Partner's responses can occasionally become too lengthy or dramatic, which breaks the realism and pacing of casual texting. The system is also bound by the constraints of its infrastructure and third-party APIs. The reliance on the Supabase Free Tier for database management and authentication limits long-term scalability and concurrent user capacity. Finally, the software proved vulnerable to prompt injection if a user intentionally stresses the system's instructions, and it is susceptible to occasional slow response times or dropped context due to network errors and high API traffic demand.}
 
 
 {\section{Architectural Design}}
 The architectural design of Socius is structured to facilitate effective and pragmatic interactions between the user and the chatbot. 
-As illustrated in Figure \ref{fig:architectural_design}, the design is composed of several key components that interact with one another in order to process user input, manage 
+As illustrated in Figure \ref{fig:socius_architecture}, the design is composed of several key components that interact with one another in order to process user input, manage 
 conversation flow, analyze pragmatics, and generate appropriate responses and feedback.
 
 Input received via \textbf{User Interface} is sent to the \textbf{Conversation Manager}, which is made of two subcomponents: \textbf{Input Processing} and \textbf{Conversation Flow Manager}. The Conversation Flow Manager oversees scenario generation, pulled from a database of possible scenarios and scenario progression. This also takes care of saving interaction state, and context tracking and remembering. Next, the data goes to the \textbf{Pragmatic Analyzer}, which then evaluates the input based on Grice’s Maxims and Implicature rules. This will help the AI determine the appropriate response to the conversation. If the scenario is still ongoing, the response is then provided by Gemini AI and returned to the user to maintain conversation flow while also saving the messages into the conversation log database. Once the conversation ends, information from both the conversation logs and the user’s profile will then be used for \textbf{Feedback Generation}, delivered by Gemini, that may help the user improve their social communication skills. The user may also ask questions related to the given feedback in case they need clarification or further explanation.
@@ -38,7 +42,7 @@ Input received via \textbf{User Interface} is sent to the \textbf{Conversation M
     \centering
     \includegraphics[width=0.85\textwidth]{figures/SociusArchitecture.png}
     \caption{Socius System Architecture}
-    \label{fig:architectural_design}
+    \label{fig:socius_architecture}
 \end{figure}
 
 \subsection{User Interface}
@@ -161,7 +165,7 @@ This flow allows the chatbot to function both as a conversation partner and as a
 \section{Software Functions}
 This section outlines the functions of the Socius APAM system relevant to the user experience. The user’s interaction is structured into three-stages of learning: (1) scenario selection and onboarding, (2) interactive dialogue with an AI Partner, and (3) personalized feedback from an AI Mentor. The following subsections will detail these stages, complemented by relevant UI design mockups to provide a walkthrough of the user experience.
 \subsection{Scenario Selection}
-\hl{Upon the application's launch, the user is introduced to the scenario selection 
+Upon the application's launch, the user is introduced to the scenario selection 
 screen as shown in Figure 4.3. At the top of the screen, a Holistic Mentor card 
 greets the user by name, summarizes their progress across previous sessions, and 
 recommends a scenario based on their current performance metrics across three 
@@ -169,7 +173,7 @@ categories: Logic, Social, and Effectiveness. Below this, the user may browse an
 select from a list of predefined conversational scenarios, each labeled with a title, 
 thematic conflict (e.g., Autonomy vs. Dependence, Group vs. Self), and the role the 
 AI Partner will assume. Once a scenario is selected, the chatbot is primed with the 
-necessary context, allowing the AI Partner to adopt the relevant persona.}
+necessary context, allowing the AI Partner to adopt the relevant persona.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{figures/actual_newchat_arrow_ui.png}
