@@ -4,18 +4,18 @@
 \section{Conclusion}\label{sec:conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Socius is a dual-agent, AI-powered social communication chatbot designed to
+Socius is a dual-agent, LLM-powered (Gemini-3 Flash) social communication chatbot designed to
 support Filipino emerging adults in developing pragmatic competence through
-culturally grounded, realistic conversational roleplay. Grounded in Grice's
-Cooperative Principle, Havighurst's Developmental Tasks, Arnett's theory of
-Emerging Adulthood, and Filipino cultural values---including \textit{Hiya},
-\textit{Pakikisama}, \textit{Utang na Loob}, \textit{Kapwa}, and
-\textit{Paggalang}---the system provides users with immersive scenario-based
-practice and structured, data-driven feedback on their communicative performance.
+culturally grounded, realistic conversational roleplay. This is built upon the theoretical framework outlined in this paper 
+consisting of namely Grice's Cooperative Principle, Havighurst's Developmental Tasks, Arnett's theory of
+Emerging Adulthood, and Filipino cultural values. The system aims to simulate 
+realistic social scenarios that then provide the user a safe environment to practice
+navigating said scenario through the AI Partner, and the receive personalized, actionable 
+feedback on their simulated experience through the AI Mentor.
 
-This chapter evaluates the extent to which Socius fulfilled each of its four
-research objectives, based on findings from functional testing, expert validation,
-and end-user testing.
+This chapter concludes the study by summarizing the extent to which the system had accomplished
+the objectives of the research. In essence, aiming to critically reflect on the strengths and weaknesses of the design and implementation.
+As such, the Socius System's performance has led to the following conclusions regarding the research objectives:
 
 \subsection*{Objective 1: Dual-Agent Architecture}
 
@@ -25,20 +25,26 @@ deep pragmatic analysis.}
 
 \medskip
 
-This objective was substantially achieved. End-to-end integration testing
-confirmed that the full APAM Framework---from scenario loading and AI Partner
-roleplay, through conversation logging, to AI Mentor analysis and feedback
-generation---was implemented and functioned as a cohesive pipeline. The Holistic
-Mentor agent additionally demonstrated the capacity to aggregate longitudinal user
-data and recommend contextually appropriate scenarios, extending the system
-beyond static practice into adaptive, personalized coaching.
+End-to-end integration testing confirmed that the full APAM Framework (considering the whole user journey)
+was fully implemented and provided a cohesive pipeline for the user. Moreover, the system had successfully passed information
+between AI agents, allowing the system to cohesively understand the user's scenario input from the AI Partner and move forward to 
+receiving personalized feedback from the mentor. The Holistic Mentor agent additionally 
+demonstrated the capacity to aggregate longitudinal user data and recommend contextually appropriate scenarios, 
+which had the extended the system to support users in a personalized and dynamic fashion.
 
 However, end-user testing revealed a notable weakness in the naturalness of the
 AI Partner's roleplay. Users reported that AI Partner responses were often too long
-and occasionally repetitive, which disrupted conversational immersion. Although
-the system achieved technical integration, the qualitative dimension of natural,
-fluid roleplay remains an area requiring targeted prompt engineering and output
-constraint refinement in future iterations.
+and occasionally repetitive, which disrupted immersion in the roleplay scenario and conversation. Although
+the system achieved technical integration, the qualitative dimension of natural roleplay remains an 
+area requiring targeted prompt engineering as well as potential software modifications, specifically in the UI and 
+conversation flow design, to better support engaging interactions with the AI partner. Users may have felt that the Socius Chatbot's 
+conversation presentation was too rigid, which may have contributed to the perception of naturalness. This would include the limitation of the chatbot being
+a text messaging interface that simulated real-world scenarios, removing the auditory and visual cues that are integral to real-life conversations.
+
+As such, while the dual-agent architecture was successfully implemented and technically functional, the components within the architecture itself require further refinement
+to improve the quality of roleplay. This leads to the finding that the design of the interaction environment in which the user converses with the AI Partner is a critical factor that may have been limited
+in this research. This suggests that modifications to the conversation flow and presentation may provide a more engaging environment for users to practice their pragmatic ability.
+
 
 \subsection*{Objective 2: Theoretical Framework for Scenario Generation}
 
@@ -48,26 +54,25 @@ and Filipino Cultural Values.}
 
 \medskip
 
-This objective was fully achieved. The synthesized theoretical framework---
-referred to as the APAM Framework---was successfully operationalized into a
-curated set of conversational scenarios that reflect the social developmental tasks
-of Filipino emerging adults aged 18 to 24. Expert validation confirmed that the
-framework is structurally sound, contextually nuanced, and capable of generating
-socially realistic scenarios within the local cultural context. The scenarios
-themselves were further validated by the expert, who affirmed their alignment with
-the theoretical constructs underpinning the system.
+This objective was fully achieved. The synthesized theoretical framework that had
+included multiple theories, namely Grice's Maxims and the concept of implicatures, Filipino Cultural Values 
+\cite{jocano_filipino_1997}, Havighurst's Developmental Tasks, and Arnett's theory of Emerging Adulthood 
+(of Havighurst's and Arnett's theories had been combined to 4 specific themes for scenario generation).
+Expert validation confirmed that the framework is structurally sound, is contextually nuanced, and is capable of generating
+realistic social scenarios within the local cultural context. The scenarios
+themselves were further validated by the expert to which the alignment of the scenarios with the theoretical constructs was confirmed.
 
-User feedback corroborated this finding qualitatively. Participants consistently
+User feedback also further corroborated this finding, particularly in the qualitative aspects. Participants consistently
 provided positive remarks regarding the cultural relevance, diversity, and realism
-of the scenarios, with several noting that conversations felt authentic enough to
-elicit genuine emotional responses. This affirms that the framework achieved its
+of the scenarios. Several participants had noted that the conjunction of the scenarios and the AI partner had 
+created an environment that elicited authentic emotional responses from users. This affirms that the framework created had achieved its
 intended function of grounding social practice in scenarios that are both
-developmentally appropriate and culturally resonant for the target population.
+developmentally appropriate and is culturally aligned with the experiences of Filipino emerging adults
 
 \subsection*{Objective 3: Multi-Level Quantitative Scoring Rubric}
 
 \textit{To develop a multi-level, quantitative scoring rubric for pragmatic
-competence---enforced via JSON Schema Controlled Generation---that provides
+competence enforced via JSON Schema Controlled Generation that provides
 detailed, actionable metrics across Intention Coherence, Social \& Affective
 Nuance, and Communicative Effectiveness.}
 
@@ -75,20 +80,21 @@ Nuance, and Communicative Effectiveness.}
 
 This objective was achieved at both the design and technical levels. Expert
 validation confirmed that the three-domain, eight-subcategory scoring rubric
-constitutes a valid and theoretically grounded approach to quantifying pragmatic
-ability. The use of JSON Schema Controlled Generation---enforcing structured,
-float-scored outputs from the AI Mentor (Pragmatic Analysis) agent---was confirmed
-to be technically sound through functional testing, ensuring that scores are
-machine-parsable, reliably stored in the database, and consistently applied across
-sessions.
+constitutes a valid and  grounded approach to quantifying pragmatic ability for the purposes of this research. 
+The use of JSON Schema Controlled Generation, which had enforced structured,
+float-scored outputs from the AI Mentor (Pragmatic Analysis) agent, confirmed
+to be technically sound through functional testing. Scores were reliably generated and stored in the database,
+and the AI Mentor agents were able to access and utilize these scores for feedback. Moreover, the scores essentially directed the AI Mentor's
+feedback generation which had conducted the intended purpose of providing personalized feedback to the user.
 
-In practice, individual users received personalized pragmatic scores per scenario
-session, and the AI Mentor's feedback was structured and guided by the schema
-outputs. Longitudinal averaging of scores across sessions further enabled
+Longitudinal averaging of scores across sessions further enabled
 rudimentary tracking of user progress over time. Nonetheless, because the scoring
 is generated by a probabilistic LLM without concurrent human validation, the
 consistency and accuracy of individual score assignments remain subject to variance
-inherent in the model.
+inherent in the model. Thus, the quality of the scoring system and the responses of the AI Mentor
+based on the scores are contingent on the model's performance. There is then a lack for quantitative and 
+qualitative validation of an expert regarding the reliability and validity of the scores (and feedback from said scores) generated by the AI Mentor.
+
 
 \subsection*{Objective 4: Evaluation of Chatbot Effectiveness}
 
@@ -99,22 +105,31 @@ testing.}
 \medskip
 
 This objective was achieved as an evaluation process; however, the results
-present a nuanced picture. End-user testing was successfully conducted with
-participants engaging across multiple scenario sessions over a one-week period.
-Qualitatively, user perceptions were broadly favorable: participants reported that
-Socius provided valuable, personalized feedback and that the experience of
+present a nuanced picture. End-user testing was conducted and users were able to interact to
+with the chatbot for a period of one week, providing feedback on their experience and the system's
+perceived impact on their pragmatic competence. Over the one week time period, the findings exhibit a
+pedagogical paradox in which qualitatively, the users perceive that the chatbot had a positive impact. User perceptions 
+were broadly favorable: participants reported that Socius provided valuable, personalized feedback. Furthermore, the experience of
 navigating realistic social scenarios contributed to their awareness of pragmatic
 dynamics in Filipino interpersonal communication.
 
 Quantitatively, however, no statistically significant changes were observed in
-users' pragmatic ability scores across the testing period. This outcome is
-consistent with established findings in behavioral and social science research,
-where observable competence development typically requires sustained exposure
-over weeks or months rather than days. As such, the absence of significant
-quantitative change does not negate the system's promise; rather, it underscores
-the insufficiency of the one-week testing window as a means of capturing genuine
-pragmatic growth, and highlights the need for longer longitudinal evaluation in
-future studies.
+users' pragmatic ability scores across the testing period. In previous research and findings,
+sustained exposure over weeks or months may be required to observe measurable growth in pragmatic 
+competence as opposed to the one-week testing period. As such the absence of significant quantitative change
+does not negate the system's promise; rather, it underscores that the window provided for testing in this research was 
+insufficient for valuing the system's effectiveness in supporting genuine pragmatic growth. This highlights the need for longer
+longitudinal evaluation in future studies.
+
+The study surfaced an outcome that Socius provides a space where user's can practice navigating realistic social scenarios in a safe environment, which then 
+is a critical factor to how user's perceived the system's impact on their pragmatic competence development. Thus, the system's ability simulate authentic conversational pressure
+in a safe environment is a key strength that supports user engagement and perceived learning. This represents Socius being able to navigate and overcome a difficult
+barrier that social simulation tools often face. This demonstrates that the system's design of an LLM-powered, culturally-grounded conversational agent
+can create the conditions for authentic emotional and social learning.
+
+In this light, Socius has succesfully established the foundational layers for being a chatbot that enhance users' pragmatic competence and social communication skills. The combination 
+of the architecture and theoretical framework provides a strong basis for the system's intended function, and the user testing has provided valuable insights into how engaged users are
+with the system's perceived benefit. However, the system's technical limitations and testing limitations have constrained the strength of conclusions that can be drawn about its effectiveness.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Limitations}\label{sec:limitations}
