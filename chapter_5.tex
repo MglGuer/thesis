@@ -242,79 +242,133 @@ for the AI Mentor reinforce Grice's Maxims (Quantity, Quality, Relation, and Man
 \hl{\textbf{Post-Session Feedback Display.} After a session ends, the feedback screen renders three components from the data returned by \textit{/api/end-session}: (1) a score panel showing the three category scores on the 1--5 scale and their eight sub-scores, with each sub-score's \textit{justification} text accessible on expansion; (2) a narrative feedback section rendered from the five fields of the \textit{feedback} object; and (3) an ``Ask Mentor Why'' chat panel powered by the \textit{/api/stream-mentor} SSE endpoint. When the user submits a first question, the backend injects both the full score JSON and the raw transcript into the mentor's chat history as a synthetic user-model exchange---controlled by the \textit{\_mentor\_scores\_primed} flag---ensuring that all subsequent mentor responses can cite specific utterances and rubric mappings. The full mentor exchange is persisted to the \textit{mentor\_chat\_history} column of the corresponding \textit{conversation\_logs} row via \textit{/api/save-mentor-chat}.}
  
 \hl{\textbf{Profile Screen.} The profile screen surfaces the data returned by \textit{/api/user-profile/\{user\_id\}}: the user's display name, total sessions completed, running-average pragmatic scores on a 0--100\% scale, and the date of their last session. A ``Reset Progress'' action calls \textit{/api/reset-profile}, which zeroes all running averages, deletes all \textit{conversation\_logs} rows for that user, and clears the holistic mentor chat history. UI customization options---dark mode toggle and chat background selector---dispatch to \textit{/api/update-dark-mode} and \textit{/api/update-background} respectively, persisting each preference to the \textit{user\_profiles} table.}
-
+\noindent\mbox{}
 \section{Algorithms}
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.90\textwidth]{figures/system_flowchart.png}
-    \caption{Socius end-to-end system flow}
+    \includegraphics[width=0.88\textwidth]{figures/system_flowchart.png}
+    \caption{Socius end-to-end system flow. Node colours indicate system layer:
+    \textcolor[HTML]{6B7280}{\rule{0.8em}{0.8em}}~Infrastructure \quad
+    \textcolor[HTML]{2F7D6E}{\rule{0.8em}{0.8em}}~Session management \quad
+    \textcolor[HTML]{1D4ED8}{\rule{0.8em}{0.8em}}~AI interaction \quad
+    \textcolor[HTML]{7C3AED}{\rule{0.8em}{0.8em}}~Feedback \quad
+    \textcolor[HTML]{7C2D12}{\rule{0.8em}{0.8em}}~Analysis \quad
+    \textcolor[HTML]{166534}{\rule{0.8em}{0.8em}}~User-facing output}
     \label{fig:system_flowchart}
 \end{figure}
 
 % The system relies on the following core algorithms to analyze input, assess pragmatic adherence, and generate appropriate responses:
+As illustrated in Figure~\ref{fig:system_flowchart}, the system coordinates multiple agents and database operations across four phases: Session Initialization, Active Conversation, Closing and Analysis, and Follow-up Interaction. The following subsections detail the core algorithms that drive each phase, corresponding directly to the nodes in the flowchart: the Holistic Mentor greeting at initialization, AI Partner response streaming during conversation, pragmatic analysis and database persistence at session close, and the Holistic Mentor's longitudinal recommendation logic.
 
-As illustrated in Figure~\ref{fig:system_flowchart}, the system coordinates multiple agents and database operations across four phases: Session Initialization, Active Conversation, Closing and Analysis, and Follow-up Interaction. The following subsections detail the core algorithms that drive each phase, covering input analysis, pragmatic scoring, and response generation.
 
-\subsection{Intent Recognition}
+\subsection{AI Partner Response Generation}
 
-The \textbf{Intent Recognition} algorithm is responsible for determining the user's intent based on their input. This ensures that the chatbot maintains contextual relevance and keeps the conversation focused on the right topic. By using the Gemini API, the system classifies user inputs into different intent categories, allowing for a more targeted and accurate response. As shown in Listing \ref{lst:detectintent}, the function sends the user's input to the Gemini API, which classifies the intent and returns the detected intent to guide the chatbot's response.
+The \textbf{AI Partner Response Generation} algorithm handles the Active Conversation phase of the system flow. Rather than relying on explicit intent classification, intent is inferred implicitly through the stateful chat session, which preserves the full multi-turn conversation history across turns. As shown in Listing \ref{lst:partnerresponse}, each user message is passed directly to the active chat session, which streams the response back to the frontend chunk by chunk via Server-Sent Events (SSE).
 
-\begin{lstlisting}[caption={Intent Recognition Algorithm}, label={lst:detectintent}]
-FUNCTION detect_intent(user_input):
-    INITIALIZE GeminiAPI with API_KEY
-    CALL classify_intent on user_input using GeminiAPI
-    RETURN detected intent from response
+\begin{lstlisting}[caption={AI Partner Response Generation}, label={lst:partnerresponse}]
+FUNCTION stream_partner_response(user_input, session_id):
+    LOAD chatbot FROM active chatbot_sessions[session_id]
+    LOAD system_instruction WITH scenario context
+        AND Filipino conversational rules
+        AND thinking_budget = 512
+
+    FOR EACH chunk IN chat_session.send_message_stream(user_input):
+        YIELD chunk AS SSE frame {"chunk": text}
+
+    YIELD final SSE frame {"done": True, "role": chatbot_role}
 END FUNCTION
 \end{lstlisting}
 
 
 \subsection{Pragmatic Analysis}
 
-The \textbf{Pragmatic Analysis} algorithm evaluates whether the user's response adheres to the target pragmatic competencies (Intention Coherence, Social Nuance, and Communicative Effectiveness). Rather than relying on unstructured text generation, the system enforces a strict JSON Schema (\texttt{SCORING\_RESPONSE\_SCHEMA}). As shown in Listing \ref{lst:mentorlogic}, this guarantees that the LLM outputs machine-parsable, float-based scores and string-based justifications that the backend can reliably store in the database.
+The \textbf{Pragmatic Analysis} algorithm corresponds to the Closing and Analysis phase of the system flow. When the user ends a session, the system extracts the full transcript from the SDK's chat history and runs a single combined API call that produces both quantitative scores and qualitative feedback simultaneously. As shown in Listing \ref{lst:mentorlogic}, the output is constrained to a strict JSON schema, guaranteeing machine-parsable float scores and string justifications that the backend can reliably store in the database.
 
-\begin{lstlisting}[caption={AI Mentor JSON Schema Evaluation Algorithm}, label={lst:mentorlogic}]
-FUNCTION evaluate_performance(transcript, scenario_context):
-    LOAD response_schema FROM SCORING_RESPONSE_SCHEMA
-    INITIALIZE GeminiInstance with thinking_budget=8000
-    
-    CONSTRUCT Analysis_Prompt:
-        "Read this transcript and evaluate the user based on 
-         Intention Coherence, Social Nuance, and Effectiveness.
-         Output MUST strictly follow the provided JSON schema.
-         Context: " + scenario_context
-         
-    CALL GeminiAPI.generate_content(Analysis_Prompt, transcript)
-    PARSE response AS JSON
-    SAVE scores and feedback to Supabase Conversation Logs
-    RETURN structured_report
+\begin{lstlisting}[caption={AI Mentor Pragmatic Analysis Algorithm}, label={lst:mentorlogic}]
+FUNCTION run_pragmatic_analyzer(session_id):
+    LOAD chatbot FROM active chatbot_sessions[session_id]
+    EXTRACT transcript FROM chat_session._curated_history
+    APPEND "[System: simulation concluded]" TO transcript
+
+    CONSTRUCT combined_prompt FROM
+        COMBINED_ANALYSIS_PROMPT_TEMPLATE
+        WITH scenario_context AND transcript
+
+    INITIALIZE GeminiInstance WITH
+        thinking_budget = 8000
+        AND response_mime_type = "application/json"
+        AND response_schema = SCORING_RESPONSE_SCHEMA
+
+    CALL GeminiAPI.generate_content(combined_prompt)
+    PARSE response AS JSON INTO:
+        pragmatic_scores  // IC, SN, CE + 8 sub-scores + justifications
+        feedback          // key_takeaway, cooperative_efficiency,
+                          // relational_management,
+                          // conversational_achievement, actionable_tip
+
+    RETURN {scores: pragmatic_scores, feedback: feedback}
 END FUNCTION
 \end{lstlisting}
 
-\subsection{Feedback Generation}
+\subsection{Database Persistence and Profile Update}
 
-The \textbf{Feedback Generation} algorithm constructs personalized feedback messages based on the pragmatic analysis. It informs the user about any violations of Grice's Maxims, offering suggestions to improve their communication. If no violations are found, the algorithm generates positive feedback, congratulating the user for providing a clear and relevant response. As shown in Listing \ref{lst:generateresponse}, this ensures that users not only receive constructive criticism but also feel encouraged to continue improving their conversational skills.
+The \textbf{Database Persistence} algorithm corresponds to the two parallel database writes shown in the system flowchart following analysis. The conversation log and the user's running average scores are updated independently in Supabase. As shown in Listing \ref{lst:dbpersist}, the profile update applies a cumulative running average formula to normalize and track pragmatic competence over time.
 
-\begin{lstlisting}[caption={LLM (Gemini API) Response Generation}, label={lst:generateresponse}]
-FUNCTION generate_response(user_input, scenario):
-    CREATE prompt with scenario and user_input
-    CALL generate_text on GeminiAPI with prompt
-    RETURN generated text from API response
+\begin{lstlisting}[caption={Database Persistence and Profile Update Algorithm}, label={lst:dbpersist}]
+FUNCTION persist_session(user_id, session_id, analysis_results):
+    LOAD scores    FROM analysis_results.pragmatic_scores
+    LOAD feedback  FROM analysis_results.feedback
+    LOAD transcript FROM chatbot_sessions[session_id]
+
+    // Write 1: Save conversation log
+    INSERT INTO conversation_logs:
+        user_id, scenario_id, transcript,
+        feedback_text, session_scores, timestamp
+
+    // Write 2: Update running average profile metrics
+    LOAD current_profile FROM user_profiles WHERE user_id
+    FOR EACH metric IN [IC, SN, CE]:
+        raw_score      = scores[metric] // 1-5 scale
+        normalized     = (raw_score - 1) / 4  // convert to 0.0-1.0
+        new_average    = (current_avg * sessions_completed
+                         + normalized)
+                         / (sessions_completed + 1)
+        UPDATE user_profiles SET metric = ROUND(new_average, 4)
+
+    UPDATE user_profiles SET sessions_completed += 1
 END FUNCTION
 \end{lstlisting}
 
 
-\subsection{LLM (Gemini API) Integration for Response Generation}
+\subsection{Holistic Mentor Greeting and Recommendation}
 
-The \textbf{LLM Integration} algorithm is responsible for generating responses that are contextually relevant and pragmatically sound. This is achieved by integrating the Gemini API to generate text that aligns with the selected scenario and the user's input. As shown in Listing \ref{lst:partnergen}, the algorithm constructs a prompt combining the scenario and the user's input and passes it to the Gemini API, which returns the generated text as the chatbot's response. This ensures that the chatbot can handle various conversational contexts and respond appropriately.
+The \textbf{Holistic Mentor} algorithm corresponds to the Session Initialization phase of the system flow, running at page load before the user starts a new session. It aggregates the user's longitudinal performance data to generate a personalized greeting and scenario recommendation. As shown in Listing \ref{lst:holisticmentor}, the greeting is cached to avoid redundant API calls and is only regenerated when the user's session count changes.
 
-\begin{lstlisting}[caption={AI Partner Response Generation}, label={lst:partnergen}]
-FUNCTION generate_partner_response(user_input, current_history):
-    LOAD system_instruction (enforce natural Filipino conversational patterns)
-    INITIALIZE GeminiInstance with thinking_budget=512
-    
-    CALL GeminiAPI.generate_content(system_instruction, user_input)
-    RETURN character_response
+\begin{lstlisting}[caption={Holistic Mentor Greeting Algorithm}, label={lst:holisticmentor}]
+FUNCTION generate_holistic_greeting(user_id, user_name):
+    LOAD profile FROM user_profiles WHERE user_id
+    LOAD holistic_stats:
+        session_count, avg_IC, avg_SN, avg_CE
+        weakest_area = MIN(avg_IC, avg_SN, avg_CE)
+
+    COMPUTE progression_trend:
+        recent_avg  = AVERAGE of last 5 sessions
+        previous_avg = AVERAGE of sessions before that
+        IF recent_avg - previous_avg > 0.15: trend = "improving"
+        ELIF recent_avg - previous_avg < -0.15: trend = "declining"
+        ELSE: trend = "plateaued"
+
+    CHECK cached_greeting IN user_profiles:
+        IF cache EXISTS AND cache.session_count == current_count:
+            RETURN cached_greeting  // skip API call
+
+    INITIALIZE GeminiInstance WITH thinking_budget = 8000
+    CONSTRUCT prompt FROM HOLISTIC_MENU_SYSTEM_PROMPT
+        WITH holistic_stats AND progression_trend
+
+    greeting = GeminiAPI.generate_content(prompt)
+    SAVE greeting TO holistic_greeting_cache IN user_profiles
+    RETURN greeting
 END FUNCTION
 \end{lstlisting}
 
