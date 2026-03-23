@@ -22,7 +22,7 @@ The system will establish a backend database that will be storing user profiles,
 
 Moreover, the system will also provide a fixed set of predefined conversational scenarios. Users will be able to select from these scenarios to practice, in which the range of contexts offered will cover various academic, professional, and social situations relevant to young adults. The system thus will be limited to these predefined scenarios and will not allow dynamic scenario generation or user-generated scenarios. 
 
-To generate contextually relevant and pragmatically appropriate dialogue, the system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. \hl{The chatbot will be utilizing the Gemini API under a Tier 1 paid plan, specifically the Gemini 3 Flash model, which provides higher rate limits and more capable model access suitable for real-time conversational applications. Thus, we will be exploring the potential of the Gemini 3 Flash model to generate responses that align with sociolinguistic topics.} \hl{Considering this, the chatbot will also have a fixed understanding of Grice's Maxims of Conversations, showcasing these rules as text-based, unchanging, and static statements that users can refer to when receiving feedback.}
+To generate contextually relevant and pragmatically appropriate dialogue, the system will leverage the Gemini API to generate the contextually relevant and pragmatically aligned dialogue responses. This then means that Gemini will try to understand the user's input and align its response to the context while considering pragmatic principles and the designed conversation flow. The chatbot will be utilizing the Gemini API under a Tier 1 paid plan, specifically the Gemini 3 Flash model, which provides higher rate limits and more capable model access suitable for real-time conversational applications. Thus, we will be exploring the potential of the Gemini 3 Flash model to generate responses that align with sociolinguistic topics. Considering this, the chatbot will also have a fixed understanding of Grice's Maxims of Conversations, showcasing these rules as text-based, unchanging, and static statements that users can refer to when receiving feedback.
 
 The user interface will be designed to resemble common text messaging applications, presenting both the conversational exchanges and feedback in a familiar layout. This will allow the presentation of the conversational exchanges and feedback. The scope is limited to a core set of UI elements necessary for text-based interaction and feedback delivery. It will not include advanced graphical elements, sophisticated animation, voice input/output capabilities, or highly customizable themes. The usability and user satisfaction are contingent on standard user experience (UX) design principles applied to a text-heavy interface.  In addition to this, there will be a fixed set of statements that will be used to explain the concepts of Grice's Maxims and implicatures located in the user interface, which will be used to assist the user in understanding the concepts of pragmatics, thereby also helping them understand the feedback they receive from the chatbot.
 
@@ -43,21 +43,21 @@ Input received via \textbf{User Interface} is sent to the \textbf{Conversation M
 
 \subsection{User Interface}
 
-\hl{The user interface (UI) is the front-end component of the Socius system, in which it is designed to facilitate text-based interactions between the user and the chatbot. This would include a chat window similar to text messaging applications where users can input their messages and they may see the responses/messages of the chatbot. This will also include a scenario selection component wherein the users will be able to pick the predetermined social context they would converse with the chatbot in. Moreover, this would also facilitate the viewing of their own profile and their current pragmatic competence based on implicature accuracies. The design would also focus on usability and accessibility, through which simple graphical elements are used to accomplish this.}
+The user interface (UI) is the front-end component of the Socius system, in which it is designed to facilitate text-based interactions between the user and the chatbot. This would include a chat window similar to text messaging applications where users can input their messages and they may see the responses/messages of the chatbot. This will also include a scenario selection component wherein the users will be able to pick the predetermined social context they would converse with the chatbot in. Moreover, this would also facilitate the viewing of their own profile and their current pragmatic competence based on implicature accuracies. The design would also focus on usability and accessibility, through which simple graphical elements are used to accomplish this.
 
 \subsection{Conversation Flow Manager}
 
-\hl{The conversation flow manager is responsible for managing the conversation's structure and progression. It can be akin to the brain of the chatbot, overseeing the interaction between user and chatbot. This would include 2 components: \textbf{Input Processing} and \textbf{Scenario Generation}. 
+The conversation flow manager is responsible for managing the conversation's structure and progression. It can be akin to the brain of the chatbot, overseeing the interaction between user and chatbot. This would include 2 components: \textbf{Input Processing} and \textbf{Scenario Generation}. 
 
 The Input Processing component is responsible for receiving user input and understanding the user's intent with their message. Its primary function is to transform raw user text into a structured data format that can be understood by the chatbot. This includes parsing the input, identifying and key entities within the user response that could indicate clear intent in the message, and then necessary pre-processing steps to correct typographical and grammatical errors. This would allow the surface level intent of the user response to be clearly communicated to the chatbot. Moreover, this component also determines if the user's input is out-of-scope in regards to the current social context, and the persona the chatbot is roleplaying as. The output of this component would be a structured object containing cleaned text, intent, and entities, which would then be reviewed within the conversation flow component prior to pragmatic analysis.
 
-The Conversation Flow component will focus on understanding implied intent behind the message, not solely surface level. It will use the output from the input processor to track dialogue state and gain further meaning from past conversation history within the context of the emulated social scenario. This allows the chatbot to have an understanding of current dialogue state in regards to the conversation history, allowing it to decide it's next action to advance the scenario. This would then output the complete user intent and conversation context to the pragmatic analyzer, which will assist the chatbot in creating the appropriate response to the user.}
+The Conversation Flow component will focus on understanding implied intent behind the message, not solely surface level. It will use the output from the input processor to track dialogue state and gain further meaning from past conversation history within the context of the emulated social scenario. This allows the chatbot to have an understanding of current dialogue state in regards to the conversation history, allowing it to decide it's next action to advance the scenario. This would then output the complete user intent and conversation context to the pragmatic analyzer, which will assist the chatbot in creating the appropriate response to the user.
 
 Furthermore, the Conversation Flow Manager incorporates Server-Sent Events (SSE) to stream AI responses to the frontend in real-time, simulating natural human typing latency. To ensure system resilience, a stateless recovery mechanism is also implemented. If a server-side session expires, the system can reconstruct the conversational state and pragmatic context using client-supplied transcripts and scores, preventing data loss and ensuring the user can still access their AI Mentor feedback.
 
 \subsection{Pragmatic Analyzer}
 
-\hl{The Pragmatic Analyzer is the component responsible for evaluating the user's 
+The Pragmatic Analyzer is the component responsible for evaluating the user's 
 conversational performance through a structured, multi-dimensional scoring rubric. 
 Rather than relying on a single metric, the system assesses pragmatic competence 
 across three core categories grounded in Sileo et al.'s dataset groupings, each 
@@ -73,11 +73,11 @@ followed from previous turns (referencing the Penn Discourse Treebank).
 The second category, \textbf{Social Affective Nuance (SN)}, corresponds to the 
 Interpersonal Metafunction and evaluates how well the user navigated social dynamics, 
 emotional tone, and Filipino cultural values. It comprises four sub-scores: 
-\textit{Formality Level}, assessing register appropriateness (Squinky dataset); 
-\textit{Emotional Empathy}, measuring alignment with the partner's emotional state 
+	extit{Formality Level}, assessing register appropriateness (Squinky dataset); 
+	extit{Emotional Empathy}, measuring alignment with the partner's emotional state 
 (EmoBank dataset); \textit{Informativeness}, evaluating sufficiency of information 
 in accordance with Grice's Maxim of Quantity (Squinky dataset); and 
-\textit{Cultural Filipino Values}, assessing the user's knowledge of culturally 
+	extit{Cultural Filipino Values}, assessing the user's knowledge of culturally 
 specific norms such as \textit{Pakikisama}, \textit{Paggalang}, and \textit{Hiya}.
 
 The third category, \textbf{Communicative Effectiveness (CE)}, corresponds to the 
@@ -91,23 +91,23 @@ Each category produces an overall score as the average of its sub-scores, accomp
 by a textual justification citing specific evidence from the conversation transcript. 
 This structured evaluation is executed through a single API call to the Gemini 3 Flash 
 model using a constrained JSON response schema, ensuring consistent and parseable output 
-for both score storage and feedback generation.}
+for both score storage and feedback generation.
 
 \subsection{Feedback Generation}
 
-\hl{The Feedback Generation component serves as the main component for the AI Mentor, responsible for synthesizing a comprehensive analysis of the user's performance into educational advice personalized for their strengths and weaknesses. To accomplish this, it integrates data from multiple sources, namely the final conversational state from the current conversation (Conversation Flow Manager), the evaluation from the Pragmatic Analyzer, and the previous history of chatlogs of the user alongside the user's current implicature accuracy average over the course of all conversations/scenarios with the chatbot. The component’s primary function is to translate the analytical output which details the user's adherence to Grice's Maxims—into personalized feedback points. It prioritizes feedback on the use of implicatures, explaining where a user's implied meaning was clear or ambiguous. A core aspect of the feedback is its pedagogical approach; it does not simply correct the user but explains the relevant pragmatic theories in simple terms, referencing the user's specific messages from the conversation history to illustrate its points. By grounding its advice in the user's recent performance, this component ensures the feedback is personalized and helps the user understand what to improve upon in the perspective of communication adhering to Grice's Maxims and pragmatic norms.}
+The Feedback Generation component serves as the main component for the AI Mentor, responsible for synthesizing a comprehensive analysis of the user's performance into educational advice personalized for their strengths and weaknesses. To accomplish this, it integrates data from multiple sources, namely the final conversational state from the current conversation (Conversation Flow Manager), the evaluation from the Pragmatic Analyzer, and the previous history of chatlogs of the user alongside the user's current implicature accuracy average over the course of all conversations/scenarios with the chatbot. The component’s primary function is to translate the analytical output which details the user's adherence to Grice's Maxims—into personalized feedback points. It prioritizes feedback on the use of implicatures, explaining where a user's implied meaning was clear or ambiguous. A core aspect of the feedback is its pedagogical approach; it does not simply correct the user but explains the relevant pragmatic theories in simple terms, referencing the user's specific messages from the conversation history to illustrate its points. By grounding its advice in the user's recent performance, this component ensures the feedback is personalized and helps the user understand what to improve upon in the perspective of communication adhering to Grice's Maxims and pragmatic norms.
 
 Crucially, this component is bifurcated into two distinct instances: the Post-Session AI Mentor and the Holistic Mentor. While the Post-Session Mentor provides immediate, transcript-based analysis for the recently concluded scenario, the Holistic Mentor aggregates the user's historical performance across all previous sessions. By accessing the database, the Holistic Mentor identifies longitudinal trends (e.g., improvement streaks, plateauing scores) and dynamically recommends specific practice themes based on the user's weakest pragmatic category, grounding its advice in Vygotsky's Zone of Proximal Development.
 
 \subsection{Database Manager}
 
-\hl{The database contains 3 main components: the user profile table, the conversation log table, and the scenario table:
+The database contains 3 main components: the user profile table, the conversation log table, and the scenario table:
 
 The \textbf{User Profile Table} stores user information such as name, email, password, and current implicature accuracy metrics. This table is essential for storing user information, tracking pragmatic competence progress, and connecting conversation logs to specific users. It allows the system to track user profiles, manage user sessions, and provide personalized feedback based on individual performance during AI Mentor feedback generation. 
 
 The \textbf{Conversation Log Table} stores the conversation history for each user, including timestamps, user messages, and chatbot responses. This table is crucial for maintaining a record of user interactions, which is then used for feedback generation in regards to personalized feedback based on the current user. 
 
-The \textbf{Scenario Table} contains predefined social scenarios that users can select from. Each scenario includes context, roles, and expected dialogue behavior. This table is essential for providing users with a structured set of scenarios to practice their the recognition of implicatures, as well as being able to in which their implied meanings could be understood by the chatbot, ensuring that the chatbot can simulate realistic social interactions based on Grice's Maxims and implicatures.}
+The \textbf{Scenario Table} contains predefined social scenarios that users can select from. Each scenario includes context, roles, and expected dialogue behavior. This table is essential for providing users with a structured set of scenarios to practice their the recognition of implicatures, as well as being able to in which their implied meanings could be understood by the chatbot, ensuring that the chatbot can simulate realistic social interactions based on Grice's Maxims and implicatures.
 
 
 
@@ -124,31 +124,31 @@ The \textbf{Scenario Table} contains predefined social scenarios that users can 
 
 \section{Conversation Flow}
 
-\hl{The Socius chatbot follows a structured conversation flow grounded in the APAM framework, with two primary functional phases: the AI Partner Phase (interaction) and the AI Mentor Phase (evaluation). Each phase contains specific steps that enable both real-time dialogue and post-conversation analysis, helping users develop and reflect on their pragmatic competence.
+The Socius chatbot follows a structured conversation flow grounded in the APAM framework, with two primary functional phases: the AI Partner Phase (interaction) and the AI Mentor Phase (evaluation). Each phase contains specific steps that enable both real-time dialogue and post-conversation analysis, helping users develop and reflect on their pragmatic competence.
 
-The full conversation process consists of the following stages:}
+The full conversation process consists of the following stages:
 
 \begin{enumerate}
     \item \textbf{Initialize Session} \\
-    \hl{The chatbot begins by initializing the session, preparing the environment for interaction. This includes loading necessary components and user parameters.}
+    The chatbot begins by initializing the session, preparing the environment for interaction. This includes loading necessary components and user parameters.
 
     \item \textbf{Scenario Selection and Instantiation} \\
-    \hl{The user is prompted to select a pre-generated scenario. Once selected, the scenario is seeded into the Gemini API. This step packages the chatbot's role, the conversation setting, and expected dialogue behavior, all of which are retrieved from the knowledge base. The chatbot then adopts a specific persona (e.g., classmate, manager, stranger) based on the scenario's context.}
+    The user is prompted to select a pre-generated scenario. Once selected, the scenario is seeded into the Gemini API. This step packages the chatbot's role, the conversation setting, and expected dialogue behavior, all of which are retrieved from the knowledge base. The chatbot then adopts a specific persona (e.g., classmate, manager, stranger) based on the scenario's context.
 
     \item \textbf{Conversation Simulation (AI Partner Phase)} \\
-    \hl{In this stage, the chatbot assumes the role of an AI Partner and engages the user in conversation. The dialogue unfolds in real time, encouraging the user to respond in ways that demonstrate pragmatic awareness, such as relevance, clarity, and the ability to handle indirect or implied meaning.}
+    In this stage, the chatbot assumes the role of an AI Partner and engages the user in conversation. The dialogue unfolds in real time, encouraging the user to respond in ways that demonstrate pragmatic awareness, such as relevance, clarity, and the ability to handle indirect or implied meaning.
 
     \item \textbf{Pragmatic Logging} \\
-    \hl{Once the conversation ends, the system transitions into the AI Mentor phase. It logs each user response and annotates them for pragmatic features—such as maxim violations (e.g., underinformativeness, ambiguity), correct implicature identification, or missed indirect cues. These annotations help focus later feedback on specific dialogue points.}
+    Once the conversation ends, the system transitions into the AI Mentor phase. It logs each user response and annotates them for pragmatic features—such as maxim violations (e.g., underinformativeness, ambiguity), correct implicature identification, or missed indirect cues. These annotations help focus later feedback on specific dialogue points.
 
     \item \textbf{Conversation Analysis (AI Mentor Phase)} \\
-    \hl{The completed conversation transcript is passed to the Pragmatic Analyzer, which evaluates the user's performance across three scoring categories: Intention Coherence, Social Affective Nuance, and Communicative Effectiveness. Each category is broken down into sub-scores grounded in established sociolinguistic datasets, and the model identifies specific utterances from the transcript as evidence for each score. The analysis also takes into account the scenario's social context, including the relevant Filipino cultural norms such as \textit{Pakikisama}, \textit{Hiya}, \textit{Utang na Loob}, and \textit{Paggalang}.}
+    The completed conversation transcript is passed to the Pragmatic Analyzer, which evaluates the user's performance across three scoring categories: Intention Coherence, Social Affective Nuance, and Communicative Effectiveness. Each category is broken down into sub-scores grounded in established sociolinguistic datasets, and the model identifies specific utterances from the transcript as evidence for each score. The analysis also takes into account the scenario's social context, including the relevant Filipino cultural norms such as \textit{Pakikisama}, \textit{Hiya}, \textit{Utang na Loob}, and \textit{Paggalang}.
 
     \item \textbf{Metric Generation} \\
-    \hl{Using the Gemini 3 Flash model with a structured JSON response schema, the system generates a structured score report containing numerical scores (1--5) for each category and sub-category, alongside justifications citing specific moments from the conversation. These scores are stored in the database and used to update the user's running average across all sessions, providing a longitudinal measure of pragmatic competence development.}
+    Using the Gemini 3 Flash model with a structured JSON response schema, the system generates a structured score report containing numerical scores (1--5) for each category and sub-category, alongside justifications citing specific moments from the conversation. These scores are stored in the database and used to update the user's running average across all sessions, providing a longitudinal measure of pragmatic competence development.
 \end{enumerate}
 
-\hl{This flow allows the chatbot to function both as a conversation partner and as an evaluator. It supports pragmatic skill-building by enabling practice, identifying specific areas of strength or difficulty, and encouraging reflection through targeted feedback.}
+This flow allows the chatbot to function both as a conversation partner and as an evaluator. It supports pragmatic skill-building by enabling practice, identifying specific areas of strength or difficulty, and encouraging reflection through targeted feedback.
 
 
 \begin{figure}[H]
@@ -159,7 +159,7 @@ The full conversation process consists of the following stages:}
 \end{figure}
 \pagebreak
 \section{Software Functions}
-\hl{This section outlines the functions of the Socius APAM system relevant to the user experience. The user’s interaction is structured into three-stages of learning: (1) scenario selection and onboarding, (2) interactive dialogue with an AI Partner, and (3) personalized feedback from an AI Mentor. The following subsections will detail these stages, complemented by relevant UI design mockups to provide a walkthrough of the user experience.}
+This section outlines the functions of the Socius APAM system relevant to the user experience. The user’s interaction is structured into three-stages of learning: (1) scenario selection and onboarding, (2) interactive dialogue with an AI Partner, and (3) personalized feedback from an AI Mentor. The following subsections will detail these stages, complemented by relevant UI design mockups to provide a walkthrough of the user experience.
 \subsection{Scenario Selection}
 \hl{Upon the application's launch, the user is introduced to the scenario selection 
 screen as shown in Figure 4.3. At the top of the screen, a Holistic Mentor card 
@@ -183,7 +183,7 @@ necessary context, allowing the AI Partner to adopt the relevant persona.}
 %The user interface (UI) is the front-end component of the Socius system, designed to facilitate text-based interactions between the user and the chatbot. At present, it includes a chat window similar to text messaging applications, where users can input their messages and view the chatbot’s responses in real time. The layout employs alternating message colors and timestamps for clarity, with a minimalistic design that prioritizes usability and accessibility through simple graphical elements.
 %Planned enhancements to the UI include the addition of a scenario selection component, allowing users to choose from predetermined social contexts before initiating a conversation. Further features will include profile and progress tracking, enabling users to monitor their pragmatic competence based on implicature accuracies over multiple sessions, and the integration of feedback display functionality to provide post-conversation performance insights. These developments will maintain the system’s focus on intuitive, distraction-free interaction while expanding its training capabilities.
 \subsection{Interactive Dialogue (AI Partner Phase)}
-\hl{After choosing a scenario, the chat interface is loaded as shown in Figure 4.4. 
+After choosing a scenario, the chat interface is loaded as shown in Figure 4.4. 
 The layout is divided into three panels. The left sidebar displays the user's 
 previous conversations for easy navigation. The central chat window presents the 
 dialogue in a messaging-style format, with the AI Partner's messages appearing on 
@@ -194,7 +194,7 @@ title, situational theme, partner role, practice goals, and conversational tips,
 allowing the user to remain oriented throughout the interaction. The goal of this 
 phase is to simulate a safe space for the practice of conversational skills with 
 the application of pragmatic principles, for which the AI Partner will be 
-responsible.}
+responsible.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{figures/actual_chat_ui.png}
@@ -204,24 +204,25 @@ responsible.}
 \end{figure}
 
 \subsection{Personalized Feedback (AI Mentor Phase)}
-\hl{The post-conversation feedback phase, or the AI Mentor phase is the final stage. Here, the user is provided with a personalized textual report based on their performance in the previous phase. The AI Mentor serves not only to provide feedback that can be related to Grice’s Maxims, but also present these concepts in a more grounded way, ideally helping the users to understand concepts without having to sift through much academic jargon. The report will also provide the user with highlights from the previous conversation’s transcript, revealing areas of strength and room for improvement. Finally, the AI-Mentor itself is available for a free-text dialogue, where the user can ask questions regarding the theories, the previous conversation, the user’s understanding, or other points of clarification.}
+The post-conversation feedback phase, or the AI Mentor phase is the final stage. Here, the user is provided with a personalized textual report based on their performance in the previous phase. The AI Mentor serves not only to provide feedback that can be related to Grice’s Maxims, but also present these concepts in a more grounded way, ideally helping the users to understand concepts without having to sift through much academic jargon. The report will also provide the user with highlights from the previous conversation’s transcript, revealing areas of strength and room for improvement. Finally, the AI-Mentor itself is available for a free-text dialogue, where the user can ask questions regarding the theories, the previous conversation, the user’s understanding, or other points of clarification.
 
 
 
 \section{Resources}
 \subsection{Gemini API}
 
-\hl{The \textbf{Gemini API}, developed by Google DeepMind, is a large language model (LLM) platform that offers
+appropriate responses during real-time interactions. Its ability to interpret user inputs, maintain 
+The \textbf{Gemini API}, developed by Google DeepMind, is a large language model (LLM) platform that offers
 advanced capabilities in natural language understanding and generation. In the Socius system, the Tier 1 paid plan of the Gemini API, specifically the 
 Gemini 3 Flash model, serves as the core conversational engine responsible for producing contextually relevant, pragmatically 
 appropriate responses during real-time interactions. Its ability to interpret user inputs, maintain 
 conversational coherence, and generate semantically nuanced replies makes it a good fit for applications
 that require sensitivity to social and pragmatic context.
 
-Socius leverages the Gemini API in two key areas:}
+Socius leverages the Gemini API in two key areas:
 
 \begin{itemize}
-    \item \hl{\textbf{Dialogue Simulation (AI Partner Phase)}: During the interactive portion of the session, 
+    \item \textbf{Dialogue Simulation (AI Partner Phase)}: During the interactive portion of the session, 
     Gemini is used to generate chatbot responses. These responses are conditioned not only on the user's 
     immediate input but also on the scenario context, conversation history, and the assigned social role 
     of the chatbot. The API is expected to observe Gricean conversational principles such as Relevance, 
@@ -231,9 +232,9 @@ Socius leverages the Gemini API in two key areas:}
     contributes to the system's evaluation phase. It helps generate multiple plausible implicatures for 
     each user message and assists in diagnosing whether the user’s responses demonstrate adherence or 
     violations to Grice's Maxims. These insights are synthesized into personalized feedback using a 
-    pedagogical tone, aiming to help users improve their pragmatic skills.}
+    pedagogical tone, aiming to help users improve their pragmatic skills.
 \end{itemize}
-\hl{
+
 In this implementation, the system utilizes the Gemini API under a Tier 1 paid plan, 
 providing access to higher rate limits and extended context window capabilities suitable 
 for multi-turn conversational interactions. Gemini 3 Flash provides a powerful and 
@@ -259,14 +260,13 @@ possibly leading to changes in response behavior over time that affect consisten
 Lastly, while the Gemini API demonstrates strong general-purpose conversational capabilities, its use
 in pragmatic training and social communication remains underexplored. Thus, its effectiveness in
 modeling conversational norms such as Grice’s Maxims must be interpreted with caution, pending 
-further research and evaluation.}
+further research and evaluation.
 
 \subsection{GRICE Dataset}
 
-\hl{The foundation for the theoretical, training, and evaluation framework is the \textbf{GRICE Dataset}, which is a comprehensive collection of dialogue data readily available online developed by Zheng et al. (2021). It is designed to specifically bring the concept of implicature or implied meaning to pragmatic reasoning for conversational systems. Furthermore, this was developed in homage to H.P. Grice and focuses on his influential theory of conversational implicatures, thereby being suited for the Socius system. 
-}
+The foundation for the theoretical, training, and evaluation framework is the \textbf{GRICE Dataset}, which is a comprehensive collection of dialogue data readily available online developed by Zheng et al. (2021). It is designed to specifically bring the concept of implicature or implied meaning to pragmatic reasoning for conversational systems. Furthermore, this was developed in homage to H.P. Grice and focuses on his influential theory of conversational implicatures, thereby being suited for the Socius system. 
 
-\hl{While the GRICE Dataset provides the theoretical and structural foundation for the 
+While the GRICE Dataset provides the theoretical and structural foundation for the 
 predefined scenarios in Socius, it does not directly drive the scoring logic of the 
 Pragmatic Analyzer. Instead, the dataset informs the \textit{design} of the scenarios 
 by establishing them in implicature-rich social situations where Gricean maxims are 
@@ -274,7 +274,7 @@ likely to be tested. The actual performance evaluation is handled by the three-c
 rubric described in the Pragmatic Analyzer subsection, which draws from Sileo et al.'s 
 dataset groupings for its scoring criteria. Select scenarios have also been localized 
 to reflect Filipino cultural norms and social dynamics, ensuring relevance and 
-accessibility for the target user population.}
+accessibility for the target user population.
 
 % \subsection{Calendar of Activities}
 
