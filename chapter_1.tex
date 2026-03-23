@@ -32,7 +32,7 @@ regardless of diagnostic status. Their work suggests that understanding and prac
 social engagement across the board, thereby maximizing its potential benefit and broad applicability.
 
 Recent work in social skill training has introduced the AI Partner and AI Mentor (APAM) framework as a promising model
-for combining simulated practice and pedagogical feedback using Large Language Models (LLMs) \cite{yang_social_2024}.
+for combining simulated practice and pedagogical feedback using LLMs \cite{yang_social_2024}.
 In this framework, the AI Partner engages the user in realistic, domain-specific conversational scenarios, serving as 
 a practice partner that reflects varied social contexts. The AI Mentor, on the other hand, observes the interaction and 
 provides theory-grounded feedback, contextual suggestions, and reflective insights to promote social learning. This
@@ -47,7 +47,7 @@ Grice's Cooperative Principle is a key theoretical framework for pragmatic analy
 These maxims guide how speakers are expected to contribute to conversations, which is by being informative, truthful, relevant, and clear \cite{hossain_application_2021}. 
 When these maxims are followed, communication tends to proceed smoothly. Should violations occur, intentional or not, these may lead to confusion, implicature, or breakdowns. 
 
-Large Language Models (LLMs) like GPT-4 and Gemini 3 have been evaluated on Gricean tasks and, in some cases, they outperform humans in identifying implicature or 
+Large Language Models like GPT-4 and Gemini 3 have been evaluated on Gricean tasks and, in some cases, they outperform humans in identifying implicature or 
 recovering unstated meaning \mbox{\cite{bojic_gpt-4_2023}}. However, achieving true pragmatic competence in an educational tool requires more than recognizing 
 logical maxims. It also demands an understanding of developmental psychology and cultural context. For young adults navigating the transition to adulthood, 
 conversational challenges are deeply tied to identity exploration and changing social expectations \cite{arnett_emerging_2000,havighurst_developmental_1948}. 
@@ -92,7 +92,11 @@ The objectives of the study are as follows:
 \end{enumerate}
 
 \section{Scope and Limitations}
-\indent The chatbot was developed using the AI Partner - AI Mentor (APAM) framework, emphasizing situation emulation and the provision of personalized feedback. The primary scope of this feedback encompasses a multi-level scoring framework assessing three core domains: Intention Coherence (logical flow and speech acts), Social \& Affective Nuance (formality, empathy, and informativeness), and Communicative Effectiveness (goal achievement and implicature handling). While grounded in Grice's Maxims (Quantity, Quality, Relation, and Manner), the system expands upon them to include developmental psychology and cultural pragmatics. Moreover, these maxims and implicatures are not reliant on paralinguistic cues, making them suitable for implementation in a text-based AI system \cite{dale_role_1996}. 
+\indent The chatbot was developed using the AI Partner - AI Mentor framework, emphasizing situation emulation and the provision of personalized feedback. 
+The primary scope of this feedback encompasses a multi-level scoring framework assessing three core domains: Intention Coherence (logical flow and speech acts), 
+Social \& Affective Nuance (formality, empathy, and informativeness), and Communicative Effectiveness (goal achievement and implicature handling). While grounded in 
+Grice's Maxims (Quantity, Quality, Relation, and Manner), the system expands upon them to include developmental psychology and cultural pragmatics. Moreover, these 
+maxims and implicatures are not reliant on paralinguistic cues, making them suitable for implementation in a text-based AI system \cite{dale_role_1996}. 
 
 In line with goal-oriented language generation, the chatbot relies on the reasoning ability of the Gemini 3 model family rather than a rigidly fine-tuned local model. 
 Feedback is strictly enforced through a JSON Output Schema via the Gemini API, ensuring machine-parsable, quantitative metrics for longitudinal tracking without sacrificing 
@@ -235,7 +239,7 @@ Pragmatic Analyzer via JSON Schema Controlled Generation, ensuring feedback was 
 generic text generation.
 
 \subsubsection{Frontend Development}
-\indent Frontend development focused on creating the user interface (UI). The UI was designed as a 
+\indent Frontend development focused on creating the User Interface (UI). The UI was designed as a 
 text-messaging application to provide a familiar and intuitive user experience for text-based interaction and feedback delivery. Key features include a 
 chat window for real-time conversation with the chatbot and a component for selecting from predefined social scenarios. The interface presents 
 alternating message colors and timestamps to clearly distinguish between user and chatbot messages. The development also includes 
