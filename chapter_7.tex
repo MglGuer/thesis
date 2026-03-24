@@ -293,6 +293,17 @@ appropriately to the scenario's developmental task, and (4) whether the AI
 Mentor's feedback language was actionable and grounded in the specific
 conversational evidence from the transcript.
 
+\paragraph{Establishing Quantitative Benchmarks for Intent Recognition.}
+Intent detection in Socius is handled entirely by the LLM rather than 
+a discrete, rule-based classifier. This means it cannot be evaluated using traditional 
+precision/recall metrics without first constructing a labeled ground-truth dataset 
+of user inputs and their intended communicative acts (as a baseline for reference and thereby response quality afterwards). 
+Future work should develop such a dataset drawn from conversation logs to enable due process for 
+evaluation of how accurately the AI Partner recognizes and responds to user intent 
+across scenario types. This would transform the implicit and unverified function of intent detection conducted by the 
+LLM into a measurable system component, allowing the opportunity to gather quantitative performance data necessary to make empirically 
+grounded claims about the system's prompt engineering and the model's pragmatic reasoning capabilities.
+
 \paragraph{Exploring Alternative or Fine-Tuned Models.}
 The system's current reliance on \texttt{gemini-3-flash-preview} means that its
 performance characteristics are tied to a single commercial model. Future technical
