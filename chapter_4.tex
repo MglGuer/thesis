@@ -129,98 +129,91 @@
     % The GRICE dataset is structure to then include various scenarios based on the implicatures that come from Grice's Maxims. As such, each row of data in the dataset represents a unique social scenario in regards to a certain implicature. 
 
     \section{Conversation Flow}
-
-The Socius chatbot follows a structured, API-driven conversation flow grounded in the APAM framework. The process has been expanded into four primary functional phases: Session Initiation, Active Conversation (AI Partner Phase), Closing \& Analysis, and Follow-up Interaction (AI Mentor Phase). Each phase coordinates specific API endpoints, backend state management, and database operations.
-
-\begin{longtblr}[
-  caption = {Updated Conversation Flow: End-to-End User Journey and System Processes},
-  label = {tab:conversation_flow},
-]{
-  colspec = {Q[l, 2.5cm] c X[l]},
-  rowhead = 1,
-  hlines,
-  vlines,
-  row{1} = {font=\bfseries, bg=gray!10},
-  stretch = 1.3,
-}
-\textbf{Phase} & \textbf{Step} & \textbf{System Process / Action} \\
-\SetCell[r=4]{l} \textbf{1. Session \\ Initiation}
-& 1 & User selects a specific conversational scenario in the Frontend UI. \\
-& 2 & Frontend triggers \texttt{/api/start-session} sending the \texttt{scenario\_id}. \\
-& 3 & Flask creates a \texttt{SociusChatbot} instance and loads constraints from \texttt{scenarios.json}. \\
-& 4 & AI Partner generates a contextual opening line, returning the \texttt{session\_id} to the UI. \\
-
-\SetCell[r=4]{l} \textbf{2. Active \\ Conversation}
-& 5 & User inputs and sends a message through the Frontend chat interface. \\
-& 6 & Frontend calls \texttt{/api/stream-message} for the active \texttt{session\_id}. \\
-& 7 & AI Partner generates a response based on history and Gricean system instructions. \\
-& 8 & Response streams to UI via Server-Sent Events (SSE); history is saved in the session state. \\
-
-\SetCell[r=5]{l} \textbf{3. Closing \& \\ Analysis}
-& 9 & User clicks ``End Simulation'' in the Frontend. \\
-& 10 & Frontend triggers \texttt{/api/end-session} with the \texttt{session\_id} and transcript data. \\
-& 11 & AI Mentor (Analyzer) processes the transcript to generate scores and feedback via JSON Schema. \\
-& 12 & System primes the AI Mentor (Chat) instance with the transcript and score context. \\
-& 13 & \texttt{profile.py} saves logs and scores to Supabase and displays the feedback report. \\
-
-\SetCell[r=4]{l} \textbf{4. Follow-up \\ Interaction}
-& 14 & User asks follow-up questions regarding performance or scores (``Ask Mentor Why''). \\
-& 15 & Frontend calls \texttt{/api/stream-mentor} with the user's specific query. \\
-& 16 & AI Mentor Chat responds using the primed context and evidence from the transcript. \\
-& 17 & Answers stream to UI, allowing for an open-ended pedagogical Q\&A loop. \\
-\end{longtblr}
-
-During the Active Conversation phase, the system utilizes real-time streaming to minimize perceived latency. Once the interaction is concluded, the Closing \& Analysis phase executes a highly rigid prompt that forces the AI Mentor to output machine-parsable float scores and text justifications. This data is subsequently used to populate the user's longitudinal Progress Dashboard.
+    The Socius chatbot follows a structured, API-driven conversation flow grounded in the APAM framework. The process has been expanded into four primary functional phases: Session Initiation, Active Conversation (AI Partner Phase), Closing \& Analysis, and Follow-up Interaction (AI Mentor Phase). Each phase coordinates specific API endpoints, backend state management, and database operations. As detailed in Table 4.1, this architecture ensures a seamless transition from the user's initial scenario selection to the final pedagogical feedback loop.
+    
+    \begin{longtblr}[
+      caption = {Updated Conversation Flow: End-to-End User Journey and System Processes},
+      label = {tab:conversation_flow},
+    ]{
+      colspec = {Q[l, 2.5cm] c X[l]},
+      rowhead = 1,
+      hlines,
+      vlines,
+      row{1} = {font=\bfseries, bg=gray!10},
+      stretch = 1.3,
+    }
+    \textbf{Phase} & \textbf{Step} & \textbf{System Process / Action} \\
+    \SetCell[r=4]{l} \textbf{1. Session \\ Initiation}
+    & 1 & User selects a specific conversational scenario in the Frontend UI. \\
+    & 2 & Frontend triggers \texttt{/api/start-session} sending the \texttt{scenario\_id}. \\
+    & 3 & Flask creates a \texttt{SociusChatbot} instance and loads constraints from \texttt{scenarios.json}. \\
+    & 4 & AI Partner generates a contextual opening line, returning the \texttt{session\_id} to the UI. \\
+    
+    \SetCell[r=4]{l} \textbf{2. Active \\ Conversation}
+    & 5 & User inputs and sends a message through the Frontend chat interface. \\
+    & 6 & Frontend calls \texttt{/api/stream-message} for the active \texttt{session\_id}. \\
+    & 7 & AI Partner generates a response based on history and Gricean system instructions. \\
+    & 8 & Response streams to UI via Server-Sent Events (SSE); history is saved in the session state. \\
+    
+    \SetCell[r=5]{l} \textbf{3. Closing \& \\ Analysis}
+    & 9 & User clicks ``End Simulation'' in the Frontend. \\
+    & 10 & Frontend triggers \texttt{/api/end-session} with the \texttt{session\_id} and transcript data. \\
+    & 11 & AI Mentor (Analyzer) processes the transcript to generate scores and feedback via JSON Schema. \\
+    & 12 & System primes the AI Mentor (Chat) instance with the transcript and score context. \\
+    & 13 & \texttt{profile.py} saves logs and scores to Supabase and displays the feedback report. \\
+    
+    \SetCell[r=4]{l} \textbf{4. Follow-up \\ Interaction}
+    & 14 & User asks follow-up questions regarding performance or scores (``Ask Mentor Why''). \\
+    & 15 & Frontend calls \texttt{/api/stream-mentor} with the user's specific query. \\
+    & 16 & AI Mentor Chat responds using the primed context and evidence from the transcript. \\
+    & 17 & Answers stream to UI, allowing for an open-ended pedagogical Q\&A loop. \\
+    \end{longtblr}
 
     \section{Software Functions}
-    This section outlines the functions of the Socius APAM system relevant to the user experience. The user’s interaction is structured into three-stages of learning: (1) scenario selection and onboarding, (2) interactive dialogue with an AI Partner, and (3) personalized feedback from an AI Mentor. The following subsections will detail these stages, complemented by relevant UI design mockups to provide a walkthrough of the user experience.
+    This section outlines the functions of the Socius APAM system relevant to the user experience. The user's interaction is structured into three stages of learning: (1) scenario selection and onboarding, (2) interactive dialogue with an AI Partner, and (3) personalized feedback from an AI Mentor. The following subsections will detail these stages, complemented by relevant UI design mockups to provide a walkthrough of the user experience and demonstrate how the interface supports the system's pedagogical objectives.
+    
     \subsection{Scenario Selection}
-    Upon the application's launch, the user is introduced to the scenario selection 
-    screen as shown in Figure 4.3. At the top of the screen, a Holistic Mentor card 
-    greets the user by name, summarizes their progress across previous sessions, and 
-    recommends a scenario based on their current performance metrics across three 
-    categories: Logic, Social, and Effectiveness. Below this, the user may browse and 
-    select from a list of predefined conversational scenarios, each labeled with a title, 
-    thematic conflict (e.g., Autonomy vs. Dependence, Group vs. Self), and the role the 
-    AI Partner will assume. Once a scenario is selected, the chatbot is primed with the 
-    necessary context, allowing the AI Partner to adopt the relevant persona.
-    \begin{figure}[H]
+    
+    Upon the application's launch, the user is introduced to the scenario selection screen, as shown in Figure \ref{fig:scenario_selection}. At the top of the screen, a Holistic Mentor card greets the user by name, summarizes their progress across previous sessions, and recommends a scenario based on their current performance metrics across three categories: Logic, Social, and Effectiveness. This dynamic card serves as the primary interface for the system's longitudinal tracking capabilities, fulfilling the pedagogical goal of providing personalized, data-driven guidance.
+    
+    Below this, the user may browse and select from a list of predefined conversational scenarios. Each scenario is deliberately labeled with a title, a thematic conflict (e.g., Autonomy vs. Dependence, Group vs. Self), and the role the AI Partner will assume. By grouping scenarios by thematic conflict, the UI visually reinforces the developmental psychology frameworks (Arnett and Havighurst) that underpin the system's scenario generation. Once a scenario is selected, the chatbot is primed with the necessary context, allowing the AI Partner to adopt the relevant persona.
+    
+    \begin{figure}[htbp]
         \centering
         \includegraphics[width=0.85\textwidth]{figures/actual_newchat_arrow_ui.png}
-        \caption{Socius UI showing the scenario selection screen with the Holistic Mentor 
-        card and list of predefined conversational scenarios.}
-        \label{fig:socius_newchat_arrow}
+        \caption{Socius UI showing the scenario selection screen with the Holistic Mentor card and list of predefined conversational scenarios.}
+        \label{fig:scenario_selection}
     \end{figure}
 
 
     %The user interface (UI) is the front-end component of the Socius system, designed to facilitate text-based interactions between the user and the chatbot. It features a chat window similar to text messaging applications, where users can input their messages and view the chatbot’s responses in real time. A scenario selection component will allow users to choose from predetermined social contexts before initiating a conversation, enabling targeted practice of pragmatic competence. The UI will also include profile and progress tracking features, enabling users to view their performance metrics and monitor improvements based on implicature accuracies over multiple sessions. The design prioritizes usability and accessibility, employing simple graphical elements to create an intuitive and distraction-free environment.
     %The user interface (UI) is the front-end component of the Socius system, designed to facilitate text-based interactions between the user and the chatbot. At present, it includes a chat window similar to text messaging applications, where users can input their messages and view the chatbot’s responses in real time. The layout employs alternating message colors and timestamps for clarity, with a minimalistic design that prioritizes usability and accessibility through simple graphical elements.
     %Planned enhancements to the UI include the addition of a scenario selection component, allowing users to choose from predetermined social contexts before initiating a conversation. Further features will include profile and progress tracking, enabling users to monitor their pragmatic competence based on implicature accuracies over multiple sessions, and the integration of feedback display functionality to provide post-conversation performance insights. These developments will maintain the system’s focus on intuitive, distraction-free interaction while expanding its training capabilities.
+
+
     \subsection{Interactive Dialogue (AI Partner Phase)}
-    After choosing a scenario, the chat interface is loaded as shown in Figure 4.4. 
-    The layout is divided into three panels. The left sidebar displays the user's 
-    previous conversations for easy navigation. The central chat window presents the 
-    dialogue in a messaging-style format, with the AI Partner's messages appearing on 
-    the left and the user's responses on the right, accompanied by timestamps for 
-    reference. A text input field at the bottom allows the user to send 
-    messages. On the right, a collapsible Scenario Details panel provides the scenario's 
-    title, situational theme, partner role, practice goals, and conversational tips, 
-    allowing the user to remain oriented throughout the interaction. The goal of this 
-    phase is to simulate a safe space for the practice of conversational skills with 
-    the application of pragmatic principles, for which the AI Partner will be 
-    responsible.
-    \begin{figure}[H]
+    After choosing a scenario, the chat interface is loaded, as illustrated in Figure \ref{fig:chat_interface}. The layout is strategically divided into three panels to balance immersion with pedagogical support. The left sidebar displays the user's previous conversations for easy navigation. The central chat window presents the dialogue in a familiar messaging-style format, with the AI Partner's messages appearing on the left and the user's responses on the right, accompanied by timestamps for reference. A text input field at the bottom allows the user to send messages.
+    
+    Crucially, on the right, a collapsible Scenario Details panel provides the scenario's title, situational theme, partner role, practice goals, and conversational tips. Rather than merely describing the setting once, this persistent panel acts as an ongoing pedagogical scaffold. By keeping the context, roles, and tips visible, the UI actively manages the user's cognitive load, allowing them to remain oriented and focus entirely on applying Grice's Maxims during the roleplay. The overarching goal of this phase is to simulate a safe space for the practice of conversational skills, with the AI Partner taking responsibility for enforcing pragmatic principles and maintaining naturalistic conversational pressure.
+    
+    \begin{figure}[htbp]
         \centering
         \includegraphics[width=0.85\textwidth]{figures/actual_chat_ui.png}
-        \caption{Socius UI showing the chat interface with conversation sidebar, central 
-        chat window, and collapsible Scenario Details panel.}
-        \label{fig:socius_ui}
+        \caption{Socius UI showing the chat interface with conversation sidebar, central chat window, and collapsible Scenario Details panel.}
+        \label{fig:chat_interface}
     \end{figure}
 
     \subsection{Personalized Feedback (AI Mentor Phase)}
-    The post-conversation feedback phase, or the AI Mentor phase is the final stage. Here, the user is provided with a personalized textual report based on their performance in the previous phase. The AI Mentor serves not only to provide feedback that can be related to Grice’s Maxims, but also present these concepts in a more grounded way, ideally helping the users to understand concepts without having to sift through much academic jargon. The report will also provide the user with highlights from the previous conversation’s transcript, revealing areas of strength and room for improvement. Finally, the AI-Mentor itself is available for a free-text dialogue, where the user can ask questions regarding the theories, the previous conversation, the user’s understanding, or other points of clarification.
-
-
+    The post-conversation feedback phase, or the AI Mentor phase, serves as the final stage of the learning loop, as shown in Figure \ref{fig:feedback_ui_function}. Here, the user is provided with a personalized textual report based on their performance in the preceding roleplay. Visually, the interface fulfills the system's third research objective by translating the complex, multi-level JSON scoring data generated by the backend into accessible, multi-colored score panels.
+    
+    The AI Mentor serves not only to provide feedback grounded in Grice's Maxims but also to present these concepts in a highly readable format, helping users grasp pragmatic theories without having to sift through dense academic jargon. The report provides the user with specific highlights from the conversation's transcript, revealing areas of strength and room for improvement with concrete evidence. Finally, the interface includes an "Ask Mentor Why" feature, opening a free-text dialogue panel where the user can ask follow-up questions regarding the theories, their specific scores, or other points of clarification, effectively bridging the gap between automated assessment and interactive tutoring.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.85\textwidth]{figures/actual_feedback_ui.png}
+        \caption{Socius UI showing the Post-Session AI Mentor feedback and scoring breakdown.}
+        \label{fig:feedback_ui_function}
+    \end{figure}
 
     \section{Resources}
     \subsection{Gemini API}
