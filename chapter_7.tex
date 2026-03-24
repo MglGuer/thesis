@@ -139,36 +139,37 @@ with the system's perceived benefit. However, the system's technical limitations
 
 The technical performance of Socius was subject to constraints arising from both
 the infrastructure and the underlying language model, and these two sources of
-limitation should be understood as distinct but interacting bottlenecks.
+limitation should be understood as distinct but related bottlenecks.
 
 At the infrastructure level, the system was hosted on Railway's free tier, which
-imposed restrictions on compute availability, uptime, and request handling
-capacity. Expert evaluators and user testers encountered intermittent latency and
-occasional service interruptions during sessions---particularly during the
-computationally intensive AI Mentor (Pragmatic Analysis) calls, which were
-configured with a thinking budget of 8,000 tokens. These disruptions affected
-session continuity and user immersion, and may have influenced the depth of
-engagement that participants were able to sustain during testing. Technical
-reliability was accordingly identified as requiring urgent remediation, and
-represents a deployment-level constraint that is separable from the system's
-architectural quality.
+imposed restrictions when working with the Gemini API. Notably, the local 
+instance of the system had encountered little to no issues regarding the
+Gemini API responding and creating a response during the AI Partner and AI Mentor (Chat)
+components. Yet, in the deployment, it had led to response generation issues where
+Gemini would not be able to generate response and cause, telling the user that the 
+"". Expert evaluators and user testers encountered intermittent latency and
+occasional service interruptions during sessions. This was often experienced
+in the AI Partner and AI Mentor (Chat) components, more commonly affecting
+the user's roleplay scenario. These disruptions affected session continuity and user immersion, 
+and may have influenced the depth of engagement that participants were able to sustain during testing. Technical
+reliability was accordingly identified as requiring urgent remediation, and this issue
+represents a constraint regarding the deployment itself rather than the system's architecture.
 
 At the model level, the system's reliance on \texttt{gemini-3-flash-preview}
 introduced a different class of limitation. While the model demonstrated strong
-zero-shot pragmatic reasoning---evidenced by its capacity to identify sarcasm,
-passive aggression, and culturally specific implicatures---its outputs were
-probabilistic and not subject to human validation. The AI Partner's responses
-were at times too lengthy and insufficiently naturalistic for fluid roleplay, and
+zero-shot pragmatic reasoning, which is evident through its capacity to identify sarcasm,
+passive aggression, and culturally specific implicatures, the outputs produced were
+probabilistic and not subject to human validation. The quality of responses needs an expert evaluator, particularly
+in the field of natural language processing, pragmatics, and linguistics. Moreover, the AI Partner's responses
+were at times too lengthy and insufficiently naturalistic for fluid roleplay according to user perceptions, and
 the AI Mentor's scoring, while structurally enforced through JSON Schema
 Controlled Generation, could not be guaranteed to be consistent across identical
-inputs due to the stochastic nature of the model's generation process. Expert
-evaluation of the chatbot's linguistic quality was not available to verify these
-outputs independently.
+inputs due to the varied nature of the model's generation process. 
 
-Furthermore, the system's reliance on a single commercial model means that
-findings cannot be generalized to alternative LLMs. Models with stronger
-multilingual or code-switching capabilities, or those fine-tuned on Filipino
-conversational data, may yield substantially different performance outcomes in
+Furthermore, the system's reliance on a singular model means that
+findings cannot be generalized to alternative LLMs. Models with differing capabilities such as stronger
+multilingual or code-switching abilities, or models specifically fine-tuned on Filipino
+conversational data, may yield different performance outcomes in
 both the roleplay and pragmatic analysis functions.
 
 \subsection{Testing Period and Sample}\label{subsec:test-limitations}
@@ -177,31 +178,30 @@ The evaluation design was constrained in ways that limit the strength of
 conclusions that can be drawn about Socius's effectiveness in improving pragmatic
 competence.
 
-The testing period of one week was insufficient to capture meaningful or
-statistically significant growth in pragmatic ability. Pragmatic competence---
-encompassing the interpretation of social intent, cultural nuance, and
-communicative strategy---is a complex, higher-order communicative skill that
+The testing period of one week was insufficient to capture meaningful,
+statistically significant growth in pragmatic ability. Pragmatic competence is the skill of
+one's interpretation of social intent, cultural nuance, and
+communicative strategy given context by prior research. This is a high-order communicative skill that
 develops gradually through repeated, varied, and reflective social practice.
 Research in language education and social skill development consistently indicates
-that such competencies require sustained exposure over weeks or months before
-measurable behavioral change can be observed. The absence of quantitative
-improvement in user scores over a five-day window therefore does not reflect a
-failure of the system per se, but rather an evaluation window that is structurally
-too short to detect the kind of longitudinal trajectory the system is designed to
-support.
+that development of said skill requires sustained exposure over longer periods of time. This will yield
+more variance regarding their pragmatic ability, and will generate further findings regarding the authenticity of the
+scoring framework developed in this research. The absence of quantitative
+improvement in user scores over a five-day window therefore does not necessarily reflect a
+failure of the system, but rather an evaluation window that may be structurally
+too short to detect longitudinal trajectory that the system is designed to support.
 
-The sample was additionally limited in size and demographic scope. Of the 25
+
+The sample was additionally limited in size and demographic scope. Out of 25
 recruited participants, only 17 completed the full testing process, resulting in
 an effective sample of 17. This level of attrition reduces statistical power and
 narrows the basis for generalization. Furthermore, the sample was recruited through
-convenience and purposive sampling, yielding a demographically homogeneous group
-with limited coverage across age, regional background, and socioeconomic context.
+convenience and purposive sampling which may yield a biased representation.
 While the study's theoretical grounding in Arnett's theory of Emerging Adulthood
 defines the target population as broadly aged 18 to 24, the actual participant
-demographics did not comprehensively represent the full range of this cohort,
-particularly those from outside Metro Manila or from non-university contexts
-where pragmatic challenges may manifest differently.
-
+demographics did not comprehensively represent the full range of this cohort. The sample 
+was heavily concentrated on university-affiliated individuals that study in Metro Manila with limited representation from
+other ecological contexts and socioeconomic backgrounds.
 \subsection{Research Design}\label{subsec:design-limitations}
 
 The evaluation of Socius was primarily focused on three methodological pillars:
@@ -211,45 +211,41 @@ evaluation forms. While these approaches provided meaningful insight into the
 system's technical integrity and user experience, they also left several
 substantive dimensions of the system's design and effectiveness unexamined.
 
-Functional testing focused exclusively on component-level verification---
-confirming that the conversation pipeline executed correctly, that the JSON
-Schema scoring was produced and stored reliably, and that the Holistic Mentor
-generated appropriate recommendations. What functional testing did not assess
-was the alignment and compliance of the AI Partner's conversation flow with the
-theoretical framework. Specifically, no systematic evaluation was conducted to
-determine whether the AI Partner's in-character responses adhered to the
-culturally grounded persona required by each scenario, whether Gricean maxim
-framings were faithfully maintained across turns, or whether the pragmatic
-complexity of the AI's dialogue was calibrated appropriately to the scenario's
-intended developmental task.
+Functional testing focused exclusively on component-level verification where the different
+parts of the architecture were confimed to be functionally sound and is producing expected output. The problem being 
+that the difficulty that came with functional testing is the the response quality of the AI agents. There is no systematic
+evaluation conducted to determine whether the AI Partner's responses adhered to the social scenario and the persona they were 
+designed to portray, relying on the users' perception instead in end-user testing to provide insight on this aspect.
+Furthermore, there is then no confirmation regarding if the AI Partner faithfully maintained the Gricean maxim framings
+across turns or if the pragmatic complexity of the AI's dialogue was calibrated to the scenario's intended developmental task.
+Thus, this requires further evaluation by an expert in linguistics and pragmatics to assess the validity of LLM-generated dialogue content
+for pragmatic ability development, specifically for Gemini-3 Flash.
 
 Expert validation was conducted by a single evaluator with primary expertise in
-the psychological dimensions of emerging adulthood and Filipino cultural values.
+the psychological dimensions of emerging adulthood, developmental tasks, and Filipino cultural values.
 While this provided meaningful confirmation of the framework's structural soundness
 and the scenarios' cultural relevance, it did not encompass the full domain
-required for a comprehensive evaluation. In particular, no expert with specialization
-in linguistics or pragmatics was engaged to evaluate the quality and validity of
-the AI Mentor's pragmatic analysis outputs, the accuracy of the Gricean maxim
-classifications, or the appropriateness of the feedback language generated for each
-pragmatic category. The technical correctness of the chatbot's response quality
+required for a comprehensive evaluation. The research was not able to engage an expert with specialization
+in linguistics, pragmatics, or implicatures to evaluate the quality and validity of
+the AI Mentor's analysis outputs.  The technical correctness of the chatbot's response quality
 was likewise evaluated only by the research team, whose assessment was not
 subject to independent review.
 
 User testing, while valuable in capturing perceived usefulness and engagement,
 suffered from several design limitations. AI Mentor usage was not made mandatory
 during the testing period, which meant that a significant proportion of participants
-did not engage with the feedback and analysis features, generating insufficient
-data to evaluate the AI Mentor's effectiveness independently. No standardized
-pre-test and post-test instrument for pragmatic ability was administered, meaning
-there was no objective skills baseline against which to compare post-interaction
+did not engage with the feedback and analysis features. This was done so that users naturally interact with
+the chatbot with no pressure, as if they had downloaded the app with no mandatory process. Thus, this resulted 
+in lacking findings regarding the AI Mentor (Post-conversation chat) and Holistic mentor lacking substantial interactions
+to draw findings from. There is also no standardized pre-test and post-test instrument for pragmatic ability that was administered
+during this process, meaning there was no objective skills baseline against which to compare post-interaction
 scores. Additionally, the presence of the research team during testing sessions,
 combined with participants' awareness that their conversation logs were subject to
-review, introduced observer bias and social desirability effects that may have
-influenced the authenticity and risk-taking of users' conversational choices. The
+review, may have introduced observer bias and social desirability effects that may have
+influenced the authenticity and risk-taking of users' conversational choices. Moreover, the
 text-only modality of the system further limited the scope of pragmatic dimensions
-that could be practiced and observed, excluding auditory prosody, paralinguistic
-cues, and non-verbal communication, all of which are integral to pragmatic
-competence in Filipino interpersonal contexts.
+that could be practiced and observed, most especially considering real social interactions
+are multimodal and rely on multiple dimensions, such as auditory, visual, and all-in-all nonverbal cues.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Recommendations}\label{sec:recommendations}
