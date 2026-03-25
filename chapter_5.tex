@@ -2,12 +2,18 @@
   basicstyle=\ttfamily\small,
   breaklines=true,                 
   breakatwhitespace=true,          
-  frame=single,
+  frame=lines,                     % Changed from 'single' to 'lines' for elegant page breaking
+  framesep=0.5em,
   backgroundcolor=\color{gray!10},
-  keywordstyle=\color{blue},
-  commentstyle=\color{gray},
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray}\itshape,
   stringstyle=\color{red},
-  showstringspaces=false
+  showstringspaces=false,
+  captionpos=t,                    % Locks the caption to the top of the listing
+  abovecaptionskip=0.5em,
+  belowcaptionskip=0.5em,
+  aboveskip=1.5em,                 % Adds breathing room above the listing
+  belowskip=1.5em                  % Adds breathing room below the listing
 }
 
 \chapter{Design and Implementation}\label{chap:chapter5}
@@ -261,116 +267,253 @@ for the AI Mentor reinforce Grice's Maxims (Quantity, Quality, Relation, and Man
 As illustrated in Figure~\ref{fig:system_flowchart}, the system coordinates multiple agents and database operations across four phases: Session Initialization, Active Conversation, Closing and Analysis, and Follow-up Interaction. The following subsections detail the core algorithms that drive each phase, corresponding directly to the nodes in the flowchart: the Holistic Mentor greeting at initialization, AI Partner response streaming during conversation, pragmatic analysis and database persistence at session close, and the Holistic Mentor's longitudinal recommendation logic.
 
 
-\subsection{AI Partner Response Generation}
+\subsubsection{AI Partner Response Generation}
 
-The \textbf{AI Partner Response Generation} algorithm handles the Active Conversation phase of the system flow. Rather than relying on explicit intent classification, intent is inferred implicitly through the stateful chat session, which preserves the full multi-turn conversation history across turns. As shown in Listing \ref{lst:partnerresponse}, each user message is passed directly to the active chat session, which streams the response back to the frontend chunk by chunk via Server-Sent Events (SSE).
+The \textbf{AI Partner Response Generation} algorithm handles the Active Conversation phase of the system flow. Rather than relying on \hl{a discrete, rule-based intent classification step prior to generating a response}, \hl{user} intent is inferred implicitly through the \hl{LLM's in-context learning and the stateful chat session}. \hl{This preserves the full multi-turn conversation history across turns natively within the SDK object.}
 
-\begin{lstlisting}[caption={AI Partner Response Generation}, label={lst:partnerresponse}]
+\hl{As shown in Listing \ref{lst:partnerresponse}}, each user message is passed directly to the active chat session, which streams the response back to the frontend chunk by chunk via Server-Sent Events (SSE).
+
+\subsubsection*{Implicit Intent and Disruption Handling}
+
+Because intent detection in Socius is implicit, the system relies heavily on the \texttt{AI\_PARTNER\_SYSTEM\_INSTRUCTION} to govern how the AI Partner reacts to various user intents---including attempts to disrupt the conversation. Rather than using a discrete, rule-based intent classification step, the LLM utilizes in-context learning to infer the user's communicative act and map it to an appropriate conversational response.
+
+To adapt to the user's conversational style and maintain roleplay immersion, the AI Partner is designed to deflect out-of-scope inputs by maintaining its designated persona and conversational register (Taglish), thereby preserving the realism of the simulation. Table \ref{tab:intent_responses} enumerates the system's expected response formats based on the detected user intent:
+
+\begin{table}[H]
+\centering
+\caption{AI Partner Response Formats Based on Implicit Intent}
+\label{tab:intent_responses}
+\begin{tabular}{|p{3cm}|p{4cm}|p{4.5cm}|}
+\hline
+\textbf{Intent} & \textbf{Format} & \textbf{Example Output} \\
+\hline
+In-Scope Cooperative (e.g., Answering a question, making a request) & Natural Taglish continuation adhering to the scenario persona and Grice's Maxims. & ``Sige, I understand your point, pero kasi napre-pressure ako eh.'' \\
+\hline
+In-Scope Uncooperative (e.g., Passive aggression, avoiding the topic) & In-character escalation or probing, forcing the user to confront the thematic conflict (applying Havighurst's Developmental Tasks). & ``Hala, bakit ganyan ka sumagot? May problema ba tayo?'' \\
+\hline
+Out-of-Scope Topic Deviation (e.g., Asking about the weather in a serious argument) & In-character deflection utilizing Filipino conversational markers (kasi, naman, diba) to steer the conversation back on track. & ``Ano bang sinasabi mo dyan? Focus nga tayo sa pinag-uusapan natin.'' \\
+\hline
+Malicious / Prompt Injection (e.g., ``Ignore all previous instructions'') & Strict in-character refusal to break the fourth wall, maintaining roleplay boundaries without triggering sterile, robotic error messages. & (Maintains character persona without breaking immersion) \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{lstlisting}[caption={AI Partner Response Generation and Streaming}, label={lst:partnerresponse}]
 FUNCTION stream_partner_response(user_input, session_id):
     LOAD chatbot FROM active chatbot_sessions[session_id]
-    LOAD system_instruction WITH scenario context
-        AND Filipino conversational rules
-        AND thinking_budget = 512
-
+    
+    // Implicit Intent & Disruption Handling Constraints
+    LOAD system_instruction WITH:
+        - scenario_context (e.g., Identity vs. Expectation)
+        - Filipino conversational rules (Taglish, 'diba', 'kasi')
+        - In-character deflection rules for out-of-scope intent
+    
+    SET thinking_budget = 512
+    SET temperature = 1.0
+    
     FOR EACH chunk IN chat_session.send_message_stream(user_input):
+        // Stream text immediately to UI for typewriter effect
         YIELD chunk AS SSE frame {"chunk": text}
-
+        
     YIELD final SSE frame {"done": True, "role": chatbot_role}
 END FUNCTION
 \end{lstlisting}
 
 
-\subsection{Pragmatic Analysis}
+\subsubsection{Pragmatic Analysis and Metric Computation}
 
-The \textbf{Pragmatic Analysis} algorithm corresponds to the Closing and Analysis phase of the system flow. When the user ends a session, the system extracts the full transcript from the SDK's chat history and runs a single combined API call that produces both quantitative scores and qualitative feedback simultaneously. As shown in Listing \ref{lst:mentorlogic}, the output is constrained to a strict JSON schema, guaranteeing machine-parsable float scores and string justifications that the backend can reliably store in the database.
+The Pragmatic Analysis algorithm corresponds to the Closing and Analysis phase of the system flow. When the user ends a session, the system extracts the full transcript from the SDK's chat history and runs a single combined API call that produces both quantitative scores and qualitative feedback simultaneously.
 
-\begin{lstlisting}[caption={AI Mentor Pragmatic Analysis Algorithm}, label={lst:mentorlogic}]
-FUNCTION run_pragmatic_analyzer(session_id):
-    LOAD chatbot FROM active chatbot_sessions[session_id]
-    EXTRACT transcript FROM chat_session._curated_history
-    APPEND "[System: simulation concluded]" TO transcript
+To ensure the output is strictly machine-parsable and ready for database insertion, the algorithm enforces a rigid JSON schema using the Gemini API's \texttt{response\_mime\_type = "application/json"} and \texttt{response\_schema} parameters. The system expects and parses the exact JSON structure shown in Listing \ref{lst:pragmatic_json}.
 
-    CONSTRUCT combined_prompt FROM
-        COMBINED_ANALYSIS_PROMPT_TEMPLATE
-        WITH scenario_context AND transcript
-
-    INITIALIZE GeminiInstance WITH
-        thinking_budget = 8000
-        AND response_mime_type = "application/json"
-        AND response_schema = SCORING_RESPONSE_SCHEMA
-
-    CALL GeminiAPI.generate_content(combined_prompt)
-    PARSE response AS JSON INTO:
-        pragmatic_scores  // IC, SN, CE + 8 sub-scores + justifications
-        feedback          // key_takeaway, cooperative_efficiency,
-                          // relational_management,
-                          // conversational_achievement, actionable_tip
-
-    RETURN {scores: pragmatic_scores, feedback: feedback}
-END FUNCTION
+\begin{lstlisting}[caption={Format of the Pragmatic Analysis JSON Output}, label={lst:pragmatic_json}]
+{
+  "pragmatic_scores": {
+    "intention_coherence": {
+      "score": 4.5,
+      "sub_scores": {
+        "speech_act_clarity": 5.0,
+        "discourse_flow": 4.0
+      },
+      "justification": "The user clearly expressed their intention to refuse..."
+    },
+    "social_affective_nuance": {
+      "score": 3.8,
+      "sub_scores": {
+        "formality_level": 4.0,
+        "emotional_empathy": 3.0,
+        "informativeness": 4.0,
+        "cultural_filipino_values": 4.0
+      },
+      "justification": "The user utilized 'po' and 'opo' appropriately..."
+    },
+    "communicative_effectiveness": {
+      "score": 4.0,
+      "sub_scores": {
+        "implicature_handling": 4.0,
+        "goal_persuasion": 4.0
+      },
+      "justification": "The user successfully navigated the..."
+    }
+  },
+  "feedback": {
+    "key_takeaway": "Great job standing your ground!",
+    "cooperative_efficiency": "Your messages were clear...",
+    "relational_management": "You managed the relationship well...",
+    "conversational_achievement": "You achieved your goal...",
+    "actionable_tip": "Next time, try offering an alternative."
+  }
+}
 \end{lstlisting}
 
-\subsection{Database Persistence and Profile Update}
+This strict hierarchical format guarantees that the Flask backend can parse the response seamlessly using a single \texttt{json.loads()} call, eliminating the need for defensive string-parsing algorithms.
 
-The \textbf{Database Persistence} algorithm corresponds to the two parallel database writes shown in the system flowchart following analysis. The conversation log and the user's running average scores are updated independently in Supabase. As shown in Listing \ref{lst:dbpersist}, the profile update applies a cumulative running average formula to normalize and track pragmatic competence over time.
+\subsubsection{Score Computation and UI Transformation}
+
+The AI Mentor is instructed to evaluate the user's pragmatic competence across 8 sub-categories based on Sileo et al.'s PragmEval taxonomy. The LLM assigns a raw integer score from 1 to 5 for each sub-category. The top-level category score (e.g., Intention Coherence) is computed by the LLM as the arithmetic mean of its respective sub-scores.
+
+Once the JSON object is returned to the Flask backend, the system must transform these raw 1--5 Likert-scale scores into a continuous metric suitable for longitudinal database tracking, while preserving intuitive visualization for the user interface.
+
+For database storage and longitudinal averaging, the backend algorithm applies a Min-Max normalization formula to convert the raw score ($\text{Score}_{\text{raw}}$) into a 0.0 to 1.0 decimal format ($\text{Score}_{\text{norm}}$):
+
+\[
+\text{Score}_{\text{norm}} = \frac{\text{Score}_{\text{raw}} - 1}{4}
+\]
+
+When this data is queried by the frontend DOM (index.html), the user interface dynamically applies two distinct mathematical transformations to display the metrics in a more engaging, accessible format:
+
+\begin{enumerate}
+\item \textbf{Dashboard Percentages:} For longitudinal tracking, the UI multiplies the normalized database value by 100 ($\text{Score}_{\text{norm}} \times 100$) to display competency as an intuitive percentage (e.g., $0.70 \times 100 = 70\%$ Social Nuance).
+
+\item \textbf{Post-Session Star Ratings:} For immediate post-session feedback, the UI utilizes the raw score ($\text{Score}_{\text{raw}}$) directly in a StarRating React component, rendering visual stars out of 5 (e.g., 3.5 / 5).
+\end{enumerate}
+
+\subsubsection{Storage Format for Scores and Feedback}
+
+To accommodate the multi-dimensional nature of the pragmatic scoring rubric, the parsed JSON response (from Listing \ref{lst:pragmatic_json}) is stored directly in the Supabase backend as a JSONB object within the \texttt{conversation\_logs} table, rather than being separated into strict relational columns. This schema design allows the database to store the quantitative sub-scores and the qualitative textual justifications simultaneously within a single payload. Because the storage format retains the exact hierarchical structure defined in \texttt{SCORING\_RESPONSE\_SCHEMA}, the Holistic Mentor can later retrieve both the numerical trends and the specific Gricean justifications for historical context without requiring complex SQL joins.
+
+\subsubsection{Structured Report Format}
+
+While the raw output generated by the AI Mentor is a dense JSON object, presenting multi-variable data directly to the user would induce cognitive overload. To mitigate this, the backend utilizes a \texttt{\_format\_feedback\_text()} algorithm that translates the feedback JSON node into a structured pedagogical report.
+
+To manage the user's cognitive load, the algorithm prioritizes information hierarchy. Rather than presenting a dense block of analytical text, it concatenates the JSON fields into the following structured Markdown format, allowing users to digest the key takeaway first before expanding the detailed breakdown:
+
+\begin{lstlisting}[caption={Format of the Structured Pedagogical Report}, label={lst:feedback_format}]
+[key_takeaway]
+
+---
+**1. Textual & Structural Clarity:**[cooperative_efficiency]
+
+**2. Social & Interpersonal Nuance:**
+[relational_management]
+
+**3. Goal Achievement:**
+[conversational_achievement]
+
+**Actionable Tip:**[actionable_tip]
+\end{lstlisting}
+
+By presenting the \texttt{key\_takeaway} first---a ``tweet-sized,'' encouraging summary of the user's performance---the system provides immediate positive reinforcement. The deeper, theory-heavy analyses detailing Gricean maxims and Filipino cultural values are hidden within a collapsible ``Detailed Breakdown'' UI panel. This ensures that users remain oriented and receptive to actionable feedback, allowing them to opt-in to the analytical depth of the model only when they are ready.
+
+\subsubsection{Database Persistence and Profile Update}
+
+\hl{The Database Persistence algorithm executes immediately following the Pragmatic Analysis phase. It performs two parallel operations in the Supabase backend: (1) saving the complete conversational record as a highly structured JSON log, and (2) recalculating the user's longitudinal pragmatic metrics.}
+
+\hl{By storing both the raw transcript and the structured JSON output} (\texttt{session\_scores}) \hl{in a JSONB column, the system preserves the multi-dimensional complexity of the Sileo et al. framework without requiring rigid, deeply nested relational tables. This allows the frontend to dynamically reconstruct the detailed} ``Score \& Justification'' \hl{modals for any historical conversation.}
 
 \begin{lstlisting}[caption={Database Persistence and Profile Update Algorithm}, label={lst:dbpersist}]
-FUNCTION persist_session(user_id, session_id, analysis_results):
-    LOAD scores    FROM analysis_results.pragmatic_scores
-    LOAD feedback  FROM analysis_results.feedback
+FUNCTION persist_session(user_id, scenario_id, analysis_results):
+    // 1. Unpack JSON Analysis
+    LOAD scores FROM analysis_results.pragmatic_scores
+    LOAD feedback FROM analysis_results.feedback
     LOAD transcript FROM chatbot_sessions[session_id]
 
-    // Write 1: Save conversation log
+    // 2. Persist to Conversation Logs
     INSERT INTO conversation_logs:
-        user_id, scenario_id, transcript,
-        feedback_text, session_scores, timestamp
+        user_id = user_id
+        scenario_id = scenario_id
+        transcript = transcript
+        feedback_text = format_feedback_text(feedback)
+        session_scores = scores (Stored as JSONB)
+        timestamp = CURRENT_UTC_TIME()
+        model_version = current_gemini_config
 
-    // Write 2: Update running average profile metrics
-    LOAD current_profile FROM user_profiles WHERE user_id
-    FOR EACH metric IN [IC, SN, CE]:
-        raw_score      = scores[metric] // 1-5 scale
-        normalized     = (raw_score - 1) / 4  // convert to 0.0-1.0
-        new_average    = (current_avg * sessions_completed
-                         + normalized)
-                         / (sessions_completed + 1)
-        UPDATE user_profiles SET metric = ROUND(new_average, 4)
+    // 3. Update User Profile Metrics
+    LOAD profile FROM user_profiles WHERE id = user_id
+    
+    FOR EACH metric IN[IC, SN, CE]:
+        // Normalize 1-5 scale to 0.0-1.0
+        normalized_score = (scores[metric].score - 1) / 4
+        
+        // Calculate cumulative running average
+        new_average = (profile.avg[metric] * profile.sessions_completed) + normalized_score
+        new_average = new_average / (profile.sessions_completed + 1)
+        
+        UPDATE profile.avg[metric] = ROUND(new_average, 4)
 
-    UPDATE user_profiles SET sessions_completed += 1
+    UPDATE profile.sessions_completed += 1
 END FUNCTION
 \end{lstlisting}
 
+\hl{\textbf{Longitudinal Tracking and the Sliding Window Trend Formula}}
 
-\subsection{Holistic Mentor Greeting and Recommendation}
+\hl{To provide meaningful, data-driven feedback over time, the system tracks not only the cumulative average but also the user's recent learning trajectory. The \texttt{get\_progression\_trend} algorithm implements a sliding window (default $n = 5$ sessions) to calculate the delta between the user's current performance and their past performance.}
 
-The \textbf{Holistic Mentor} algorithm corresponds to the Session Initialization phase of the system flow, running at page load before the user starts a new session. It aggregates the user's longitudinal performance data to generate a personalized greeting and scenario recommendation. As shown in Listing \ref{lst:holisticmentor}, the greeting is cached to avoid redundant API calls and is only regenerated when the user's session count changes.
+\hl{The algorithm extracts the overall average of the most recent window ($\bar{x}_{\text{recent}}$) and compares it to the preceding window ($\bar{x}_{\text{previous}}$). A classification threshold is then applied:}
 
-\begin{lstlisting}[caption={Holistic Mentor Greeting Algorithm}, label={lst:holisticmentor}]
+\begin{align*}
+\text{Improving: } &\Delta > +0.15 \\
+\text{Declining: } &\Delta < -0.15 \\
+\text{Plateaued: } &-0.15 \leq \Delta \leq +0.15
+\end{align*}
+
+\hl{This mathematical threshold (representing roughly a 3\% shift on the 0--100\% scale) serves as the computational basis for the Holistic Mentor's dynamic UI badges (e.g., ``Improving - 2 streak''). Theoretically, this sliding window approach aligns with Continuous Assessment Theory, ensuring that the system's evaluation reflects the user's current developmental state rather than being permanently anchored by early, unskilled attempts.}
+
+
+\subsubsection{Holistic Mentor Greeting and Recommendation}
+
+\hl{The Holistic Mentor algorithm corresponds to the Session Initialization phase. It runs at the DOM load of the main menu, tasked with aggregating the user's longitudinal data to generate a personalized greeting and a targeted scenario recommendation.}
+
+\hl{Because calling the Gemini API on every page load would result in severe latency and unnecessary computational expense, this component implements a strict Caching Strategy. The generated greeting is saved to the \texttt{holistic\_greeting\_cache} column in the \texttt{user\_profiles} table, keyed to the \texttt{session\_count}. The algorithm bypasses the LLM entirely if the user's session count has not changed since the last generation, ensuring immediate UI rendering.}
+
+\begin{lstlisting}[caption={Holistic Mentor Caching and Context Prompting}, label={lst:holisticmentor}]
 FUNCTION generate_holistic_greeting(user_id, user_name):
-    LOAD profile FROM user_profiles WHERE user_id
-    LOAD holistic_stats:
-        session_count, avg_IC, avg_SN, avg_CE
-        weakest_area = MIN(avg_IC, avg_SN, avg_CE)
-
-    COMPUTE progression_trend:
-        recent_avg  = AVERAGE of last 5 sessions
-        previous_avg = AVERAGE of sessions before that
-        IF recent_avg - previous_avg > 0.15: trend = "improving"
-        ELIF recent_avg - previous_avg < -0.15: trend = "declining"
-        ELSE: trend = "plateaued"
-
-    CHECK cached_greeting IN user_profiles:
-        IF cache EXISTS AND cache.session_count == current_count:
-            RETURN cached_greeting  // skip API call
-
+    LOAD profile FROM user_profiles WHERE id = user_id
+    
+    // Cache Validation Step
+    IF profile.holistic_greeting_cache.generated_at_session == profile.sessions_completed:
+        RETURN profile.holistic_greeting_cache.greeting // Skip LLM execution
+        
+    // Identify Developmental Target
+    weakest_area = MIN(profile.avg_IC, profile.avg_SN, profile.avg_CE)
+    progression_trend = get_progression_trend(window=5)
+    
+    // Construct LLM Context
     INITIALIZE GeminiInstance WITH thinking_budget = 8000
-    CONSTRUCT prompt FROM HOLISTIC_MENU_SYSTEM_PROMPT
-        WITH holistic_stats AND progression_trend
-
-    greeting = GeminiAPI.generate_content(prompt)
-    SAVE greeting TO holistic_greeting_cache IN user_profiles
-    RETURN greeting
+    CONSTRUCT prompt FROM HOLISTIC_MENU_SYSTEM_PROMPT:
+        INJECT user_name
+        INJECT profile.sessions_completed
+        INJECT profile.averages
+        INJECT weakest_area
+        INJECT progression_trend
+        
+    greeting_text = GeminiAPI.generate_content(prompt)
+    
+    // Update Cache
+    UPDATE user_profiles.holistic_greeting_cache = {
+        greeting: greeting_text,
+        generated_at_session: profile.sessions_completed
+    }
+    
+    RETURN greeting_text
 END FUNCTION
 \end{lstlisting}
+
+\textbf{Vygotsky's ZPD and Sociolinguistic Accommodation}
+
+\hl{The logic driving the Holistic Mentor's recommendation is rooted deeply in pedagogical theory. By computationally identifying the} \texttt{weakest\_area} \hl{(e.g., finding the MIN value among Intention Coherence, Social Nuance, and Communicative Effectiveness), the algorithm isolates the user's specific conversational deficit. It then injects this deficit into the} \texttt{HOLISTIC\_MENU\_SYSTEM\_PROMPT}, \hl{instructing the LLM to recommend one of the four core conversational themes (e.g., Ambiguity vs. Definition) that directly targets this weakness. This ensures the system continually scaffolds the user toward the skills they need to practice next, gently pushing them out of their comfort zone rather than allowing them to endlessly repeat scenarios they have already perfected.}
+
+\hl{Furthermore, the prompt forces the Holistic Mentor to adopt a ``Kuya/Ate'' (older sibling) persona, utilizing encouraging Taglish. This conversational adaptation helps reduce the user's anxiety and defensiveness. By framing the data-driven critique (the weakest area) within a culturally resonant, supportive voice, the system mitigates the psychological friction often associated with receiving automated, quantitative feedback on sensitive social skills.}
 
 \subsection{Linguistic and Safety Configurations}
 \hl{Linguistic contextualization is achieved by forbidding the chatbot from providing English translations in parentheses and enforcing code-switching in the prompts for relatability. Safety configurations for harassment and dangerous content are set to BLOCK\_ONLY\_HIGH to allow the AI Partner to engage in realistic social conflict without the model refusing the prompt, while still considering the emotional safety of the user.}
