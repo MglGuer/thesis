@@ -36,8 +36,8 @@ The scope of functional testing for Socius encompasses the following seven testi
 \end{itemize}
  
 These test cases are stored on a google sheet in the following format: Test Case ID, Test Category, Test Description, Test Input, Expected Output, Pass/Fail Result, and stress test results. The testing
-is conducted by the research proponents on the deployed development instance of the system. For test cases containing LLM output and subjective evaluation, a minimum of 2 proponents are 
-required for inter-rater reliability. Moreover, the prompt-engineering utilized to develop the system will only guide Gemini-3 Flash for responses and the system's outputs are inherently non-deterministic.
+is conducted by the research proponents on the deployed development instance of the system. For test cases containing LLM output and subjective evaluation, a minimum of 2 research proponents are 
+required for inter-rater reliability considering the lack of expert knowledge. Moreover, the prompt-engineering utilized to develop the system will only guide Gemini-3 Flash for responses and the system's outputs are inherently non-deterministic.
 Therefore, the functional tests for LLM-dependent components evaluate structure and format rather than exact content unless the test may probe safety configuration. The test cases will also undergo
 stress testing, which involves repeated execution to evaluate consistency and identify any intermittent failures. 15 stress test runs are conducted for components that don't rely on LLM output, rather focusing
 on the functionality of said component. Those test cases that are evaluated at 55 test runs are ones that are LLM- and situation-dependent.
