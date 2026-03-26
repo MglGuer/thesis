@@ -1,0 +1,100 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Filename    : appendix_G.tex
+%   Description : JSON schema specifications for constrained output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{JSON Schema Specifications}
+\label{sec:appendixg}
+
+This appendix details the strict JSON Schema enforced during the AI Mentor's generation phase (SCORING\_RESPONSE\_SCHEMA). Utilizing the Gemini 3 API's Constrained Output feature, this schema guarantees that the model evaluates the conversation across all defined sub-categories of Sileo et al.'s pragmatic taxonomy, eliminating the risk of malformed data or hallucinated response structures.
+
+\begin{verbatim}
+{
+    "type": "object",
+    "properties": {
+        "pragmatic_scores": {
+            "type": "object",
+            "properties": {
+                "intention_coherence": {
+                    "type": "object",
+                    "properties": {
+                        "score": {"type": "number"},
+                        "sub_scores": {
+                            "type": "object",
+                            "properties": {
+                                "speech_act_clarity": {"type": "number"},
+                                "discourse_flow": {"type": "number"}
+                            },
+                            "required":["speech_act_clarity", "discourse_flow"]
+                        },
+                        "justification": {"type": "string"}
+                    },
+                    "required": ["score", "sub_scores", "justification"]
+                },
+                "social_affective_nuance": {
+                    "type": "object",
+                    "properties": {
+                        "score": {"type": "number"},
+                        "sub_scores": {
+                            "type": "object",
+                            "properties": {
+                                "formality_level": {"type": "number"},
+                                "emotional_empathy": {"type": "number"},
+                                "informativeness": {"type": "number"},
+                                "cultural_filipino_values": {"type": "number"}
+                            },
+                            "required":[
+                                "formality_level",
+                                "emotional_empathy",
+                                "informativeness",
+                                "cultural_filipino_values"
+                            ]
+                        },
+                        "justification": {"type": "string"}
+                    },
+                    "required": ["score", "sub_scores", "justification"]
+                },
+                "communicative_effectiveness": {
+                    "type": "object",
+                    "properties": {
+                        "score": {"type": "number"},
+                        "sub_scores": {
+                            "type": "object",
+                            "properties": {
+                                "implicature_handling": {"type": "number"},
+                                "goal_persuasion": {"type": "number"}
+                            },
+                            "required":["implicature_handling", "goal_persuasion"]
+                        },
+                        "justification": {"type": "string"}
+                    },
+                    "required": ["score", "sub_scores", "justification"]
+                }
+            },
+            "required":[
+                "intention_coherence",
+                "social_affective_nuance",
+                "communicative_effectiveness"
+            ]
+        },
+        "feedback": {
+            "type": "object",
+            "properties": {
+                "key_takeaway": {"type": "string"},
+                "cooperative_efficiency": {"type": "string"},
+                "relational_management": {"type": "string"},
+                "conversational_achievement": {"type": "string"},
+                "actionable_tip": {"type": "string"}
+            },
+            "required":[
+                "key_takeaway",
+                "cooperative_efficiency",
+                "relational_management",
+                "conversational_achievement",
+                "actionable_tip"
+            ]
+        }
+    },
+    "required": ["pragmatic_scores", "feedback"]
+}
+\end{verbatim}
