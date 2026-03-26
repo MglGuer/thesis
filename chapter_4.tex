@@ -16,19 +16,19 @@
         \item To implement a user interface that facilitates the conversation, similar to text messaging applications, that will allow users to interact with the chatbot through text input thereby receiving responses from the chatbot.
     \end{itemize}
 
-    \section{Software Scope and Limitations}
+    \section{\hl{Software Scope and Limitations}}
 
-    \hl{The system establishes a backend database that stores user profiles, conversation transcripts, and metrics related to pragmatic competence. Authentication requires minimal user information—specifically an email, password, and age—ensuring that external user data, such as social media profiles, are not collected. This database hosts the conversation logs per user session, allowing the model to longitudinally analyze the user's pragmatic competence and track their progress through an interactive Progress Dashboard.}
+    The system establishes a backend database that stores user profiles, conversation transcripts, and metrics related to pragmatic competence. Authentication requires minimal user information—specifically an email, password, and age—ensuring that external user data, such as social media profiles, are not collected. This database hosts the conversation logs per user session, allowing the model to longitudinally analyze the user's pragmatic competence and track their progress through an interactive Progress Dashboard.
 
-    \hl{The system provides a fixed set of predefined conversational scenarios. Users select from these scenarios to practice, with contexts covering various academic, professional, and social situations relevant to young adults. To maintain targeted pedagogical goals and ensure alignment with the established theoretical frameworks, the system is strictly limited to these predefined scenarios and does not allow for dynamic scenario generation or user-generated contexts.}
+    The system provides a fixed set of predefined conversational scenarios. Users select from these scenarios to practice, with contexts covering various academic, professional, and social situations relevant to young adults. To maintain targeted pedagogical goals and ensure alignment with the established theoretical frameworks, the system is strictly limited to these predefined scenarios and does not allow for dynamic scenario generation or user-generated contexts.
 
-    \hl{To generate contextually relevant and pragmatically appropriate dialogue, the system leverages the Gemini API. Specifically, it utilizes the gemini-3-flash-preview model under a Tier 1 paid plan to balance high rate limits with advanced reasoning capabilities. The architecture employs configured Thinking Budgets to adapt to different agent roles: a lower latency setting for the AI Partner's naturalistic roleplay, and a higher reasoning budget for the AI Mentor's deep pragmatic analysis. Furthermore, feedback is strictly enforced via JSON Schema Controlled Generation, dynamically evaluating the user's adherence to Grice's Maxims and sociolinguistic norms based on the transcript, rather than relying on static text references.}
+    To generate contextually relevant and pragmatically appropriate dialogue, the system leverages the Gemini API. Specifically, it utilizes the gemini-3-flash-preview model under a Tier 1 paid plan to balance high rate limits with advanced reasoning capabilities. The architecture employs configured Thinking Budgets to adapt to different agent roles: a lower latency setting for the AI Partner's naturalistic roleplay, and a higher reasoning budget for the AI Mentor's deep pragmatic analysis. Furthermore, feedback is strictly enforced via JSON Schema Controlled Generation, dynamically evaluating the user's adherence to Grice's Maxims and sociolinguistic norms based on the transcript, rather than relying on static text references.
 
-    \hl{The user interface is designed to resemble common text messaging applications, presenting conversational exchanges and feedback in a familiar layout. The scope encompasses essential UI elements for text-based interaction, interactive data visualization (via Chart.js) for the user's progress dashboard, and basic personalizations such as dark mode and background customization. However, it does not include voice input/output capabilities or advanced 3D graphical elements.}
+    The user interface is designed to resemble common text messaging applications, presenting conversational exchanges and feedback in a familiar layout. The scope encompasses essential UI elements for text-based interaction, interactive data visualization (via Chart.js) for the user's progress dashboard, and basic personalizations such as dark mode and background customization. However, it does not include voice input/output capabilities or advanced 3D graphical elements.
 
     \subsection*{Limitations}
 
-    \hl{Relying on a text-only LLM modality inherently limits the system's capacity to train paralinguistic or non-verbal communication skills. Additionally, end-user testing revealed that the AI Partner's responses can occasionally become too lengthy or dramatic, which breaks the realism and pacing of casual texting. The system is also bound by the constraints of its infrastructure and third-party APIs. The reliance on the Supabase Free Tier for database management and authentication limits long-term scalability and concurrent user capacity. Finally, the software proved vulnerable to prompt injection if a user intentionally stresses the system's instructions, and it is susceptible to occasional slow response times or dropped context due to network errors and high API traffic demand.}
+    Relying on a text-only LLM modality inherently limits the system's capacity to train paralinguistic or non-verbal communication skills. Additionally, end-user testing revealed that the AI Partner's responses can occasionally become too lengthy or dramatic, which breaks the realism and pacing of casual texting. The system is also bound by the constraints of its infrastructure and third-party APIs. The reliance on the Supabase Free Tier for database management and authentication limits long-term scalability and concurrent user capacity. Finally, the software proved vulnerable to prompt injection if a user intentionally stresses the system's instructions, and it is susceptible to occasional slow response times or dropped context due to network errors and high API traffic demand.
 
 
     {\section{Architectural Design}}
@@ -128,11 +128,11 @@
 
     % The GRICE dataset is structure to then include various scenarios based on the implicatures that come from Grice's Maxims. As such, each row of data in the dataset represents a unique social scenario in regards to a certain implicature. 
 
-    \section{Conversation Flow}
+    \section{\hl{Conversation Flow}}
     The Socius chatbot follows a structured, API-driven conversation flow grounded in the APAM framework. The process has been expanded into four primary functional phases: Session Initiation, Active Conversation (AI Partner Phase), Closing \& Analysis, and Follow-up Interaction (AI Mentor Phase). Each phase coordinates specific API endpoints, backend state management, and database operations. As detailed in Table 4.1, this architecture ensures a seamless transition from the user's initial scenario selection to the final pedagogical feedback loop.
     
     \begin{longtblr}[
-      caption = {Updated Conversation Flow: End-to-End User Journey and System Processes},
+      caption = {\hl{Updated Conversation Flow: End-to-End User Journey and System Processes}},
       label = {tab:conversation_flow},
     ]{
       colspec = {Q[l, 2.5cm] c X[l]},
