@@ -423,8 +423,487 @@ This allowed the expert to evaluate each scenario in an isolated manner. The res
 Considering this, the comments from the expert were generally positive and that the frameworks were valid. The expert also provided suggestions to change certain details in a scenario that would make the scenario feel more controlled (e.g. keeping a scenario one-on-one rather than having a group approach, changing chatbot role to be more relatable to a student, etc.) as it may deter from the scenario's intended pragmatic conflict.
 These suggestions were then implemented and clarified on the face-to-face meeting with the expert, where we let the expert demo the system and experience the scenarios first-hand. The expert had then fully validated and approved the frameworks that went into training pragmatical competence.
 
-\subsection{End-User Testing}
-
-Currently, End-User testing is on-going and is being conducted with a sample of approximately 15 young adults within the target demographic. The testing is being conducted in an online environment wherein the users can access the chatbot whenever they want, and they are asked to complete at least 1 conversation per day with the chatbot prior to answering the daily post-interaction survey.
-The participants and the research team have created a Discord server where the users are facilitated in their use of the chatbot except for the conversation with the chatbots itself. This is to ensure that the users are not lost in the chatbot's features and that they are not influenced by the research team in their interactions with the chatbot.
-
+\subsection{\colorbox{yellow}{End-User Testing}}
+ 
+End-user testing was conducted to evaluate Socius from the perspective of its intended target demographic,
+ examining its usability, perceived educational value, and experiential quality across a multi-day testing 
+ program. Each participant was asked to complete at least one conversation session per day and answer a 
+ post-interaction survey after each session. A consolidated end-of-program survey was administered at the 
+ conclusion of testing to capture extended impressions of the system.
+ 
+\subsubsection{Participant Demographics}
+ 
+A purposive convenience sample of $N = 24$ participants completed conversation sessions in Socius,
+ generating a total of 116 valid session logs after excluding developer accounts and sessions where 
+ the transcript contained no user input. Participants were all young adults within the 18--24 age 
+ range, consistent with the system's target demographic. The sample was predominantly composed of 
+ undergraduate students from De La Salle University and its associated campuses, with additional 
+ participants from the University of the Philippines Los Ba\~{n}os, Holy Angel University, and Ateneo 
+ de Davao University. Disciplines represented included Computer Science, Psychology, Marketing 
+ Management, Accountancy, Mathematics, Organizational and Social Systems Development, and Communication 
+ and Media Studies, among others.
+ 
+To coordinate testing and provide procedural guidance without influencing conversational behavior,
+ a Discord server was established as the communication channel between the research team and participants. 
+ Interaction with the Socius chatbot itself was conducted independently by each participant at their own 
+ discretion. Prior to the testing program, a Pre-Assessment Survey was administered, and a Consolidated 
+ End-of-Program Survey was collected from participants upon program completion.
+ 
+\subsubsection{Pragmatic Competence Scoring: Descriptive Statistics}
+ 
+Each conversation session was evaluated by the AI Mentor's Pragmatic Analyzer component, which produced 
+scores across three category dimensions: Intention Coherence (IC), Social Affective Nuance (SN), and 
+Communicative Effectiveness (CE), each on a 1--5 scale. Across the 116 valid sessions, means were 
+computed for all three categories, as presented in Table~\ref{tab:grand-means}.
+ 
+\begin{longtable}{p{6cm} p{2cm} p{2cm}}
+\caption{Grand Mean Pragmatic Competence Scores Across All Sessions ($N_{\text{sessions}} = 116$)}
+\label{tab:grand-means} \\
+ 
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Category}} &
+\textcolor{white}{\textbf{$M$}} &
+\textcolor{white}{\textbf{$SD$}} \\
+\endfirsthead
+\multicolumn{3}{c}{\tablename\ \thetable{} -- continued} \\
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Category}} &
+\textcolor{white}{\textbf{$M$}} &
+\textcolor{white}{\textbf{$SD$}} \\
+\endhead
+ 
+\midrule
+Intention Coherence (IC) & 4.15 & 1.15 \\
+\midrule
+Social Affective Nuance (SN) & 3.56 & 1.09 \\
+\midrule
+Communicative Effectiveness (CE) & 3.90 & 1.20 \\
+\midrule
+Overall (mean of three categories) & 3.87 & 1.09 \\
+\bottomrule
+\end{longtable}
+ 
+\noindent Intention Coherence received the highest mean score ($M = 4.15$), indicating that participants 
+were generally effective at maintaining coherent communicative goals and logical discourse flow across 
+their sessions. Social Affective Nuance received the lowest mean ($M = 3.56$), which is consistent with the 
+theoretical expectation that sensitivity to Filipino cultural values such as \textit{Paggalang}, 
+\textit{Pakikisama}, and \textit{Hiya}, represents a more complex competence layer requiring greater 
+pedagogical exposure and reflective practice.
+ 
+Table~\ref{tab:per-participant-means} presents the session means for each of the 24 participants, 
+illustrating the degree of individual variation in performance across the program.
+ 
+\begin{longtable}{p{2.5cm} p{2cm} p{2cm} p{2cm} p{2.5cm}}
+\caption{Per-Participant Mean Pragmatic Competence Scores}
+\label{tab:per-participant-means} \\
+ 
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Participant}} &
+\textcolor{white}{\textbf{IC $M$}} &
+\textcolor{white}{\textbf{SN $M$}} &
+\textcolor{white}{\textbf{CE $M$}} &
+\textcolor{white}{\textbf{$N_{\text{sessions}}$}} \\
+\endfirsthead
+\multicolumn{5}{c}{\tablename\ \thetable{} -- continued} \\
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Participant}} &
+\textcolor{white}{\textbf{IC $M$}} &
+\textcolor{white}{\textbf{SN $M$}} &
+\textcolor{white}{\textbf{CE $M$}} &
+\textcolor{white}{\textbf{$N_{\text{sessions}}$}} \\
+\endhead
+ 
+\midrule
+P01 & 4.15 & 3.12 & 3.50 & 5  \\
+\midrule
+P02 & 4.35 & 3.75 & 4.15 & 5  \\
+\midrule
+P03 & 4.62 & 3.97 & 4.00 & 4  \\
+\midrule
+P04 & 4.65 & 4.12 & 4.71 & 5  \\
+\midrule
+P05 & 3.70 & 3.15 & 3.80 & 5  \\
+\midrule
+P06 & 4.50 & 3.50 & 2.50 & 1  \\
+\midrule
+P07 & 4.65 & 3.82 & 4.20 & 5  \\
+\midrule
+P08 & 4.00 & 2.75 & 3.00 & 1  \\
+\midrule
+P09 & 4.17 & 3.65 & 3.96 & 6  \\
+\midrule
+P10 & 4.50 & 3.75 & 3.80 & 5  \\
+\midrule
+P11 & 4.75 & 4.10 & 4.58 & 6  \\
+\midrule
+P12 & 3.30 & 2.79 & 3.15 & 10 \\
+\midrule
+P13 & 4.31 & 3.59 & 3.69 & 4  \\
+\midrule
+P14 & 4.70 & 4.05 & 4.40 & 5  \\
+\midrule
+P15 & 3.85 & 3.05 & 3.65 & 5  \\
+\midrule
+P16 & 4.30 & 3.70 & 4.20 & 5  \\
+\midrule
+P17 & 4.33 & 3.75 & 4.29 & 6  \\
+\midrule
+P18 & 3.54 & 3.40 & 3.38 & 6  \\
+\midrule
+P19 & 3.38 & 2.25 & 3.38 & 4  \\
+\midrule
+P20 & 4.25 & 3.15 & 3.80 & 5  \\
+\midrule
+P21 & 4.67 & 4.04 & 4.21 & 6  \\
+\midrule
+P22 & 2.92 & 2.75 & 2.67 & 6  \\
+\midrule
+P23 & 4.12 & 3.73 & 3.92 & 6  \\
+\midrule
+P24 & 3.89 & 3.73 & 3.82 & 7  \\
+\bottomrule
+\end{longtable}
+ 
+\noindent P04 and P11 recorded the highest mean CE and IC scores respectively ($M_{\text{CE}} = 4.71$ and 
+$M_{\text{IC}} = 4.75$). P22 and P19 displayed the lowest mean scores across all three categories; P22's 
+high intra-participant IC variance ($SD = 2.11$) is attributable to several sessions in which the participant 
+submitted "no response", resulting in minimum scores of 1.0. P12 completed the most sessions ($N = 10$), and their 
+lower means partly reflect deliberate exploratory engagement including intentional out-of-scope inputs and system 
+probing behavior.
+ 
+Table~\ref{tab:per-scenario-means} presents mean scores aggregated by scenario, revealing differential difficulty 
+across the 11 scenarios engaged during the testing period.
+ 
+\begin{longtable}{p{1.5cm} p{3.5cm} p{2cm} p{2cm} p{2cm} p{1.5cm}}
+\caption{Mean Pragmatic Competence Scores by Scenario}
+\label{tab:per-scenario-means} \\
+ 
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Scenario}} &
+\textcolor{white}{\textbf{Title (abbreviated)}} &
+\textcolor{white}{\textbf{IC $M$}} &
+\textcolor{white}{\textbf{SN $M$}} &
+\textcolor{white}{\textbf{CE $M$}} &
+\textcolor{white}{\textbf{$N$}} \\
+\endfirsthead
+\multicolumn{6}{c}{\tablename\ \thetable{} -- continued} \\
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Scenario}} &
+\textcolor{white}{\textbf{Title (abbreviated)}} &
+\textcolor{white}{\textbf{IC $M$}} &
+\textcolor{white}{\textbf{SN $M$}} &
+\textcolor{white}{\textbf{CE $M$}} &
+\textcolor{white}{\textbf{$N$}} \\
+\endhead
+ 
+\midrule
+S1  & The Course Change Dilemma          & 4.21 & 3.20 & 3.62 & 17 \\
+\midrule
+S2  & The ``Pauwi Na'' Curfew            & 4.77 & 4.47 & 4.64 & 15 \\
+\midrule
+S3  & The Ambiguous ``Kayo Na Ba?''      & 3.52 & 3.17 & 3.34 & 16 \\
+\midrule
+S4  & The ``Sama Ka'' Project Group      & 4.33 & 3.43 & 4.00 & 13 \\
+\midrule
+S5  & The Family Business ``Opportunity'' & 4.75 & 3.54 & 3.67 & 3  \\
+\midrule
+S6  & The ``Wala Naman Akong Pera'' Friend & 3.92 & 3.42 & 3.77 & 15 \\
+\midrule
+S7  & The ``Okay Lang Ako'' Partner      & 4.52 & 4.25 & 4.54 & 13 \\
+\midrule
+S8  & The Political Family Dinner        & 4.09 & 3.31 & 3.72 & 8  \\
+\midrule
+S9  & The Micromanaging Boss             & 3.36 & 2.75 & 2.78 & 9  \\
+\midrule
+S10 & The ``Chismis'' Lunch Break        & 3.72 & 3.09 & 3.72 & 10 \\
+\midrule
+S11 & The ``Insurance Agent'' Friend     & 4.25 & 3.56 & 4.00 & 4  \\
+\bottomrule
+\end{longtable}
+ 
+\noindent Scenario 2 (\textit{The ``Pauwi Na'' Curfew}) produced the highest performance across all three 
+dimensions ($M_{\text{IC}} = 4.77$, $M_{\text{SN}} = 4.47$, $M_{\text{CE}} = 4.64$), likely because the 
+conflict structure -- reassuring an overprotective parent -- makes use of a universally familiar social script 
+with established cultural anchors in \textit{Paggalang} and \textit{Pakikisama}. Scenario 9 
+(\textit{The Micromanaging Boss}) produced the lowest CE and SN scores 
+($M_{\text{CE}} = 2.78$, $M_{\text{SN}} = 2.75$), reflecting the added pragmatic difficulty of navigating 
+a hierarchical professional power differential that requires simultaneous formal deference and competence 
+assertion. This pattern supports the difficulty gradient rooted in the Havighurst-aligned scenario curriculum.
+ 
+\subsubsection{Statistical Analysis: Wilcoxon Signed-Rank Test}
+ 
+To assess whether participation in the Socius program was associated with measurable improvement in pragmatic 
+competence scores, a Wilcoxon Signed-Rank Test was conducted comparing each participant's first session scores 
+(Pre) against their final session scores (Post). This non-parametric test was selected given the ordinal nature 
+of the pragmatic scoring rubric and the small sample size. The analysis was conducted on the $N = 22$ participants 
+who completed at least two sessions. Effect size was calculated as $r = |Z| / \sqrt{N}$ following Cohen (1988), 
+with thresholds of $r \geq 0.10$ (small), $r \geq 0.30$ (medium), and $r \geq 0.50$ (large).
+ 
+Table~\ref{tab:wilcoxon-results} presents the complete results for all three category-level scores and their eight constituent sub-scores.
+ 
+\begin{longtable}{p{4.5cm} p{0.9cm} p{0.9cm} p{0.9cm} p{0.9cm} p{0.7cm} p{2.5cm}}
+\caption{Wilcoxon Signed-Rank Test: Pre (Session 1) vs.\ Post (Final Session), $N = 22$}
+\label{tab:wilcoxon-results} \\
+ 
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Metric}} &
+\textcolor{white}{\textbf{Pre $M$}} &
+\textcolor{white}{\textbf{Post $M$}} &
+\textcolor{white}{\textbf{$W$}} &
+\textcolor{white}{\textbf{$p$}} &
+\textcolor{white}{\textbf{$r$}} &
+\textcolor{white}{\textbf{Magnitude}} \\
+\endfirsthead
+\multicolumn{7}{c}{\tablename\ \thetable{} -- continued} \\
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Metric}} &
+\textcolor{white}{\textbf{Pre $M$}} &
+\textcolor{white}{\textbf{Post $M$}} &
+\textcolor{white}{\textbf{$W$}} &
+\textcolor{white}{\textbf{$p$}} &
+\textcolor{white}{\textbf{$r$}} &
+\textcolor{white}{\textbf{Magnitude}} \\
+\endhead
+ 
+\midrule
+\multicolumn{7}{l}{\textbf{Category Scores}} \\
+\midrule
+Intention Coherence (IC) & 4.114 & 4.250 & 97.0 & .345 & .201 & Small \\
+\midrule
+Social Affective Nuance (SN) & 3.308 & 3.705 & 91.5 & .256 & .242 & Small \\
+\midrule
+Communicative Effectiveness (CE) & 4.011 & 4.023 & 116.0 & .807 & .052 & Negligible \\
+\midrule
+\multicolumn{7}{l}{\textbf{IC Sub-scores}} \\
+\midrule
+\quad Discourse Flow & 3.932 & 4.136 & 75.5 & .269 & .236 & Small \\
+\midrule
+\quad Speech Act Clarity & 4.295 & 4.364 & 100.0 & .532 & .133 & Small \\
+\midrule
+\multicolumn{7}{l}{\textbf{SN Sub-scores}} \\
+\midrule
+\quad Formality Level & 3.705 & 4.409 & 58.5 & \textbf{.047*} & .424 & Medium \\
+\midrule
+\quad Informativeness & 3.727 & 3.818 & 97.0 & .700 & .082 & Negligible \\
+\midrule
+\quad Emotional Empathy & 2.818 & 3.182 & 95.0 & .352 & .199 & Small \\
+\midrule
+\quad Cultural Filipino Values & 2.977 & 3.409 & 94.0 & .311 & .216 & Small \\
+\midrule
+\multicolumn{7}{l}{\textbf{CE Sub-scores}} \\
+\midrule
+\quad Goal Persuasion & 3.614 & 3.659 & 118.5 & .832 & .045 & Negligible \\
+\midrule
+\quad Implicature Handling & 4.409 & 4.386 & 86.5 & .461 & .157 & Small \\
+\midrule
+\multicolumn{7}{l}{\textit{$^{*}p < .05$. Two-tailed. Zero-method $=$ Pratt for tied ranks.}} \\
+\bottomrule
+\end{longtable}
+ 
+Only one metric reached statistical significance: \textbf{SN: Formality Level} 
+($W = 58.5$, $p = .047$, $r = .424$, medium effect), indicating that participants showed a 
+reliably positive shift in their calibration of register appropriateness between their first and final 
+sessions. This sub-score captures the user's ability to calibrate linguistic formality -- including the 
+usage  of honorifics (\textit{po}, \textit{opo}), appropriate Taglish code-switching, hedging 
+language, and tonal deference -- to the social context of the scenario. As the most surface-level and 
+immediately teachable factor of Social Affective Nuance, its significant improvement is consistent with 
+the theory that explicit scenario feedback produces faster gains in form-level pragmatic behavior 
+than in deeper social inference skills.
+ 
+The remaining metrics, while trending positive across all IC and SN dimensions 
+(SN Overall $\Delta = +0.397$; Cultural Filipino Values $\Delta = +0.432$; Emotional Empathy $\Delta = +0.364$; 
+Discourse Flow $\Delta = +0.205$), did not reach significance at the $\alpha = .05$ threshold. These results 
+are expected given the short duration of the testing program (participants completed an average of $M = 4.83$ 
+sessions) and the inherent non-deterministic nature of LLM-generated scenario content, which introduces session-level 
+score variability that is not attributable to participant skill change. The absence of statistical significance 
+should not be interpreted as an absence of learning effect; small-to-medium effect sizes of $r = .199$--$.242$ 
+across multiple SN metrics suggest a positive trend that may consolidate into significant gains with longer-term 
+engagement. This interpretation is consistent with research on pragmatic competence development, which typically 
+requires extended exposure before measurable gains in social inference and cultural pragmatic sensitivity are 
+detectable through standardised assessment \cite{house1996, kasper1996}
+ 
+CE metrics showed the least change ($\Delta_{\text{CE Overall}} = +0.011$, $r = .052$), with Goal Persuasion 
+and Implicature Handling both near-flat across the Pre--Post window. This finding is interpretable: Communicative 
+Effectiveness, particularly Implicature Handling, was the highest-scoring sub-dimension at baseline 
+($M_{\text{Pre}} = 4.41$), leaving limited headroom for measurable improvement within the end-user testing's duration 
+and suggesting that this competence may be the most developed prior to training.
+ 
+\subsubsection{Post-Interaction Survey Results}
+ 
+Post-interaction survey data were collected from participants following each daily session. The instrument 
+covered six evaluative dimensions rated on a 5-point Likert scale. Figure~\ref{fig:survey_likert} presents the 
+response distribution across nine key items drawn from the post-interaction instrument.
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/survey_likert_chart.png}
+    \caption{Post-Interaction Survey: Response Distribution Across Key Items (all sessions combined)}
+    \label{fig:survey_likert}
+\end{figure}
+ 
+Across all items, the large majority of responses fell in the Agree (4) or Strongly Agree (5) range. 
+The highest endorsement was recorded for \textit{AI Partner stayed in character} ($94\%$ Agree/Strongly Agree) 
+and \textit{Scenarios were easy to understand} ($90\%$ Agree/Strongly Agree), affirming the ecological coherence 
+of the AI Partner's persona design and the scenario narrative clarity. Items related to feedback correcting 
+mistakes ($86\%$ Agree/Strongly Agree) and advice being easy to understand ($92\%$ Agree/Strongly Agree) were 
+also strongly endorsed.
+ 
+Items reflecting perceived humanness of the AI Partner ($76\%$ Agree/Strongly Agree) and the AI Mentor 
+($77\%$ Agree/Strongly Agree) received the lowest endorsement across the post-interaction items, consistent 
+with the expected awareness of participants that they are interacting with an AI system. Notably, this 
+awareness did not prevent high immersion ratings, suggesting that the system successfully achieved the 
+pedagogically relevant condition of ``sufficient'' rather than ``perfect'' naturalism for pragmatic practice.
+ 
+\subsubsection{Consolidated End-of-Program Survey Results}
+ 
+The Consolidated End-of-Program Survey was completed by $N = 16$ participants at the conclusion 
+of the testing period. Table~\ref{tab:consolidated-results} presents means and standard deviations for 
+all 17 Likert items. Figure~\ref{fig:consolidated_likert} presents the response distribution across all items.
+ 
+\begin{longtable}{>{\raggedright\arraybackslash}p{8cm} p{1.5cm} p{1.5cm}}
+\caption{Consolidated End-of-Program Survey Descriptive Statistics ($N = 16$)}
+\label{tab:consolidated-results} \\
+ 
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Item}} &
+\textcolor{white}{\textbf{$M$}} &
+\textcolor{white}{\textbf{$SD$}} \\
+\endfirsthead
+\multicolumn{3}{c}{\tablename\ \thetable{} -- continued} \\
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Item}} &
+\textcolor{white}{\textbf{$M$}} &
+\textcolor{white}{\textbf{$SD$}} \\
+\endhead
+ 
+\midrule
+\multicolumn{3}{l}{\textbf{Overall Experience}} \\
+\midrule
+My overall experience with Socius throughout the program was positive. & 4.25 & 0.77 \\
+\midrule
+The conversation scenarios remained engaging and interesting every day. & 4.50 & 0.73 \\
+\midrule
+The chatbot consistently felt like a real person over the course of the week. & 3.69 & 1.30 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Perceived Learning Outcomes}} \\
+\midrule
+I feel more confident in my social communication skills now than before I started. & 4.06 & 0.85 \\
+\midrule
+Socius helped me understand how to build better responses based on others' cues. & 4.25 & 1.00 \\
+\midrule
+I believe using Socius regularly can lead to long-term social improvement. & 4.31 & 1.08 \\
+\midrule
+I have successfully applied Socius's strategies in my real-life conversations. & 3.31 & 1.38 \\
+\midrule
+\multicolumn{3}{l}{\textbf{AI Mentor Evaluation}} \\
+\midrule
+The AI Mentor's feedback was consistently helpful across all sessions. & 4.31 & 1.20 \\
+\midrule
+The explanations of Grice's Maxims were clear and easy to grasp. & 3.69 & 1.38 \\
+\midrule
+The feedback I received felt personalized to my specific communication style. & 4.12 & 0.96 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Psychological Safety}} \\
+\midrule
+I felt safe to make mistakes and experiment without fear of judgment. & 4.56 & 0.51 \\
+\midrule
+I never felt discouraged or criticized by the AI Mentor's feedback. & 4.38 & 0.96 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Usability and Technical Reliability}} \\
+\midrule
+The interface was consistently easy to navigate throughout the entire week. & 4.50 & 0.63 \\
+\midrule
+The system was technically reliable (I did not encounter bugs or glitches). & 3.06 & 1.00 \\
+\midrule
+I rarely felt confused by how the chatbot or the interface worked. & 4.62 & 0.62 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Recommendation and Future Use}} \\
+\midrule
+I would recommend Socius to my peers or friends. & 4.31 & 0.87 \\
+\midrule
+I would be interested in using Socius again in the future. & 4.62 & 0.62 \\
+\bottomrule
+\end{longtable}
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/consolidated_likert_chart.png}
+    \caption{Consolidated End-of-Program Survey: Response Distribution Across All 17 Items}
+    \label{fig:consolidated_likert}
+\end{figure}
+ 
+\noindent Psychological safety was the most consistently endorsed cluster across the program. Participants 
+strongly agreed that they felt safe to make mistakes ($M = 4.56$, $SD = 0.51$: the lowest variance of any 
+item in the instrument), and that the AI Mentor's feedback was non-discouraging ($M = 4.38$). These results 
+affirm the effectiveness of the constructive-only feedback design philosophy implemented in the AI Mentor persona 
+and validate Socius's positioning as a low-stakes practice environment.
+ 
+Scenario engagement was rated highly ($M = 4.50$, $SD = 0.73$), and no item within the Learning Outcomes 
+cluster fell below $M = 4.00$ with the exceptions of real-life transfer ($M = 3.31$, $SD = 1.38$) and 
+perceived chatbot humanness over the week ($M = 3.69$, $SD = 1.30$). The low real-life transfer mean is 
+likely given the testing's five-day duration which is insufficient for consolidation of new pragmatic 
+strategies into habitual behaviour, and should not be interpreted as evidence against longer-term efficacy. 
+The widest variance among positively-charged items was observed for chatbot humanness ($SD = 1.30$) and the 
+clarity of Gricean Maxim explanations ($SD = 1.38$), both of which reflect legitimate individual differences 
+in users' prior linguistic metaliteracy and tolerance for cognitive guides.
+ 
+The only item falling below $M = 3.50$ was technical reliability ($M = 3.06$, $SD = 1.00$), reflecting 
+participants' experiences of intermittent response latency during peak-usage evening hours. This constraint 
+is attributable to the rate limits imposed by the Gemini API tier-1 plan under which the research deployment 
+operated and represents an infrastructure limitation of the testing environment rather than a design flaw in 
+the system architecture. Intent to reuse ($M = 4.62$, $SD = 0.62$) and intent to recommend Socius to peers 
+($M = 4.31$, $SD = 0.87$) both received high endorsement, indicating strong overall system acceptance within 
+the target demographic.
+ 
+\subsubsection{Qualitative Feedback Analysis}
+ 
+Open-ended responses from both the post-interaction surveys and the consolidated end-of-program survey were 
+reviewed thematically. Six recurring themes emerged across the qualitative data corpus.
+ 
+\paragraph{Ecological Validity of Scenarios.} Participants repeatedly noted that the scenarios closely 
+mirrored interpersonal situations they had personally encountered or anticipated facing. Several participants 
+described emotional responses consistent with high ecological validity, including one who described the 
+curfew scenario as hitting (P14) ``too well that it's kind of eerie,'' another who reported being (P24) ``genuinely scared 
+when the bot got upset,'' and a third who reflected that the political dinner scenario (P04) ``can be a bit anxiety 
+driving since some scenarios are high in conflict.'' The AI Partner's ability to maintain contextually specific 
+Taglish dialogue and character-consistent emotional escalation was a primary driver of immersion.
+ 
+\paragraph{Cultural Localization as a Distinctive Feature.} The integration of Filipino cultural 
+frameworks, namely \textit{Hiya}, \textit{Pakikisama}, \textit{Utang na Loob}, \textit{Paggalang}, and 
+\textit{Kapwa}, was cited by multiple participants as the most distinctive and valued feature of 
+Socius relative to generic chatbot experiences. Participants noted that the system (P04) ``placed conversations 
+in the Philippine context and emphasized cultural aspects to help users understand better why Filipinos 
+can act the way they do.'' The AI Mentor's use of Taglish during the debrief phase was specifically 
+appreciated for making feedback feel accessible and relational rather than instructional and foreign.
+ 
+\paragraph{AI Mentor Feedback Format.} While the substance of the AI Mentor's feedback was well-received, 
+a recurring concern was the density and delivery format of feedback text. Participants described the mentor 
+as producing (P15) ``a block of text'' that was not conducive to active engagement. One participant explicitly 
+recommended a more dialogic feedback modality in which the mentor asks reflective questions (e.g., ``Where 
+do you think you went wrong?'') rather than front-loading a comprehensive analytical debrief. This suggestion 
+aligns with established principles of conversational formative assessment and represents a substantive future 
+design direction.
+ 
+\paragraph{Repetitive Dialogue Patterns.} Multiple participants independently identified a tendency for the 
+AI Partner to re-anchor the same scenario trigger verbatim across successive turns. For instance, repeatedly 
+referencing a specific physical incident in the relationship scenario across nearly every message. This 
+behavior was perceived as unnatural and disrupted immersion. The pattern suggests a context management 
+issue within the Conversation Flow Manager's handling of scenario-critical anchors, wherein the model 
+over-weighted early scenario premises rather than tracking the evolving conversational state.
+ 
+\paragraph{Role Reversal Error.} At least two participants independently reported a session in the 
+\textit{``Wala Naman Akong Pera'' Friend} scenario (Scenario 6) where the AI Partner appeared to reverse 
+roles mid-conversation, suddenly framing the user as the indebted party rather than the creditor being 
+solicited. This constitutes a confirmed persona anchoring error in the CFM's role management logic. The 
+error appears to have been triggered by linguistically ambiguous user responses (e.g., ``Sorry, medyo kapos 
+narin ako ngayon''), which the model interpreted as a role-symmetrical admission of financial constraint 
+rather than a refusal. This "bug" was identified by the research team for remediation in subsequent iterations.
+ 
+\paragraph{Psychological Safety and Disinhibition.} Participants across multiple survey entries noted feeling 
+able to communicate more candidly in Socius than in real interpersonal contexts. One participant stated that 
+(P19) ``because it is a robot, I can say whatever I want without repercussion,'' and another described Socius as 
+enabling scenario practice (P02) ``without the apprehension of how the other person feels.'' This low-stakes 
+disinhibition effect, a theoretically anticipated advantage of AI-mediated pragmatic training environments, 
+appears to have been operationalised successfully through the system's design, producing the conditions 
+under which learners are willing to attempt pragmatic strategies they might otherwise avoid in authentic 
+high-stakes interactions.
