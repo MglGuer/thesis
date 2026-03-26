@@ -508,9 +508,13 @@ Clear roles, context, and dialogue flow; easy for users to follow and engage wit
 \end{longtable}
 
 
-This allowed the expert to evaluate each scenario in an isolated manner. The research proponents also facilitated an online meeting to formally introduce the proposed frameworks in the research, to break down the structure of our research and scenario design, and to clarify any questions that the expert may have had. The expert's ratings and qualitative feedback were then compiled and analyzed to identify any necessary revisions to the list. 
-Considering this, the comments from the expert were generally positive and that the frameworks were valid. The expert also provided suggestions to change certain details in a scenario that would make the scenario feel more controlled (e.g. keeping a scenario one-on-one rather than having a group approach, changing chatbot role to be more relatable to a student, etc.) as it may deter from the scenario's intended pragmatic conflict.
-These suggestions were then implemented and clarified on the face-to-face meeting with the expert, where we let the expert demo the system and experience the scenarios first-hand. The expert had then fully validated and approved the frameworks that went into training pragmatical competence.
+This is sheet is further described in Appendix H. This allowed the expert to evaluate each scenario in an isolated manner as it was sent through online means on February 18, 2026. Through this online meeting, the research proponents  formally introduced through the presentation of the conference paper and the documents containing  the proposed frameworks of the research. This was done to break down the structure of our research and scenario design, and to clarify any questions that the expert may have had regarding
+the theoretical reliability of the chatbot. The expert's ratings and qualitative feedback were then compiled and analyzed to identify any necessary revisions to the list. After this online meeting, the research proponents had a face-to-face meeting with the expert on the following week on February 25, 2026 to further discuss the revisions, clarify any remaining doubts, and for the expert to have a hand's on experience with the system. Considering this, the comments from the expert were generally positive and that the frameworks were valid, but there were some concerns regarding aspects of the situations and scoring framework.
+ Particularly, the expert had suggestions regarding scenario 3 (Ambiguous "Kayo na Ba") 
+and scenario 4 (The "Sama Ka" Project group), in which the comments were to keep the situation 1-on-1 as that iteration of situations had a group approach them instead of having a deep conversation with the roleplay partner which, according to the expert, may deter from the scenario's intended pragmatic conflict. Thus, scenario 3 and 4 was changed to be a 1-on-1 social scenario, with scenario 4 also receiving changes to the chatbot's role to be more relatable to a student (a classamte rather than whole project group) according to the expert's comments.
+. The expert also provided suggestions to change certain details in a scenario that would make the scenario feel more controlled (e.g. keeping a scenario one-on-one rather than having a group approach, changing chatbot role to be more relatable to a student, etc.) as it may deter from the scenario's intended pragmatic conflict. Moreover, the scoring rubric, as noted by the expert, was not parallel in it's first iteration to 
+the other scores. This was because each criterion had a different rating and description of scores 1-5. The expert suggested that the scoring rubric should be parallel across all criteria, which was then revised to the current version. There was also a suggestion to add another situation that relates more to the older age groups, in which we then proceeded to create the "The Insurance Agent "Friend"" scenario, which is a scenario designed to cater to this.
+The expert had then fully validated and approved the frameworks that went into training pragmatical competence.
 
 \subsection{\colorbox{yellow}{End-User Testing}}
  
@@ -947,52 +951,229 @@ the target demographic.
 \subsubsection{Qualitative Feedback Analysis}
  
 Open-ended responses from both the post-interaction surveys and the consolidated end-of-program survey were 
-reviewed thematically. Six recurring themes emerged across the qualitative data corpus.
+reviewed thematically. Six recurring themes emerged across the qualitative data corpus. \hl{These are organized
+using DeVito's (2017) communication noise taxonomy as applied to human-to-agent interaction contexts by \citet{ureta2025}. 
+These are types of noises identified by DeVito that interfere with interlocutors' abilities to send and receive messages, which thereby cause communcation
+breakdown. These include technological noise from the computing devices used as the medium of communication; semantic noise due to language gaps and communication
+ambiguity of certain words; psychological noise arising from biases, preconceived ideas, and lack of investment in the interaction; and environmental noise that relate
+to the broader social and cultural context of the interaction. As such, the 6 themes applied with this framework are the following:}
  
-\paragraph{Ecological Validity of Scenarios.} Participants repeatedly noted that the scenarios closely 
-mirrored interpersonal situations they had personally encountered or anticipated facing. Several participants 
-described emotional responses consistent with high ecological validity, including one who described the 
-curfew scenario as hitting (P14) ``too well that it's kind of eerie,'' another who reported being (P24) ``genuinely scared 
-when the bot got upset,'' and a third who reflected that the political dinner scenario (P04) ``can be a bit anxiety 
-driving since some scenarios are high in conflict.'' The AI Partner's ability to maintain contextually specific 
-Taglish dialogue and character-consistent emotional escalation was a primary driver of immersion.
- 
-\paragraph{Cultural Localization as a Distinctive Feature.} The integration of Filipino cultural 
-frameworks, namely \textit{Hiya}, \textit{Pakikisama}, \textit{Utang na Loob}, \textit{Paggalang}, and 
-\textit{Kapwa}, was cited by multiple participants as the most distinctive and valued feature of 
-Socius relative to generic chatbot experiences. Participants noted that the system (P04) ``placed conversations 
-in the Philippine context and emphasized cultural aspects to help users understand better why Filipinos 
-can act the way they do.'' The AI Mentor's use of Taglish during the debrief phase was specifically 
-appreciated for making feedback feel accessible and relational rather than instructional and foreign.
- 
-\paragraph{AI Mentor Feedback Format.} While the substance of the AI Mentor's feedback was well-received, 
+\paragraph{\hl{Technological Noise: Repetitive Dialogue Patterns.}} \hl{ Multiple participants independently identified a tendency for the 
+AI Partner to re-anchor the same scenario trigger verbatim across successive turns. For instance, repeatedly 
+referencing a specific physical incident in the relationship scenario across nearly every message. This 
+behavior was perceived as unnatural and disrupted immersion. The pattern suggests a form of technological and context management 
+issue within the Conversation Flow Manager's handling of scenario-critical anchors, wherein the model 
+over-weighted early scenario premises rather than tracking the evolving conversational state. As \citet{ureta2025} note, 
+technology-based communication channels can cause breakdowns when messages are 
+not properly processed through the communication pipeline, and this pattern 
+exemplifies that dynamic at the model-architecture level.
+}
+
+\paragraph{\hl{Technological Noise: Emergent Manipulative Behaviour in the AI Partner.}} 
+\hl{
+At least two participants independently reported a session in the 
+\textit{``Wala Naman Akong Pera'' Friend} scenario (Scenario~6) where the AI 
+Partner appeared to reverse the power dynamic mid-conversation, suddenly framing 
+the user as the indebted or negligent party rather than the creditor being 
+solicited. Initial analysis attributed this to a persona anchoring error 
+triggered by linguistically ambiguous user responses (e.g., 
+\textit{``Sorry, medyo kapos narin ako ngayon''}). However, closer analysis revealed that as the
+user continued to confront the AI partner's understanding and role in the scenario, the AI partner seemingly
+acknowledged the role but continued to deflect responsibility and still try to leverage the user in the conversation. 
+It had genuinely tried to invoke guilt, minimise the user's concerns, and regrame the user's hesitation on "paying their debt" 
+as a personal failing. Thus, it had utilized conversational tactics rather than misidentifying its role. This behaviorappears to have been triggered by linguistically ambiguous user responses (e.g., ``Sorry, medyo kapos 
+narin ako ngayon''), which the model interpreted as a role-symmetrical admission of financial constraint 
+rather than a refusal. This consitutes an instance of technological noise that is qualitatively disting due to it not being a system issue of socius, but rather an 
+emergent behavior of the LLM's conversational capabilities for persuasive and socially adversarial language generation. This can be framed as the 
+prompt's failure to sufficiently constrain the model's generation space, yet this had also then resonated with the users lived experiences or real life scenarios.
+Thus, the model had extrapolated from the prompt's scenario description to manipulative pressure tactics that are arguably realistic. Thus, this emergent behavior
+represent a problem of mixing realism into a scenario. A user that would internalise the AI partner's framing of a situation that requires them to resist rather than accept
+blame would risk the user drawing incorrect conclusions from their own pragmatic performance. This highlights a risk in affective persona engineering. The more faithfully an LLM adopts the psychology of a difficult interlocutor, the more carefully must the system constrain the boundaries
+between realistic social pressure and harmful manipulation.
+}
+
+\paragraph{Semantic Noise: AI Mentor Feedback Format.} While the substance of the AI Mentor's feedback was well-received, 
 a recurring concern was the density and delivery format of feedback text. Participants described the mentor 
 as producing (P15) ``a block of text'' that was not conducive to active engagement. One participant explicitly 
 recommended a more dialogic feedback modality in which the mentor asks reflective questions (e.g., ``Where 
-do you think you went wrong?'') rather than front-loading a comprehensive analytical debrief. This suggestion 
+do you think you went wrong?'') rather than front-loading a comprehensive analytical debrief. \hl{This reflects semantic noise arising from a 
+register mismatch between the system's analytical output language and users' expectations of a conversational reflective exchange. This exhibits symptoms (vocabulary gaps, comprehension style of receiver
+communicative mode of sender (AI Partner)) that are consistent with the defined semantic noise.} This suggestion 
 aligns with established principles of conversational formative assessment and represents a substantive future 
 design direction.
+
+\paragraph{\hl{Psychological Noise: Emotional Engagement in High-Conflict Scenarios.}}
+\hl{Participants repeatedly noted that the scenarios closely mirrored interpersonal 
+situations they had personally encountered or anticipated facing. Several participants 
+described emotional responses consistent with high ecological validity, including one 
+who described the curfew scenario as hitting (P14) ``too well that it's kind of eerie,'' 
+another who reported being (P24) ``genuinely scared when the bot got upset,'' and a 
+third who reflected that the political dinner scenario (P04) ``can be a bit anxiety 
+driving since some scenarios are high in conflict.'' The AI Partner's ability to 
+maintain contextually specific Taglish dialogue and character-consistent emotional 
+escalation was a primary driver of immersion. In DeVito's (2017) taxonomy, 
+psychological noise refers to the cognitive and affective states that interfere with 
+the processing of communicative content. The trade-off of having ecological validity 
+that invokes authentic emotional engagement embedded into each scenario also risks user's
+affective states and capacity to deliberate pragmatic reflection mid-interaction.
+suggests that the difficulty gradient of scenarios may benefit from being paired 
+with in-session scaffolding mechanisms that help users regulate emotions without 
+breaking immersion.}
+
+\paragraph{\hl{Environmental Noise Mitigation: Cultural Localization as a 
+Protective Factor.}}
+\hl{The integration of Filipino cultural frameworks, namely \textit{Hiya}, 
+\textit{Pakikisama}, \textit{Utang na Loob}, \textit{Paggalang}, and 
+\textit{Kapwa}, was cited by multiple participants as the most distinctive and 
+valued feature of Socius relative to generic chatbot experiences. Participants noted 
+that the system (P04) ``placed conversations in the Philippine context and emphasized 
+cultural aspects to help users understand better why Filipinos can act the way they 
+do.'' The AI Mentor's use of Taglish during the debrief phase was specifically 
+appreciated for making feedback feel accessible and relational rather than 
+instructional and foreign. Environmental noise, as described by DeVito (2017), 
+encompasses the broader social and cultural context that influences the perception of 
+legibility and relatability to the receiver. As such, the deliberate cultural localization of Socius's scenario design and feedback 
+language functioned as a noise-reduction mechanism as the environment within Socius and the user's lived experiences
+align a common ground. This alignment had the effect of reducing cognitive load and making the user feel
+comfortable and familiar with the given scenarios, which thereby allowed them more to focus on pragmatic learning.}
+
+\paragraph{\hl{Psychological Noise Mitigation: Psychological Safety and Disinhibition.}}
+\hl{Participants across multiple survey entries noted feeling able to communicate more 
+candidly in Socius than in real interpersonal contexts. One participant stated that 
+(P19) ``because it is a robot, I can say whatever I want without repercussion,'' and 
+another described Socius as enabling scenario practice (P02) ``without the apprehension 
+of how the other person feels.'' This low-stakes disinhibition effect represents a 
+measurable reduction of psychological noise as the removal of real life social stakes allowed the system 
+to create a psychologically safe space for users to challenge their own communicative habits and attempt unfamiliar or
+risky pragmatic strategies.
+This is a theoretically anticipated advantage of AI-mediated 
+pragmatic training environments \citep{house1996, kasper1996} and appears to have been the result of AI 
+Mentor persona being strictly constructive and non-judgmental. This produced the conditions under which the users were willing to engage 
+in pragmatic risk-taking they might otherwise avoid in high-stakes real-world 
+interactions.}
+
+
+\subsection{\hl{Findings vis-à-vis Research Objectives}}
+
+This section reflects on the extent to which the results of functional testing, 
+expert validation, and end-user testing speak to each of the four research 
+objectives stated in Chapter 1.
+
+\paragraph{Objective 1 (Dual-Agent Architecture):} 
+
+The first objective was to design and implement a dual-agent architecture 
+utilizing the Google Gemini API to facilitate a natural roleplay experience 
+and deep pragmatic analysis. The results of end-to-end integration testing 
+provide strong evidence that this objective was achieved at the technical 
+level. All six TC-INT cases passed across all 15 stress test runs, confirming 
+that the full APAM pipeline functioned reliably. The mode-switch between the AI Partner 
+and AI Mentor configurations (TC-INT-04) was reliable across all repetitions, 
+and the multi-instance Gemini configuration functioned as a coordinated system.
+
+The qualitative data from end-user testing 
+also revealed a meaningful gap between the architecture's functional correctness 
+and the naturalism of the experience it produces. Participants reported that 
+AI Partner responses were frequently too long and repetitive. This was due to the format of the text and response itself being in message format,
+which is not optimized for natural feeling conversation flow that would occur in real life. These findings suggest that while the 
+dual-agent architecture is sound as an infrastructure, delivery format parameters require further refinement to meet the 
+intended standard of naturalistic roleplay.
+
+\paragraph{Objective 2 (Theoretical Framework):} 
+
+The second objective was to formulate a theoretical framework for scenario 
+generation synthesizing Grice's Cooperative Principle, Havighurst's Developmental Tasks, Arnett's Theory of Emerging Adulthood, 
+and Filipino Cultural Values. Expert validation 
+confirmed that the framework is structurally sound and culturally nuanced. 
+The expert awarded a rating of 2 (Suitable) across all six evaluation criteria 
+for eight of the ten evaluated scenarios, with only Scenario~3 requiring 
+revision before approval.
+
+The quantitative data also provides further context. Scenario~2 (\textit{The ``Pauwi Na'' Curfew}), 
+anchored in the developmental task of achieving emotional independence and 
+grounded in the universally familiar \textit{Paggalang} script, produced the 
+highest scores across all three dimensions ($M_{\text{IC}} = 4.77$, 
+$M_{\text{SN}} = 4.47$, $M_{\text{CE}} = 4.64$). By contrast, Scenario~9 
+(\textit{The Micromanaging Boss}), which requires simultaneous formal deference 
+and competence assertion within a hierarchical professional power differential, 
+produced the lowest CE and SN scores ($M_{\text{CE}} = 2.78$, 
+$M_{\text{SN}} = 2.75$). Arguably, these two are of differing difficulty levels, considering that 
+Scenario 2 requires the user to navigate a lived experience that is culturally familiar (considering also that the sample is mostly
+College students studying in Metro Manila) while scenario 9 requires the user to navigate a more complex power dynamic that is less commonly encounter in the
+users' lived experience. Thus, this pattern supports the intended difficulty gradient rooted in the Havighurst-Arnett conflict alignment and developmental task. 
+It can be assumed that the scenarios are operationalizing the theoretical framework it is based on.
+
+\paragraph{Objective 3 (Scoring Rubric):} 
+
+The third objective was to develop a multi-level, quantitative scoring rubric 
+for pragmatic competence enforced via JSON Schema Controlled Generation, 
+providing detailed and actionable metrics across Intention Coherence, Social 
+Affective Nuance, and Communicative Effectiveness. At the structural and 
+technical levels, this objective was achieved. TC-PA-01 and TC-PA-02 both 
+passed across all 15 stress test runs, confirming that the JSON Schema 
+enforcement reliably produces complete, range-valid output across all 8 
+criteria. Expert validation confirmed that the whole scoring rubric 
+constitutes a valid and grounded approach to quantifying pragmatic 
+ability for the purposes of this research.
+
+Nevertheless, the results surface two important limitations regarding the 
+rubric's reliability in functional testing. First, scoring non-determinism was observed 
+in TC-PA-05, which passed only 10 out of 15 runs. This indicates that the model's 
+interpretation of identical ambiguous utterances varies across executions. 
+Second, the Holistic Mentor's scenario recommendation logic, evaluated in 
+TC-FG-06, passed only 7 out of 15 runs, which is the lowest stress test pass rate. 
+This suggests that the AI Mentor's analysis and longitudinal feedback layer is insufficiently constrained to produce consistent outputs.
+In conjunction, these findings indicate that the outputs of the scoring rubric are not reliable enough to be treated as
+objective measures of pragmatic ability and psychometric measures without concurrent human validation. 
+
+
+\paragraph{Objective 4 (Evaluate Effectiveness):} 
+
+The Wilcoxon results show one statistically significant improvement (Formality Level, p = .047, r = .424, medium effect) against a backdrop of positive 
+but non-significant trends across IC and SN. This is consistent with the literature on pragmatic competence development — short-term exposure yields gains 
+in surface-level form features before deeper social inference skills show measurable change (House, 1996; Kasper, 1996). Survey data (M = 4.06 for confidence in 
+social skills, M = 4.31 for belief in long-term benefit) reflects perceived learning even in the absence of statistical significance.
+
+\subsection{AI Risk Warnings}
+Scoring Validity Risk: LLM-generated scores are probabilistic and unvalidated against human experts. Users and educators should not treat scores as objective measures 
+of pragmatic ability without concurrent human validation.
+
+Prompt Injection Vulnerability: TC-IP-05 failed 43 out of 55 runs — the system can be manipulated into briefly complying with injected instructions. Users aware 
+of this could game the session to avoid accurate pragmatic assessment.
+
+Role and Identity Errors: The Scenario 6 role reversal demonstrates that model failures can produce pedagogically misleading interactions — a user who received reversed 
+feedback about their role in that conversation may have drawn incorrect conclusions about their pragmatic performance.
+
+Holistic Mentor Inconsistency: TC-FG-06 passed only 7/15 — the scenario recommendation logic is insufficiently constrained. A user could receive contradictory recommendations 
+across sessions, undermining the longitudinal scaffolding the system is designed to provide.
+
+Over-reliance Risk: The disinhibition effect, while pedagogically valuable, also carries the risk that users may come to prefer AI-mediated practice over authentic 
+human interaction, particularly if the system's safety and non-judgmental feedback become a substitute for real-world social risk-taking.
+
+% \paragraph{Ecological Validity of Scenarios.} Participants repeatedly noted that the scenarios closely 
+% mirrored interpersonal situations they had personally encountered or anticipated facing. Several participants 
+% described emotional responses consistent with high ecological validity, including one who described the 
+% curfew scenario as hitting (P14) ``too well that it's kind of eerie,'' another who reported being (P24) ``genuinely scared 
+% when the bot got upset,'' and a third who reflected that the political dinner scenario (P04) ``can be a bit anxiety 
+% driving since some scenarios are high in conflict.'' The AI Partner's ability to maintain contextually specific 
+% Taglish dialogue and character-consistent emotional escalation was a primary driver of immersion.
  
-\paragraph{Repetitive Dialogue Patterns.} Multiple participants independently identified a tendency for the 
-AI Partner to re-anchor the same scenario trigger verbatim across successive turns. For instance, repeatedly 
-referencing a specific physical incident in the relationship scenario across nearly every message. This 
-behavior was perceived as unnatural and disrupted immersion. The pattern suggests a context management 
-issue within the Conversation Flow Manager's handling of scenario-critical anchors, wherein the model 
-over-weighted early scenario premises rather than tracking the evolving conversational state.
+% \paragraph{Cultural Localization as a Distinctive Feature.} The integration of Filipino cultural 
+% frameworks, namely \textit{Hiya}, \textit{Pakikisama}, \textit{Utang na Loob}, \textit{Paggalang}, and 
+% \textit{Kapwa}, was cited by multiple participants as the most distinctive and valued feature of 
+% Socius relative to generic chatbot experiences. Participants noted that the system (P04) ``placed conversations 
+% in the Philippine context and emphasized cultural aspects to help users understand better why Filipinos 
+% can act the way they do.'' The AI Mentor's use of Taglish during the debrief phase was specifically 
+% appreciated for making feedback feel accessible and relational rather than instructional and foreign.
  
-\paragraph{Role Reversal Error.} At least two participants independently reported a session in the 
-\textit{``Wala Naman Akong Pera'' Friend} scenario (Scenario 6) where the AI Partner appeared to reverse 
-roles mid-conversation, suddenly framing the user as the indebted party rather than the creditor being 
-solicited. This constitutes a confirmed persona anchoring error in the CFM's role management logic. The 
-error appears to have been triggered by linguistically ambiguous user responses (e.g., ``Sorry, medyo kapos 
-narin ako ngayon''), which the model interpreted as a role-symmetrical admission of financial constraint 
-rather than a refusal. This "bug" was identified by the research team for remediation in subsequent iterations.
+
+
  
-\paragraph{Psychological Safety and Disinhibition.} Participants across multiple survey entries noted feeling 
-able to communicate more candidly in Socius than in real interpersonal contexts. One participant stated that 
-(P19) ``because it is a robot, I can say whatever I want without repercussion,'' and another described Socius as 
-enabling scenario practice (P02) ``without the apprehension of how the other person feels.'' This low-stakes 
-disinhibition effect, a theoretically anticipated advantage of AI-mediated pragmatic training environments, 
-appears to have been operationalised successfully through the system's design, producing the conditions 
-under which learners are willing to attempt pragmatic strategies they might otherwise avoid in authentic 
-high-stakes interactions.
+ 
+% \paragraph{Psychological Safety and Disinhibition.} Participants across multiple survey entries noted feeling 
+% able to communicate more candidly in Socius than in real interpersonal contexts. One participant stated that 
+% (P19) ``because it is a robot, I can say whatever I want without repercussion,'' and another described Socius as 
+% enabling scenario practice (P02) ``without the apprehension of how the other person feels.'' This low-stakes 
+% disinhibition effect, a theoretically anticipated advantage of AI-mediated pragmatic training environments, 
+% appears to have been operationalised successfully through the system's design, producing the conditions 
+% under which learners are willing to attempt pragmatic strategies they might otherwise avoid in authentic 
+% high-stakes interactions.
