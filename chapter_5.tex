@@ -62,9 +62,14 @@ These tables are designed to be relational for querying and are primarily hosted
 \midrule
 \textit{holistic\_greeting\_cache} & JSONB & Stores the most recent mentor greeting to reduce API calls. \\
 \midrule
-\textit{holistic\_mentor\_history} & JSONB & Persisted history of the user's Q\&A with the Holistic Mentor. \\
+\textit{holistic\_mentor\_history} & JSONB & Persisteood history of the user's Q\&A with the Holistic Mentor. \\
 \bottomrule
 \end{longtable}
+
+The User Profiles table's population is automated through the Flask backend, wherein users create their profiles to utilize the chatbot. This is
+created automatically through first authentication via Supabase Auth. At this point, all three metric scores (avg\_intention\_coherence, avg\_social\_nuance, avg\_communicative\_eff) are initialized to 0.0 and sessions
+complete is set to 0. After every session, the flask backend in conjunction to the AI mentor's analysis update the fields of the user. The holistic\_greeting\_cache
+is for the user greeting into the scenario selection screen and scenario recommendation. The holistic\_mentor\_history column is appended to after each exchange with the Holistic Mentor, persisting the dialogue incrementally. 
 
 \begin{longtable}{p{3.5cm} p{2.5cm} p{8cm}}
 \caption{\hl{Conversation Logs Table Schema}}
@@ -101,6 +106,11 @@ These tables are designed to be relational for querying and are primarily hosted
 \bottomrule
 \end{longtable}
 
+The Conversation Logs table is populated sequentially after each conversation session and session termination with the AI Partner. The transcript field
+is populated with the local message history maintained by the client, while the session\_scores jsonb field is populated directly from the structured JSON output
+of the AI Mentor Analyze instance. The feedback\_text field is derived from the same API response, which is made readable through Markdown formatting. The mentor\_chat\_history
+column is subsequently appended to each time the user engages with the post-session AI Mentor chat of the very same instanced conversation.
+
 \begin{longtable}{p{3.5cm} p{2.5cm} p{8cm}}
 \caption{\hl{Scenarios JSON Schema Structure}}
 \label{tab:scenarios_json} \\
@@ -132,7 +142,10 @@ These tables are designed to be relational for querying and are primarily hosted
 \bottomrule
 \end{longtable}
 
-The tables are initially unpopulated with user data; however, the scenarios table operates via an independent JSON catalogue containing a pre-defined set of conversational situations curated by the researchers. The user profiles are created upon registration, and the conversation logs are created sequentially after each session. 
+The scenarios catalogue is a static JSON file curated with scenarios that are designed by the research team. Thus, the population of this knowledge base is entirely manual and must be updated
+through research proponents and expert working with each other to design a conversational scenario. It is never modified at runtime. Each scenario was manually authored to align with the different
+aspects of the research' theoretical framework. The full\_description field encodes the AI Partner's persona and constraints. The data here is read-only, thereby
+loaded into memory space on server startup and served directly from the Flask backend without any database round-trip.
 
 A key architectural decision in the database design was the use of \texttt{JSONB} data types for the \texttt{session\_scores} and \texttt{mentor\_chat\_history} columns, rather than traditional relational normalization. This hybrid approach was chosen for three specific reasons:
 
