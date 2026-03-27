@@ -1317,6 +1317,65 @@ incoming requests during peak times could mitigate the risk of service interrupt
 In summary, Socius generates approximately 8-9 Gemini API calls per user session, with a matching nymber of client-to-server calls. The combined analysis prompt also represents the single most token-intensive operation.
 The finding that quota exhaustion occurred with as few as 24 end users substantiates the recommendation to adopt a higher Gemini quota tier prior to any wider deployment.
 
+\section{\hl{Discussion}}
+\indent This section synthesizes the findings from the various testing phases and reflects on their implications for the research objectives, system design, 
+and future development directions. The discussion is organized around key themes that emerged from the data, including user engagement, cultural localization, 
+psychological safety, and the limitations of the current system iteration.
+
+\indent The primary objective of the study was to evaluate the effectiveness of Socius as a platform for practicing the navigation of complex conversational scenarios. 
+The results show an interesting finding that while objectively, there was no significant change in pragmatic ability over the five-day period, users reported high levels 
+of emotional investment and perceived pedagogical value. This could suggest that the chatbot's impact is rooted leess in immediate behavioral modification, and more in fostering a mindset of reflective practice, 
+meta-pragmatic awareness, psychological safety, and confidence in social communication.
+
+\subsection{Objective Change vs. Perceived Growth}
+\indent A primary finding is the disconnect between objective measures of significant change in pragmatic competence and user perception. Quantitative analysis showed non-significant changes across the metrics measured, 
+a result likely due to the short duration of the testing phase. As noted by \citee{house1996}, the development of pragmatic fluency is a long-term process that requires continuous exposure and internalization.
+
+\indent Despite this, feedback from the surveys revealed that users received "valuable feedback and advice." By providing personalized feedback, the system enhances user engagement and satisfaction. 
+Users also felt more confident in their social communication skills and believed in the long-term benefits of the system. This suggests that while measurable improvements in pragmatic competence may 
+require a longer time frame to manifest, users are already perceiving value in the experience. This high perceived value indicates that the system may be effectively fostering a growth mindset, and that even 
+through short-term exposure, the chatbot helped users become more aware of their communication patterns and gaps.
+
+\subsection{Authentic Conflict Simulation and the Realism of Toxic AI}
+\indent The eerie realism reported by participants in high-conflict scenarios marks a notable achievement from standard pedagogical chatbots. Participants noted that scenarios felt "extremely realistic" because
+of the AI Partner's ability to mimick "toxic human traits." Unlike traditional systems designed for more "polite" interactions, Socius takes advantage of Gemini's ability to navigate complex, non-cooperative dialogue.
+This finding aligns with the claim that LLMs such as GPT-4 and Gemini can replicate human-like pragmatic reasoning in social interactions \cite{bojic_gpt-4_2023}. 
+
+\indent By allowing the AI Partner to be more stubborn, defensive, or evasive, the system creates a more authentic simulation of real-life interpersonal challenges by replicating the psychological stress of 
+real-world conflict. This forced users to navigate genuine face-threatening situations. The "eerieness" described suggests that the system was able to navigate the fine line between realism and user comfort, 
+which is a critical design consideration for any system aiming to foster pragmatic competence. The system was able to move from a standard language exercise to an emotional simulator that demands genuine 
+interpersonal resilience and adaptability. However, this also raises ethical considerations regarding the potential psychological impact on users, especially if the AI Partner's behavior becomes too 
+aggressive or manipulative. Future iterations of the system may need to implement safeguards to ensure that the realism does not come at the cost of user well-being.
+
+\subsection{AI Awareness and the Disinhibition Effect}
+\indent A recurring theme in the user feedback revea;s a trade-off regarding the user's awareness of interacting with an AI. Some participants reported sacrificing genuine emotional realism because they were 
+aware that they were talking to a bot. However, this awareness also led to a state of Psychological Safety and the disinhibition effect. As participant P19 noted, "because it is a robot, I can say whatever I want without repercussion."
+
+\indent This disinhibition effect allowed users to attempt "risky" pragmatic strategies, such as direct confrontation, which they might avoid in real-life conversations due to the cultural pressure of Hiya (shame) and Pakikisama (harmonious social relations).
+This aligns with the ethical and psychological considerations stated by \cite{Coghlan:2023} regarding the use of AI in social skills training, that the absence of a real human "judge" provides a "brave space" for experimentation.
+Consequently, the artificiality of the partner, while reducing emotional immersion, actually enhances the pedagogical value by creating a safe environment for users to explore and practice new behaviors without fear of real-world consequences.
+
+\subsection{Cultural Scaffolding as an Immersion Driver}
+\indent The integration of Filipino cultural frameworks was cited as one of the most valued features of Socius. By embedding these concepts, the system was able to provide scenarios that felt culturally relevant and resonant, rather than generic. This
+cultural scaffolding likely contributed to the system's ability to evoke authentic emotional responses, as users could easily relate the scenarios to their own lived experiences. Localizing the scenarios is important, as role-play based storytelling
+is most effective when it is culturally situated \cite{Aspecto2025Kulturo}.
+
+\indent The use of Taglish further bridged the gap between formal instruction and colloquial communication and relational practice. By grounding the AI Mentor's feedback in social logic, the system provided a level of nuance that
+generic AI companions lack. This cultural relevance and specificity acted as the primary driver of engagement, which proves that in pragmatic training, the cultural context is not just a backdrop but is just as vital as the linguistic content. 
+
+\subsection{Technical Friction and the "Naturalness" of Conversation Flow}
+\indent Despite the high marks for realism, engagement, and scenario quality, the study identified friction points regarding "Chatbot Naturalness." Participants noted that the AI's responses were "too long" and "repetitive," which disrupted the flow of conversation.
+This reflects a common challenge in LLM-mediated dialogues, described as the "stochastic parrot" \cite{bender_dangers_2021}, where models prioritize patterns and exhaustive output over conversational economy, brevity, and relevance.
+
+\indent Furthermore, the "opaque and unclear" feedback reported by users suggests that the AI Mentor's analysis may not be effectively communicating its insights in a way that is easily digestible. When users are given a score without an intuitive breakdown of what led to that score,
+it leads to frustration and a sense of disconnect between the feedback and the user's own perception of their performance. This echoes a critique of LLM-based applications, which emphasize the need for explainability and transparency in AI-generated feedback \cite{Zhou:2024}.
+Additionally, the AI Mentor being perceived as too text-heavy and passive suggests that future iterations could benefit from more interactive and dialogic feedback, rather than descriptive.
+
+\indent In summary, Socius showcases that the strength of an AI learning tool lies in its capacity for contextualized conflict. By moving away from polite AI, and embracing the eerie realism of toxic
+human behaviors within a Filipino cultural framework, the system creates a unique space for users to practice navigating complex social dynamics in a high-stakes yet safe environment. While immediate behavioral shifts may require more than five days to manifest, the system's contribution is the development 
+of a "reflective mirror" where users analyze and reflect on their own communicative patterns and strategies. Future development must focus on refining the naturalness of the conversation flow and enhancing the clarity and actionability of the AI Mentor's feedback to maximize the system's pedagogical impact 
+and bridge the remaining gap between simulation and natural human conversation.
+
 % \paragraph{Ecological Validity of Scenarios.} Participants repeatedly noted that the scenarios closely 
 % mirrored interpersonal situations they had personally encountered or anticipated facing. Several participants 
 % described emotional responses consistent with high ecological validity, including one who described the 
