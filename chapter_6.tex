@@ -952,7 +952,7 @@ the target demographic.
  
 Open-ended responses from both the post-interaction surveys and the consolidated end-of-program survey were 
 reviewed thematically. Six recurring themes emerged across the qualitative data corpus. \hl{These are organized
-using DeVito's (2017) communication noise taxonomy as applied to human-to-agent interaction contexts by \citet{ureta2025}. 
+using DeVito's (2017) communication noise taxonomy as applied to human-to-agent interaction contexts by \citeA{ureta2025}. 
 These are types of noises identified by DeVito that interfere with interlocutors' abilities to send and receive messages, which thereby cause communcation
 breakdown. These include technological noise from the computing devices used as the medium of communication; semantic noise due to language gaps and communication
 ambiguity of certain words; psychological noise arising from biases, preconceived ideas, and lack of investment in the interaction; and environmental noise that relate
@@ -963,7 +963,7 @@ AI Partner to re-anchor the same scenario trigger verbatim across successive tur
 referencing a specific physical incident in the relationship scenario across nearly every message. This 
 behavior was perceived as unnatural and disrupted immersion. The pattern suggests a form of technological and context management 
 issue within the Conversation Flow Manager's handling of scenario-critical anchors, wherein the model 
-over-weighted early scenario premises rather than tracking the evolving conversational state. As \citet{ureta2025} note, 
+over-weighted early scenario premises rather than tracking the evolving conversational state. As \citeA{ureta2025} note, 
 technology-based communication channels can cause breakdowns when messages are 
 not properly processed through the communication pipeline, and this pattern 
 exemplifies that dynamic at the model-architecture level.
@@ -1047,7 +1047,7 @@ measurable reduction of psychological noise as the removal of real life social s
 to create a psychologically safe space for users to challenge their own communicative habits and attempt unfamiliar or
 risky pragmatic strategies.
 This is a theoretically anticipated advantage of AI-mediated 
-pragmatic training environments \citep{house1996, kasper1996} and appears to have been the result of AI 
+pragmatic training environments \cite{house1996, kasper1996} and appears to have been the result of AI 
 Mentor persona being strictly constructive and non-judgmental. This produced the conditions under which the users were willing to engage 
 in pragmatic risk-taking they might otherwise avoid in high-stakes real-world 
 interactions.}
@@ -1141,7 +1141,7 @@ appropriateness between their first and final sessions. The remaining metrics di
 significance at the $\alpha = .05$ threshold despite trending positive for IC and SN. This pattern is consistent with 
 established findings in pragmatic competence research which indicates that 
 surface-level form features are more responsive to short-term feedback than deeper social inference skills 
-\citep{house1996, kasper1996}. Thus, the short testing duration of approximately 
+\cite{house1996, kasper1996}. Thus, the short testing duration of approximately 
 five sessions per participant per day is likely the primary factor for the absence of significant gains across the metrics.
 
 Qualitatively, the survey data reflects a favorable user perception of the 
@@ -1183,7 +1183,7 @@ AI Partner's behavior remains within the intended pedagogical scope and does not
 
 A well-documented risk of LLM-based systems is the tendency to generate 
 plausible-sounding but factually incorrect or unsupported outputs, commonly 
-referred to as hallucination \citep{ji2023}. In Socius, the AI Mentor may generate feedback that 
+referred to as hallucination \cite{ji_survey_2023}. In Socius, the AI Mentor may generate feedback that 
 references pragmatic violations, cultural value applications, or specific 
 utterances from the conversation transcript that are inaccurate, 
 misattributed, or fabricated. Because the AI Mentor's feedback is delivered 
@@ -1206,7 +1206,7 @@ educational context.
 \subsubsection{Bias in LLM-Generated Pragmatic Assessment}
 
 There is risk of systematic bias in how the AI Mentor evaluates 
-pragmatic performance due to how LLMs are trained on multitudes and large corpora of data \citep{bender2021}. The model's implicit standard of ``appropriate'' 
+pragmatic performance due to how LLMs are trained on multitudes and large corpora of data \cite{bender_dangers_2021}. The model's implicit standard of ``appropriate'' 
 formality, ``effective'' implicature handling, or ``culturally sensitive'' 
 behavior may not accurately reflect Filipino communicative norms despite prompt-engineer efforts. The model's 
 evaluation of \textit{Hiya}-compliant indirectness, for example, may be 
@@ -1231,11 +1231,11 @@ Based on the system's source code, each user session with Socius involves a laye
 to the Flask Backend to the Gemini API. Thus, the amount of tokens processed per session is based on the number of distinct Gemini API calls, which is detailed as the following process:
 
 \begin{itemize}
-  \item \textbl{At Scenario Selection:} The users will be given a scenario recommendation by the AI mentor, counting as 1 Gemini API call utilizing the Holistic Menu System Prompt
-  \item \textbl{During the conversation (per user turn):} Each user message triggers 1 Gemini call via /api/stream-message, which invokes the AI Partner System Instruction Prompt. Due to the variability of the conversation, the number of user turns per session can change. In the research proponents' functional testing, they aimed for 3-4 turns per conversataion.
-  \item \textbl{At Session End:} When user ends the session /api/end-session is called which triggers the Combined Analysis Prompt Template that is a singular API call that simultaneously generates AI mentor analysis and pragmatic scores. 
-  \item \textbl{During AI Mentor Follow-up:} If the user decides to engage with more conversation with the AI Mentor, this triggers 1 additional Gemini Call utilizing the AI Mentor System Instruction prompt to generate the AI Mentor's follow-up message.
-  \item \textbl{At the Main Menu, Dashboard (OPTIONAL):} If the user decides to converse with the Holistic Mentor for cumulative feedback, each response requires 1 API call utilizing the AI Mentor Holistic Prompt Template.
+  \item \textbf{At Scenario Selection:} The users will be given a scenario recommendation by the AI mentor, counting as 1 Gemini API call utilizing the Holistic Menu System Prompt
+  \item \textbf{During the conversation (per user turn):} Each user message triggers 1 Gemini call via /api/stream-message, which invokes the AI Partner System Instruction Prompt. Due to the variability of the conversation, the number of user turns per session can change. In the research proponents' functional testing, they aimed for 3-4 turns per conversataion.
+  \item \textbf{At Session End:} When user ends the session /api/end-session is called which triggers the Combined Analysis Prompt Template that is a singular API call that simultaneously generates AI mentor analysis and pragmatic scores. 
+  \item \textbf{During AI Mentor Follow-up:} If the user decides to engage with more conversation with the AI Mentor, this triggers 1 additional Gemini Call utilizing the AI Mentor System Instruction prompt to generate the AI Mentor's follow-up message.
+  \item \textbf{At the Main Menu, Dashboard (OPTIONAL):} If the user decides to converse with the Holistic Mentor for cumulative feedback, each response requires 1 API call utilizing the AI Mentor Holistic Prompt Template.
 \end{itemize}
 
 Which results in the following table:
@@ -1283,9 +1283,9 @@ At the main menu dashboard \textit{(optional)}: each
 \textbf{Estimated session total} & \textbf{8--9} & \textbf{8--9} \\
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item \textit{Note.} Client $\rightarrow$ Server calls exclude the initial
+\vspace{0.2cm}
+\par
+{\small \textit{Note.} Client $\rightarrow$ Server calls exclude the initial
 page load and static asset requests. The combined analysis call
 (\texttt{/api/end-session}) is the most token-intensive operation, as it
 transmits the full conversation transcript and the complete scoring rubric
@@ -1294,8 +1294,7 @@ not all users engage with cumulative feedback after each session. All calls
 use \texttt{gemini-3-flash} via the Google Generative AI API. At the
 observed end-user testing peak ($\approx$350 requests, Feb\,26\,--\,Mar\,5),
 these figures imply approximately 39--44 near-concurrent sessions. This is 
-unexpected due to our small sample size
-\end{tablenotes}
+unexpected due to our small sample size\par}
 \end{table}
 
 \subsubsection{Implications for Infrastructure}
@@ -1306,7 +1305,7 @@ components of the system had occurred. Given the table, 8-9 Gemini API calls per
     \centering
     \includegraphics[width=0.85\textwidth]{figures/gemini_usage.png}
     \caption{SociusBot AI Studio Gemini API Usage}
-    \label{fig:venndiagram}
+    \label{fig:gemini_usage}
 \end{figure}
 
 This has concrete implications for the infrastructure requirements: Firstly, the 503ServiceUnavailable errors in the API error
@@ -1316,6 +1315,65 @@ incoming requests during peak times could mitigate the risk of service interrupt
 
 In summary, Socius generates approximately 8-9 Gemini API calls per user session, with a matching nymber of client-to-server calls. The combined analysis prompt also represents the single most token-intensive operation.
 The finding that quota exhaustion occurred with as few as 24 end users substantiates the recommendation to adopt a higher Gemini quota tier prior to any wider deployment.
+
+\section{\hl{System Reliability and Technical Anomalies}}
+
+While Socius demonstrated strong pedagogical potential, post-intervention surveys and system logs revealed that technical and architectural anomalies impacted the user experience. According to the quantitative Likert distributions from the consolidated feedback, a significant majority of participants (75\%) disagreed or strongly disagreed with the statement that the system was perfectly technically reliable throughout the week.
+
+To understand the nature of these friction points, a qualitative analysis of the open-ended feedback and the database's \texttt{conversation\_logs} was conducted. The anomalies encountered by users were categorized into three primary bug types of varying severities.
+
+\subsection{\hl{Persona Bleed and Role Reversal (High Severity)}}
+The most disruptive anomaly was the Large Language Model's (LLM) tendency to hallucinate role boundaries, specifically in high-conflict financial scenarios. Multiple participants (e.g., P20, P22, P25) reported that the AI Partner would spontaneously reverse the scenario's premise midway through the conversation. 
+
+For instance, in the \textit{``The `Wala Naman Akong Pera' Friend''} scenario---where the AI is programmed as the debtor---the model occasionally suffered from context-window confusion and accused the user of owing money instead.
+
+\begin{quote}
+\textit{``It turned the situation around with me as the one who borrowed money and couldn't pay back, which left me confused... even as I tried to end the conversation with `Sige bes. Thank you', it just kind of reiterated the last message.''} \textbf{-- P25 (Day 1)}
+\end{quote}
+
+A review of the system transcripts corroborates this hallucination. As seen in the log excerpt below, the AI generated an out-of-context response, entirely flipping the financial burden onto the user:
+
+\begin{lstlisting}[caption={\hl{Log Excerpt: Persona Bleed in Scenario 1 (Captured from P06, Day 3)}}, label={lst:persona_bleed}]
+Partner: Hala, sige bes, gets ko naman. Pero... pasensya na talaga ha... Akala ko okay na yung budget mo kasi nakabili ka nun. Tapos ngayon, pati pambayad ng kuryente kukulangin? Alam mo naman na may utang ka pa sa akin nung nakaraang buwan, 'di ba?
+\end{lstlisting}
+
+This bug severely broke immersion. As P16 noted in the consolidated feedback, when the system fails to maintain the logic of the situation, \textit{``it doesn't really train for an actual situation and also removes the immersion.''}
+
+\subsection{\hl{Network Latency and Premature Scoring (Moderate Severity)}}
+Because the AI Mentor's pragmatic analysis utilizes a high ``Thinking Budget'' (8,000 tokens) to evaluate Gricean maxims across three distinct categories simultaneously, the system occasionally suffered from latency and timeout errors during peak traffic. 
+
+When users experienced network interruptions or the Gemini API returned a \texttt{503 Service Unavailable} error, the application state was disrupted. According to the data sanitization logs generated by \texttt{sanitycheck.py}, several sessions resulted in empty transcripts or triggered a fallback mechanism that awarded a default 1.0 score across all metrics.
+
+\begin{quote}
+\textit{``My internet tweaked, so Socius gave me a 1.0 score on all categories.''} \textbf{-- P24 (Day 3)}
+\end{quote}
+
+\begin{quote}
+\textit{``If it can handle more traffic or demand it would be great... the demand is very high at night which causes quite late replies which is kind of frustrating.''} \textbf{-- P17 (Consolidated Feedback)}
+\end{quote}
+
+While this did not break the LLM's internal reasoning, the external infrastructure limits caused temporary frustration regarding unfair grading and disrupted the pedagogical feedback loop.
+
+\subsection{\hl{Conversational Looping and Formulaic Phrasing (Low to Moderate Severity)}}
+In scenarios lacking a rigid resolution path, the AI Partner occasionally fell into conversational loops, reiterating the same complaint despite the user's attempts to compromise. Furthermore, the prompt constraint instructing the model to use \textit{``Filipino conversational markers''} sometimes resulted in over-indexing on specific phrases.
+
+\begin{quote}
+\textit{``It kept repeating the same thing over and over again. In the `Kayo Na Ba' chat, I assured it that I wanted to be official, then it would suddenly say `seryoso ka ba' again when I thought I was making progress.''} \textbf{-- P08 (Day 2)}
+\end{quote}
+
+\begin{quote}
+\textit{``The chatbot became repetitive with its words at times. Each new response would always start with `hay nako' and have a similar sentence structure.''} \textbf{-- P04 (Day 4)}
+\end{quote}
+
+Because the AI Partner's thinking budget is constrained to 512 tokens to prioritize real-time typing speed over deep contextual memory, the model occasionally struggled to recognize when a user had adequately resolved the conflict, leading to these repetitive loops.
+
+\subsection{\hl{Summary of Technical Impact}}
+Despite these anomalies, the open-ended responses from the consolidated survey indicated that the bugs did not negate the system's overall pedagogical value. Participants noted that they still \textit{``felt safe to make mistakes''} and that the \textit{``realness of the scenarios''} largely compensated for the occasional robotic looping or latency. 
+
+As one participant summarized in their final evaluation:
+\begin{quote}
+\textit{``Despite the error, I think it's a pretty nice and comprehensive way of being able to see where you lack in interpersonal skills, and how you can improve.''} \textbf{-- P25 (Day 1)}
+\end{quote}
 
 \section{\hl{Discussion}}
 \indent This section synthesizes the findings from the various testing phases and reflects on their implications for the research objectives, system design, 
@@ -1329,7 +1387,7 @@ meta-pragmatic awareness, psychological safety, and confidence in social communi
 
 \subsection{Objective Change vs. Perceived Growth}
 \indent A primary finding is the disconnect between objective measures of significant change in pragmatic competence and user perception. Quantitative analysis showed non-significant changes across the metrics measured, 
-a result likely due to the short duration of the testing phase. As noted by \citee{house1996}, the development of pragmatic fluency is a long-term process that requires continuous exposure and internalization.
+a result likely due to the short duration of the testing phase. As noted by \citeA{house1996}, the development of pragmatic fluency is a long-term process that requires continuous exposure and internalization.
 
 \indent Despite this, feedback from the surveys revealed that users received "valuable feedback and advice." By providing personalized feedback, the system enhances user engagement and satisfaction. 
 Users also felt more confident in their social communication skills and believed in the long-term benefits of the system. This suggests that while measurable improvements in pragmatic competence may 
