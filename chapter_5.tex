@@ -147,13 +147,9 @@ through research proponents and expert working with each other to design a conve
 aspects of the research' theoretical framework. The full\_description field encodes the AI Partner's persona and constraints. The data here is read-only, thereby
 loaded into memory space on server startup and served directly from the Flask backend without any database round-trip.
 
-A key architectural decision in the database design was the use of \texttt{JSONB} data types for the \texttt{session\_scores} and \texttt{mentor\_chat\_history} columns, rather than traditional relational normalization. This hybrid approach was chosen for three specific reasons:
+The decision was made to use \texttt{JSONB} data types for the \texttt{session\_scores} and \texttt{mentor\_chat\_history} columns instead of fully normalizing the database. This hybrid approach was chosen for a few practical reasons.
 
-\begin{enumerate}
-    \item \textbf{Alignment with LLM Structured Outputs:} Since the Gemini 3 API natively supports Constrained Output via JSON Schema, the system receives a deeply nested object containing categories, numerical sub-scores, and long-form textual justifications. Storing this as a \texttt{JSONB} blob eliminates the impedance mismatch between the AI's hierarchical output and the database, removing the need for complex parsing logic that would be required to flatten the data into multiple relational tables.
-    \item \textbf{Schema Flexibility and Evolution:} Pragmatic competence research is an evolving field. By using \texttt{JSONB}, the system is future-proofed; if future iterations of Socius incorporate new Gricean metrics or different pedagogical sub-categories, the database schema does not need to be migrated or altered. The system can simply store the new JSON structures immediately.
-    \item \textbf{Atomic Data Fetching for UI Performance:} To render the Post-Session Feedback screen, the frontend requires the entire analysis block simultaneously. Storing the scores and justifications in a single \texttt{JSONB} column allows the backend to perform a single, atomic \texttt{SELECT} operation. This is significantly more efficient than executing multiple \texttt{JOIN} queries or aggregating several rows from a normalized scores table, thereby reducing latency in the feedback loop.
-\end{enumerate}
+First, because the Gemini 3 API natively outputs structured JSON based on the provided schema, saving the data directly as a \texttt{JSONB} object avoids the need to parse and distribute nested sub-scores across multiple relational tables. Second, it provides flexibility for future development; if subsequent iterations of Socius require adding or modifying pragmatic metrics, the database schema will not need to be migrated. Finally, this approach simplifies data retrieval. When the frontend loads the Post-Session Feedback screen, it can pull the entire analysis payload in a single query, rather than executing multiple \texttt{JOIN} operations to assemble the user's score.
 
 For statistical tracking, while the complete evaluation is preserved in the \texttt{JSONB} blob, the Flask backend handles the extraction and normalization of the numerical values before updating the flat \texttt{avg\_} columns in the \texttt{User Profiles} table. These updates are then continuously averaged to track the user's progress over time and facilitate efficient longitudinal dashboard rendering.
 
@@ -741,12 +737,12 @@ However, functional testing of the fine-tuned model revealed critical failures i
 \end{table}
 
 \subsection{\hl{Analysis of the Training Attempt}}
-The failure of the fine-tuned model provides valuable insights into the limitations of narrow dataset training for complex social coaching. The results yield three primary failure modes:
+Evaluating the fine-tuned Mistral-7B model revealed several practical issues with using a narrow dataset for social coaching. Three main problems were observed during testing:
 
-\begin{itemize}
-    \item \textbf{Overfitting to Narrow Patterns:} The GRICE dataset consists of highly structured, short-form questions and answers. The model overfit to these patterns, learning superficial token transformations (e.g., simple subject-verb-object substitutions) rather than actual pragmatic reasoning.
-    \item \textbf{Catastrophic Forgetting:} The nonsensical output (\textit{"I'm committed to keeping the living\_room tidy"}) demonstrated that the fine-tuning process caused the model to lose its general language modeling capabilities. It attempted to mimic the syntax of the dataset without preserving semantic understanding.
-    \item \textbf{Loss of Long-Form Coherence:} The examples in the GRICE dataset are typically 10 to 30 words maximum. However, the AI Mentor requires the ability to generate over 1,000 words of coherent, structured prose. The fine-tuning process destroyed the model's ability to maintain extended reasoning chains.
-\end{itemize}
+First, the model tended to overfit to the structure of the dataset. Because the GRICE dataset relies on short, highly structured question-and-answer pairs, the fine-tuned model learned to perform simple word substitutions rather than applying actual pragmatic reasoning.
 
-Based on these findings, the architecture is pivoted away from local fine-tuning. Instead, the final system relies on sophisticated prompt engineering, structured JSON schemas, and the advanced dynamic reasoning capabilities (Thinking Budgets) of the Gemini 3 Flash model. This pivot demonstrates that for complex, theory-driven pedagogical tasks, the reasoning capacity of a generalist foundation model significantly outweighs the domain-specific knowledge gained by fine-tuning a smaller model on limited datasets.
+Second, the fine-tuning process degraded the model's baseline conversational abilities. For example, when prompted to analyze a passive-aggressive statement about a dirty kitchen, the model outputted, ``I'm committed to keeping the living room tidy.'' This indicates the model was attempting to mimic the syntax of the training data at the expense of basic contextual understanding.
+
+Finally, the fine-tuned model struggled to maintain long-form coherence. While the training examples usually maxed out at 30 words, the AI Mentor role requires generating much longer, coherent feedback. The model frequently lost its train of thought during extended reasoning chains.
+
+Ultimately, these results led to the abandonment of local fine-tuning. It was found that utilizing the existing reasoning capabilities of a larger generalist model (Gemini 3 Flash) through prompt engineering was a much more reliable approach for this specific pedagogical use case.
