@@ -216,8 +216,11 @@ documents the evolution that suite went through in the process of prompt enginee
 
 The first scenario established foundational scaffolding for scenario generation.
 
+\begin{lstlisting}[caption={\hl{Iteration 1: Baseline Scenario Generation Prompt}}, label=lst:iter1_prompt]
 
-\hl{FIGURE}
+    You are a chatbot that specializes in training an individual's pragmatic skills by having the user roleplay through a chosen scenario. Your task is to generate 10 scenarios for each of Grice's Maxims (Quantity, Quality, Relation, Manner) for a total of 40 scenarios. Make sure that all scenarios reflect one or multiple Filipino cultural values (Pakikisama, Hiya, Utang na Loob, Kapwa, Paggalang). Also make sure that the scenarios are applicable and relatable to young adults aged 15-24 in academic, professional, or social contexts. Provide a title for each scenario.
+
+\end{lstlisting}
 
 
 The prompt instructed the language model to produce 40 scenarios, ten for each of Grice's four maxims (Quanity, Quality, Relation, and Manner). The goal was to create scenarioss that
@@ -234,8 +237,11 @@ early scenario being more coherent and richly described compared to the later on
 The second iteration of scenario generation addressed the cultural weakness of iteration 1. 
 
 
-\hl{FIGURE}
+\begin{lstlisting}[caption={\hl{Iteration 2}}, label=lst:iter2_prompt]
 
+    You are a chatbot that specializes in training an individual's pragmatic skills by having the user roleplay through a chosen scenario. Your task is to generate 10 scenarios for each of Grice's Maxims (Quantity, Quality, Relation, Manner) for a total of 40 scenarios. Make sure that all scenarios reflect one or multiple Filipino cultural values (Pakikisama, Hiya, Utang na Loob, Kapwa, Paggalang). Also make sure that the scenarios are applicable and relatable to young adults aged 15-24 in academic, professional, or social contexts. Additionally, make the Scenario description rich. Provide a title for each scenario.
+
+\end{lstlisting}
 
 The prompt was revised to require that Filipino cultural values be explicitly embedded within the scenario description itself such that the values would function as active constraints on how the user must respond. For
 instance, where Iteration 1 might tag a scenario with "Utang na Loob" as an afterthought, yet in Iteration 2 the scenario would ingraine the idea of making the debt of gratitude a core feature of the situation the user must navigate.
@@ -250,7 +256,9 @@ The third iteration of scenario generation was structurally transformative to re
 scenarios to generate.
 
 
-\hl{FIGURE}
+\begin{lstlisting}[caption={\hl{Iteration 3}}, label=lst:iter3_prompt]
+    You are a chatbot that specializes in training an individual's pragmatic skills by having the user roleplay through a chosen scenario. Your task is to generate 10 scenarios for each of Grice's Maxims (Quantity, Quality, Relation, Manner) for a total of 40 scenarios. You do not have to specifically categorize the scenarios per Maxim - a scenario can tackle multiple maxims at once. Make sure that all scenarios reflect one or multiple Filipino cultural values (Pakikisama, Hiya, Utang na Loob, Kapwa, Paggalang). Also make sure that the scenarios are applicable and relatable to young adults aged 15-24 in academic, professional, or social contexts. Additionally, make the Scenario description rich. Provide a title, maxims tackled, user role, and chatbot role, for each scenario.
+\end{lstlisting}
 
 
 This next iteration introduced as well a different principled design rule wherein the chatbot should be the initiator of the pragmatic conflict. Rather than placing, the user in a neutral position and asking them to respond appropriately, the chatbot was now specifically configured to violate
@@ -268,7 +276,43 @@ Havighurst proposed "teachable moments" in development, which are specific tasks
 because the theory describes the common psychosocial experiences of emerging adults throughout their development. Thus, the prompt was revised to require that each scenario be explicitly tagged with a developmental task and an emerging adulthood theme. The combination of which had led the team to create 4 themes that combine 
 both theories and integrate Grice's Maxims and Filipino Cultural Values.
 
-\hl{FIGURE}
+\begin{lstlisting}[caption={\hl{Four Integrated Thematic Conflict Formulas}}, label=lst:themes]
+# Havighurst: the life task the user is navigating.
+# Arnett:     the psychological context that makes that task feel unstable
+#             or high-stakes.
+
+# THEME 1: "Identity vs. Expectation"
+# Conflict: Personal desire/identity vs. family or societal expectation.
+# Dynamic:  Authenticity (Arnett) vs. Obligation (Utang na Loob, Paggalang)
+# Formula:
+# 1. The user is developing a personal [goal, value, career path, or identity].
+# 2. An authority figure expresses a [conflicting expectation or disappointment].
+# 3. The situation forces the user to [defend, explain, or conceal] their choice.
+# Goal: Validate the authority's perspective while asserting their own identity.
+
+# THEME 2: "Autonomy vs. Dependence"
+# Conflict: Desire for adult independence vs. being treated as a dependent.
+# Dynamic:  Independence (Arnett) vs. Hierarchy (Paggalang, Family Roles)
+# Formula:
+# 1. The user [living at home, financially dependent] makes an [adult decision].
+# 2. A guardian [parent, older sibling, boss] [questions or overrules] it.
+# 3. The user must justify their competence without being childishly defiant.
+# Goal: Shift the conversation from "obedience" to "responsibility."
+
+# THEME 3: "Ambiguity vs. Definition"    [... same structure ...]
+# Conflict: Unclear emotional or relational boundaries.
+# Dynamic:  Clarity (Grice's Maxims) vs. Fear of Loss (Pakikisama, Kapwa)
+# Formula:  1. Ambiguous relationship.  2. Trigger event.  3. DTR conversation.
+# Goal: Express feelings with honesty (Quality) and kindness (Manner).
+
+# THEME 4: "Group vs. Self"              [... same structure ...]
+# Conflict: Peer group values vs. personal integrity or ethics.
+# Dynamic:  Group Harmony (Pakikisama) vs. Personal Integrity (Kapwa, Hiya)
+# Formula:  1. Peer group acts unethically.  2. Silence implies agreement.
+#           3. User chooses: stay silent, intervene, or confront.
+# Goal: Intervene in a way that minimizes defensiveness to de-escalate.
+\end{lstlisting}
+
 
 Each theme was given an explicit conflict formula and a defined communicative goal, ensuring that scenario generation remained consistent and pedagogically purposeful regardless of which specific situation was written. This produced a formula that scenario generation could follow. 
 
@@ -277,7 +321,37 @@ Each theme was given an explicit conflict formula and a defined communicative go
 The fourth and final iteration synthesized all prior theoretical layers into a coherent thematic taxonomy as seen above. 
 
 
-\hl{FIGURE}
+\begin{lstlisting}[caption={\hl{Iteration 4: Full Theoretical Synthesis Prompt (Abbreviated)}}, label=lst:iter4_prompt]
+You are a specialized chatbot designer and developmental psychology expert.
+Generate 10 rich roleplaying scenarios for Filipino adolescents and young adults
+(ages 15-24) grounded in Havighurst's Developmental Tasks and Arnett's Theory
+of Emerging Adulthood.
+
+THEMATIC FRAMEWORK:
+Each scenario must combine:
+  Havighurst's Developmental Task -> the life task the user is navigating.
+  Arnett's Psychological Context  -> the emotional instability that makes
+                                     this task ambiguous or high-stakes.
+
+Align each scenario with one of four integrated themes:
+  Theme 1 "Identity vs. Expectation": Authenticity vs. Utang na Loob
+  Theme 2 "Autonomy vs. Dependence":  Responsibility vs. Paggalang
+  Theme 3 "Ambiguity vs. Definition": Grice's Clarity vs. Pakikisama
+  Theme 4 "Group vs. Self":           Pakikisama vs. Personal Integrity
+
+FORMAT PER SCENARIO:
+  Title, Theme, Primary Developmental Task (verbatim, Havighurst 1972),
+  Maxims Tackled, Cultural Values, User Role, Age Range, Chatbot Role,
+  Rich Scenario Description, Expected Pragmatic Skill
+
+GENERATION RULES:
+  1. Implicit Task Design: never reveal the communication goal directly.
+  2. Cultural Sensitivity: respect hierarchies, indirectness, harmony.
+  3. Variety: include both adolescent (12-18) and early adult (19-24).
+  4. Balance: distribute scenarios evenly across the four themes.
+  5. Authenticity: conflicts must feel natural and emotionally real.
+\end{lstlisting}
+
 
 This then produced a final suite of 10 scenarios that explicitly follows the revised theoretical framework and design principles all-the-while targetting the intended learning outcomes and audience. Thus, the constraints for scenario generation were set and produced the final scenario catalogue that is to be evaluated by the expert. 
 Critically, the chatbot-as-conflict-initiator principle from Iteration 3 was retained and further refined. In the final suite, the chatbot's opening utterance is calibrated not only to violate a specific maxim but to do so in a manner that is culturally loaded. This is seen by the violation itself being expressed through a distinctly Filipino communicative act, such as
