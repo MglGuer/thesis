@@ -36,7 +36,7 @@ The scope of functional testing for Socius encompasses the following seven testi
 \end{itemize}
  
 These test cases are stored on a google sheet in the following format: Test Case ID, Test Category, Test Description, Test Input, Expected Output, Pass/Fail Result, and stress test results. The testing
-is conducted by the research proponents on the deployed development instance of the system. For test cases containing LLM output and subjective evaluation, a minimum of 2 research proponents are 
+was conducted on the deployed development instance of the system. For test cases containing LLM output and subjective evaluation, a minimum of 2 research proponents are 
 required for inter-rater reliability considering the lack of expert knowledge. Moreover, the prompt-engineering utilized to develop the system will only guide Gemini-3 Flash for responses and the system's outputs are inherently non-deterministic.
 Therefore, the functional tests for LLM-dependent components evaluate structure and format rather than exact content unless the test may probe safety configuration. The test cases will also undergo
 stress testing, which involves repeated execution to evaluate consistency and identify any intermittent failures. 15 stress test runs are conducted for components that don't rely on LLM output, rather focusing
@@ -131,7 +131,7 @@ TC-SE-05 & Logout clears session state & Authenticated user logs out & Session t
 \bottomrule
 \end{longtable}
  
-\noindent All session and authentication test cases passed consistently. TC-SE-01 was stress tested only 8 times due to the practical constraint of not creating excessive dummy accounts during testing. This included the research proponents' personal account and 4 test accounts, 3 of which are for the panel.
+\noindent All session and authentication test cases passed consistently. TC-SE-01 was stress tested only 8 times due to Google limiting the number of accounts that can be associated to a single phone number.
  The remaining four cases each passed across all 15 runs. This confirms reliable session isolation and authentication handling under repeated execution.
  
 \subsection{Input Processing Functional Testing}
@@ -429,7 +429,7 @@ with data corretly being utilized by each component at the right stage.
 
 \section{Expert Testing}
 Prior to end-user testing, the 10 conversational scenarios and their underlying theoretical framework were submitted for expert review to ensure their validity (as instruments for pragmatic competence training) and relevance to the target demographic. The evaluation was conducted through online means,
-wherein the research proponents sent a structured evaluation sheet containing each document scenario with eleven dimensions alongside a shortened research paper. The dimensions are the following:
+wherein a structured evaluation sheet was sent containing each document scenario with eleven dimensions alongside a shortened research paper. The dimensions are the following:
 
 \begin{itemize}
   \item Title
@@ -508,9 +508,10 @@ Clear roles, context, and dialogue flow; easy for users to follow and engage wit
 \end{longtable}
 
 
-This is sheet is further described in Appendix H. This allowed the expert to evaluate each scenario in an isolated manner as it was sent through online means on February 18, 2026. Through this online meeting, the research proponents  formally introduced through the presentation of the conference paper and the documents containing  the proposed frameworks of the research. This was done to break down the structure of our research and scenario design, and to clarify any questions that the expert may have had regarding
-the theoretical reliability of the chatbot. The expert's ratings and qualitative feedback were then compiled and analyzed to identify any necessary revisions to the list. After this online meeting, the research proponents had a face-to-face meeting with the expert on the following week on February 25, 2026 to further discuss the revisions, clarify any remaining doubts, and for the expert to have a hand's on experience with the system. Considering this, the comments from the expert were generally positive and that the frameworks were valid, but there were some concerns regarding aspects of the situations and scoring framework.
- Particularly, the expert had suggestions regarding scenario 3 (Ambiguous "Kayo na Ba") 
+This is sheet is further described in Appendix H. This allowed the expert to evaluate each scenario in an isolated manner as it was sent through online means on February 18, 2026. Through this online meeting, the presentation the paper and the documents containing the proposed frameworks of the research were introduced. This was done to break down the structure of our research and scenario design, and to clarify any questions that the expert may have had regarding
+the theoretical reliability of the chatbot. The expert's ratings and qualitative feedback were then compiled and analyzed to identify any necessary revisions to the list. After this online meeting, a face-to-face meeting was held with the expert on the following week on February 25, 2026 to further discuss the revisions, clarify any remaining doubts, and for the expert to have a hand's on experience with the system. 
+
+Considering this, the comments from the expert were generally positive and that the frameworks were valid, but there were some concerns regarding aspects of the situations and scoring framework. Particularly, the expert had suggestions regarding scenario 3 (Ambiguous "Kayo na Ba")  
 and scenario 4 (The "Sama Ka" Project group), in which the comments were to keep the situation 1-on-1 as that iteration of situations had a group approach them instead of having a deep conversation with the roleplay partner which, according to the expert, may deter from the scenario's intended pragmatic conflict. Thus, scenario 3 and 4 was changed to be a 1-on-1 social scenario, with scenario 4 also receiving changes to the chatbot's role to be more relatable to a student (a classamte rather than whole project group) according to the expert's comments.
 . The expert also provided suggestions to change certain details in a scenario that would make the scenario feel more controlled (e.g. keeping a scenario one-on-one rather than having a group approach, changing chatbot role to be more relatable to a student, etc.) as it may deter from the scenario's intended pragmatic conflict. Moreover, the scoring rubric, as noted by the expert, was not parallel in it's first iteration to 
 the other scores. This was because each criterion had a different rating and description of scores 1-5. The expert suggested that the scoring rubric should be parallel across all criteria, which was then revised to the current version. There was also a suggestion to add another situation that relates more to the older age groups, in which we then proceeded to create the "The Insurance Agent "Friend"" scenario, which is a scenario designed to cater to this.
@@ -1132,7 +1133,7 @@ to the Flask Backend to the Gemini API. Thus, the amount of tokens processed per
 
 \begin{itemize}
   \item \textbf{At Scenario Selection:} The users will be given a scenario recommendation by the AI mentor, counting as 1 Gemini API call utilizing the Holistic Menu System Prompt
-  \item \textbf{During the conversation (per user turn):} Each user message triggers 1 Gemini call via /api/stream-message, which invokes the AI Partner System Instruction Prompt. Due to the variability of the conversation, the number of user turns per session can change. In the research proponents' functional testing, they aimed for 3-4 turns per conversataion.
+  \item \textbf{During the conversation (per user turn):} Each user message triggers 1 Gemini call via /api/stream-message, which invokes the AI Partner System Instruction Prompt. Due to the variability of the conversation, the number of user turns per session can change. During functional testing, 3-4 turns per conversataion was observed.
   \item \textbf{At Session End:} When user ends the session /api/end-session is called which triggers the Combined Analysis Prompt Template that is a singular API call that simultaneously generates AI mentor analysis and pragmatic scores. 
   \item \textbf{During AI Mentor Follow-up:} If the user decides to engage with more conversation with the AI Mentor, this triggers 1 additional Gemini Call utilizing the AI Mentor System Instruction prompt to generate the AI Mentor's follow-up message.
   \item \textbf{At the Main Menu, Dashboard (OPTIONAL):} If the user decides to converse with the Holistic Mentor for cumulative feedback, each response requires 1 API call utilizing the AI Mentor Holistic Prompt Template.
