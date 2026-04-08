@@ -153,9 +153,9 @@ First, because the Gemini 3 API natively outputs structured JSON based on the pr
 
 For statistical tracking, while the complete evaluation is preserved in the \texttt{JSONB} blob, the Flask backend handles the extraction and normalization of the numerical values before updating the flat \texttt{avg\_} columns in the \texttt{User Profiles} table. These updates are then continuously averaged to track the user's progress over time and facilitate efficient longitudinal dashboard rendering.
 
-To illustrate the hybrid \texttt{JSONB} approach, Listing \ref{lst:db_storage_format} demonstrates the exact storage format of the \texttt{session\_scores} column inside the \texttt{Conversation Logs} table. Storing this structured payload ensures that the detailed justifications mapped to Gricean maxims are preserved alongside the quantitative metrics without requiring complex relational joins.
+To illustrate the hybrid \texttt{JSONB} approach, \textbf{Listing \ref{lst:db_storage_format}, Lines 2--28} demonstrates the exact storage format of the \texttt{session\_scores} column inside the \texttt{Conversation Logs} table. Storing this structured payload ensures that the detailed justifications mapped to Gricean maxims are preserved alongside the quantitative metrics without requiring complex relational joins.
 
-\begin{lstlisting}[language=Python, caption={\hl{Storage Format for Pragmatic Scores in Database (JSONB)}}, label=lst:db_storage_format]
+\begin{lstlisting}[language=Python, caption={\hl{Storage Format for Pragmatic Scores in Database (JSONB)}}, label=lst:db_storage_format, numbers=left]
 {
     "intention_coherence": {
         "score": 4.5,
@@ -186,9 +186,9 @@ To illustrate the hybrid \texttt{JSONB} approach, Listing \ref{lst:db_storage_fo
 }
 \end{lstlisting}
 
-To further illustrate how this data is securely transmitted to the database, Listing \ref{lst:add_conversation_log} shows the exact backend method responsible for constructing the JSONB payload and persisting it to Supabase.
+To further illustrate how this data is securely transmitted to the database, \textbf{Listing \ref{lst:add_conversation_log}, Lines 2--9} shows the exact backend method responsible for constructing the JSONB payload and persisting it to Supabase.
 
-\begin{lstlisting}[language=Python, caption={\hl{Database Persistence Payload Implementation}}, label=lst:add_conversation_log]
+\begin{lstlisting}[language=Python, caption={\hl{Database Persistence Payload Implementation}}, label=lst:add_conversation_log, numbers=left]
 def add_conversation_log(self, scenario_id: int, transcript: str, feedback_text: str, session_scores: dict, model_version: str | None = None):
     log_data = {
         'user_id': str(self.user_id),  
@@ -216,54 +216,73 @@ documents the evolution that suite went through in the process of prompt enginee
 
 The first scenario established foundational scaffolding for scenario generation.
 
-\begin{lstlisting}[caption={\hl{Iteration 1: Baseline Scenario Generation Prompt}}, label=lst:iter1_prompt]
-
-    You are a chatbot that specializes in training an individual's pragmatic skills by having the user roleplay through a chosen scenario. Your task is to generate 10 scenarios for each of Grice's Maxims (Quantity, Quality, Relation, Manner) for a total of 40 scenarios. Make sure that all scenarios reflect one or multiple Filipino cultural values (Pakikisama, Hiya, Utang na Loob, Kapwa, Paggalang). Also make sure that the scenarios are applicable and relatable to young adults aged 15-24 in academic, professional, or social contexts. Provide a title for each scenario.
-
+\begin{lstlisting}[caption={\hl{Iteration 1: Baseline Scenario Generation Prompt Utilizing Grice's Maxims}}, label=lst:iter1_prompt, numbers=left]
+You are a chatbot that specializes in training an
+individual's pragmatic skills by having the user
+roleplay through a chosen scenario. Your task is to
+generate 10 scenarios for each of Grice's Maxims
+(Quantity, Quality, Relation, Manner) for a total of
+40 scenarios. Make sure that all scenarios reflect
+one or multiple Filipino cultural values
+(Pakikisama, Hiya, Utang na Loob, Kapwa, Paggalang).
+Also make sure that the scenarios are applicable and
+relatable to young adults aged 15-24 in academic,
+professional, or social contexts. Provide a title
+for each scenario.
 \end{lstlisting}
 
-
-The prompt instructed the language model to produce 40 scenarios, ten for each of Grice's four maxims \cite{grice_cooperative_1975} (Quantity, Quality, Relation, and Manner). The goal was to create scenarios that
-were situated in academic, professional, and social contexts relevant to Filipino young adults aged 15-24. Each scenario was given a title, a defined user role, and a chatbot role, along with a 
-scenario description.
-
-This iteration produced an organized and structurally consistent output. The scenarios were grounded in recognizable everyday situations, such as missed lectures, internship feedback, group project conflicts, barkada trips, making them immediately 
-relatable to the target demographic. Nevertheless, two significant weaknesses emerged. First, the connection to Filipino cultural values \cite{jocano_filipino_1997} was superficial lacked acknowledgement of the values themselves. Values such as Pakikisama, Hiya, and Utang na Loob were occasionally 
-name-dropped in the scenario descriptions but were not inherently added into the conflict itself. As such, the application of the values were not added as constraints but rather as optional flavor text. Second, scenario quality deteriorated across the output, with each
-early scenario being more coherent and richly described compared to the later ones.
+As shown in \textbf{Listing \ref{lst:iter1_prompt}}, the initial prompt instructed the language model to produce 40 scenarios based on Grice's Maxims \textbf{(Grice, 1975)}. While this iteration produced structurally consistent outputs grounded in recognizable everyday situations (e.g., missed lectures, internship feedback), two significant weaknesses emerged. First, the connection to Filipino cultural values was superficial. As seen in \textbf{Listing \ref{lst:iter1_prompt}, Lines 6--8}, the prompt only requested the model to \textit{``reflect one or multiple Filipino cultural values''} \textbf{(Jocano, 1997)}. Because this constraint was too broad, values such as \textit{Pakikisama}, \textit{Hiya}, and \textit{Utang na Loob} were only occasionally name-dropped as optional flavor text, rather than functioning as the core driver of the interpersonal conflict.
 
 \subsubsection{Iteration 2 - Explicit Cultural Integration}
 
-The second iteration of scenario generation addressed the cultural weakness of iteration 1. 
+To address this cultural weakness, the prompt was revised in \textbf{Listing \ref{lst:iter2_prompt}}. To force the model to explicitly embed the cultural values into the conflict itself, a new constraint was added in \textbf{Listing \ref{lst:iter2_prompt}, Lines 11--12}, which commands the model to \textit{``make the Scenario description rich.''} This revision ensured that the cultural values functioned as active constraints on how the user must respond. For instance, where the prompt in \textbf{Listing \ref{lst:iter1_prompt}} might tag a scenario with `Utang na Loob' as an afterthought, the targeted revision in \textbf{Listing \ref{lst:iter2_prompt}} ingrained the debt of gratitude as a core feature of the situation the user must navigate.
 
-
-\begin{lstlisting}[caption={\hl{Iteration 2}}, label=lst:iter2_prompt]
-
-    You are a chatbot that specializes in training an individual's pragmatic skills by having the user roleplay through a chosen scenario. Your task is to generate 10 scenarios for each of Grice's Maxims (Quantity, Quality, Relation, Manner) for a total of 40 scenarios. Make sure that all scenarios reflect one or multiple Filipino cultural values (Pakikisama, Hiya, Utang na Loob, Kapwa, Paggalang). Also make sure that the scenarios are applicable and relatable to young adults aged 15-24 in academic, professional, or social contexts. Additionally, make the Scenario description rich. Provide a title for each scenario.
-
+\begin{lstlisting}[caption={\hl{Iteration 2: Scenario Generation Prompt with Explicit Cultural Value Constraints}}, label=lst:iter2_prompt, numbers=left]
+You are a chatbot that specializes in training an
+individual's pragmatic skills by having the user
+roleplay through a chosen scenario. Your task is to
+generate 10 scenarios for each of Grice's Maxims
+(Quantity, Quality, Relation, Manner) for a total of
+40 scenarios. Make sure that all scenarios reflect
+one or multiple Filipino cultural values
+(Pakikisama, Hiya, Utang na Loob, Kapwa, Paggalang).
+Also make sure that the scenarios are applicable and
+relatable to young adults aged 15-24 in academic,
+professional, or social contexts. Additionally, make
+the Scenario description rich. Provide a title for
+each scenario.
 \end{lstlisting}
-
-The prompt was revised to require that Filipino cultural values \cite{jocano_filipino_1997} be explicitly embedded within the scenario description itself such that the values would function as active constraints on how the user must respond. For
-instance, where Iteration 1 might tag a scenario with ``Utang na Loob'' as an afterthought, yet in Iteration 2 the scenario would ingrain the idea of making the debt of gratitude a core feature of the situation the user must navigate.
 
 This revision deepened cultural grounding. The cultural values and influences are now built into the conflict, allowing for the goal of each scenario to be locally catered to the Filipino emerging adult context. However, quality deterioration was still present and because the scenarios were limited to the rule of
-of ``one maxim per scenario'', the scenarios didn't naturally simulate real lived experiences as multiple maxims are being flouted and are present in each conversation. This artificially constrained the complexity of the scenarios and arguably reduced their ecological validity.
+of "one maxim per scenario", the scenarios didn't naturally simulate real lived experiences as multiple maxims are being flouted and are present in each conversation. This artificially constrained the complexity of the scenarios and arguably reduced their ecological validity.
 
 
-\subsubsection{Iteration 3 - Explicit Cultural Integration}
+\subsubsection{Iteration 3 - Removing the Single-Maxim Constraint}
 
-The third iteration of scenario generation was structurally transformative to remove the one-maxim constraint and allow for more complex, naturalistic scenarios that tackle multiple maxims \cite{grice_cooperative_1975} and themes. As such, the number of scenarios was reduced to 10 to check if the depth and quality of the output would improve with fewer
-scenarios to generate.
+To resolve the unnatural constraints of single-maxim violations, \textbf{Listing \ref{lst:iter3_prompt}} introduces a new design rule. As shown in \textbf{Listing \ref{lst:iter3_prompt}, Lines 6--8}, the model is explicitly instructed: \textit{``You do not have to specifically categorize the scenarios per Maxim - a scenario can tackle multiple maxims at once.''} This allows for more complex, naturalistic scenarios that better reflect real-world pragmatic challenges. As such, the number of scenarios was reduced to 10 to check if the depth and quality of the output would improve with fewer scenarios to generate.
 
-
-\begin{lstlisting}[caption={\hl{Iteration 3}}, label=lst:iter3_prompt]
-    You are a chatbot that specializes in training an individual's pragmatic skills by having the user roleplay through a chosen scenario. Your task is to generate 10 scenarios for each of Grice's Maxims (Quantity, Quality, Relation, Manner) for a total of 40 scenarios. You do not have to specifically categorize the scenarios per Maxim - a scenario can tackle multiple maxims at once. Make sure that all scenarios reflect one or multiple Filipino cultural values (Pakikisama, Hiya, Utang na Loob, Kapwa, Paggalang). Also make sure that the scenarios are applicable and relatable to young adults aged 15-24 in academic, professional, or social contexts. Additionally, make the Scenario description rich. Provide a title, maxims tackled, user role, and chatbot role, for each scenario.
+\begin{lstlisting}[caption={\hl{Iteration 3: Removing the Single-Maxim Constraint and Adding Explicit Output Formats}}, label=lst:iter3_prompt, numbers=left]
+You are a chatbot that specializes in training an
+individual's pragmatic skills by having the user
+roleplay through a chosen scenario. Your task is to
+generate 10 scenarios for each of Grice's Maxims
+(Quantity, Quality, Relation, Manner) for a total of
+40 scenarios. You do not have to specifically categorize
+the scenarios per Maxim - a scenario can tackle multiple
+maxims at once. Make sure that all scenarios reflect
+one or multiple Filipino cultural values
+(Pakikisama, Hiya, Utang na Loob, Kapwa, Paggalang).
+Also make sure that the scenarios are applicable and
+relatable to young adults aged 15-24 in academic,
+professional, or social contexts. Additionally, make
+the Scenario description rich. Provide a title, maxims
+tackled, user role, and chatbot role, for each scenario.
 \end{lstlisting}
 
 
-This next iteration introduced as well a different principled design rule wherein the chatbot should be the initiator of the pragmatic conflict. Rather than placing the user in a neutral position and asking them to respond appropriately, the chatbot was now specifically configured to violate
-one or more maxims \cite{grice_cooperative_1975} through its opening statement. Thus, the navigation of the user with the scenario would be more reactive and dynamic, allowing the user to try and understand the implied meaning behind the chatbot's utterance while considering scenario context. The user's new task then was to manage this violation 
-skillfully while respecting Filipino cultural norms \cite{jocano_filipino_1997}, which is a design that is more representative of real-life situations.
+This next iteration introduced as well a different principled design rule wherein the chatbot should be the initiator of the pragmatic conflict. Rather than placing, the user in a neutral position and asking them to respond appropriately, the chatbot was now specifically configured to violate
+on or more maxims through its opening statement. Thus, the navigation of the user with the scenario would be more reactive and dynamic, allowing the user to try and understand the implied meaning behind the chatbot's utterance while considering scenario context. The user's new task then was to manage this violation 
+skillfully while respecting Filipino cultural norms, which is a design that is more representative of real-life situations.
 
 Moreover, as the prompt was engineered to instead create 10 scenarios instead of 40, the quality of the output had a direct correlation to content exclusion. Scenarios became more deeply personal and relatable in the eyes of the research proponents as the model was able to take inspiration from lived experiences and cultural narratives. This however reduced the diversity of the scenarios.
 A comment made on the current suite of the scenarios was that while these were ecologically valid, they did not necessarily constitute for being a scenario that can teach the user pragmatic competence. There was no clear learning opportunity in the scenario design.
@@ -271,12 +290,11 @@ A comment made on the current suite of the scenarios was that while these were e
 
 \subsubsection{Havighurst's Developmental Tasks and Arnett's Emerging Adulthood Themes}
 
-As the research team reflect on the comment regarding the lack of clear learning opportunities, the theoretical framework was revised to explicitly integrate Havighurst's Developmental Tasks \cite{havighurst_developmental_1948} and Arnett's Emerging Adulthood themes \cite{arnett_emerging_2000} into the scenario design. This was because 
-Havighurst \cite{havighurst_developmental_1948} proposed ``teachable moments'' in development, which are specific tasks that individuals must navigate to achieve healthy development i.e. being a learning opportunity. Arnett's \cite{arnett_emerging_2000} themes on the other hand can allow the scenario to have psychosocially relevant backdrop and theme that the user can personally relate to
-because the theory describes the common psychosocial experiences of emerging adults throughout their development. Thus, the prompt was revised to require that each scenario be explicitly tagged with a developmental task and an emerging adulthood theme. The combination of which had led the team to create 4 themes that combine 
-both theories and integrate Grice's Maxims \cite{grice_cooperative_1975} and Filipino Cultural Values \cite{jocano_filipino_1997}.
+To ensure the scenarios provided genuine ``teachable moments'' \textbf{(Havighurst, 1948)} and reflected the psychosocial instability of youth \textbf{(Arnett, 2000)}, the prompt was overhauled. The theoretical framework was revised to explicitly integrate Havighurst's Developmental Tasks and Arnett's Emerging Adulthood themes into the scenario design. The combination of which led the team to create four themes that combine both theories and integrate Grice's Maxims and Filipino Cultural Values.
 
-\begin{lstlisting}[caption={\hl{Four Integrated Thematic Conflict Formulas}}, label=lst:themes]
+\textbf{Listing \ref{lst:themes}, Lines 5--12} demonstrates how Theme 1 was explicitly codified to pit an emerging adult's personal desire against familial expectation, forcing a pragmatic negotiation of \textit{Utang na Loob}. These formulas were then injected into the final synthesized prompt, as seen in \textbf{Listing \ref{lst:iter4_prompt}, Lines 12--16}, which structurally maps each developmental task to a specific Gricean and cultural conflict.
+
+\begin{lstlisting}[caption={\hl{Four Integrated Thematic Conflict Formulas Based on Havighurst and Arnett}}, label=lst:themes, numbers=left]
 # Havighurst: the life task the user is navigating.
 # Arnett:     the psychological context that makes that task feel unstable
 #             or high-stakes.
@@ -321,7 +339,7 @@ Each theme was given an explicit conflict formula and a defined communicative go
 The fourth and final iteration synthesized all prior theoretical layers into a coherent thematic taxonomy as seen above. 
 
 
-\begin{lstlisting}[caption={\hl{Iteration 4: Full Theoretical Synthesis Prompt (Abbreviated)}}, label=lst:iter4_prompt]
+\begin{lstlisting}[caption={\hl{Iteration 4: Final Synthesized Prompt Combining Developmental Tasks, Filipino Values, and Gricean Maxims}}, label=lst:iter4_prompt, numbers=left]
 You are a specialized chatbot designer and developmental psychology expert.
 Generate 10 rich roleplaying scenarios for Filipino adolescents and young adults
 (ages 15-24) grounded in Havighurst's Developmental Tasks and Arnett's Theory
@@ -353,9 +371,9 @@ GENERATION RULES:
 \end{lstlisting}
 
 
-This then produced a final suite of 10 scenarios that explicitly follows the revised theoretical framework and design principles all-the-while targeting the intended learning outcomes and audience. Thus, the constraints for scenario generation were set and produced the final scenario catalogue that is to be evaluated by the expert. 
-Critically, the chatbot-as-conflict-initiator principle from Iteration 3 was retained and further refined. In the final suite, the chatbot's opening utterance is calibrated not only to violate a specific maxim \cite{grice_cooperative_1975} but to do so in a manner that is culturally loaded \cite{jocano_filipino_1997}. This is seen by the violation itself being expressed through a distinctly Filipino communicative act, such as
-the mother's use of a photo of family dog as a passive-aggressive check-in that violates the Maxim of Manner \cite{grice_cooperative_1975} while invoking Paggalang in Filipino Cultural Values \cite{jocano_filipino_1997}. This design ensures that the communicative skill the user must practice is inseparable from the Filipino social context.
+This then produced a final suite of 10 scenarios that explicitly follows the revised theoretical framework and design principles all-the-while targetting the intended learning outcomes and audience. Thus, the constraints for scenario generation were set and produced the final scenario catalogue that is to be evaluated by the expert. 
+Critically, the chatbot-as-conflict-initiator principle from Iteration 3 was retained and further refined. In the final suite, the chatbot's opening utterance is calibrated not only to violate a specific maxim but to do so in a manner that is culturally loaded. This is seen by the violation itself being expressed through a distinctly Filipino communicative act, such as
+the mother's use a photo of family dog as a passive-aggressive check-in that violates the Maxim of Manner while invoking Paggalang in Filipino Cultural Values. This design ensures that the communicative skill the user must practice is inseperable from the Filipino social context.
 
 
 \section{\hl{Software Design and Implementation}}
@@ -390,23 +408,12 @@ The end-to-end user journey follows a strict sequence of operations:
 The authentication screen allows users to sign in and have their profile data loaded. This accomplishes personalization, as the user's historical data becomes available for the Holistic Mentor to recommend scenarios based on their current needs. The profile also allows the user to view their progress over time across multiple conversations through the metric dashboard, while the overall pragmatic competence summary is accessible via the Profile Screen.
 
 \subsection{\hl{Scenario Selection and Dialogue Loading}}
-
-\begin{figure}[H]
-    \centering
-    \makebox[\textwidth][c]{%
-        \hspace*{0cm}\includegraphics[width=1.0\textwidth]{figures/userjourney1.png}%
-    }
-    \caption{Scenario Selection and Dialogue Loading Diagram}
-    \label{fig:socius_architecture}
-\end{figure}
-
  
 The scenario selection subsystem is the entry point of every practice session. It is implemented as a two-phase process coordinated between the Flask backend and the client-side JavaScript.
  
-In the first phase, when a user opens the new-chat modal, the browser issues a \texttt{GET} request to the \texttt{/api/scenarios} endpoint, which reads the \texttt{scenarios.json} file into memory. The catalogue is organized around four thematic conflicts drawn directly from the theoretical framework: \textit{Identity vs. Expectation}, \textit{Autonomy vs. Dependence}, \textit{Ambiguity vs. Definition}, and \textit{Group vs. Self}. As discussed in Chapter 4's Interface overview, the client renders these records as selectable cards in the scenario selection modal (refer to figure \ref{fig:socius_architecture}), grouped by thematic conflict so the user can identify which developmental challenge each scenario addresses.
+In the first phase, when a user opens the new-chat modal, the browser issues a \texttt{GET} request to the \texttt{/api/scenarios} endpoint, which reads the \texttt{scenarios.json} file into memory. The catalogue is organized around four thematic conflicts drawn directly from the theoretical framework: \textit{Identity vs. Expectation}, \textit{Autonomy vs. Dependence}, \textit{Ambiguity vs. Definition}, and \textit{Group vs. Self}. As discussed in Chapter 4's Interface overview, the client renders these records as selectable cards in the scenario selection modal, grouped by thematic conflict so the user can identify which developmental challenge each scenario addresses.
  
 In the second phase, once the user selects a scenario, the client sends a \texttt{POST} request to the \texttt{/api/start-session} endpoint. The backend instantiates a fresh \texttt{SociusChatbot} object, appending the scenario's full context to the base system instruction. It then inserts the AI Partner's opening line directly into the SDK's internal chat history so that it appears as an authentic model-turn rather than a synthetic user prompt. The session is stored in the server-side memory dictionary under a randomly generated session ID, and the client displays the opening message bubble to begin the conversation.
-
 
 \subsection{\hl{AI Partner and Real-Time Conversation Flow}}
  
@@ -419,16 +426,6 @@ Message delivery is implemented using Server-Sent Events (SSE) via the \texttt{/
 As a fault-tolerance mechanism, the client maintains a local copy of the full message history throughout the session. Should the server-side session expire before the user ends the conversation, the client supplies this local transcript enabling a stateless recovery path in the backend that reconstructs the scenario context and runs the pragmatic analysis without data loss.
 
 \subsection{\hl{Pragmatic Logging and Post-Session Analysis}}
-
-\begin{figure}[H]
-    \centering
-    \makebox[\textwidth][c]{%
-        \hspace*{0cm}\includegraphics[width=1.0\textwidth]{figures/userjourney2.png}%
-    }
-    \caption{Pragmatic Logging and Post-session Analysis Diagram}
-    \label{fig:socius_architecture}
-\end{figure}
-
  
 Upon session termination, the system executes a two-stage routine that transforms the raw conversation transcript into structured pedagogical data and persists it to the database.
  
@@ -443,49 +440,65 @@ The output is constrained to a JSON schema defining three category nodes: \texti
 The system prompts serve as the programmable cognitive core of the chatbot. They facilitate the role-playing of the AI Partner and the pedagogical evaluation generated by the AI Mentor. Rather than relying on generic AI behavior, these prompts strictly align the LLM's outputs with Grice's Maxims, Filipino Cultural Values, and the developmental frameworks of Havighurst and Arnett. The complete, unabridged system prompts and instructions are documented in Appendix F.
 
 \subsubsection*{AI Partner Prompt}
-The \texttt{AI\_PARTNER\_SYSTEM\_INSTRUCTION} focuses strictly on conversational realism and sociolinguistic accommodation. It instructs the model to embody a specific persona while abiding by strict constraints designed to prevent the LLM from sounding artificial.
+As shown in \textbf{Listing \ref{lst:partner_prompt}}, the \texttt{AI\_PARTNER\_SYSTEM\_INSTRUCTION} focuses strictly on conversational realism and sociolinguistic accommodation within the Philippine context. It instructs the model to embody a specific persona while abiding by strict negative constraints designed to prevent the LLM from sounding artificial, such as prohibiting English translations in parentheses (\textbf{Listing \ref{lst:partner_prompt}, Lines 4--5}). Furthermore, it forces cultural immersion by mandating authentic conversational markers (\textbf{Listing \ref{lst:partner_prompt}, Lines 6--8}) and emotional code-switching (\textbf{Listing \ref{lst:partner_prompt}, Lines 9--11}). This ensures that the simulated pragmatic pressure aligns with the user's real-world social environments.
 
-\begin{lstlisting}[caption={\hl{Abridged AI Partner System Instruction}}, label=lst:partner_prompt]
-You are an AI Partner simulating a conversation in a Filipino context. 
+\begin{lstlisting}[caption={\hl{Abridged AI Partner System Instruction Enforcing Taglish and Cultural Constraints}}, label=lst:partner_prompt, numbers=left]
+You are an AI Partner simulating a conversation in a
+Filipino context.
 RULES:
-1. DO NOT EXPLAIN YOURSELF: Never provide English translations in parentheses.
-2. USE AUTHENTIC CONVERSATIONAL MARKERS: Replace generic English fillers with common Filipino ones (e.g., 'diba?', 'kasi', 'naman').
-3. CODE-SWITCH FOR EMOTIONAL TERMS: Switch to Tagalog for words that carry specific emotional weight (e.g., 'nag-aalala', 'nakakainis').[SCENARIO CONTEXT INJECTED HERE]
+1. DO NOT EXPLAIN YOURSELF: Never provide English
+   translations in parentheses.
+2. USE AUTHENTIC CONVERSATIONAL MARKERS: Replace generic
+   English fillers with common Filipino ones (e.g.,
+   'diba?', 'kasi', 'naman').
+3. CODE-SWITCH FOR EMOTIONAL TERMS: Switch to Tagalog for
+   words that carry specific emotional weight (e.g.,
+   'nag-aalala', 'nakakainis'). [SCENARIO CONTEXT INJECTED
+   HERE]
 \end{lstlisting}
 
 \subsubsection*{AI Mentor Prompts (Analyzer vs. Chat)}
 The AI Mentor is bifurcated into two distinct cognitive prompts to handle the complexity of pragmatic evaluation:
 
-\textbf{1. The Analyzer Prompt:} Used strictly at the end of a session. It demands objective, evidence-based scoring and is heavily constrained to output only raw JSON data, stripping away conversational pleasantries.
+\textbf{1. The Analyzer Prompt:} As detailed in \textbf{Listing \ref{lst:analyzer_prompt}}, this instruction is used strictly at the end of a session. It demands objective, evidence-based scoring across the three core pragmatic categories (\textbf{Listing \ref{lst:analyzer_prompt}, Lines 3--5}) inspired by the PragmEval framework (Sileo et al., 2022). It is heavily constrained to output only raw JSON data (\textbf{Listing \ref{lst:analyzer_prompt}, Line 2}), stripping away conversational pleasantries to reliably populate the four required feedback fields (\textbf{Listing \ref{lst:analyzer_prompt}, Lines 6--8}).
 
-\begin{lstlisting}[caption={\hl{Abridged AI Mentor Analyzer Prompt}}, label=lst:analyzer_prompt]
-You are an expert socio-linguistic analyst. Provide your analysis in JSON format with two main sections:
-1. pragmatic_scores: Score from 1-5 with sub-scores for Intention Coherence, Social Nuance, and Communicative Effectiveness.
-2. feedback: Provide a key takeaway, cooperative efficiency, relational management, and an actionable tip.[CONVERSATION TRANSCRIPT INJECTED HERE]
+\begin{lstlisting}[caption={\hl{Abridged AI Mentor Analyzer Prompt for Strict JSON Pragmatic Scoring}}, label=lst:analyzer_prompt, numbers=left]
+You are an expert socio-linguistic analyst. Provide your
+analysis in JSON format with two main sections:
+1. pragmatic_scores: Score from 1-5 with sub-scores for
+   Intention Coherence, Social Nuance, and Communicative
+   Effectiveness.
+2. feedback: Provide a key takeaway, cooperative
+   efficiency, relational management, and an actionable
+   tip.[CONVERSATION TRANSCRIPT INJECTED HERE]
 \end{lstlisting}
 
-\textbf{2. The Mentor Chat Prompt:} Used when the user clicks "Ask Mentor Why." This prompt shifts the persona back to a supportive figure. It is fed the raw JSON scores from the Analyzer and instructed to translate those rigid metrics into empathetic, natural language. 
+\textbf{2. The Mentor Chat Prompt:} Used when the user clicks `Ask Mentor Why', this prompt shifts the persona back to a supportive figure, explicitly adopting a `Kuya/Ate' (older sibling) persona (\textbf{Listing \ref{lst:mentor_chat_prompt}, Lines 1--2}). It is fed the raw JSON scores from the Analyzer but is instructed via strict formatting rules to translate those rigid metrics into empathetic, natural language by avoiding raw JSON or markdown tables (\textbf{Listing \ref{lst:mentor_chat_prompt}, Line 4}) and keeping the tone constructive rather than clinical (\textbf{Listing \ref{lst:mentor_chat_prompt}, Line 8}).
 
-\begin{lstlisting}[caption={\hl{Abridged AI Mentor Chat Prompt}}, label=lst:mentor_chat_prompt]
-You are the AI Mentor - a warm, supportive Filipino mentor with a Kuya/Ate persona. 
+\begin{lstlisting}[caption={\hl{Abridged AI Mentor Chat Prompt for Empathetic Post-Session Feedback}}, label=lst:mentor_chat_prompt, numbers=left]
+You are the AI Mentor - a warm, supportive Filipino mentor
+with a Kuya/Ate persona.
 STRICT FORMATTING RULES:
 - DO NOT use markdown tables or raw JSON.
-- Keep your answers concise and directly address the user's specific question.
+- Keep your answers concise and directly address the user's
+  specific question.
 - When explaining scores, summarize them conversationally.
 - Be encouraging and constructive, not clinical or academic.
 \end{lstlisting}
 
 \subsubsection*{Holistic Mentor Prompt}
-The \texttt{HOLISTIC\_MENU\_SYSTEM\_PROMPT} acts as the executive pedagogical layer. It takes the aggregated data from the user's database profile (session count, running averages, and calculated weakest competency) and formulates a tailored greeting that addresses their immediate learning needs.
+As shown in \textbf{Listing \ref{lst:holistic_prompt}}, the \texttt{HOLISTIC\_MENU\_SYSTEM\_PROMPT} acts as the executive pedagogical layer. It takes aggregated data from the user's database profile---specifically their session count and calculated weakest competency (\textbf{Listing \ref{lst:holistic_prompt}, Lines 3--5})---and formulates a tailored greeting. By instructing the model to suggest a theme addressing this weak area and explaining its relevance (\textbf{Listing \ref{lst:holistic_prompt}, Lines 7--9}), the prompt directly operationalizes Vygotsky's Zone of Proximal Development, scaffolding the user toward their immediate learning needs in a non-authoritative manner.
 
-\begin{lstlisting}[caption={\hl{Abridged Holistic Mentor Prompt}}, label=lst:holistic_prompt]
-You are the "Holistic Mentor". Greet the user and suggest their next move based on their learning history.
+\begin{lstlisting}[caption={\hl{Abridged Holistic Mentor Prompt for Longitudinal Scenario Recommendation}}, label=lst:holistic_prompt, numbers=left]
+You are the "Holistic Mentor". Greet the user and suggest
+their next move based on their learning history.
 USER STATS:
 - Sessions: {session_count}
 - Weakest Area: {weakest_area}
-
 INSTRUCTIONS:
-Suggest ONE specific Theme that addresses their weakest area. Explain WHY it will help them. Make it sound like a meaningful invitation, not an assignment.
+Suggest ONE specific Theme that addresses their weakest
+area. Explain WHY it will help them. Make it sound like
+a meaningful invitation, not an assignment.
 \end{lstlisting}
 
 
@@ -529,13 +542,13 @@ As illustrated in Figure~\ref{fig:system_flowchart}, the system coordinates mult
 
 Unlike traditional rule-based chatbots that require an explicit "Intent Detection" classification step to trigger pre-written responses, Socius relies on \textit{implicit intent}. The Gemini 3 Flash model is supplied with the entire conversational context and implicitly evaluates the user's speech acts to generate the next conversational turn dynamically.
 
-Because the system accepts free-text input, mitigating out-of-scope topics, prompt injections, and inappropriate behavior (guardrails) is handled natively at the SDK level rather than via custom regular expressions. As shown in Listing \ref{lst:safety_settings}, Socius implements a strict array of \texttt{SafetySetting} objects passed to the \texttt{google.genai} API. To balance safety with the necessity of simulating realistic interpersonal conflicts (e.g., arguments, peer pressure), the threshold is calibrated to \texttt{BLOCK\_ONLY\_HIGH}.
+Because the system accepts free-text input, mitigating out-of-scope topics is handled via the \texttt{\_try\_generate\_with\_rotation} wrapper (\textbf{Listing \ref{lst:implicit_intent}, Lines 6--8}), while prompt injections, and inappropriate behavior (guardrails) is handled natively at the SDK level rather than via custom regular expressions. As shown in \textbf{Listing \ref{lst:safety_settings}, Lines 3--18}, Socius implements a strict array of \texttt{SafetySetting} objects passed to the API with the threshold calibrated to \texttt{BLOCK\_ONLY\_HIGH} (\textbf{Listing \ref{lst:safety_settings}, Line 5}).
 
 \textit{Theoretical Justification:} Because conversational implicature (Grice, 1975) relies on context rather than rigid keywords, the AI Partner uses implicit intent resolution. Instead of classifying a user's message into a static intent bucket (e.g., \texttt{INTENT\_REFUSAL}), the model parses the speech act dynamically based on the scenario constraints. 
 
 Below is the structure of how the user's input is passed to the Gemini 3 Flash model, and the format of the generated Taglish response which inherently contains the conversational intent:
 
-\begin{lstlisting}[language=Python, caption={\hl{Implicit Intent Resolution in AI Partner}}, label=lst:implicit_intent]
+\begin{lstlisting}[language=Python, caption={\hl{Implicit Intent Resolution in AI Partner}}, label=lst:implicit_intent, numbers=left]
 def start_conversation(self, user_input):
     """Sends the user's message to the AI Partner and gets a response."""
     try:
@@ -555,7 +568,7 @@ def start_conversation(self, user_input):
 # "Naku, okay lang 'yan! Naiintindihan ko naman na marami kang ginagawa. Diba sabi ko sa'yo wag kang ma-pressure?"
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption={\hl{Safety Guardrails and Intent Handling via API Configuration}}, label=lst:safety_settings]
+\begin{lstlisting}[language=Python, caption={\hl{Safety Guardrails and Intent Handling via API Configuration}}, label=lst:safety_settings, numbers=left]
 # Enforced across all AI Partner and AI Mentor interactions
 DEFAULT_SAFETY_SETTINGS =[
     types.SafetySetting(
@@ -579,9 +592,9 @@ DEFAULT_SAFETY_SETTINGS =[
 
 \subsection{\hl{Pragmatic Analysis \& JSON Schema Enforcement}}
 
-To guarantee that the AI Mentor evaluates the user based on the theoretical framework rather than generating unstructured, free-form opinions, Socius utilizes JSON Schema Controlled Generation. Listing \ref{lst:json_schema} demonstrates the exact JSON Schema enforced during the analysis API call. This forces the LLM to output a machine-parsable object containing Sileo et al.'s three metafunctions, ensuring Gricean metrics are calculated systematically for every session.
+To guarantee that the AI Mentor evaluates the user based on the theoretical framework rather than generating unstructured, free-form opinions, Socius utilizes JSON Schema Controlled Generation. \textbf{Listing \ref{lst:json_schema}, Lines 2--35} demonstrates the exact JSON Schema enforced during the analysis API call. This forces the LLM to output a machine-parsable object containing Sileo et al.'s three metafunctions (\textbf{Listing \ref{lst:json_schema}, Lines 4--24}), ensuring Gricean metrics are calculated systematically for every session.
 
-\begin{lstlisting}[language=Python, caption={\hl{JSON Schema Enforcing the Pragmatic Scoring Rubric}}, label=lst:json_schema]
+\begin{lstlisting}[language=Python, caption={\hl{JSON Schema Enforcing the Pragmatic Scoring Rubric}}, label=lst:json_schema, numbers=left]
 SCORING_RESPONSE_SCHEMA = {
     "type": "object",
     "properties": {
@@ -621,9 +634,9 @@ SCORING_RESPONSE_SCHEMA = {
 
 The complete specification of this schema is available in Appendix G. 
 
-\textit{Theoretical Justification:} To enforce Sileo et al.'s (2022) three-domain pragmatic taxonomy (Intention Coherence, Social Nuance, Communicative Effectiveness), the system must constrain the LLM's output. By utilizing \texttt{response\_schema}, the system eliminates probabilistic formatting errors and guarantees that every Gricean metric is scored before the JSON is parsed into Python dictionaries, as shown in Listing \ref{lst:json_parsing}.
+\textit{Theoretical Justification:} To enforce Sileo et al.'s (2022) three-domain pragmatic taxonomy (Intention Coherence, Social Nuance, Communicative Effectiveness), the system must constrain the LLM's output. By utilizing \texttt{response\_schema}, the system eliminates probabilistic formatting errors and guarantees that every Gricean metric is scored before the JSON is parsed into Python dictionaries, as shown in \textbf{Listing \ref{lst:json_parsing}, Lines 8--14}.
 
-\begin{lstlisting}[language=Python, caption={\hl{Parsing Gemini API Response to JSON}}, label=lst:json_parsing]
+\begin{lstlisting}[language=Python, caption={\hl{Parsing Gemini API Response to JSON}}, label=lst:json_parsing, numbers=left]
 # From src/chatbot.py -> _run_pragmatic_analyzer()
 combined_prompt = COMBINED_ANALYSIS_PROMPT_TEMPLATE.format(
     scenario_context=self.current_scenario,
@@ -657,9 +670,9 @@ Once normalized, the system calculates a cumulative running average to track the
 \textbf{Equation 5.2: Running Average Formula}
 $$New\_Average = \frac{(Current\_Average \times Sessions\_Completed) + Normalized\_Score}{Sessions\_Completed + 1}$$
 
-These mathematical models are implemented within the backend Python logic (Listing \ref{lst:running_avg_computation}) to continuously track user progress. Furthermore, the frontend utilizes React components (Listing \ref{lst:star_rating_ui}) to visually transform these normalized scores into an intuitive 5-star rating interface for the user.
+These mathematical models are implemented within the backend Python logic (\textbf{Listing \ref{lst:running_avg_computation}, Lines 14--18}) to continuously track user progress. Furthermore, the frontend utilizes React components (\textbf{Listing \ref{lst:star_rating_ui}, Lines 4--16}) to visually transform these normalized scores into an intuitive 5-star rating interface for the user.
 
-\begin{lstlisting}[language=Python, caption={\hl{Python Backend Running Average Computation}}, label=lst:running_avg_computation]
+\begin{lstlisting}[language=Python, caption={\hl{Python Backend Running Average Computation}}, label=lst:running_avg_computation, numbers=left]
 # From src/profile.py -> update_pragmatic_profile()
 
 # 1. Extract raw scores (1-5 scale)
@@ -679,7 +692,7 @@ def calculate_running_average(current_avg, completed_count, new_value):
 new_ic_avg = calculate_running_average(current_ic_avg, sessions_completed, new_ic_score)
 \end{lstlisting}
 
-\begin{lstlisting}[caption={\hl{Frontend UI Star Rating Transformation}}, label=lst:star_rating_ui]
+\begin{lstlisting}[caption={\hl{Frontend UI Star Rating Transformation}}, label=lst:star_rating_ui, numbers=left]
 // From templates/index.html -> StarRating Component
 const StarRating = ({ score, color = 'yellow', size = 'text-base' }) => {
     // Clamps the score between 0 and 5
@@ -709,9 +722,9 @@ const StarRating = ({ score, color = 'yellow', size = 'text-base' }) => {
 
 \subsection{\hl{Feedback Formatting \& Information Hierarchy}}
 
-To prevent overwhelming the user, the structured JSON payload generated by the schema in Listing \ref{lst:json_schema} is parsed by the backend and rendered into a hierarchical Markdown report. As demonstrated in Listing \ref{lst:feedback_format}, the raw JSON is unpacked; the "Key Takeaway" is surfaced immediately, while dense Gricean justifications are isolated in specific expandable panels on the UI.
+To prevent overwhelming the user, the structured JSON payload generated by the schema in \textbf{Listing \ref{lst:json_schema}} is parsed by the backend and rendered into a hierarchical Markdown report. As demonstrated in \textbf{Listing \ref{lst:feedback_format}}, the raw JSON is unpacked; the ``Key Takeaway'' is surfaced immediately (\textbf{Listing \ref{lst:feedback_format}, Lines 9--11}), while dense Gricean justifications are isolated in specific expandable panels on the UI (\textbf{Listing \ref{lst:feedback_format}, Lines 14--24}).
 
-\begin{lstlisting}[language=Python, caption={\hl{Parsing JSON into the Structured Frontend Report}}, label=lst:feedback_format]
+\begin{lstlisting}[language=Python, caption={\hl{Parsing JSON into the Structured Frontend Report}}, label=lst:feedback_format, numbers=left]
 def _format_feedback_text(self, feedback_obj):
     """Formats the structured feedback JSON into readable Markdown text."""
     if not feedback_obj:
@@ -746,9 +759,9 @@ def _format_feedback_text(self, feedback_obj):
 
 \subsection{\hl{Holistic Mentor \& Progression Logic}}
 
-The Holistic Mentor analyzes the user's progress over multiple sessions. The system calculates a "Progression Trend" using a sliding window algorithm that compares the user's most recent sessions against past performance (Listing \ref{lst:progression_trend}). This ensures the system scaffolds the user toward their immediate learning needs in alignment with Vygotsky's Zone of Proximal Development.
+The Holistic Mentor analyzes the user's progress over multiple sessions. The system calculates a ``Progression Trend'' using a sliding window algorithm that compares the user's most recent sessions against past performance (\textbf{Listing \ref{lst:progression_trend}, Lines 2--9}). This ensures the system scaffolds the user toward their immediate learning needs in alignment with Vygotsky's Zone of Proximal Development.
 
-\begin{lstlisting}[language=Python, caption={\hl{Progression Trend Algorithm}}, label=lst:progression_trend]
+\begin{lstlisting}[language=Python, caption={\hl{Progression Trend Algorithm}}, label=lst:progression_trend, numbers=left]
 def get_progression_trend(self, window=5):
     history = self.get_conversation_scores_history()
     
