@@ -390,12 +390,23 @@ The end-to-end user journey follows a strict sequence of operations:
 The authentication screen allows users to sign in and have their profile data loaded. This accomplishes personalization, as the user's historical data becomes available for the Holistic Mentor to recommend scenarios based on their current needs. The profile also allows the user to view their progress over time across multiple conversations through the metric dashboard, while the overall pragmatic competence summary is accessible via the Profile Screen.
 
 \subsection{\hl{Scenario Selection and Dialogue Loading}}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \hspace*{0cm}\includegraphics[width=1.0\textwidth]{figures/userjourney1.png}%
+    }
+    \caption{Scenario Selection and Dialogue Loading Diagram}
+    \label{fig:socius_architecture}
+\end{figure}
+
  
 The scenario selection subsystem is the entry point of every practice session. It is implemented as a two-phase process coordinated between the Flask backend and the client-side JavaScript.
  
-In the first phase, when a user opens the new-chat modal, the browser issues a \texttt{GET} request to the \texttt{/api/scenarios} endpoint, which reads the \texttt{scenarios.json} file into memory. The catalogue is organized around four thematic conflicts drawn directly from the theoretical framework: \textit{Identity vs. Expectation}, \textit{Autonomy vs. Dependence}, \textit{Ambiguity vs. Definition}, and \textit{Group vs. Self}. As discussed in Chapter 4's Interface overview, the client renders these records as selectable cards in the scenario selection modal, grouped by thematic conflict so the user can identify which developmental challenge each scenario addresses.
+In the first phase, when a user opens the new-chat modal, the browser issues a \texttt{GET} request to the \texttt{/api/scenarios} endpoint, which reads the \texttt{scenarios.json} file into memory. The catalogue is organized around four thematic conflicts drawn directly from the theoretical framework: \textit{Identity vs. Expectation}, \textit{Autonomy vs. Dependence}, \textit{Ambiguity vs. Definition}, and \textit{Group vs. Self}. As discussed in Chapter 4's Interface overview, the client renders these records as selectable cards in the scenario selection modal (refer to figure \ref{fig:socius_architecture}), grouped by thematic conflict so the user can identify which developmental challenge each scenario addresses.
  
 In the second phase, once the user selects a scenario, the client sends a \texttt{POST} request to the \texttt{/api/start-session} endpoint. The backend instantiates a fresh \texttt{SociusChatbot} object, appending the scenario's full context to the base system instruction. It then inserts the AI Partner's opening line directly into the SDK's internal chat history so that it appears as an authentic model-turn rather than a synthetic user prompt. The session is stored in the server-side memory dictionary under a randomly generated session ID, and the client displays the opening message bubble to begin the conversation.
+
 
 \subsection{\hl{AI Partner and Real-Time Conversation Flow}}
  
@@ -408,6 +419,16 @@ Message delivery is implemented using Server-Sent Events (SSE) via the \texttt{/
 As a fault-tolerance mechanism, the client maintains a local copy of the full message history throughout the session. Should the server-side session expire before the user ends the conversation, the client supplies this local transcript enabling a stateless recovery path in the backend that reconstructs the scenario context and runs the pragmatic analysis without data loss.
 
 \subsection{\hl{Pragmatic Logging and Post-Session Analysis}}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \hspace*{0cm}\includegraphics[width=1.0\textwidth]{figures/userjourney2.png}%
+    }
+    \caption{Pragmatic Logging and Post-session Analysis Diagram}
+    \label{fig:socius_architecture}
+\end{figure}
+
  
 Upon session termination, the system executes a two-stage routine that transforms the raw conversation transcript into structured pedagogical data and persists it to the database.
  
