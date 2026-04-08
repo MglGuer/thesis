@@ -223,12 +223,12 @@ The first scenario established foundational scaffolding for scenario generation.
 \end{lstlisting}
 
 
-The prompt instructed the language model to produce 40 scenarios, ten for each of Grice's four maxims (Quanity, Quality, Relation, and Manner). The goal was to create scenarioss that
+The prompt instructed the language model to produce 40 scenarios, ten for each of Grice's four maxims \cite{grice_cooperative_1975} (Quantity, Quality, Relation, and Manner). The goal was to create scenarios that
 were situated in academic, professional, and social contexts relevant to Filipino young adults aged 15-24. Each scenario was given a title, a defined user role, and a chatbot role, along with a 
 scenario description.
 
 This iteration produced an organized and structurally consistent output. The scenarios were grounded in recognizable everyday situations, such as missed lectures, internship feedback, group project conflicts, barkada trips, making them immediately 
-relatable to the target demographic. Nevertheless, two significant weaknesses emrged. First, the connection to Filipino cultural values was superficial lacked acknowledgement of the values themselves. Values such as Pakikisama, Hiya, and Utang na Loob were occasionally 
+relatable to the target demographic. Nevertheless, two significant weaknesses emerged. First, the connection to Filipino cultural values \cite{jocano_filipino_1997} was superficial lacked acknowledgement of the values themselves. Values such as Pakikisama, Hiya, and Utang na Loob were occasionally 
 name-dropped in the scenario descriptions but were not inherently added into the conflict itself. As such, the application of the values were not added as constraints but rather as optional flavor text. Second, scenario quality deteriorated across the output, with each
 early scenario being more coherent and richly described compared to the later ones.
 
@@ -243,16 +243,16 @@ The second iteration of scenario generation addressed the cultural weakness of i
 
 \end{lstlisting}
 
-The prompt was revised to require that Filipino cultural values be explicitly embedded within the scenario description itself such that the values would function as active constraints on how the user must respond. For
-instance, where Iteration 1 might tag a scenario with "Utang na Loob" as an afterthought, yet in Iteration 2 the scenario would ingraine the idea of making the debt of gratitude a core feature of the situation the user must navigate.
+The prompt was revised to require that Filipino cultural values \cite{jocano_filipino_1997} be explicitly embedded within the scenario description itself such that the values would function as active constraints on how the user must respond. For
+instance, where Iteration 1 might tag a scenario with ``Utang na Loob'' as an afterthought, yet in Iteration 2 the scenario would ingrain the idea of making the debt of gratitude a core feature of the situation the user must navigate.
 
 This revision deepened cultural grounding. The cultural values and influences are now built into the conflict, allowing for the goal of each scenario to be locally catered to the Filipino emerging adult context. However, quality deterioration was still present and because the scenarios were limited to the rule of
-of "one maxim per scenario", the scenarios didn't naturally simulate real lived experiences as multiple maxims are being flouted and are present in each conversation. This artificially constrained the complexity of the scenarios and arguably reduced their ecological validity.
+of ``one maxim per scenario'', the scenarios didn't naturally simulate real lived experiences as multiple maxims are being flouted and are present in each conversation. This artificially constrained the complexity of the scenarios and arguably reduced their ecological validity.
 
 
 \subsubsection{Iteration 3 - Explicit Cultural Integration}
 
-The third iteration of scenario generation was structurally transformative to remove the one-maxim constraint and allow for more complex, naturalistic scenarios that tackle multiple maxims and themes. As such, the number of scenarios was reduced to 10 to check if the depth and quality of the output would improve with fewer
+The third iteration of scenario generation was structurally transformative to remove the one-maxim constraint and allow for more complex, naturalistic scenarios that tackle multiple maxims \cite{grice_cooperative_1975} and themes. As such, the number of scenarios was reduced to 10 to check if the depth and quality of the output would improve with fewer
 scenarios to generate.
 
 
@@ -261,9 +261,9 @@ scenarios to generate.
 \end{lstlisting}
 
 
-This next iteration introduced as well a different principled design rule wherein the chatbot should be the initiator of the pragmatic conflict. Rather than placing, the user in a neutral position and asking them to respond appropriately, the chatbot was now specifically configured to violate
-on or more maxims through its opening statement. Thus, the navigation of the user with the scenario would be more reactive and dynamic, allowing the user to try and understand the implied meaning behind the chatbot's utterance while considering scenario context. The user's new task then was to manage this violation 
-skillfully while respecting Filipino cultural norms, which is a design that is more representative of real-life situations.
+This next iteration introduced as well a different principled design rule wherein the chatbot should be the initiator of the pragmatic conflict. Rather than placing the user in a neutral position and asking them to respond appropriately, the chatbot was now specifically configured to violate
+one or more maxims \cite{grice_cooperative_1975} through its opening statement. Thus, the navigation of the user with the scenario would be more reactive and dynamic, allowing the user to try and understand the implied meaning behind the chatbot's utterance while considering scenario context. The user's new task then was to manage this violation 
+skillfully while respecting Filipino cultural norms \cite{jocano_filipino_1997}, which is a design that is more representative of real-life situations.
 
 Moreover, as the prompt was engineered to instead create 10 scenarios instead of 40, the quality of the output had a direct correlation to content exclusion. Scenarios became more deeply personal and relatable in the eyes of the research proponents as the model was able to take inspiration from lived experiences and cultural narratives. This however reduced the diversity of the scenarios.
 A comment made on the current suite of the scenarios was that while these were ecologically valid, they did not necessarily constitute for being a scenario that can teach the user pragmatic competence. There was no clear learning opportunity in the scenario design.
@@ -271,10 +271,10 @@ A comment made on the current suite of the scenarios was that while these were e
 
 \subsubsection{Havighurst's Developmental Tasks and Arnett's Emerging Adulthood Themes}
 
-As the research team reflect on the comment regarding the lack of clear learning opportunities, the theoretical framework was revised to explicitly integrate Havighurst's Developmental Tasks and Arnett's Emerging adulthood themes into the scenario design. This was because 
-Havighurst proposed "teachable moments" in development, which are specific tasks that individuals must navigate to achieve healthy development i.e. being a learning opportunity. Arnett's themes on the other hand can allow the scenario to have psychosocially relevent backdrop and theme that the user can personally relate to
+As the research team reflect on the comment regarding the lack of clear learning opportunities, the theoretical framework was revised to explicitly integrate Havighurst's Developmental Tasks \cite{havighurst_developmental_1948} and Arnett's Emerging Adulthood themes \cite{arnett_emerging_2000} into the scenario design. This was because 
+Havighurst \cite{havighurst_developmental_1948} proposed ``teachable moments'' in development, which are specific tasks that individuals must navigate to achieve healthy development i.e. being a learning opportunity. Arnett's \cite{arnett_emerging_2000} themes on the other hand can allow the scenario to have psychosocially relevant backdrop and theme that the user can personally relate to
 because the theory describes the common psychosocial experiences of emerging adults throughout their development. Thus, the prompt was revised to require that each scenario be explicitly tagged with a developmental task and an emerging adulthood theme. The combination of which had led the team to create 4 themes that combine 
-both theories and integrate Grice's Maxims and Filipino Cultural Values.
+both theories and integrate Grice's Maxims \cite{grice_cooperative_1975} and Filipino Cultural Values \cite{jocano_filipino_1997}.
 
 \begin{lstlisting}[caption={\hl{Four Integrated Thematic Conflict Formulas}}, label=lst:themes]
 # Havighurst: the life task the user is navigating.
@@ -353,9 +353,9 @@ GENERATION RULES:
 \end{lstlisting}
 
 
-This then produced a final suite of 10 scenarios that explicitly follows the revised theoretical framework and design principles all-the-while targetting the intended learning outcomes and audience. Thus, the constraints for scenario generation were set and produced the final scenario catalogue that is to be evaluated by the expert. 
-Critically, the chatbot-as-conflict-initiator principle from Iteration 3 was retained and further refined. In the final suite, the chatbot's opening utterance is calibrated not only to violate a specific maxim but to do so in a manner that is culturally loaded. This is seen by the violation itself being expressed through a distinctly Filipino communicative act, such as
-the mother's use a photo of family dog as a passive-aggressive check-in that violates the Maxim of Manner while invoking Paggalang in Filipino Cultural Values. This design ensures that the communicative skill the user must practice is inseperable from the Filipino social context.
+This then produced a final suite of 10 scenarios that explicitly follows the revised theoretical framework and design principles all-the-while targeting the intended learning outcomes and audience. Thus, the constraints for scenario generation were set and produced the final scenario catalogue that is to be evaluated by the expert. 
+Critically, the chatbot-as-conflict-initiator principle from Iteration 3 was retained and further refined. In the final suite, the chatbot's opening utterance is calibrated not only to violate a specific maxim \cite{grice_cooperative_1975} but to do so in a manner that is culturally loaded \cite{jocano_filipino_1997}. This is seen by the violation itself being expressed through a distinctly Filipino communicative act, such as
+the mother's use of a photo of family dog as a passive-aggressive check-in that violates the Maxim of Manner \cite{grice_cooperative_1975} while invoking Paggalang in Filipino Cultural Values \cite{jocano_filipino_1997}. This design ensures that the communicative skill the user must practice is inseparable from the Filipino social context.
 
 
 \section{\hl{Software Design and Implementation}}
