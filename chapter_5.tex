@@ -408,6 +408,15 @@ The end-to-end user journey follows a strict sequence of operations:
 The authentication screen allows users to sign in and have their profile data loaded. This accomplishes personalization, as the user's historical data becomes available for the Holistic Mentor to recommend scenarios based on their current needs. The profile also allows the user to view their progress over time across multiple conversations through the metric dashboard, while the overall pragmatic competence summary is accessible via the Profile Screen.
 
 \subsection{\hl{Scenario Selection and Dialogue Loading}}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \hspace*{0cm}\includegraphics[width=1.0\textwidth]{figures/userjourney1.png}%
+    }
+    \caption{Scenario Selection and Dialogue Loading Diagram}
+    \label{fig:socius_architecture}
+\end{figure}
  
 The scenario selection subsystem is the entry point of every practice session. It is implemented as a two-phase process coordinated between the Flask backend and the client-side JavaScript.
  
@@ -426,6 +435,16 @@ Message delivery is implemented using Server-Sent Events (SSE) via the \texttt{/
 As a fault-tolerance mechanism, the client maintains a local copy of the full message history throughout the session. Should the server-side session expire before the user ends the conversation, the client supplies this local transcript enabling a stateless recovery path in the backend that reconstructs the scenario context and runs the pragmatic analysis without data loss.
 
 \subsection{\hl{Pragmatic Logging and Post-Session Analysis}}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \hspace*{0cm}\includegraphics[width=1.0\textwidth]{figures/userjourney2.png}%
+    }
+    \caption{Pragmatic Logging and Post-session Analysis Diagram}
+    \label{fig:socius_architecture}
+\end{figure}
+
  
 Upon session termination, the system executes a two-stage routine that transforms the raw conversation transcript into structured pedagogical data and persists it to the database.
  
