@@ -1146,57 +1146,44 @@ Which results in the following table:
 \caption{Estimated Number of API Interactions per Socius Session}
 \label{tab:gemini-calls}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{p{6.0cm} c c}
-\hline
+\begin{tabular}{p{4.5cm} c c}
+\toprule
 \textbf{Session Phase} &
-\textbf{Client $\rightarrow$ Server} &
-\textbf{Server $\rightarrow$ Gemini} \\
-\hline
-At scenario selection: AI Mentor recommendation
-  (\texttt{/api/holistic-greeting},
-  Holistic Menu System Prompt)
-  & 1 & 1 \\
- 
-During the conversation, per user turn: AI Partner
-  response (\texttt{/api/stream-message},
-  AI Partner System Instruction Prompt),
-  avg.\ 3--4 turns
-  & 3--4 & 3--4 \\
- 
-At session end: combined analysis and pragmatic scoring
-  (\texttt{/api/end-session},
-  Combined Analysis Prompt Template)
-  & 1 & 1 \\
- 
-During AI Mentor follow-up: each follow-up message
-  (\texttt{/api/stream-mentor},
-  AI Mentor System Instruction Prompt),
-  avg.\ 2 messages
-  & 2 & 2 \\
- 
-At the main menu dashboard \textit{(optional)}: each
-  Holistic Mentor response
-  (\texttt{/api/holistic-mentor-chat},
-  AI Mentor Holistic Prompt Template),
-  avg.\ 1 exchange
-  & 1 & 1 \\
-\hline
-\textbf{Estimated session total} & \textbf{8--9} & \textbf{8--9} \\
-\hline
+\textbf{Client$\,{\to}\,$Server} &
+\textbf{Server$\,{\to}\,$Gemini} \\
+\midrule
+At Scenario Selection
+\newline\texttt{/api/holistic-greeting}
+& 1 & 1 \\[4pt]
+During the Conversation (per user turn, avg.\ 3--4)
+\newline\texttt{/api/stream-message}
+& 3--4 & 3--4 \\[4pt]
+At Session End
+\newline\texttt{/api/end-session}
+& 1 & 1 \\[4pt]
+During AI Mentor Follow-up (avg.\ 2 messages)
+\newline\texttt{/api/stream-mentor}
+& 2 & 2 \\[4pt]
+At Main Menu Dashboard \textit{(optional, avg.\ 1)}
+\newline\texttt{/api/holistic-mentor-chat}
+& 1 & 1 \\
+\midrule
+\textbf{Estimated Session Total} & \textbf{8--9} & \textbf{8--9} \\
+\bottomrule
 \end{tabular}
-\vspace{0.2cm}
-\par
-{\small \textit{Note.} Client $\rightarrow$ Server calls exclude the initial
-page load and static asset requests. The combined analysis call
-(\texttt{/api/end-session}) is the most token-intensive operation, as it
-transmits the full conversation transcript and the complete scoring rubric
-in a single request. The Holistic Mentor row is marked optional because
-not all users engage with cumulative feedback after each session. All calls
-use \texttt{gemini-3-flash} via the Google Generative AI API. At the
-observed end-user testing peak ($\approx$350 requests, Feb\,26\,--\,Mar\,5),
-these figures imply approximately 39--44 near-concurrent sessions. This is 
-unexpected due to our small sample size\par}
+\smallskip
+
 \end{table}
+
+
+\small\textit{Note.} The combined analysis call (\texttt{/api/end-session})
+is the most token-intensive operation. The Holistic Mentor row is optional
+as not all users engage with cumulative feedback. All calls use
+\texttt{gemini-3-flash} via the Google Generative AI API. At the observed
+end-user testing peak ($\approx$350 requests, Feb~26--Mar~5), these figures imply that
+the 24 users engaged in token intensive sessions, each possibly with long conversations
+and multiple roleplay sessions, which likely contributed to the API quota exhaustion that was observed
+during the testing period. 
 
 \subsubsection{Implications for Infrastructure}
 The peaks observed in the API usage chart occured during end-user testing phase from Feb 26  - March 25, where requests reached approximately 350 and tokens peaked at ~438k (March 2). Moreover, at March 26, stress testing regarding the different
@@ -1204,7 +1191,7 @@ components of the system had occurred. Given the table, 8-9 Gemini API calls per
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{figures/gemini_usage.png}
+    \includegraphics[width=0.85\textwidth]{figures/gemini_usage2.png}
     \caption{SociusBot AI Studio Gemini API Usage}
     \label{fig:gemini_usage}
 \end{figure}
@@ -1277,8 +1264,8 @@ As one participant summarized in their final evaluation:
 \end{quote}
 
 \section{\hl{Discussion}}
-\indent This section synthesizes the findings from the various testing phases and reflects on their implications for the research objectives, system design, 
-and future development directions. The discussion is organized around key themes that emerged from the data, including user engagement, cultural localization, 
+\indent This section synthesizes the findings from the various testing phases and reflects on their implications in accordance to the research objectives. The discussion is organized around key themes that
+were extracted from the data, including user engagement, cultural localization, 
 psychological safety, and the limitations of the current system iteration.
 
 \indent The primary objective of the study was to evaluate the effectiveness of Socius as a platform for practicing the navigation of complex conversational scenarios. 
