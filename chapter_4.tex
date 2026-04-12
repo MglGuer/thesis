@@ -1,4 +1,4 @@
-    \chapter{The Socius System}\label{sec:methodology}
+\chapter{The Socius System}\label{sec:methodology}
 
     \section{Software Overview}
 
@@ -16,7 +16,7 @@
         \item To implement a user interface that facilitates the conversation, similar to text messaging applications, that will allow users to interact with the chatbot through text input thereby receiving responses from the chatbot.
     \end{itemize}
 
-    \section{\hl{Software Scope and Limitations}}
+    \section{Software Scope and Limitations}
 
     The system establishes a backend database that stores user profiles, conversation transcripts, and metrics related to pragmatic competence. Authentication requires minimal user information—specifically an email, password, and age—ensuring that external user data, such as social media profiles, are not collected. This database hosts the conversation logs per user session, allowing the model to longitudinally analyze the user's pragmatic competence and track their progress through an interactive Progress Dashboard.
 
@@ -128,11 +128,11 @@
 
     % The GRICE dataset is structure to then include various scenarios based on the implicatures that come from Grice's Maxims. As such, each row of data in the dataset represents a unique social scenario in regards to a certain implicature. 
 
-    \section{\hl{Conversation Flow}}
+    \section{Conversation Flow}
     The Socius chatbot follows a structured, API-driven conversation flow grounded in the APAM framework. The process has been expanded into four primary functional phases: Session Initiation, Active Conversation (AI Partner Phase), Closing \& Analysis, and Follow-up Interaction (AI Mentor Phase). Each phase coordinates specific API endpoints, backend state management, and database operations. As detailed in Table 4.1, this architecture ensures a seamless transition from the user's initial scenario selection to the final pedagogical feedback loop.
     
     \begin{longtblr}[
-      caption = {\hl{Updated Conversation Flow: End-to-End User Journey and System Processes}},
+      caption = {Updated Conversation Flow: End-to-End User Journey and System Processes},
       label = {tab:conversation_flow},
     ]{
       colspec = {Q[l, 2.5cm] c X[l]},
